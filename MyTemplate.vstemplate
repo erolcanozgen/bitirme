@@ -1,0 +1,54 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>Bitirme</Name>
+    <Description>&lt;No description available&gt;</Description>
+    <ProjectType>Web</ProjectType>
+    <ProjectSubType>CSharp</ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Bitirme</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="ProjectName.webproj" File="ProjectName.webproj" ReplaceParameters="true">
+      <Folder Name="App_Code" TargetFolderName="App_Code">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Connection.cs">Connection.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="DiseaseDetails.cs">DiseaseDetails.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="DiseasesNames.cs">DiseasesNames.cs</ProjectItem>
+      </Folder>
+      <Folder Name="App_Data" TargetFolderName="App_Data" />
+      <Folder Name="Bin" TargetFolderName="Bin">
+        <ProjectItem ReplaceParameters="false" TargetFileName="MySql.Data.dll">MySql.Data.dll</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="MySql.Data.dll.refresh">MySql.Data.dll.refresh</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Diseases.aspx">Diseases.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Diseases.aspx.cs">Diseases.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax">Global.asax</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="HomePage.aspx">HomePage.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="HomePage.aspx.cs">HomePage.aspx.cs</ProjectItem>
+      <Folder Name="images" TargetFolderName="images">
+        <ProjectItem ReplaceParameters="false" TargetFileName="body-bg.jpg">body-bg.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="excel.jpg">excel.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="header.jpg">header.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="image01.jpg">image01.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="image02.jpg">image02.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="image03.jpg">image03.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="image04.jpg">image04.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="image05.jpg">image05.jpg</ProjectItem>
+      </Folder>
+      <Folder Name="Scripts" TargetFolderName="Scripts">
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-1.4.1-vsdoc.js">jquery-1.4.1-vsdoc.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-1.4.1.js">jquery-1.4.1.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-1.4.1.min.js">jquery-1.4.1.min.js</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Site.master">Site.master</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Site.master.cs">Site.master.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Style.css">Style.css</ProjectItem>
+      <Folder Name="Styles" TargetFolderName="Styles" />
+      <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

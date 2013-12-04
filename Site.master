@@ -1,0 +1,108 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SNP DATABASE</title>
+    <link href="style.css" media="screen" rel="stylesheet"/>
+    <link href="css/bootstrap.css" media="screen" rel="stylesheet"/>
+     <link href="css/bootstrap.min.css" media="screen" rel="stylesheet"/>
+     <link href="css/bootstrap-responsive.min.css" media="screen" rel="stylesheet"/>
+    <link href="css/bootstrap-responsive.css" media="screen" rel="stylesheet"/>
+    
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script language="javascript">
+        $('.dropdown-toggle').dropdown();
+        $('.dropdown-menu').find('form').click(function (e) {
+            e.stopPropagation();
+        });
+</script>
+    <style type="text/css">
+        #login {
+            width: 168px;
+        }
+    </style>
+     <asp:ContentPlaceHolder ID="headContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+	<div id="wrapper">
+    	<div id="header">
+    
+            <div id ="login" style="background-color: #FFFFFF" >
+       
+        <ul class="nav">
+         
+          <!-- here comes the important part -->
+    
+           <li><asp:Label ID="welcomeLabel" Visible="false" runat="server" Text="Label"></asp:Label> </li>
+            
+           <li class="dropdown" id="menu1">
+             <asp:HyperLink  runat="server" ID="LoginLink" class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+               Login
+                <b class="caret"></b>
+            </asp:HyperLink>
+               <div class="dropdown-menu">
+                   <form style="margin: 0px" accept-charset="UTF-8" action="Authentication.aspx" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="4L/A2ZMYkhTD3IiNDMTuB/fhPRvyCNGEsaZocUUpw40=" /></div>
+                   <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="4L/A2ZMYkhTD3IiNDMTuB/fhPRvyCNGEsaZocUUpw40=" /></div>
+                 <fieldset class='textbox' style="padding:10px">
+                   <input style="margin-top: 8px" type="text" placeholder="Username" name="Username" />
+                   <input style="margin-top: 8px" type="password" placeholder="Passsword" name="Password" />
+                   <input class="btn-primary" name="commit" type="submit" value="Log In" />
+                 </fieldset>
+                   </form>
+               </div>
+               </li>
+             <li><asp:HyperLink href="SignUp.aspx"  ID="SignupLink" runat="server">Sign Up</asp:HyperLink>&nbsp; </li>
+             <li>  <asp:HyperLink href="Logout.aspx" ID="LogoutLink" runat="server" Visible="false" >Log Out</asp:HyperLink> </li>
+
+        
+        </ul>
+               
+    
+</div>
+        	<!-- logo-->
+        	<div id="logo">
+            <h1>SNP<span class="logo-colour"> DATABASE</span></h1>
+            </div>
+
+        </div>
+        
+        <!-- header image -->
+        <div style=" text-align:center; margin-right: 0px; margin-right: 0px; margin-top: 0px;"><img alt="" src="images/header.jpg"/></div>
+        
+        <!-- menu -->
+        <div id="menu">
+        	<ul>
+            	<li class='active'><a href="HomePage.aspx">Home Page</a></li>
+            <li><a href="Diseases.aspx">Diseases</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        
+        <!-- content -->
+        <form id="form1" runat="server">
+            <div>
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+        </form>
+        <!-- footer -->
+        <div id="footer">
+        	<h5>Director of publication: Elif Everest<br />
+            Project manager: Assoc. Dr. Eda Tahir Turanli<br />
+            Molecular Biology and Genetics Programme<br />
+            Istanbul Technical University </h5>
+        </div>
+    
+    </div>
+
+</body>
+
+</html>
