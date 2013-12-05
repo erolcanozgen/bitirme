@@ -1,0 +1,89 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Yeni.master.cs" Inherits="Yeni" %>
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>SNP DATABASE</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" id="theme" href="css/style.css" />
+  <!-- modernizr enables HTML5 elements and feature detects -->
+  <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+
+  <asp:ContentPlaceHolder ID="headContent" runat="server">
+  </asp:ContentPlaceHolder>
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div id="logo">
+        <div id="logo_text">
+                <!-- class="logo_colour", allows you to change the colour of the text -->
+                <h1><a href="HomePage.aspx">SNP<span class="logo_colour"> DATABASE</span></a></h1>
+                <h2>Simple. Contemporary. Website Template.</h2>
+        </div>
+      </div>
+      <nav>
+        <div id="menu_container">
+          <ul class="sf-menu" id="nav">
+            <li><a href="HomePage.aspx">Home Page</a></li>
+            <li><a href="Diseases.aspx">Diseases</a></li>
+            <li><a href="#">Example Drop Down</a>
+              <ul>
+                <li><a href="#">Drop Down One</a></li>
+                <li><a href="#">Drop Down Two</a>
+                  <ul>
+                    <li><a href="#">Sub Drop Down One</a></li>
+                    <li><a href="#">Sub Drop Down Two</a></li>
+                    <li><a href="#">Sub Drop Down Three</a></li>
+                    <li><a href="#">Sub Drop Down Four</a></li>
+                    <li><a href="#">Sub Drop Down Five</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Drop Down Three</a></li>
+                <li><a href="#">Drop Down Four</a></li>
+                <li><a href="#">Drop Down Five</a></li>
+              </ul>
+            </li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="ContactUs.aspx">Contact Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div id="site_content">
+        <!-- content -->
+            <div>
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+    </div>
+
+    <div id="scroll">
+      <a title="Scroll to the top" class="top" href="#"><img src="images/top.png" alt="top" /></a>
+    </div>
+    <footer>
+      <p class="footer_note">
+            Director of publication: Elif Everest<br />
+            Project manager: Assoc. Dr. Eda Tahir Turanli<br />
+            Molecular Biology and Genetics Programme<br />
+            Istanbul Technical University</p>
+      <p style="text-align:right">Copyright &copy; CSS3_two | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
+    </footer>
+  </div>
+  <!-- javascript at the bottom for fast page loading -->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.easing-sooper.js"></script>
+  <script type="text/javascript" src="js/jquery.sooperfish.js"></script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $('ul.sf-menu').sooperfish();
+          $('.top').click(function () { $('html, body').animate({ scrollTop: 0 }, 'fast'); return false; });
+      });
+  </script>
+</body>
+</html>

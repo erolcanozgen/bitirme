@@ -17,7 +17,7 @@ public partial class SignUp : System.Web.UI.Page
     {
 
         Connection newCon = new Connection();
-        string insertSql = "INSERT INTO Member (Name,Surname,Username,Password,Email,roleId) values (@FirstName,@LastName,@UserName,@Password,@Email,@RolId)";
+        string insertSql = "INSERT INTO Member (FirstName,LastName,UserName,Password,Email,RolId) values (@FirstName,@LastName,@UserName,@Password,@Email,@RolId)";
                 
         MySqlCommand cmd = new MySqlCommand();
         cmd.Connection = newCon.conn;

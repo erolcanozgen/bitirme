@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Diseases.aspx.cs" Inherits="Disasters" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="Diseases.aspx.cs" Inherits="Disasters" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div>
-        <table style="width: 100%">
+        <table class="gridtable">
             <tr>
-                <td style="width: 328px">
+                <td>
                     &nbsp;&nbsp;
                     <asp:Label ID="Label1" runat="server" Text="Select a disease to examine researches:"></asp:Label>
                     <br />&nbsp;&nbsp;
@@ -49,7 +49,7 @@
                         <SortedAscendingCellStyle BackColor="#F1F1F1" />
                         <SortedAscendingHeaderStyle BackColor="#808080" />
                         <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                        <SortedDescendingHeaderStyle BackColor="#383838" />
+                        <SortedDescendingHeaderStyle BackColor="#383837" />
                     </asp:GridView>
                 </td>
             </tr>

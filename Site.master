@@ -19,7 +19,7 @@
         $('.dropdown-menu').find('form').click(function (e) {
             e.stopPropagation();
         });
-</script>
+    </script>
     <style type="text/css">
         #login {
             width: 168px;
@@ -79,9 +79,9 @@
         <div id="menu">
         	<ul>
             	<li class='active'><a href="HomePage.aspx">Home Page</a></li>
-            <li><a href="Diseases.aspx">Diseases</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
+                <li><a href="Diseases.aspx">Diseases</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div>
         
