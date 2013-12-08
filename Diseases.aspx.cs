@@ -20,10 +20,9 @@ public partial class Disasters : System.Web.UI.Page
             this.Master.FindControl("LoginLink").Visible = false;
             this.Master.FindControl("SignupLink").Visible = false;
             this.Master.FindControl("LogoutLink").Visible = true;
-            excelAktar.Visible = true;
+            //excelAktar.Visible = true;
 
         }
-
 
         if (!IsPostBack)
         {
@@ -31,6 +30,9 @@ public partial class Disasters : System.Web.UI.Page
             DiseasesList.DataValueField = "Table_Name";
             DiseasesList.DataSource = dName.selectDiseasesNames();
             DiseasesList.DataBind();
+
+            grdViewCustomers.DataSource = dName.selectDiseasesNames();
+            grdViewCustomers.DataBind();
         }
         //ListItem loginLI = this.Master.Page.FindControl("bsr") as ListItem;
         //loginLI.Visible = false; 
@@ -38,11 +40,21 @@ public partial class Disasters : System.Web.UI.Page
 
     public void showDiseaseDetails(object sender, EventArgs e)
     {
-        DiseasesDetailsGrid.DataSource = dDetails.selectDiseasesNames(DiseasesList.SelectedValue);
-        DiseasesDetailsGrid.DataBind();
+        grdViewCustomers.DataSource = dName.selectDiseasesNames();
+        grdViewCustomers.DataBind();
 
         //DiseasesDetailsGrid.Columns[0].Visible = false;
         //DiseasesDetailsGrid.Columns[1].Visible = false;
+    }
+    protected void grdViewCustomers_OnRowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            string Table_Name = grdViewCustomers.DataKeys[e.Row.RowIndex].Value.ToString();
+            GridView grdViewOrdersOfCustomer = (GridView)e.Row.FindControl("grdViewOrdersOfCustomer");
+            grdViewOrdersOfCustomer.DataSource = dDetails.selectDiseasesNames(Table_Name);
+            grdViewOrdersOfCustomer.DataBind();
+        }
     }
     public override void VerifyRenderingInServerForm(Control control)
     {
@@ -62,7 +74,7 @@ public partial class Disasters : System.Web.UI.Page
         HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
 
 
-        DiseasesDetailsGrid.RenderControl(htmlWrite);
+        grdViewCustomers.RenderControl(htmlWrite);
 
         Response.Write(stringWrite.ToString());
         Response.End();
