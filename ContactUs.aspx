@@ -3,7 +3,7 @@
       <link href="css/SignUp.css" type="text/css" rel="stylesheet"/>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
-          
+            
 
         <img style="float: left; vertical-align: middle; margin: 0 10px 0 0;" src="images/contact.png" alt="contact" /><h1 style="margin: 15px 0 0 0;">Contact Us</h1>
         <p>For ask anything</p>
