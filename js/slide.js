@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	// Expand Panel
-	$("#open").click(function(){
+	$("#login_signUp").click(function(){
 		$("div#panel").slideDown("slow");
 	
 	});	

@@ -25,49 +25,49 @@
             <div id="toppanel">
                 <div id="panel">
                     <div class="content clearfix">
-                        <div class="left">
-                            <!-- Login Form -->
-                            <form class="clearfix" action="#" method="post">
+                        <form id="Form1" class="clearfix" action="#" method="post" runat="server">
+                            <div class="left">
+                                <!-- Login Form -->
+
                                 <h1>Member Login</h1>
                                 <label class="grey" for="log">Username:</label>
-                                <input class="field" type="text" name="log" id="log" value="" size="23" />
+                                <asp:TextBox ID="L_UserName" class="field" runat="server"></asp:TextBox>
                                 <label class="grey" for="pwd">Password:</label>
-                                <input class="field" type="password" name="pwd" id="pwd" size="23" />
+                                <asp:TextBox TextMode="password" ID="L_passwd"  class="field" runat="server"></asp:TextBox>
                                 <label>
                                     <input name="rememberme" id="rememberme" type="checkbox" checked="checked" value="forever" />
                                     &nbsp;Remember me</label>
                                 <div class="clear"></div>
-                                <input type="submit" name="submit" value="Login" class="bt_login" />
+                                <asp:Button ID="Login" runat="server" Text="Login" class="bt_login" OnClick="Login_Click" />
                                 <a class="lost-pwd" href="#">Lost your password?</a>
-                            </form>
-                        </div>
-                        <div class="left right">
-                            <!-- Register Form -->
-                            <form action="#" method="post">
+
+                            </div>
+                            <div class="left right">
+                                <!-- Register Form -->
+
                                 <h1>Not a member yet? Sign Up!</h1>
                                 <label class="grey" for="signup">Username:</label>
-                                <input class="field" type="text" name="signup" id="signup" value="" size="23" />
+                                <asp:TextBox ID="R_Username" class="field" runat="server"></asp:TextBox>
 
                                 <label class="grey" for="signup">First Name:</label>
-                                <input class="field" type="text" name="FirstName" id="FirstName" value="" size="23" />
+                                <asp:TextBox ID="FirstName" class="field" runat="server"></asp:TextBox>
 
-                                <label class="grey" for="signup">Last Name:</label>
-                                <input class="field" type="text" name="LastName" id="LastName" value="" size="23" />
+                                <label class="grey" for="LastName">Last Name:</label>
+                                <asp:TextBox ID="LastName" class="field" runat="server"></asp:TextBox>
 
                                 <label class="grey" for="signup">Password:</label>
-                                <input class="field" type="text" name="passwd" id="passwd" value="" size="23" />
-
+                                <asp:TextBox TextMode="password" ID="R_Passwd" class="field" runat="server"></asp:TextBox>
+                                
                                 <label class="grey" for="signup">Confirm Password:</label>
-                                <input class="field" type="text" name="passwdagain" id="passwdagain" value="" size="23" />
+                                <asp:TextBox TextMode="password" ID="R_ConfirmPasswd" class="field" runat="server"></asp:TextBox>
 
                                 <label class="grey" for="email">Email:</label>
-                                <input class="field" type="text" name="email" id="email" size="23" />
+                                <asp:TextBox ID="Email" class="field" runat="server"></asp:TextBox>
                                 <label>A password will be e-mailed to you.</label>
-                                <input type="submit" name="submit" value="Register" class="bt_register" />
 
-
-                            </form>
-                        </div>
+                                <asp:Button ID="Register" runat="server" Text="Register" class="bt_register" />
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- /login -->
@@ -75,18 +75,20 @@
                 <!-- The tab on top -->
                 <div class="tab">
                     <ul class="login">
-                        <li class="left">&nbsp;</li>
-                        <li>Hello Guest!</li>
+                        <li class="left">&nbsp;</li>     
+                        <li> <asp:Label ID="session_name" runat="server" Text="Hello Guest!"></asp:Label></li>
                         <li class="sep">|</li>
                         <li id="toggle">
-                            <a id="open" class="open" href="#">Log In | Register</a>
+                           
+                            <asp:HyperLink ID="login_signUp" href="#" class="open" runat="server">Log In | Register</asp:HyperLink>
+                            <asp:HyperLink ID="logout" Visible="false" href="Logout.aspx" class="open" runat="server">Log Out</asp:HyperLink>
+                           
                             <a id="close" style="display: none;" class="close" href="#">Close Panel</a>
                         </li>
                         <li class="right">&nbsp;</li>
                     </ul>
                 </div>
                 <!-- / top -->
-
             </div>
             <!--panel -->
 

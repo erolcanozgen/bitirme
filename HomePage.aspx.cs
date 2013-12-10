@@ -9,14 +9,11 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["user"] != null)
-        {
-            this.Master.FindControl("welcomeLabel").Visible = true;
-            ((Label)this.Master.FindControl("welcomeLabel")).Text = "Welcome " + ((Users)Session["user"]).name;
-            this.Master.FindControl("LoginLink").Visible = false;
-            this.Master.FindControl("SignupLink").Visible = false;
-            this.Master.FindControl("LogoutLink").Visible = true;
+  
+    }
 
-        }
+    void Page_PreInit(Object sender, EventArgs e)
+    {
+     
     }
 }

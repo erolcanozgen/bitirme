@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="SignUp.aspx.cs" Inherits="SignUp"  %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="SignUp.aspx.cs" Inherits="SignUp" %>
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
       <link href="SignUp.css" type="text/css" rel="stylesheet"/>
