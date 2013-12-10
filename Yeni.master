@@ -65,7 +65,7 @@
                                 <asp:TextBox ID="Email" class="field" runat="server"></asp:TextBox>
                                 <label>A password will be e-mailed to you.</label>
 
-                                <asp:Button ID="Register" runat="server" Text="Register" class="bt_register" />
+                                <asp:Button ID="Register" runat="server" Text="Register" class="bt_register" OnClick="Register_Click" />
                             </div>
                         </form>
                     </div>
