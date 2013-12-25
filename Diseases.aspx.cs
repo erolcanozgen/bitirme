@@ -74,4 +74,29 @@ public partial class Disasters : System.Web.UI.Page
         Response.Write(stringWrite.ToString());
         Response.End();
     }
+
+    //eklenecek gridview'e
+    protected void calculateSelectedMetaAnalysis(object sender, EventArgs e)
+    {
+                int selectedRowCounts = 0;
+        GridView grdViewOrdersOfCustomer = (GridView)FindControl("grdViewOrdersOfCustomer");
+        foreach (GridViewRow row in grdViewOrdersOfCustomer.Rows)
+        {
+            if (row.RowType == DataControlRowType.DataRow)
+            {
+                CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
+                if (chkRow.Checked)
+                {
+                    selectedRowCounts++;
+                }
+            }
+        }
+        if (selectedRowCounts > 2)
+        {
+            //calculate meta analysis
+        }
+        else {
+            Alert.Show("You must minimum 2 research to calculate meta-analysis!");
+        }
+    }
 }

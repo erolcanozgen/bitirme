@@ -16,62 +16,84 @@
 	        }
 	    }
 	</script>
+    <style type="text/css">
+        .auto-style1
+        {
+            width: 100%;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div>
-        <asp:Label ID="Label1" runat="server" Text="Select a disease to examine researches:"></asp:Label>
-        <br />&nbsp;&nbsp;
-        <asp:DropDownList ID="DiseasesList" runat="server" 
-            AutoPostBack="True" onselectedindexchanged="showDiseaseDetails"> </asp:DropDownList>
-                                
-        <asp:ImageButton Visible="false" ID="excelAktar" runat="server" 
-            ImageUrl="~/images/excelAktar.jpg" BorderColor="#93A985" 
-            BorderStyle="Ridge" onclick="excelAktar_Click" ImageAlign="Right" />
-                
-    </div>
-    <div>
-		<asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="Table_Name"
-            OnRowDataBound="grdViewCustomers_OnRowDataBound" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
-			<AlternatingRowStyle BackColor="#CCCCCC" />
-			<Columns>
-				<asp:TemplateField ItemStyle-Width="20px">
-					<ItemTemplate>
-						<a href="JavaScript:divexpandcollapse('div<%# Eval("Id") %>');">
-							<img alt="Details" id='imgdiv<%# Eval("Id") %>' src="images/plus.png" />
-						</a>
-						<div id='div<%# Eval("Id") %>' style="display: none;">
-							<asp:GridView ID="grdViewOrdersOfCustomer" runat="server" AutoGenerateColumns="false"
-								DataKeyNames="Disease_Name" CssClass="ChildGrid">
-								<Columns>
-                                    <asp:BoundField  DataField="Id" HeaderText="Id" Visible="false" />
-									<asp:BoundField  DataField="Disease_Name" HeaderText="Disease Name" />
-                                    <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
-                                    <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
-                                    <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
-                                    <asp:BoundField  DataField="SNP" HeaderText="SNP" />
-                                    <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
-                                    <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency Patient" />
-                                    <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
-                                    <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
-                                    <asp:BoundField  DataField="Reference" HeaderText="Author" />
-								</Columns>
-							</asp:GridView>
-						</div>
-					</ItemTemplate>
+    
 
-                    <ItemStyle Width="20px"></ItemStyle>
-				</asp:TemplateField>
-				<asp:BoundField  DataField="Table_Name" HeaderText="Disease Name" />
-			</Columns>
-		    <FooterStyle BackColor="#CCCCCC" />
-            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-            <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-            <SortedAscendingHeaderStyle BackColor="#808080" />
-            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-            <SortedDescendingHeaderStyle BackColor="#383838" />
-		</asp:GridView>
+    <div>
+        <table class="auto-style1">
+            <tr>
+                <td style="width:50%">
+                    <asp:Label ID="Label1" runat="server" Visible="false" Text="Select a disease to examine researches:"></asp:Label>
+                    <br />&nbsp;&nbsp;
+                    <asp:DropDownList ID="DiseasesList" runat="server" Visible="false"
+                        AutoPostBack="True" onselectedindexchanged="showDiseaseDetails"> </asp:DropDownList>        
+                </td>
+                 <td style="width:50%">
+                        <asp:ImageButton Visible="false" ID="excelAktar" runat="server" 
+                            ImageUrl="~/images/excelAktar.jpg" BorderColor="#333333" 
+                            BorderStyle="Ridge" onclick="excelAktar_Click" ImageAlign="Right" />
+                 </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+
+                    <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="Table_Name"
+                        OnRowDataBound="grdViewCustomers_OnRowDataBound" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AllowSorting="True" ShowFooter="True">
+			            <AlternatingRowStyle BackColor="#CCCCCC" />
+			            <Columns>
+				            <asp:TemplateField ItemStyle-Width="20px">
+					            <ItemTemplate>
+						            <a href="JavaScript:divexpandcollapse('div<%# Eval("Id") %>');">
+							            <img alt="Details" id='imgdiv<%# Eval("Id") %>' src="images/plus.png" />
+						            </a>
+						            <div id='div<%# Eval("Id") %>' style="display: none;">
+							            <asp:GridView ID="grdViewOrdersOfCustomer" runat="server" AutoGenerateColumns="false"
+								            DataKeyNames="Disease_Name" CssClass="ChildGrid" AllowPaging="False">
+								            <Columns>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <asp:CheckBox ID="chkRow" runat="server" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField  DataField="Id" HeaderText="Id" Visible="false" />
+									            <asp:BoundField  DataField="Disease_Name" HeaderText="Disease Name" />
+                                                <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
+                                                <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
+                                                <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
+                                                <asp:BoundField  DataField="SNP" HeaderText="SNP" />
+                                                <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
+                                                <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency Patient" />
+                                                <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
+                                                <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
+                                                <asp:BoundField  DataField="Reference" HeaderText="Author" />
+								            </Columns>
+							            </asp:GridView>
+                                    </div>
+					            </ItemTemplate>
+                                <ItemStyle Width="20px"></ItemStyle>
+				            </asp:TemplateField>
+				            <asp:BoundField  DataField="Table_Name" HeaderText="Disease Name" />
+			            </Columns>
+		                <FooterStyle BackColor="#CCCCCC" />
+                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#808080" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#383838" />
+		            </asp:GridView>
+
+                </td>
+            </tr>
+        </table>
 	</div>
 <%--    <div>
         <table class="gridtable">
