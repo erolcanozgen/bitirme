@@ -15,14 +15,14 @@ public partial class Yeni : System.Web.UI.MasterPage
             if (Session["user"] != null)
             {
                 login_signUp.Visible = false;
-                session_name.Text = ((Users)Session["user"]).name;
+                session_name.Text = "Welcome " + ((Users)Session["user"]).name;
                 logout.Visible = true;
             }
 
             else
             {
                 login_signUp.Visible = true;
-                session_name.Text = "Hello Guest!";
+                session_name.Text = "Welcome Guest!";
                 logout.Visible = false;
             }
         }

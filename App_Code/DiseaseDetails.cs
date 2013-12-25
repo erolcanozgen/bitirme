@@ -36,7 +36,7 @@ public class DiseaseDetails
         this.or_value = String.Empty;
         this.author = String.Empty;
 	}
-    public DataTable selectDiseasesNames(string name)
+    public DataTable selectDiseaseDetails(string name)
     {
         Connection newCon = new Connection();
         string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference from {0} ", name);

@@ -23,6 +23,11 @@ public partial class Disasters : System.Web.UI.Page
 
             grdViewCustomers.DataSource = dName.selectDiseasesNames();
             grdViewCustomers.DataBind();
+
+            if (Session["user"] != null)
+            {
+                excelAktar.Visible = Visible;
+            }
         }
         //ListItem loginLI = this.Master.Page.FindControl("bsr") as ListItem;
         //loginLI.Visible = false; 
@@ -42,7 +47,7 @@ public partial class Disasters : System.Web.UI.Page
         {
             string Table_Name = grdViewCustomers.DataKeys[e.Row.RowIndex].Value.ToString();
             GridView grdViewOrdersOfCustomer = (GridView)e.Row.FindControl("grdViewOrdersOfCustomer");
-            grdViewOrdersOfCustomer.DataSource = dDetails.selectDiseasesNames(Table_Name);
+            grdViewOrdersOfCustomer.DataSource = dDetails.selectDiseaseDetails(Table_Name);
             grdViewOrdersOfCustomer.DataBind();
         }
     }

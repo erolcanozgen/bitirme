@@ -76,7 +76,10 @@
                 <div class="tab">
                     <ul class="login">
                         <li class="left">&nbsp;</li>     
-                        <li> <asp:Label ID="session_name" runat="server" Text="Hello Guest!"></asp:Label></li>
+                        <li> 
+                            <br />
+                            <asp:Label ID="session_name" runat="server" Text="Hello Guest!"></asp:Label>
+                        </li>
                         <li class="sep">|</li>
                         <li id="toggle">
                            
