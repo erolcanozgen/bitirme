@@ -21,8 +21,8 @@ public partial class Disasters : System.Web.UI.Page
             DiseasesList.DataSource = dName.selectDiseasesNames();
             DiseasesList.DataBind();
 
-            grdViewCustomers.DataSource = dName.selectDiseasesNames();
-            grdViewCustomers.DataBind();
+            //grdViewCustomers.DataSource = dName.selectDiseasesNames();
+            //grdViewCustomers.DataBind();
 
             if (Session["user"] != null)
             {
@@ -35,11 +35,10 @@ public partial class Disasters : System.Web.UI.Page
 
     public void showDiseaseDetails(object sender, EventArgs e)
     {
-        grdViewCustomers.DataSource = dName.selectDiseasesNames();
+        grdViewCustomers.Visible = true;
+        grdViewCustomers.DataSource = dDetails.selectDiseaseDetails(DiseasesList.SelectedValue);//dName.selectDiseasesNames();
         grdViewCustomers.DataBind();
-
-        //DiseasesDetailsGrid.Columns[0].Visible = false;
-        //DiseasesDetailsGrid.Columns[1].Visible = false;
+    
     }
     protected void grdViewCustomers_OnRowDataBound(object sender, GridViewRowEventArgs e)
     {

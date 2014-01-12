@@ -30,10 +30,9 @@
         <table class="auto-style1">
             <tr>
                 <td style="width:50%">
-                    <asp:Label ID="Label1" runat="server" Visible="false" Text="Select a disease to examine researches:"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Select a disease to examine researches:"></asp:Label>
                     <br />&nbsp;&nbsp;
-                    <asp:DropDownList ID="DiseasesList" runat="server" Visible="false"
-                        AutoPostBack="True" onselectedindexchanged="showDiseaseDetails"> </asp:DropDownList>        
+                    <asp:DropDownList ID="DiseasesList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="showDiseaseDetails" > </asp:DropDownList>        
                 </td>
                  <td style="width:50%">
                         <asp:ImageButton Visible="false" ID="excelAktar" runat="server" 
@@ -62,24 +61,23 @@
                                                         <asp:CheckBox ID="chkRow" runat="server" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField  DataField="Id" HeaderText="Id" Visible="false" />
-									            <asp:BoundField  DataField="Disease_Name" HeaderText="Disease Name" />
+
                                                 <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
-                                                <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
-                                                <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
-                                                <asp:BoundField  DataField="SNP" HeaderText="SNP" />
-                                                <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
                                                 <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency Patient" />
+                                                <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
+                                                <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
                                                 <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
                                                 <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
                                                 <asp:BoundField  DataField="Reference" HeaderText="Author" />
-								            </Columns>
+
+                                                </Columns>
 							            </asp:GridView>
                                     </div>
 					            </ItemTemplate>
                                 <ItemStyle Width="20px"></ItemStyle>
 				            </asp:TemplateField>
-				            <asp:BoundField  DataField="Table_Name" HeaderText="Disease Name" />
+				            <asp:BoundField  DataField="SNP" HeaderText="SNP" />
+                            <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
 			            </Columns>
 		                <FooterStyle BackColor="#CCCCCC" />
                         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
