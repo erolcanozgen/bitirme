@@ -19,13 +19,14 @@
 </head>
 
 <body>
+    <form id="Form1" class="clearfix" action="#" method="post" runat="server">
     <div id="main">
         <header>
 
             <div id="toppanel">
                 <div id="panel">
                     <div class="content clearfix">
-                        <form id="Form1" class="clearfix" action="#" method="post" runat="server">
+                        
                             <div class="left">
                                 <!-- Login Form -->
 
@@ -67,7 +68,7 @@
 
                                 <asp:Button ID="Register" runat="server" Text="Register" class="bt_register" OnClick="Register_Click" />
                             </div>
-                        </form>
+                      
                     </div>
                 </div>
                 <!-- /login -->
@@ -163,5 +164,6 @@
             $('.top').click(function () { $('html, body').animate({ scrollTop: 0 }, 'fast'); return false; });
         });
     </script>
+   </form>
 </body>
 </html>

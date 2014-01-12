@@ -21,9 +21,6 @@ public partial class Disasters : System.Web.UI.Page
             DiseasesList.DataSource = dName.selectDiseasesNames();
             DiseasesList.DataBind();
 
-            //grdViewCustomers.DataSource = dName.selectDiseasesNames();
-            //grdViewCustomers.DataBind();
-
             if (Session["user"] != null)
             {
                 excelAktar.Visible = Visible;
@@ -35,8 +32,8 @@ public partial class Disasters : System.Web.UI.Page
 
     public void showDiseaseDetails(object sender, EventArgs e)
     {
-        grdViewCustomers.Visible = true;
-        grdViewCustomers.DataSource = dDetails.selectDiseaseDetails(DiseasesList.SelectedValue);//dName.selectDiseasesNames();
+        //grdViewCustomers.Visible = true;
+        grdViewCustomers.DataSource = dDetails.selectMetaAnalysis(DiseasesList.SelectedValue);
         grdViewCustomers.DataBind();
     
     }
@@ -44,9 +41,9 @@ public partial class Disasters : System.Web.UI.Page
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            string Table_Name = grdViewCustomers.DataKeys[e.Row.RowIndex].Value.ToString();
+            string SNP_Name = grdViewCustomers.DataKeys[e.Row.RowIndex].Value.ToString();
             GridView grdViewOrdersOfCustomer = (GridView)e.Row.FindControl("grdViewOrdersOfCustomer");
-            grdViewOrdersOfCustomer.DataSource = dDetails.selectDiseaseDetails(Table_Name);
+            grdViewOrdersOfCustomer.DataSource = dDetails.selectSNPDetails(DiseasesList.SelectedValue, SNP_Name);
             grdViewOrdersOfCustomer.DataBind();
         }
     }

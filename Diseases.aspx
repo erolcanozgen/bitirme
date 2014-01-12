@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="Diseases.aspx.cs" Inherits="Disasters" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="Diseases.aspx.cs" Inherits="Disasters" EnableEventValidation="false"%>
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script type="text/javascript">
 	    function divexpandcollapse(divname) {
 	        var img = "img" + divname;
@@ -24,7 +24,6 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
 
     <div>
         <table class="auto-style1">
@@ -43,25 +42,20 @@
             <tr>
                 <td colspan="2">
 
-                    <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="Table_Name"
-                        OnRowDataBound="grdViewCustomers_OnRowDataBound" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AllowSorting="True" ShowFooter="True">
+                    <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="SNP"
+                        OnRowDataBound="grdViewCustomers_OnRowDataBound" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AllowSorting="True">
 			            <AlternatingRowStyle BackColor="#CCCCCC" />
 			            <Columns>
 				            <asp:TemplateField ItemStyle-Width="20px">
 					            <ItemTemplate>
-						            <a href="JavaScript:divexpandcollapse('div<%# Eval("Id") %>');">
-							            <img alt="Details" id='imgdiv<%# Eval("Id") %>' src="images/plus.png" />
+						            <a href="JavaScript:divexpandcollapse('div<%# Eval("SNP") %>');">
+							            <img alt="Details" id='imgdiv<%# Eval("SNP") %>' src="images/plus.png" />
 						            </a>
-						            <div id='div<%# Eval("Id") %>' style="display: none;">
+						            <div id='div<%# Eval("SNP") %>' style="display: none;">
 							            <asp:GridView ID="grdViewOrdersOfCustomer" runat="server" AutoGenerateColumns="false"
-								            DataKeyNames="Disease_Name" CssClass="ChildGrid" AllowPaging="False">
+								            DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False">
 								            <Columns>
-                                                <asp:TemplateField>
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="chkRow" runat="server" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-
+                                               
                                                 <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
                                                 <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency Patient" />
                                                 <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
@@ -69,15 +63,25 @@
                                                 <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
                                                 <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
                                                 <asp:BoundField  DataField="Reference" HeaderText="Author" />
+                                                <asp:BoundField  DataField="SNP" HeaderText="SNP" Visible="false" />
 
-                                                </Columns>
+                                            </Columns>
 							            </asp:GridView>
                                     </div>
 					            </ItemTemplate>
                                 <ItemStyle Width="20px"></ItemStyle>
-				            </asp:TemplateField>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="chkRow" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
 				            <asp:BoundField  DataField="SNP" HeaderText="SNP" />
                             <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
+                            <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
+                            <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
+                            <asp:BoundField  DataField="I2" HeaderText="I2" />
+                            <asp:BoundField  DataField="NoOfPublications" HeaderText="No Of Publications" />
 			            </Columns>
 		                <FooterStyle BackColor="#CCCCCC" />
                         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -93,6 +97,7 @@
             </tr>
         </table>
 	</div>
+
 <%--    <div>
         <table class="gridtable">
             <tr>
