@@ -14,6 +14,7 @@ public partial class Yeni : System.Web.UI.MasterPage
         {
             if (Session["user"] != null)
             {
+                AddNewPublicationLink.Visible = true;
                 login_signUp.Visible = false;
                 session_name.Text = "Welcome " + ((Users)Session["user"]).name;
                 logout.Visible = true;
@@ -21,6 +22,7 @@ public partial class Yeni : System.Web.UI.MasterPage
 
             else
             {
+                AddNewPublicationLink.Visible = false;
                 login_signUp.Visible = true;
                 session_name.Text = "Welcome Guest!";
                 logout.Visible = false;

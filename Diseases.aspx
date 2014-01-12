@@ -62,7 +62,7 @@
                                                 <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
                                                 <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
                                                 <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
-                                                <asp:BoundField  DataField="Reference" HeaderText="Author" />
+                                                <asp:BoundField  DataField="Reference" HeaderText="Reference" />
                                                 <asp:BoundField  DataField="SNP" HeaderText="SNP" Visible="false" />
 
                                             </Columns>

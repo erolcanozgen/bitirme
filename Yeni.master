@@ -126,8 +126,8 @@
                                 <li><a href="#">Drop Down Five</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">About Us</a></li>
                         <li><a href="ContactUs.aspx">Contact Us</a></li>
+                        <li id="AddNewPublicationLink" runat="server"><a href="AddNewPublication.aspx">Add New Publication</a></li>
                     </ul>
                 </div>
             </nav>
