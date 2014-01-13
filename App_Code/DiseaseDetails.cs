@@ -21,7 +21,8 @@ public class DiseaseDetails
     public string p_value;
     public string or_value;
     public string reference;
-	
+
+
     public DiseaseDetails()
 	{
         this.diseaseId = -1;
@@ -30,12 +31,11 @@ public class DiseaseDetails
         this.disease_name = String.Empty;
         this.Gene_Name = String.Empty;
         this.snp = String.Empty;
-        this.freq_control = String.Empty;
-        this.freq_Patient = String.Empty;
         this.p_value = String.Empty;
         this.or_value = String.Empty;
         this.reference = String.Empty;
 	}
+
     public DataTable selectDiseaseDetails(string name)
     {
         Connection newCon = new Connection();
@@ -84,4 +84,20 @@ public class DiseaseDetails
         newCon.conn.Close();
         return dt;
     }
+
+    public DataTable SelectWithSnp(string disease_name,string SNP)
+    {
+        DataTable ret = new DataTable();
+        Connection newCon = new Connection();
+        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference from {0} ", disease_name); 
+        query += "WHERE SNP = @SNP";
+        MySqlCommand command = new MySqlCommand(query, newCon.conn);
+        command.Parameters.AddWithValue("@SNP", SNP);
+        MySqlDataAdapter dr = new MySqlDataAdapter(command);
+        ret.Clear();
+        dr.Fill(ret);
+        newCon.conn.Close();
+        return ret;
+    }
+
 }

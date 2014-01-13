@@ -64,6 +64,7 @@ public partial class Yeni : System.Web.UI.MasterPage
                 Users newUser = new Users(R_Username.Text, FirstName.Text, LastName.Text, Email.Text, R_Passwd.Text, 1);
                 newUser.AddUser();
                 Alert.Show("Registration is successfull");
+                FindAllTextBox(this);
             }
             catch (Exception ex)
             {
@@ -71,4 +72,18 @@ public partial class Yeni : System.Web.UI.MasterPage
             }
         }
     }
+
+    public void FindAllTextBox(Control ctrl)
+    {
+        if (ctrl != null)
+        {
+            foreach (Control c in ctrl.Controls)
+            {
+                if (c is TextBox)
+                    ((TextBox)c).Text = String.Empty;
+                FindAllTextBox(c);
+            }
+        }
+    }
+
  }
