@@ -63,7 +63,7 @@ public class DiseaseDetails
     public DataTable selectMetaAnalysis(string diseaseName)
     {
         Connection newCon = new Connection();
-        string query = String.Format("select  SNP, Gene_Name, OR_Value, P_Value, I2, NoOfPublications from MetaAnalysis where Disease_Name = '{0}' ", diseaseName);
+        string query = String.Format("select  SNP, OR_Value, P_Value, I2, NumOfPublications from MetaAnalysis where Disease_Name = '{0}' ", diseaseName);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();
@@ -75,7 +75,7 @@ public class DiseaseDetails
     public DataTable selectSNPDetails(string diseaseName, string SnpName)
     {
         Connection newCon = new Connection();
-        string query = String.Format("select  Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, SNP from {0} where SNP = '{1}' ", diseaseName, SnpName);
+        string query = String.Format("select  Gene_Name,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, SNP from {0} where SNP = '{1}' ", diseaseName, SnpName);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();

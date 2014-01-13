@@ -13,7 +13,8 @@ public partial class Disasters : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-    
+
+
         if (!IsPostBack)
         {
             DiseasesList.DataTextField = "Name";
@@ -25,6 +26,8 @@ public partial class Disasters : System.Web.UI.Page
             {
                 excelAktar.Visible = Visible;
             }
+
+
         }
         //ListItem loginLI = this.Master.Page.FindControl("bsr") as ListItem;
         //loginLI.Visible = false; 

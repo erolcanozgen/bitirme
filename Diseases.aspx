@@ -55,12 +55,12 @@
 							            <asp:GridView ID="grdViewOrdersOfCustomer" runat="server" AutoGenerateColumns="false"
 								            DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False">
 								            <Columns>
-                                               
+                                                <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
                                                 <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
                                                 <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency Patient" />
                                                 <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
                                                 <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
-                                                <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
+                                                <asp:BoundField  DataField="P_Value" HeaderText="Z Value" />
                                                 <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
                                                 <asp:BoundField  DataField="Reference" HeaderText="Reference" />
                                                 <asp:BoundField  DataField="SNP" HeaderText="SNP" Visible="false" />
@@ -77,11 +77,10 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 				            <asp:BoundField  DataField="SNP" HeaderText="SNP" />
-                            <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
                             <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
                             <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
                             <asp:BoundField  DataField="I2" HeaderText="I2" />
-                            <asp:BoundField  DataField="NoOfPublications" HeaderText="No Of Publications" />
+                            <asp:BoundField  DataField="NumOfPublications" HeaderText="No Of Publications" />
 			            </Columns>
 		                <FooterStyle BackColor="#CCCCCC" />
                         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

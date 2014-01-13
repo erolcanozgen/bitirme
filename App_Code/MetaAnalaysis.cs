@@ -39,6 +39,8 @@ public class Studies
 
 public class MetaAnalaysis
 {
+    string disease_name;
+    string snp;
     double i_square;
     double cochran_q;
     List<Studies> studies;
@@ -51,13 +53,15 @@ public class MetaAnalaysis
 
 	public MetaAnalaysis(string disease_name, string snp)
 	{
+        this.disease_name = disease_name;
+        this.snp = snp;
         studies = new List<Studies>();
         i_square = 0.0; cochran_q = 0.0; this.SE = 0.0; this.Z = 0.0;combined_or=0.0;
         sumofWeight = 0.0;
         sumofWeigtedEffect = 0.0;
         DataTable tmp = new DataTable();
         DiseaseDetails desease = new DiseaseDetails();
-        tmp = desease.SelectWithSnp(disease_name, snp);
+        tmp = desease.SelectWithSnp(this.disease_name,this.snp);
 
         for (int i = 0; i < tmp.Rows.Count; i++)
         {
@@ -102,12 +106,16 @@ public class MetaAnalaysis
 
 
        //this.cochran_q = Math.Sqrt(cochran_q);
-       this.i_square = ((cochran_q - (studies.Count-1)) / cochran_q) * 100;
+        if (this.cochran_q <= (studies.Count - 1)) this.i_square = 0;
+        else this.i_square = ((cochran_q - (studies.Count-1)) / cochran_q) * 100;
     }
     public void CalculateCombineValue()
     {
         if (this.i_square > 50) RandomEffectModel();
-        else RandomEffectModel();
+        else FixedEffectModel();
+
+        MetaAnalysisDB metadb = new MetaAnalysisDB(this.disease_name,this.snp,this.ec.ToString(),this.Z.ToString(),this.i_square.ToString(),studies.Count);
+        metadb.insertMetaAnalysis();
     }
 
 
@@ -141,7 +149,6 @@ public class MetaAnalaysis
         this.SE = (double)1 / Math.Sqrt(this.sumofWeight);
         this.Z = (double)(this.ec / this.SE);
     }
-
 
 
 }
