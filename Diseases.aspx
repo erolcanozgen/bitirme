@@ -60,7 +60,7 @@
                                                 <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency Patient" />
                                                 <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
                                                 <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
-                                                <asp:BoundField  DataField="P_Value" HeaderText="Z Value" />
+                                                <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
                                                 <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
                                                 <asp:BoundField  DataField="Reference" HeaderText="Reference" />
                                                 <asp:BoundField  DataField="SNP" HeaderText="SNP" Visible="false" />
@@ -78,7 +78,7 @@
                             </asp:TemplateField>
 				            <asp:BoundField  DataField="SNP" HeaderText="SNP" />
                             <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
-                            <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
+                            <asp:BoundField  DataField="P_Value" HeaderText="Z Value" />
                             <asp:BoundField  DataField="I2" HeaderText="I2" />
                             <asp:BoundField  DataField="NumOfPublications" HeaderText="No Of Publications" />
 			            </Columns>
