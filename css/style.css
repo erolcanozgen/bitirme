@@ -266,7 +266,6 @@ nav {
 .content ul li, .sidebar ul li { 
   list-style-type: none;
   background: url(../images/bullet.png) no-repeat;
-  margin: 0 0 0 0; 
   padding: 0 0 4px 28px;
   line-height: 1.5em;
 }
