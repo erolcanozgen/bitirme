@@ -78,7 +78,6 @@
                     <ul class="login">
                         <li class="left">&nbsp;</li>     
                         <li> 
-                            <br />
                             <asp:Label ID="session_name" runat="server" Text="Hello Guest!"></asp:Label>
                         </li>
                         <li class="sep">|</li>
@@ -105,10 +104,10 @@
                 </div>
             </div>
             <nav>
-                <div id="menu_container">
+                <div style="width:1000px">
                     <ul class="sf-menu" id="nav">
                         <li><a href="HomePage.aspx">Home Page</a></li>
-                        <li><a href="Diseases.aspx">Meta-Analysis</a></li>
+                        <li><a href="MetaAnalysis.aspx">Meta-Analysis</a></li>
                         <li><a href="#">Diseases</a>
                             <ul>
                                 <li><a href="#">Drop Down One</a></li>
@@ -128,6 +127,7 @@
                         </li>
                         <li><a href="ContactUs.aspx">Contact Us</a></li>
                         <li id="AddNewPublicationLink" runat="server"><a href="AddNewPublication.aspx">Add New Publication</a></li>
+                        <li id="AdminPage" runat="server"><a href="AdminPage.aspx">Admin Page</a></li>
                     </ul>
                 </div>
             </nav>

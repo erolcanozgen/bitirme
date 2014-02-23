@@ -50,20 +50,24 @@ public class Users
         dt.Clear();
         dr.Fill(dt);
 
-        if (dt.Rows.Count == 0) return false;
+        if (dt.Rows.Count == 0)
+        {
+            newCon.conn.Close();
+            return false;
+        }
         else
         {
             this.username = username;
             this.id = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
             this.name = dt.Rows[0].ItemArray[2].ToString();
             this.surname = dt.Rows[0].ItemArray[3].ToString();
-            this.email = dt.Rows[0].ItemArray[4].ToString() ;
+            this.email = dt.Rows[0].ItemArray[4].ToString();
             this.rolId = Convert.ToInt32(dt.Rows[0].ItemArray[5]);
-            return true;
             
+            newCon.conn.Close();
+            return true;
         }
-        newCon.conn.Close();
-
+        
     }
 
     public void AddUser()
@@ -102,8 +106,8 @@ public class Users
         cmd.Parameters.Add(pwd);
 
         MySqlParameter rolId = new MySqlParameter("@RolId", MySqlDbType.Int32);
-        rolId.Value = this.rolId ;
-        cmd.Parameters.Add(rolId);
+        rolId.Value = 2 ;
+        cmd.Parameters.Add(2);
 
         cmd.ExecuteNonQuery();
         newCon.conn.Close();

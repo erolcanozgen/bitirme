@@ -18,11 +18,16 @@ public partial class Yeni : System.Web.UI.MasterPage
                 login_signUp.Visible = false;
                 session_name.Text = "Welcome " + ((Users)Session["user"]).name;
                 logout.Visible = true;
+                if(((Users)Session["user"]).rolId==1)
+                    AdminPage.Visible = true;
+                else
+                    AdminPage.Visible = false;
             }
 
             else
             {
                 AddNewPublicationLink.Visible = false;
+                AdminPage.Visible = false;
                 login_signUp.Visible = true;
                 session_name.Text = "Welcome Guest!";
                 logout.Visible = false;
