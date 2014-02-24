@@ -90,6 +90,21 @@ public class DiseaseDetails
         return dt;
         
     }
+    public DataTable selectUnapprovedDiseaseDetails(string[] diseaseName)
+    {
+        Connection newCon = new Connection();
+        DataTable dt = new DataTable();
+        dt.Clear();
+        for (int i = 0; i < diseaseName.Length; i++)
+        {
+            string query = String.Format("select  ID,Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference from {0} where isApproved = 0 ", diseaseName[i]);
+            MySqlCommand command = new MySqlCommand(query, newCon.conn);
+            MySqlDataAdapter dr = new MySqlDataAdapter(command);
+            dr.Fill(dt);
+        }
+        newCon.conn.Close();
+        return dt;
+    }
     public DataTable selectSNPDetails(string diseaseName, string SnpName)
     {
         Connection newCon = new Connection();

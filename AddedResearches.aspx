@@ -48,7 +48,36 @@
             
                 </td>
                 <td style="border-left-style: solid; border-left-width: 1px; border-left-color: #C0C0C0">
-                    &nbsp;
+                    <asp:GridView ID="grdViewUnapprovedDiseases" runat="server" AutoGenerateColumns="False" 
+                      BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AllowSorting="True" AllowPaging="True">
+			            <AlternatingRowStyle BackColor="#CCCCCC" />
+			            <Columns>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="chkRow" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField  DataField="Disease_Name" HeaderText="Disease Name" />
+				            <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
+                            <asp:BoundField  DataField="SNP" HeaderText="SNP" />
+                            <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
+                            <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
+                            <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
+                            <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency Patient" />
+                            <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
+                            <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
+                            <asp:BoundField  DataField="Reference" HeaderText="Reference" />
+			            </Columns>
+		                <FooterStyle BackColor="#CCCCCC" />
+                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" BorderColor="#3399FF" BorderStyle="Solid" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#808080" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#383838" />
+		            </asp:GridView>
+                   
                 </td>
             </tr>
         </table>
