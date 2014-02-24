@@ -70,8 +70,25 @@ public class DiseaseDetails
         DataTable dt = new DataTable();
         dt.Clear();
         dr.Fill(dt);
+        dt.Rows.Add(dr);
         newCon.conn.Close();
         return dt;
+    }
+    public DataTable selectAllSNPs(string[] diseaseName)
+    {
+        Connection newCon = new Connection();
+        DataTable dt = new DataTable();
+        dt.Clear();
+        for (int i = 0; i < diseaseName.Length; i++)
+        {
+            string query = String.Format("select DISTINCT SNP from {0} ", diseaseName[i]);
+            MySqlCommand command = new MySqlCommand(query, newCon.conn);
+            MySqlDataAdapter dr = new MySqlDataAdapter(command);
+            dr.Fill(dt);
+        }
+        newCon.conn.Close();
+        return dt;
+        
     }
     public DataTable selectSNPDetails(string diseaseName, string SnpName)
     {

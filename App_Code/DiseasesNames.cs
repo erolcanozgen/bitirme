@@ -11,8 +11,9 @@ using System.Data.SqlClient;
 /// </summary>
 public class DiseasesNames
 {
-    public int id;
-    public string name;
+    public int[] id;
+    public string[] names;
+    public string[] tableNames;
 
 	public DiseasesNames()
 	{
@@ -28,6 +29,11 @@ public class DiseasesNames
         dt.Clear();
         dr.Fill(dt);
         newCon.conn.Close();
+
+
+        id = dt.AsEnumerable().Select(row => row.Field<int>("id")).ToArray();
+        names = dt.AsEnumerable().Select(row => row.Field<string>("Name")).ToArray();
+        tableNames = dt.AsEnumerable().Select(row => row.Field<string>("Table_Name")).ToArray();
 
         return dt;
     }
