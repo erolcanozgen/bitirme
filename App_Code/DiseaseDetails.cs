@@ -133,4 +133,56 @@ public class DiseaseDetails
         return ret;
     }
 
+
+    public DataTable SelectFilteredDiseaseDetails(List<KeyValuePair<string, string>> param, string name)
+    {
+        try{
+         DataTable ret = new DataTable();
+        Connection newCon = new Connection();
+        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference from {0} ", name);
+        query = query+GetWhereCondition(param);
+        MySqlCommand command = new MySqlCommand(query, newCon.conn);
+        MySqlDataAdapter dr = new MySqlDataAdapter(command);
+        ret.Clear();
+        dr.Fill(ret);
+        newCon.conn.Close();
+        return ret;
+        } 
+   
+        catch(Exception ex)
+        {
+            throw(ex);
+        }     
+    }
+
+
+    public string GetWhereCondition(List<KeyValuePair<string, string>> param){
+        string whereCondition = String.Empty;
+
+        try
+        {
+            whereCondition = "WHERE isApproved = 1 "; 
+            if (param.Count == 0) return whereCondition;
+
+           
+            for (int i = 0; i < param.Count; i++)
+            {
+                if (param[i].Key == "Control_Count" || param[i].Key == "Case_Count")
+                {
+                    whereCondition = whereCondition + "AND " + param[i].Key + " >= " + param[i].Value + " ";
+                }
+                else
+                whereCondition = whereCondition + "AND " + param[i].Key + " LIKE " + "'%" + param[i].Value +"%' ";
+            }
+
+            return whereCondition;
+        }
+
+        catch(Exception ex)
+        {
+            throw(ex);
+        }
+    }
+
+
 }

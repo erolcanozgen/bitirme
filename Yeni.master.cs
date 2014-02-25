@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,6 +13,20 @@ public partial class Yeni : System.Web.UI.MasterPage
         Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
         if (!IsPostBack)
         {
+
+            DiseasesNames diseaseNames = new DiseasesNames();
+            DataTable dt = diseaseNames.selectDiseasesNames();
+
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                HyperLink DynLink = new HyperLink();
+                DynLink.ID = dt.Rows[i].ItemArray[2].ToString();
+                DynLink.Text = dt.Rows[i].ItemArray[1].ToString();
+                DynLink.NavigateUrl = string.Format("~/Diseases.aspx?disease={0}", dt.Rows[i].ItemArray[2].ToString());
+                DiseaseList.Controls.Add(DynLink);
+            }
+
             if (Session["user"] != null)
             {
                 AddNewPublicationLink.Visible = true;

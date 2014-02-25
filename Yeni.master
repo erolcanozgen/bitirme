@@ -109,20 +109,9 @@
                         <li><a href="HomePage.aspx">Home Page</a></li>
                         <li><a href="MetaAnalysis.aspx">Meta-Analysis</a></li>
                         <li><a href="#">Diseases</a>
-                            <ul>
-                                <li><a href="#">Drop Down One</a></li>
-                                <li><a href="#">Drop Down Two</a>
-                                    <ul>
-                                        <li><a href="#">Sub Drop Down One</a></li>
-                                        <li><a href="#">Sub Drop Down Two</a></li>
-                                        <li><a href="#">Sub Drop Down Three</a></li>
-                                        <li><a href="#">Sub Drop Down Four</a></li>
-                                        <li><a href="#">Sub Drop Down Five</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Drop Down Three</a></li>
-                                <li><a href="#">Drop Down Four</a></li>
-                                <li><a href="#">Drop Down Five</a></li>
+                            <ul  style="overflow:scroll;height:200px;width:auto">
+                                 <asp:ContentPlaceHolder ID="DiseaseList" runat="server">
+                                 </asp:ContentPlaceHolder>
                             </ul>
                         </li>
                         <li><a href="ContactUs.aspx">Contact Us</a></li>
