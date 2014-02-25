@@ -77,7 +77,7 @@ public partial class Disasters : System.Web.UI.Page
     //eklenecek gridview'e
     protected void calculateSelectedMetaAnalysis(object sender, EventArgs e)
     {
-                int selectedRowCounts = 0;
+        int selectedRowCounts = 0;
         GridView grdViewOrdersOfCustomer = (GridView)FindControl("grdViewOrdersOfCustomer");
         foreach (GridViewRow row in grdViewOrdersOfCustomer.Rows)
         {

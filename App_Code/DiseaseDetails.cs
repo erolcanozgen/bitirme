@@ -10,6 +10,7 @@ using MySql.Data.MySqlClient;
 /// </summary>
 public class DiseaseDetails
 {
+    public int[] id;
     public int diseaseId;
     public int case_count;
     public int control_count;
@@ -40,7 +41,7 @@ public class DiseaseDetails
     public DataTable selectDiseaseDetails(string name)
     {
         Connection newCon = new Connection();
-        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference from {0} ", name);
+        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved from {0} ", name);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();
@@ -92,17 +93,20 @@ public class DiseaseDetails
     }
     public DataTable selectUnapprovedDiseaseDetails(string[] diseaseName)
     {
-        Connection newCon = new Connection();
         DataTable dt = new DataTable();
-        dt.Clear();
-        for (int i = 0; i < diseaseName.Length; i++)
+        if (diseaseName.Length > 0)
         {
-            string query = String.Format("select  ID,Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference from {0} where isApproved = 0 ", diseaseName[i]);
-            MySqlCommand command = new MySqlCommand(query, newCon.conn);
-            MySqlDataAdapter dr = new MySqlDataAdapter(command);
-            dr.Fill(dt);
+            Connection newCon = new Connection();
+            dt.Clear();
+            for (int i = 0; i < diseaseName.Length; i++)
+            {
+                string query = String.Format("select  ID,Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference from {0} where isApproved = 0 ", diseaseName[i]);
+                MySqlCommand command = new MySqlCommand(query, newCon.conn);
+                MySqlDataAdapter dr = new MySqlDataAdapter(command);
+                dr.Fill(dt);
+            }
+            newCon.conn.Close();
         }
-        newCon.conn.Close();
         return dt;
     }
     public DataTable selectSNPDetails(string diseaseName, string SnpName)
@@ -185,4 +189,23 @@ public class DiseaseDetails
     }
 
 
+
+    public void approveSelectedPublication(List<int> diseaseId, List<string> diseaseName)
+    {
+        Connection newCon = new Connection();
+        try
+        {
+            for (int i = 0; i < diseaseName.Count; i++)
+            {
+                string query = String.Format("UPDATE {0} SET isApproved='1' WHERE ID={1}", diseaseName[i], diseaseId[i]);
+                MySqlCommand command = new MySqlCommand(query, newCon.conn);
+                command.ExecuteNonQuery();
+            }
+        }
+        catch (Exception ex)
+        {
+            Alert.Show("An error occured!Please try again later.");
+        }
+        newCon.conn.Close();
+    }
 }

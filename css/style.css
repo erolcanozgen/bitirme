@@ -9,7 +9,7 @@ html {
 }
 
 * { 
-  margin: 0 0 0 0px;
+  margin: 0;
   padding: 0;
 }
 
@@ -27,7 +27,6 @@ body {
 p { 
   padding: 0 0 20px 0;
   line-height: 1.7em;
-    height: 21px;
 }
 
 img { 
@@ -510,27 +509,4 @@ ul#nav li a {
 
 ul#nav li a:hover,ul#nav li a:focus { 
   color:#09D4FF;
-}
-
-.searchPanel {
- width:100%;
-}
-
-.searchPanel td {
-        text-align: left;        height: 20p
-
-
-
-
-
-
-
-        height: 30px;
-      vertical-align:a
-ttom;
-
-
-
-
-        padding: 5px;
 }
