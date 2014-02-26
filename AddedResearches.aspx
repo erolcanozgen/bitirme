@@ -14,7 +14,7 @@
         <div class="container">
             <table style="width:100%">
                 <tr>
-                    <td style="width:200px">
+                    <td style="width:200px; vertical-align:top">
                         <div >
                             <ul class="ca-menu">
                                 <li>
@@ -27,7 +27,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="AdminMessagesPage.aspx">
                                         
                                         <div class="ca-content">
                                             <h2 class="ca-main">Messages</h2>
