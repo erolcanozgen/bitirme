@@ -77,7 +77,7 @@ public partial class Diseases : System.Web.UI.Page
                 if (txtSNP.Text != String.Empty) param.Add(new KeyValuePair<string, string>("SNP", txtSNP.Text));   
             }
 
-            grdViewDiseases.DataSource =  dDetails.SelectFilteredDiseaseDetails(param, cmbDiseaseName.SelectedItem.Text);
+            grdViewDiseases.DataSource =  dDetails.SelectFilteredDiseaseDetails(param, cmbDiseaseName.SelectedValue.ToString());
             grdViewDiseases.DataBind();
 
 

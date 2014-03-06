@@ -2,6 +2,7 @@
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
       <link href="css/style.css" type="text/css" rel="stylesheet"/>
+     <link href="css/Button.css" type="text/css" rel="stylesheet"/>
 
      
 </asp:Content>
@@ -47,8 +48,9 @@
           </tr>
               
            <tr>
-           <td colspan="4" style="text-align:center">
-               <asp:Button runat="server" ID="btnFilter" Text="Filter" OnClick="btnFilter_Click" />
+           <td></td>
+           <td style="text-align:right">
+               <asp:Button runat="server" ID="btnFilter" CssClass="buttonCss" Text=" Filter " OnClick="btnFilter_Click" />
            </td>
            </tr>
 

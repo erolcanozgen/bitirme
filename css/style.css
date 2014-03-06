@@ -510,3 +510,20 @@ ul#nav li a {
 ul#nav li a:hover,ul#nav li a:focus { 
   color:#09D4FF;
 }
+
+
+.searchPanel {
+  width:100%;
+ }
+
+.searchPanel td
+{
+     text-align: left;
+     height: 30px;
+     vertical-align: bottom;
+     padding: 5px;
+}
+
+
+
+

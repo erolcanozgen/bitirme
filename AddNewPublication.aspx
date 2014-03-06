@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="AddNewPublication.aspx.cs" Inherits="_Default" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
       <link href="css/SignUp.css" type="text/css" rel="stylesheet"/>
 </asp:Content>
@@ -8,11 +10,21 @@
         <img style="float: left; vertical-align: middle; margin: 0 10px 0 0;" src="images/addPub.png" alt="contact" />
         <h3 style="margin: 15px 0 0 0;">Add New <br />Publication</h3>
         <br /><br />
-        <br /><br />
+        <br />
         
+        
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <div class="form_settings">
-            <p><span>Select The Disease</span><asp:DropDownList ID="Dropdown_SelectDisease" runat="server"></asp:DropDownList></p>
-            <p><span>SNP</span><asp:DropDownList ID="DropDown_SNP" runat="server"></asp:DropDownList></p>        
+            <p>
+                <span>Select The Disease</span><asp:TextBox ID="SelectDisease_TextBox" runat="server"></asp:TextBox>
+               <asp:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="SelectDisease_TextBox" MinimumPrefixLength="1" CompletionInterval="100" 
+                    EnableCaching="false" ServicePath="AutoComplete.asmx" ServiceMethod="GetDiseaseNames" Enabled="true" ></asp:AutoCompleteExtender>
+            </p>
+            <p>
+                <span>SNP</span><asp:TextBox ID="SNP_TextBox" runat="server"></asp:TextBox>
+                <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="SNP_TextBox" MinimumPrefixLength="1" CompletionInterval="100" 
+                    EnableCaching="false" ServicePath="AutoComplete.asmx" ServiceMethod="GetSNPs" Enabled="true" ></asp:AutoCompleteExtender>
+            </p>        
         </div>
         <div class="form_settings">
             <p><span>Case Count</span><asp:TextBox CssClass="contact" ID="CaseCount_TextBox" runat="server" ></asp:TextBox></p>
