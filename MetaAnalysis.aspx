@@ -5,7 +5,7 @@
 	    function divexpandcollapse(divname) {
 	        var img = "img" + divname;
 	        if ($("#" + img).attr("src") == "images/plus.png") {
-				.closest("tr")
+	            $("#" + img).closest("tr")
 				.after("<tr><td></td><td colspan = '100%'>" + $("#" + divname)
 				.html() + "</td></tr>");
 	            $("#" + img).attr("src", "images/minus.png");
