@@ -1,8 +1,12 @@
 ﻿<%@ Page  Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="Diseases.aspx.cs" Inherits="Diseases" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
       <link href="css/style.css" type="text/css" rel="stylesheet"/>
-     <link href="css/Button.css" type="text/css" rel="stylesheet"/>
+     <link href="css/Table.css" type="text/css" rel="stylesheet"/>
+    <link href="css/Button.css" type="text/css" rel="stylesheet"/>
 
      
 </asp:Content>
@@ -18,48 +22,59 @@
       
     <div style="float:left;width:345px">
                 
-         <table id="filterTable" class="searchPanel">
+         <table id="filterTable">
       
+             <thead>
+		<tr>
+			<th colspan="2"> Advanced Search</th>
+		</tr>
+	</thead>
+             <tbody>
          <tr>
           <td><label id="lblDiseaseName">Disease Name: </label></td>
-          <td colspan="3"><asp:DropDownList runat="server" ID="cmbDiseaseName" Width="100px"></asp:DropDownList></td>
+          <td><asp:DropDownList runat="server" ID="cmbDiseaseName" Width="143px"></asp:DropDownList></td>
          </tr> 
 
          <tr>
+            
           <td><label id="Label1">Snp : </label></td>
-          <td> <asp:DropDownList runat="server" ID="cmbSNP" Width="105px"/></td>
-          <td>  <asp:CheckBox runat="server" ID="chkSNP"  OnCheckedChanged="chkSNP_CheckedChanged" AutoPostBack="true" /></td>
-          <td><asp:TextBox runat="server" ID="txtSNP" Visible="false" Width="100px"></asp:TextBox></td>
+          <td><asp:TextBox ID="txtSNP" runat="server"></asp:TextBox>
+              <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+                <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSNP" MinimumPrefixLength="1" CompletionInterval="100" 
+                    EnableCaching="false" ServicePath="AutoComplete.asmx" ServiceMethod="GetSNPs" Enabled="true" ></asp:AutoCompleteExtender></td>
          </tr>
           
           <tr>
           <td><label id="lblGene">Gen Name: </label></td>
-          <td colspan="3"><asp:TextBox runat="server" ID="txtGene" Width="100px"></asp:TextBox></td>
+          <td><asp:TextBox runat="server" ID="txtGene" Width="143px"></asp:TextBox></td>
           </tr> 
          
           <tr>
           <td><label id="lblCaseCount">Min Case Count: </label></td>
-          <td colspan="3"><asp:TextBox runat="server" ID="txtCaseCount" Width="100px"></asp:TextBox></td>
+          <td><asp:TextBox runat="server" ID="txtCaseCount" Width="143px"></asp:TextBox></td>
           </tr>
 
           <tr>
           <td><label id="lblControlCount">Min Control Count: </label></td>
-          <td colspan="3"><asp:TextBox runat="server" ID="txtCotrolCount" Width="100px"></asp:TextBox></td>
+          <td><asp:TextBox runat="server" ID="txtCotrolCount" Width="143px"></asp:TextBox></td>
           </tr>
               
+                 </tbody>
+             <tfoot>
            <tr>
-           <td></td>
-           <td style="text-align:right">
+           <td style="text-align:right" colspan="2">
                <asp:Button runat="server" ID="btnFilter" CssClass="buttonCss" Text=" Filter " OnClick="btnFilter_Click" />
            </td>
            </tr>
-
+             </tfoot>
           </table>
 
     </div>
 
       <div id="DiseasesTable" style="float:right;width:625px" aria-disabled="False">
-            <asp:GridView ID="grdViewDiseases" runat="server" AutoGenerateColumns="false"
+            
+          <asp:Panel runat="server" ScrollBars="Auto">
+          <asp:GridView ID="grdViewDiseases" runat="server" AutoGenerateColumns="false"
 								            DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False" HorizontalAlign="Center" Width="100%">
 
                <Columns>
@@ -77,7 +92,7 @@
                    </Columns>
                 <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" />
           </asp:GridView>
-
+          </asp:Panel>
          </div>
 
    </div>

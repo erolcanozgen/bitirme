@@ -71,7 +71,6 @@ public class DiseaseDetails
         DataTable dt = new DataTable();
         dt.Clear();
         dr.Fill(dt);
-        dt.Rows.Add(dr);
         newCon.conn.Close();
         return dt;
     }

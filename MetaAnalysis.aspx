@@ -5,7 +5,6 @@
 	    function divexpandcollapse(divname) {
 	        var img = "img" + divname;
 	        if ($("#" + img).attr("src") == "images/plus.png") {
-	            $("#" + img)
 				.closest("tr")
 				.after("<tr><td></td><td colspan = '100%'>" + $("#" + divname)
 				.html() + "</td></tr>");
@@ -16,36 +15,34 @@
 	        }
 	    }
 	</script>
-    <style type="text/css">
-        .auto-style1
-        {
-            width: 100%;
-        }
-    </style>
+  
     <link rel="stylesheet" type="text/css" href="css/Table.css" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <div>
-        <table class="auto-style1">
+        <table>
+            <thead>
             <tr>
-                <td style="width:50%">
-                    <asp:Label ID="Label1" runat="server" Text="Select a disease to examine researches:"></asp:Label>
-                    <br />&nbsp;&nbsp;
-                    <asp:DropDownList ID="DiseasesList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="showDiseaseDetails" > </asp:DropDownList>        
-                </td>
-                 <td style="width:50%">
+                <th style="width:50%">
+                    <asp:Label ID="Label1" runat="server" Text="Select a Disease to Examine Researches:"></asp:Label>              
+                </th>
+                 <th> <asp:DropDownList ID="DiseasesList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="showDiseaseDetails" > </asp:DropDownList></th>
+
+            </tr>
+                </thead>
+         </table>
+
+        <div id="excelButton">
                         <asp:ImageButton Visible="false" ID="excelAktar" runat="server" 
                             ImageUrl="~/images/excelAktar.jpg" BorderColor="#333333" 
                             BorderStyle="Ridge" onclick="excelAktar_Click" ImageAlign="Right" />
-                 </td>
-            </tr>
-            <tr>
-                <td colspan="2">
+        </div>
 
+    
                     <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="SNP"
-                        OnRowDataBound="grdViewCustomers_OnRowDataBound" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AllowSorting="True">
-			            <AlternatingRowStyle BackColor="#CCCCCC" />
+                        OnRowDataBound="grdViewCustomers_OnRowDataBound" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Both" AllowSorting="True">
+			           
 			            <Columns>
 				            <asp:TemplateField ItemStyle-Width="20px">
 					            <ItemTemplate>
@@ -77,14 +74,12 @@
                                     <asp:CheckBox ID="chkRow" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-				            <asp:BoundField  DataField="SNP" HeaderText="SNP" />
+				            <asp:BoundField   DataField="SNP" HeaderText="SNP" />
                             <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
                             <asp:BoundField  DataField="P_Value" HeaderText="Z Value" />
                             <asp:BoundField  DataField="I2" HeaderText="I2" />
                             <asp:BoundField  DataField="NumOfPublications" HeaderText="No Of Publications" />
 			            </Columns>
-		                <FooterStyle BackColor="#CCCCCC" />
-                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                         <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
                         <SortedAscendingCellStyle BackColor="#F1F1F1" />
@@ -93,9 +88,6 @@
                         <SortedDescendingHeaderStyle BackColor="#383838" />
 		            </asp:GridView>
 
-                </td>
-            </tr>
-        </table>
 	</div>
 
 <%--    <div>

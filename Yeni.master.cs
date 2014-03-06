@@ -11,21 +11,23 @@ public partial class Yeni : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        DiseasesNames diseaseNames = new DiseasesNames();
+        DataTable dt = diseaseNames.selectDiseasesNames();
+
+
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            HyperLink DynLink = new HyperLink();
+            DynLink.ID = dt.Rows[i].ItemArray[2].ToString();
+            DynLink.Text = dt.Rows[i].ItemArray[1].ToString();
+            DynLink.NavigateUrl = string.Format("~/Diseases.aspx?disease={0}", dt.Rows[i].ItemArray[2].ToString());
+            DiseaseList.Controls.Add(DynLink);
+        }
+
         if (!IsPostBack)
         {
 
-            DiseasesNames diseaseNames = new DiseasesNames();
-            DataTable dt = diseaseNames.selectDiseasesNames();
-
-
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                HyperLink DynLink = new HyperLink();
-                DynLink.ID = dt.Rows[i].ItemArray[2].ToString();
-                DynLink.Text = dt.Rows[i].ItemArray[1].ToString();
-                DynLink.NavigateUrl = string.Format("~/Diseases.aspx?disease={0}", dt.Rows[i].ItemArray[2].ToString());
-                DiseaseList.Controls.Add(DynLink);
-            }
+            
 
             if (Session["user"] != null)
             {
