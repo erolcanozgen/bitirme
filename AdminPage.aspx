@@ -16,7 +16,7 @@
                         <div >
                             <ul class="ca-menu">
                                 <li>
-                                    <a href="#">
+                                    <a href="AddedResearches.aspx">
                                         
                                         <div class="ca-content">
                                             <h2 class="ca-main">Added Researches</h2>
@@ -25,7 +25,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="AdminMessagesPage.aspx">
                                         
                                         <div class="ca-content">
                                             <h2 class="ca-main">Messages</h2>
