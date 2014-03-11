@@ -72,11 +72,16 @@ public static class Utility
         try
         {
             double ChiSquare = 0.0f;
-            double avrgeOfYes = (double)((double)case_yes + (double)control_yes) / 2;
-            double avrgeOfNo = (double)((double)case_no + (double)control_no) / 2;
 
-            ChiSquare = (double)(Math.Pow(((double)case_yes - avrgeOfYes), 2) / avrgeOfYes) + (double)(Math.Pow(((double)control_yes - avrgeOfYes), 2) / avrgeOfYes)
-                        + (double)(Math.Pow(((double)case_no - avrgeOfNo), 2) / avrgeOfNo) + (double)(Math.Pow(((double)control_no - avrgeOfNo), 2) / avrgeOfNo);
+            double total = case_yes + case_no + control_yes + control_no;
+
+            double avrgeOfCaseYes = (double)(((double)case_yes + (double)case_no)*(case_yes+control_yes))/total ;
+            double avrgeOfCaseNo = (double)(((double)case_yes + (double)case_no) * (case_no + control_no)) / total;
+            double avrgeOfControlYes = (double)(((double)control_yes + (double)control_no) * (control_yes + case_yes)) / total;
+            double avrgeOfControlNo = (double)(((double)control_yes + (double)control_no) * (control_no + case_no)) / total;
+
+            ChiSquare = (double)(Math.Pow(((double)case_yes - avrgeOfCaseYes), 2) / avrgeOfCaseYes) + (double)(Math.Pow(((double)control_yes - avrgeOfControlYes), 2) / avrgeOfControlYes)
+                        + (double)(Math.Pow(((double)case_no - avrgeOfCaseNo), 2) / avrgeOfCaseNo) + (double)(Math.Pow(((double)control_no - avrgeOfControlNo), 2) / avrgeOfControlNo);
            
 
             return ChiSquare;
