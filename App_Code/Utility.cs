@@ -67,5 +67,46 @@ public static class Utility
         }
     }
 
+    public static double CalculateChiSquareWithoutYates(int case_yes, int case_no, int control_yes, int control_no)
+    {
+        try
+        {
+            double ChiSquare = 0.0f;
+            double avrgeOfYes = (double)((double)case_yes + (double)control_yes) / 2;
+            double avrgeOfNo = (double)((double)case_no + (double)control_no) / 2;
+
+            ChiSquare = (double)(Math.Pow(((double)case_yes - avrgeOfYes), 2) / avrgeOfYes) + (double)(Math.Pow(((double)control_yes - avrgeOfYes), 2) / avrgeOfYes)
+                        + (double)(Math.Pow(((double)case_no - avrgeOfNo), 2) / avrgeOfNo) + (double)(Math.Pow(((double)control_no - avrgeOfNo), 2) / avrgeOfNo);
+           
+
+            return ChiSquare;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    public static double CalculateChiSquareWithYates(int case_yes, int case_no, int control_yes, int control_no)
+    {
+        try
+        {
+            double ChiSquare = 0.0f;
+            double N = case_yes + case_no + control_yes + control_no;
+            double ad_minus_bc = Math.Abs(case_yes*control_no - case_no*control_yes);
+            double numerator = N * Math.Pow((ad_minus_bc - (double)(N / 2)), 2);
+            double denominator = (case_yes+case_no)*(control_yes+control_no)*(case_yes+control_yes)*(case_no+control_no);
+            
+            ChiSquare = (double)(numerator/denominator);
+
+            return ChiSquare;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
 
 }

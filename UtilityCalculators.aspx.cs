@@ -38,6 +38,13 @@ public partial class UtilityCalculators : System.Web.UI.Page
                               + "  -  "
                               + (Math.Exp( ln_or + (1.96 * Math.Sqrt(or_variance)))).ToString("0.0000");
 
+            txt_chi_square_without_Yates.Text = Utility.CalculateChiSquareWithoutYates(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
+                                                             Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text)).ToString("0.0000");
+
+            txt_chi_square_with_Yates.Text = Utility.CalculateChiSquareWithYates(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
+                                                             Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text)).ToString("0.0000");
+
+
             #endregion
 
             #region rr_calculation

@@ -146,7 +146,7 @@
                             </td>
                         </tr>
 
-
+                         
                     </tbody>
 
 
@@ -202,6 +202,40 @@
                 </table>
                   
               </div>
+
+
+            <table style="position:relative;left:112px;">
+                <thead>
+                    <th></th>
+
+                </thead>
+
+                <tbody>
+
+                     <tr>
+                            <td>
+                            <asp:Label ID="lbl_chi_square_without_Yates" runat="server" Text=" Chi-Square Without Yates Correction: "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txt_chi_square_without_Yates" Width="45px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                            <asp:Label ID="lbl_chi_square_with_Yates" runat="server" Text=" Chi-Square With Yates Correction: "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txt_chi_square_with_Yates" Width="45px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
+
+
+
+
+                </tbody>
+
+            </table>
 
 
 
