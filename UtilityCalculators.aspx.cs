@@ -14,28 +14,55 @@ public partial class UtilityCalculators : System.Web.UI.Page
  
     protected void btnCalculate_Click(object sender, EventArgs e)
     {
-     
-        if (Panel1.FindControl("lbl_or_value") == null)
-        {
-            Label lbl_or_value = new Label();
-            lbl_or_value.ID = "lbl_or_value";
-            lbl_or_value.Text = "Or Value: ";
-            Panel1.Controls.Add(lbl_or_value);
-        }
 
-        if (Panel1.FindControl("txt_or_value") == null)
+        try
         {
-            TextBox txt_or_value = new TextBox();
-            txt_or_value.Text = Utility.CalculateOrValue(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
-                                                        Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text)).ToString("0.000");
-            txt_or_value.ID = "txt_or_value";
-            txt_or_value.Width = Unit.Pixel(50);
-            Panel1.Controls.Add(txt_or_value);
-        }
-
-        else ((TextBox)Panel1.FindControl("txt_or_value")).Text = Utility.CalculateOrValue(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
-                                                       Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text)).ToString("0.000");
+            Double or_value = 0.0f; Double ln_or = 0.0f; Double or_variance = 0.0f;
+            Double rr_value = 0.0f; Double rr_variance = 0.0f; Double ln_rr = 0.0f;
+           
+            results_panel.Visible = true;
     
+            #region or_calculation
+            or_value =  Utility.CalculateOrValue(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
+                                                             Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
+            txt_or_value.Text = or_value.ToString("0.0000");
+
+            ln_or = (Math.Log(Convert.ToDouble(txt_or_value.Text)));
+            txt_ln_or.Text = ln_or.ToString("0.0000");
+
+            or_variance = Utility.CalculateOrVariance(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
+                                                         Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
+
+            txt_or_variance.Text = or_variance.ToString("0.0000");
+            txt_CI_or.Text = (Math.Exp( ln_or - (1.96 * Math.Sqrt(or_variance)))).ToString("0.0000")
+                              + "  -  "
+                              + (Math.Exp( ln_or + (1.96 * Math.Sqrt(or_variance)))).ToString("0.0000");
+
+            #endregion
+
+            #region rr_calculation
+
+            rr_value =  Utility.CalculateRRValue(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
+                                                          Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
+            txt_rr_value.Text = rr_value.ToString("0.0000");
+            rr_variance = Utility.CalculateRrVariance(Convert.ToInt32(txtCaseYes.Text), (Convert.ToInt32(txtCaseNo.Text) + Convert.ToInt32(txtCaseYes.Text)),
+                                                       Convert.ToInt32(txtControlYes.Text), (Convert.ToInt32(txtControlNo.Text) + Convert.ToInt32(txtControlYes.Text)));
+            txt_rr_variance.Text = rr_variance.ToString("0.0000");
+
+            ln_rr = (Math.Log(Convert.ToDouble(txt_rr_value.Text)));
+            txt_ln_rr.Text = ln_rr.ToString("0.0000");
+
+            txt_CI_rr.Text = (Math.Exp(ln_rr - (1.96 * Math.Sqrt(rr_variance)))).ToString("0.0000")
+                               + "  -  "
+                               + (Math.Exp(ln_rr + (1.96 * Math.Sqrt(rr_variance)))).ToString("0.0000");
+            #endregion
+
+        }
+
+        catch (Exception ex)
+        {
+            Alert.Show(ex.Message);
+        }
     
     }
 }

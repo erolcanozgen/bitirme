@@ -96,12 +96,117 @@
 
     </div>
 
-      <div id="DiseasesTable" style="float:right;width:625px" aria-disabled="False">
+
+     <asp:Panel Visible="false" ID="results_panel" runat="server" ScrollBars="Auto">
+
+      <div style="float:left;width:300px" aria-disabled="False">
             
-          <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto">
+         
           
+              <table>
+                   <thead>
+			             <tr><th> Odds Ratio </th></tr>
+            
+	                </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                            <asp:Label ID="lbl_or_value" runat="server" Text="Or Value: "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txt_or_value" Width="45px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                         <tr>
+                            <td>
+                            <asp:Label ID="lbl_or_variance" runat="server" Text=" Variance(OR): "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txt_or_variance" Width="45px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                             <tr>
+                            <td>
+                            <asp:Label ID="lbl_ln_or" runat="server" Text=" ln(OR): "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txt_ln_or" Width="45px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                            <tr>
+                            <td>
+                            <asp:Label ID="lbl_CI_or" runat="server" Text=" %95 Confidence Interval: "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txt_CI_or" Width="105px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+
+
+              </table>
+              </div>
+
+              <div style="float:left;width:300px" aria-disabled="False">
+                <table>
+                     <thead>
+			             <tr><th> Risk Ratio </th></tr>
+            
+	                </thead>
+
+                    <tbody>
+                     <tr>
+                            <td>
+                            <asp:Label ID="lbl_rr_value" runat="server" Text="Risk Ratio: "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txt_rr_value" Width="45px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                         <tr>
+                            <td>
+                            <asp:Label ID="lbl_rr_variance" runat="server" Text=" Variance(RR): "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txt_rr_variance" Width="45px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                            <tr>
+                            <td>
+                            <asp:Label ID="lbl_ln_rr" runat="server" Text=" ln(RR): "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txt_ln_rr" Width="45px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                         <tr>
+                            <td>
+                            <asp:Label ID="lbl_CI_rr" runat="server" Text=" %95 Confidence Interval: "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txt_CI_rr" Width="105px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                </table>
+                  
+              </div>
+
+
+
           </asp:Panel>
-         </div>
+         
 
    </div>
 
