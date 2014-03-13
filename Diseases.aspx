@@ -81,9 +81,9 @@
                                                 <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
                                                 <asp:BoundField  DataField="SNP" HeaderText="SNP" />
                                                 <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
-                                                <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency Patient" />
+                                                <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency In Case" />
                                                 <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
-                                                <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
+                                                <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency In Control" />
                                                 <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
                                                 <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
                                                 <asp:BoundField  DataField="Reference" HeaderText="Reference" />
