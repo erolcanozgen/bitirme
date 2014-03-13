@@ -50,14 +50,14 @@ public class DiseaseDetails
         newCon.conn.Close();
         return dt;
     }
-    public void insertDiseaseDetails(DiseaseDetails dDetails)
+    public void insertDiseaseDetails(DiseaseDetails dDetails, int referenceType)
     {
         Connection newCon = new Connection();
-        string query = String.Format("INSERT INTO {0}" 
-            +" (DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved)"
-            + " VALUES('{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}')"
+        string query = String.Format("INSERT INTO {0}"
+            + " (DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved, Reference_Type)"
+            + " VALUES('{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')"
             , dDetails.disease_name, 2 ,dDetails.case_count, dDetails.control_count, dDetails.disease_name, dDetails.Gene_Name, dDetails.snp, dDetails.freq_control,
-            dDetails.freq_Patient, dDetails.p_value, dDetails.or_value, dDetails.reference, 0);
+            dDetails.freq_Patient, dDetails.p_value, dDetails.or_value, dDetails.reference, 0, referenceType);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         command.ExecuteNonQuery();
         newCon.conn.Close();
@@ -74,6 +74,21 @@ public class DiseaseDetails
         newCon.conn.Close();
         return dt;
     }
+    public DataTable selectAllGenes(string[] diseaseName)
+    {
+        Connection newCon = new Connection();
+        DataTable dt = new DataTable();
+        dt.Clear();
+        for (int i = 0; i < diseaseName.Length; i++)
+        {
+            string query = String.Format("select DISTINCT Gene_Name from {0} ", diseaseName[i]);
+            MySqlCommand command = new MySqlCommand(query, newCon.conn);
+            MySqlDataAdapter dr = new MySqlDataAdapter(command);
+            dr.Fill(dt);
+        }
+        newCon.conn.Close();
+        return dt;
+    }
     public DataTable selectAllSNPs(string[] diseaseName)
     {
         Connection newCon = new Connection();
@@ -87,8 +102,7 @@ public class DiseaseDetails
             dr.Fill(dt);
         }
         newCon.conn.Close();
-        return dt;
-        
+        return dt;   
     }
     public DataTable selectUnapprovedDiseaseDetails(string[] diseaseName)
     {

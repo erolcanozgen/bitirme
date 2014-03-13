@@ -11,6 +11,7 @@ public partial class _Default : System.Web.UI.Page
 {
     DiseasesNames dName = new DiseasesNames();
     DiseaseDetails dDetails = new DiseaseDetails();
+    int referenceType = 0;
  
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -40,9 +41,10 @@ public partial class _Default : System.Web.UI.Page
         dDetails.p_value = P_TextBox.Text;
         dDetails.or_value = OR_TextBox.Text;
         dDetails.reference = Reference_TextBox.Text;
+        referenceType = Convert.ToInt32(Reference_DropDown.SelectedValue);
         try
         {
-            dDetails.insertDiseaseDetails(dDetails);
+            dDetails.insertDiseaseDetails(dDetails, referenceType);
             MessageBox.Show("Publication was added!");
             Response.Redirect("HomePage.aspx");
         }

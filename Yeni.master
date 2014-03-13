@@ -104,7 +104,7 @@
                 </div>
             </div>
             <nav>
-                <div style="width:1000px">
+                <div style="width:1100px">
                     <ul class="sf-menu" id="nav">
                         <li><a href="HomePage.aspx">Home Page</a></li>
                         <li><a href="MetaAnalysis.aspx">Meta-Analysis</a></li>

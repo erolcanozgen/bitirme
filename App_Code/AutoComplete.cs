@@ -22,6 +22,22 @@ public class AutoComplete : System.Web.Services.WebService {
 
     [WebMethod]
     [System.Web.Script.Services.ScriptMethod]
+    public string[] GetGeneNames(string prefixText, int count)
+    {
+        string[] returnValue = null;
+        DiseasesNames dName = new DiseasesNames();
+        DiseaseDetails dDetails = new DiseaseDetails();
+
+        DataTable dtDiseases = dName.selectDiseasesNames();
+        DataTable dtSNPs = dDetails.selectAllGenes(dName.tableNames);
+
+        returnValue = dtSNPs.AsEnumerable().Select(row => row.Field<string>("Gene_Name")).ToArray();
+
+        return (from rV in returnValue where rV.StartsWith(prefixText, StringComparison.CurrentCultureIgnoreCase) select rV).Take(100).ToArray();
+    }
+
+    [WebMethod]
+    [System.Web.Script.Services.ScriptMethod]
     public string[] GetSNPs(string prefixText, int count)
     {
         string[] returnValue = null;
