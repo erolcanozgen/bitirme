@@ -80,7 +80,7 @@
                 </td>
                 <td><asp:TextBox CssClass="contact" ID="Reference_TextBox" runat="server" Rows="5" TextMode="MultiLine"></asp:TextBox></td>
                 <td>&nbsp;</td>
-            </tr>
+            </tr> 
             <tr>
                 <td>&nbsp;</td>
                 <td> <p style="padding-top: 15px"><asp:Button CssClass="submit" ID="AddButton" runat="server" Text="Add" OnClick="AddButton_Click" /></p></td>
