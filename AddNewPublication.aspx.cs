@@ -43,6 +43,12 @@ public partial class _Default : System.Web.UI.Page
                                                      Convert.ToInt32(ControlYes_TextBox.Text), Convert.ToInt32(ControlNo_TextBox.Text)).ToString();
         dDetails.reference = Reference_TextBox.Text;
         referenceType = Convert.ToInt32(Reference_DropDown.SelectedValue);
+        
+        if (Session["user"] != null)
+            dDetails.ownerOfPublication = ((Users)Session["user"]).name;
+        else
+            dDetails.ownerOfPublication = "Guest";
+
         try
         {
             dDetails.insertDiseaseDetails(dDetails, referenceType);

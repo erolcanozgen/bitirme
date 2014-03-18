@@ -23,6 +23,7 @@ public class DiseaseDetails
     public string or_value;
     public string reference;
     public bool isApproved;
+    public string ownerOfPublication;
 
 
     public DiseaseDetails()
@@ -36,12 +37,14 @@ public class DiseaseDetails
         this.p_value = String.Empty;
         this.or_value = String.Empty;
         this.reference = String.Empty;
+        this.isApproved = false;
+        this.ownerOfPublication = String.Empty;
 	}
 
     public DataTable selectDiseaseDetails(string name)
     {
         Connection newCon = new Connection();
-        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved from {0} ", name);
+        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved, ownerOfPublication from {0} ", name);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();
@@ -54,10 +57,10 @@ public class DiseaseDetails
     {
         Connection newCon = new Connection();
         string query = String.Format("INSERT INTO {0}"
-            + " (DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved, Reference_Type)"
-            + " VALUES('{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')"
+            + " (DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved, Reference_Type, ownerOfPublication)"
+            + " VALUES('{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}', '{14}')"
             , dDetails.disease_name, 2 ,dDetails.case_count, dDetails.control_count, dDetails.disease_name, dDetails.Gene_Name, dDetails.snp, dDetails.freq_control,
-            dDetails.freq_Patient, dDetails.p_value, dDetails.or_value, dDetails.reference, 0, referenceType);
+            dDetails.freq_Patient, dDetails.p_value, dDetails.or_value, dDetails.reference, 0, referenceType, ownerOfPublication);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         command.ExecuteNonQuery();
         newCon.conn.Close();
@@ -113,7 +116,7 @@ public class DiseaseDetails
             dt.Clear();
             for (int i = 0; i < diseaseName.Length; i++)
             {
-                string query = String.Format("select  ID,Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference from {0} where isApproved = 0 ", diseaseName[i]);
+                string query = String.Format("select  ID,Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value, Reference, ownerOfPublication from {0} where isApproved = 0 ", diseaseName[i]);
                 MySqlCommand command = new MySqlCommand(query, newCon.conn);
                 MySqlDataAdapter dr = new MySqlDataAdapter(command);
                 dr.Fill(dt);

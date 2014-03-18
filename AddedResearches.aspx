@@ -49,7 +49,7 @@
             
                 </td>
                 <td style="border-left-style: solid; border-left-width: 1px; border-left-color: #C0C0C0">
-                    
+                    <asp:Label ID="nullWarningLabel" runat="server" Text="  No New Added Publication" Visible="False" BorderStyle="Solid"></asp:Label>
                     <table class="searchPanel">
                         <tr>
                             <td>
@@ -73,6 +73,7 @@
                                         <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
                                         <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
                                         <asp:BoundField  DataField="Reference" HeaderText="Reference" />
+                                        <asp:BoundField  DataField="ownerOfPublication" HeaderText="Owner" />
 			                        </Columns>
 		                            <FooterStyle BackColor="#CCCCCC" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

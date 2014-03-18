@@ -74,26 +74,25 @@
       <div id="DiseasesTable" style="float:right;width:625px" aria-disabled="False">
             
           <asp:Panel runat="server" ScrollBars="Auto">
-          <asp:GridView ID="grdViewDiseases" runat="server" AutoGenerateColumns="false"
-								            DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False" HorizontalAlign="Center" Width="100%">
+              <asp:GridView ID="grdViewDiseases" runat="server" AutoGenerateColumns="false"
+			    DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False" HorizontalAlign="Center" Width="100%">
 
-               <Columns>
-                                                <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
-                                                <asp:BoundField  DataField="SNP" HeaderText="SNP" />
-                                                <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
-                                                <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency In Case" />
-                                                <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
-                                                <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency In Control" />
-                                                <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
-                                                <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
-                                                <asp:BoundField  DataField="Reference" HeaderText="Reference" />
- 
-
-                   </Columns>
-                <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" />
-          </asp:GridView>
+                   <Columns>
+                        <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
+                        <asp:BoundField  DataField="SNP" HeaderText="SNP" />
+                        <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
+                        <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency In Case" />
+                        <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
+                        <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency In Control" />
+                        <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
+                        <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
+                        <asp:BoundField  DataField="Reference" HeaderText="Reference" />
+                        <asp:BoundField  DataField="ownerOfPublication" HeaderText="Owner Of Publication" />
+                    </Columns>
+                 <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+              </asp:GridView>
           </asp:Panel>
-         </div>
+        </div>
 
    </div>
 

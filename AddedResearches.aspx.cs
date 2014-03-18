@@ -20,6 +20,12 @@ public partial class AddedResearches : System.Web.UI.Page
             //bu bir gridviewe atanacak
             grdViewUnapprovedDiseases.DataSource = dt = dDetails.selectUnapprovedDiseaseDetails(dName.tableNames);
             grdViewUnapprovedDiseases.DataBind();
+
+            if (dt.Rows.Count <= 0)
+            {
+                buttonApprove.Visible = false;
+                nullWarningLabel.Visible = true;
+            }
         
         }
 
@@ -48,12 +54,12 @@ public partial class AddedResearches : System.Web.UI.Page
             try
             {
                 dDetails.approveSelectedPublication(diseaseId, diseaseName);
+                Response.Redirect("AddedResearches.aspx");
             }
             catch (Exception ex)
             {
                 Alert.Show("An error occured!Please try again later.");
             }
-            dDetails.selectUnapprovedDiseaseDetails(dName.tableNames);
         }
         else
         {
