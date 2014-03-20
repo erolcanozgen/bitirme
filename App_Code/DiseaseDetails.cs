@@ -72,10 +72,21 @@ public class DiseaseDetails
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();
+        DataTable dt2 = new DataTable();
         dt.Clear();
         dr.Fill(dt);
         newCon.conn.Close();
-        return dt;
+
+        dt2 = dt.Clone();
+        dt2.Columns["OR_Value"].DataType = System.Type.GetType("System.Double");
+        dt2.Columns["P_Value"].DataType = System.Type.GetType("System.Double");
+        dt2.Columns["I2"].DataType = System.Type.GetType("System.Double");
+
+        foreach (DataRow row in dt.Rows)
+        {
+            dt2.ImportRow(row);
+        }
+        return dt2;
     }
     public DataTable selectAllGenes(string[] diseaseName)
     {

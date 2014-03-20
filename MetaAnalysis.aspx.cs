@@ -38,7 +38,6 @@ public partial class Disasters : System.Web.UI.Page
         //grdViewCustomers.Visible = true;
         grdViewCustomers.DataSource = dDetails.selectMetaAnalysis(DiseasesList.SelectedValue);
         grdViewCustomers.DataBind();
-    
     }
     protected void grdViewCustomers_OnRowDataBound(object sender, GridViewRowEventArgs e)
     {

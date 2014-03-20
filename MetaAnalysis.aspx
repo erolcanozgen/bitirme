@@ -82,10 +82,10 @@
                                     <asp:CheckBox ID="chkRow" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-				            <asp:BoundField   DataField="SNP" HeaderText="SNP" />
-                            <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
-                            <asp:BoundField  DataField="P_Value" HeaderText="Z Value" />
-                            <asp:BoundField  DataField="I2" HeaderText="I2" />
+				            <asp:BoundField  DataField="SNP" HeaderText="SNP" />
+                            <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" />
+                            <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="Z Value" />
+                            <asp:BoundField  DataFormatString="{0:F2}" DataField="I2" HeaderText="I2" />
                             <asp:BoundField  DataField="NumOfPublications" HeaderText="No Of Publications" />
 			            </Columns>
                         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
