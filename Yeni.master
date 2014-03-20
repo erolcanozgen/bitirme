@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 
-<head>
+<head runat="server">
     <title>SNP DATABASE</title>
     <meta name="description" content="website description" />
     <meta name="keywords" content="website keywords, website keywords" />

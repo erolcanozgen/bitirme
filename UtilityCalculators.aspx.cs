@@ -22,7 +22,6 @@ public partial class UtilityCalculators : System.Web.UI.Page
             Double or_value = 0.0f; Double ln_or = 0.0f; Double or_variance = 0.0f;
             Double rr_value = 0.0f; Double rr_variance = 0.0f; Double ln_rr = 0.0f; Double p_value = 0.0f;
            
-            results_panel.Visible = true;
     
             #region or_calculation
             or_value =  Utility.CalculateOrValue(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
@@ -77,7 +76,7 @@ public partial class UtilityCalculators : System.Web.UI.Page
             }
             txtpValue.Text = p_value.ToString(format);
             
-            setTextBoxLength(results_panel);
+            setTextBoxLength(results_panel.Controls[0]);
 
         }
 
