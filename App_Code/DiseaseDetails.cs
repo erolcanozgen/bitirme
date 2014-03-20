@@ -44,7 +44,7 @@ public class DiseaseDetails
     public DataTable selectDiseaseDetails(string name)
     {
         Connection newCon = new Connection();
-        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved, ownerOfPublication from {0} ", name);
+        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved, ownerOfPublication from {0} where isApproved = 1 ", name);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();
@@ -170,7 +170,7 @@ public class DiseaseDetails
         try{
          DataTable ret = new DataTable();
         Connection newCon = new Connection();
-        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference from {0} ", name);
+        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, ownerOfPublication from {0} ", name);
         query = query+GetWhereCondition(param);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
@@ -205,6 +205,8 @@ public class DiseaseDetails
                 else
                 whereCondition = whereCondition + "AND " + param[i].Key + " LIKE " + "'%" + param[i].Value +"%' ";
             }
+
+            whereCondition = whereCondition + " AND isApproved = 1";
 
             return whereCondition;
         }

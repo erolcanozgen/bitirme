@@ -12,6 +12,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
         <div class="container">
+          <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto">
             <table style="width:100%">
                 <tr>
                     <td style="width:200px; vertical-align:top">
@@ -50,9 +51,11 @@
                 </td>
                 <td style="border-left-style: solid; border-left-width: 1px; border-left-color: #C0C0C0">
                     <asp:Label ID="nullWarningLabel" runat="server" Text="  No New Added Publication" Visible="False" BorderStyle="Solid"></asp:Label>
+                
                     <table class="searchPanel">
                         <tr>
                             <td>
+                                
                                 <asp:GridView ID="grdViewUnapprovedDiseases" runat="server" AutoGenerateColumns="False" DataKeyNames="ID"
                                     BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AllowSorting="True" AllowPaging="True">
 			                        <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -85,6 +88,7 @@
                                     <SortedDescendingCellStyle BackColor="#CAC9C9" />
                                     <SortedDescendingHeaderStyle BackColor="#383838" />
 		                        </asp:GridView>
+                              
                             </td>
                         </tr>
                         <tr>
@@ -98,6 +102,7 @@
                 </td>
             </tr>
         </table>
+              </asp:Panel>
         </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 </asp:Content>

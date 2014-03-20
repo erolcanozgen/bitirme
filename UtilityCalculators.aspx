@@ -206,11 +206,20 @@
 
             <table style="position:relative;left:112px;">
                 <thead>
-                    <th></th>
+                    <th>Chi-Square - P Value</th>
 
                 </thead>
 
                 <tbody>
+
+                     <tr>
+                            <td>
+                            <asp:Label ID="lblpValue" runat="server" Text=" P Value (Hypergeometric Probability) "></asp:Label>
+                            </td>
+                             <td style="text-align:left">
+                            <asp:TextBox ID="txtpValue" Width="30px" runat="server" ReadOnly= "true"></asp:TextBox>
+                            </td>
+                        </tr>
 
                      <tr>
                             <td>
@@ -245,6 +254,4 @@
    </div>
 
 
-
- 
        </asp:Content>

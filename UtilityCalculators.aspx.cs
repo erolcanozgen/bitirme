@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 
 public partial class UtilityCalculators : System.Web.UI.Page
 {
@@ -18,7 +20,7 @@ public partial class UtilityCalculators : System.Web.UI.Page
         try
         {
             Double or_value = 0.0f; Double ln_or = 0.0f; Double or_variance = 0.0f;
-            Double rr_value = 0.0f; Double rr_variance = 0.0f; Double ln_rr = 0.0f;
+            Double rr_value = 0.0f; Double rr_variance = 0.0f; Double ln_rr = 0.0f; Double p_value = 0.0f;
            
             results_panel.Visible = true;
     
@@ -64,6 +66,19 @@ public partial class UtilityCalculators : System.Web.UI.Page
                                + (Math.Exp(ln_rr + (1.96 * Math.Sqrt(rr_variance)))).ToString("0.0000");
             #endregion
 
+
+            p_value = Utility.CalculatePValue(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
+                                                       Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
+            double tmp = p_value; string format ="0.";
+            while (tmp < 1 || format.Length<6)
+            {
+                format += "0";
+                tmp *= 10;
+            }
+            txtpValue.Text = p_value.ToString(format);
+            
+            setTextBoxLength(results_panel);
+
         }
 
         catch (Exception ex)
@@ -71,5 +86,19 @@ public partial class UtilityCalculators : System.Web.UI.Page
             Alert.Show(ex.Message);
         }
     
+    }
+
+    private void setTextBoxLength(Control ctrl)
+    {
+
+        foreach (Control s in ctrl.Controls)
+        {
+            if (s is TextBox)
+            {
+                int size = 7;
+                int finalWidth = size * ((TextBox)s).Text.Length;
+                ((TextBox)s).Width = new Unit(finalWidth);
+            }
+        }
     }
 }

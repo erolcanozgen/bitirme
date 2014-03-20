@@ -108,7 +108,7 @@
                     <ul class="sf-menu" id="nav">
                         <li><a href="HomePage.aspx">Home Page</a></li>
                         <li><a href="MetaAnalysis.aspx">Meta-Analysis</a></li>
-                        <li><a href="#">Diseases</a>
+                        <li><a href="Diseases.aspx">Diseases</a>
                             <ul  style="overflow:scroll;height:200px;width:auto">
                                  <asp:ContentPlaceHolder ID="DiseaseList" runat="server">
                                  </asp:ContentPlaceHolder>
