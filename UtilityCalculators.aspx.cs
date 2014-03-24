@@ -32,7 +32,11 @@ public partial class UtilityCalculators : System.Web.UI.Page
             txt_ln_or.Text = ln_or.ToString("0.0000");
 
             or_variance = Utility.CalculateOrVariance(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
-                                                         Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
+                            
+                             Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
+
+
+            
 
             txt_or_variance.Text = or_variance.ToString("0.0000");
             txt_CI_or.Text = (Math.Exp( ln_or - (1.96 * Math.Sqrt(or_variance)))).ToString("0.0000")
@@ -77,7 +81,7 @@ public partial class UtilityCalculators : System.Web.UI.Page
             txtpValue.Text = p_value.ToString(format);
             
             setTextBoxLength(results_panel.Controls[0]);
-
+           
         }
 
         catch (Exception ex)
@@ -89,7 +93,7 @@ public partial class UtilityCalculators : System.Web.UI.Page
 
     private void setTextBoxLength(Control ctrl)
     {
-
+        
         foreach (Control s in ctrl.Controls)
         {
             if (s is TextBox)

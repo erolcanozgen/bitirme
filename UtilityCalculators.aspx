@@ -262,6 +262,53 @@
             </asp:TabPanel>
 
 
+            <asp:TabPanel runat="server" HeaderText="Hardy Weinberg calculator" ScrollBars="Auto">
+                    <ContentTemplate>
+
+                        <table>
+                               <thead></thead>
+
+                                <tbody>
+
+                                    <tr>
+                                          <td>
+                                               <asp:Label ID="lbl_com_homozygotes" runat="server" Text="Common Homozygotes: "></asp:Label>
+
+                                          </td>
+
+
+                                    </tr>
+
+                                     <tr>
+                                          <td>
+                                               <asp:Label ID="lbl_heterozygotes" runat="server" Text="Heterozygotes: "></asp:Label>
+
+                                          </td>
+
+
+                                    </tr>
+
+
+
+
+                                </tbody>
+
+
+
+
+                        </table>
+
+
+
+
+                    </ContentTemplate>
+
+
+
+
+            </asp:TabPanel>
+
+
   
 
 
