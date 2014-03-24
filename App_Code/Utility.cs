@@ -153,9 +153,8 @@ public static class Utility
         return result;
     }
 
-    public static double CalculatePostHocPower(int case_yes, int case_no, int control_yes, int control_no, double alpha)
+    public static double CalculatePostHocPower(int case_yes, int case_no, int control_yes, int control_no, double alpha = 0.05)
     {
-        alpha = 0.05;
         double power = 0;
         try
         {

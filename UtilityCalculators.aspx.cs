@@ -104,4 +104,20 @@ public partial class UtilityCalculators : System.Web.UI.Page
             }
         }
     }
+    protected void postHocPowerBtn1_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            double phPower = 0;
+            phPower = Utility.CalculatePostHocPower(Convert.ToInt32(postHocPowerTxt1.Text), Convert.ToInt32(postHocPowerTxt2.Text),
+                                                          Convert.ToInt32(postHocPowerTxt3.Text), Convert.ToInt32(postHocPowerTxt4.Text), Convert.ToDouble(postHocPowerTxt5.Text));
+            postHocPowerTxt.Text = phPower.ToString("0.00") + " %";      
+        }
+
+        catch (Exception ex)
+        {
+            Alert.Show(ex.Message);
+        }
+    
+    }   
 }

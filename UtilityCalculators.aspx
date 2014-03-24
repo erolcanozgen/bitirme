@@ -41,21 +41,21 @@
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txtCaseYes" runat="server" Width="30px"></asp:TextBox>
-                                        <asp:RegularExpressionValidator Display="Dynamic" ID="revNumericValidator" runat="server"
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="revNumericValidator" runat="server" ValidationGroup="result1"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txtCaseYes" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                                             ControlToValidate="txtCaseYes" Display="Dynamic"
-                                            ErrorMessage="** required field."
+                                            ErrorMessage="** required field." ValidationGroup="result1"
                                             ForeColor="Red">
                                         </asp:RequiredFieldValidator>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txtCaseNo" runat="server" Width="30px"></asp:TextBox>
-                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator1" runat="server"
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator1" runat="server" ValidationGroup="result1"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txtCaseNo" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                                             ControlToValidate="txtCaseNo" Display="Dynamic"
-                                            ErrorMessage="** required field."
+                                            ErrorMessage="** required field." ValidationGroup="result1"
                                             ForeColor="Red">
                                         </asp:RequiredFieldValidator>
                                     </td>
@@ -71,21 +71,21 @@
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txtControlYes" runat="server" Width="30px"></asp:TextBox>
-                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator2" runat="server"
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator2" runat="server" ValidationGroup="result1"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txtControlYes" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                                             ControlToValidate="txtControlYes" Display="Dynamic"
-                                            ErrorMessage="** required field."
+                                            ErrorMessage="** required field." ValidationGroup="result1"
                                             ForeColor="Red">
                                         </asp:RequiredFieldValidator>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txtControlNo" runat="server" Width="30px"></asp:TextBox>
-                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator3" runat="server"
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator3" runat="server" ValidationGroup="result1"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txtControlNo" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
                                             ControlToValidate="txtControlNo" Display="Dynamic"
-                                            ErrorMessage="** required field."
+                                            ErrorMessage="** required field." ValidationGroup="result1"
                                             ForeColor="Red">
                                         </asp:RequiredFieldValidator>
                                     </td>
@@ -307,10 +307,112 @@
 
 
             </asp:TabPanel>
+            <asp:TabPanel runat="server" ID="TabPanel1" HeaderText="Post-hoc Power Calculator" ScrollBars="Auto">
+                <ContentTemplate>
+                    <div style="float: left; width: 345px">
+                        <table id="Table1">
 
-
-  
-
+                            <thead>
+                                <tr>
+                                    <th>Experement </th>
+                                    <th>Yes </th>
+                                    <th>No </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="Label1" runat="server" Text="Case"></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="postHocPowerTxt1" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator4" runat="server"
+                                            ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt1" ErrorMessage="Must be Numeric" ValidationGroup="postHocPower" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
+                                            ControlToValidate="postHocPowerTxt1" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="postHocPower"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="postHocPowerTxt2" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator5" runat="server" ValidationGroup="postHocPower"
+                                            ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt2" ErrorMessage="Must be Numeric" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
+                                            ControlToValidate="postHocPowerTxt2" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="postHocPower"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="Label2" runat="server" Text="Control"></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="postHocPowerTxt3" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator6" runat="server" ValidationGroup="postHocPower"
+                                            ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt3" ErrorMessage="Must be Numeric" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
+                                            ControlToValidate="postHocPowerTxt3" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="postHocPower"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="postHocPowerTxt4" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator7" runat="server" ValidationGroup="postHocPower"
+                                            ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt4" ErrorMessage="Must be Numeric" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"
+                                            ControlToValidate="postHocPowerTxt4" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="postHocPower"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="alpha" runat="server" Text="Alpha"></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="postHocPowerTxt5" runat="server" Width="30px" Text="0.05"></asp:TextBox>
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator8" runat="server" ValidationGroup="postHocPower"
+                                            ValidationExpression="^0.[0-9]*$" ControlToValidate="postHocPowerTxt5" ErrorMessage="Must be Numeric" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server"
+                                            ControlToValidate="postHocPowerTxt5" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="postHocPower"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
+                                    </td>                                    
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="text-align: right" colspan="3">
+                                        <asp:Button runat="server" ID="postHocPowerBtn1" CssClass="buttonCss" ValidationGroup="postHocPower" Text=" Calculate " OnClick="postHocPowerBtn1_Click" />
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                     <div style="float: left; width: 300px" aria-disabled="False">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Post Hoc Power</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align: left">
+                                            <asp:TextBox ID="postHocPowerTxt" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </ContentTemplate>
+            </asp:TabPanel>
 
         </asp:TabContainer>
     </div>
