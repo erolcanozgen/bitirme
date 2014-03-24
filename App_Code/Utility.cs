@@ -180,4 +180,31 @@ public static class Utility
             throw ex;
         }
     }
+
+
+    public static Dictionary<string, double> CalculateHardyWeingbergEquilibrium(int common_hmozgt, int heterozgt, int rare_homozgt)
+    {
+        Dictionary<string, double> result = new Dictionary<string, double>();
+        double p_allele = 0.0, q_allele = 0.0, x_square=0.0;
+        int total = common_hmozgt + heterozgt + rare_homozgt;
+
+        p_allele = (double)(2*common_hmozgt + heterozgt) / (2*(common_hmozgt+heterozgt+rare_homozgt));
+        q_allele = 1 - p_allele;
+        result.Add("P_allele", p_allele);
+        result.Add("Q_allele", q_allele);
+        result.Add("Expected_CH", (Math.Pow(p_allele, 2) * total));
+        result.Add("Expected_H", (2*p_allele*q_allele*total) );
+        result.Add("Expected_RH", (Math.Pow(q_allele, 2) * total));
+
+        x_square = (Math.Pow((common_hmozgt - result["Expected_CH"]), 2) / result["Expected_CH"])
+                 + (Math.Pow((heterozgt - result["Expected_H"]), 2) / result["Expected_H"])
+                 + (Math.Pow((rare_homozgt - result["Expected_RH"]), 2) / result["Expected_RH"]);
+
+
+        result.Add("X_square",x_square);
+
+
+        return result;
+    }
+
 }

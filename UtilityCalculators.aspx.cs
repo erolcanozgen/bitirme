@@ -104,6 +104,7 @@ public partial class UtilityCalculators : System.Web.UI.Page
             }
         }
     }
+
     protected void postHocPowerBtn1_Click(object sender, EventArgs e)
     {
         try
@@ -120,4 +121,17 @@ public partial class UtilityCalculators : System.Web.UI.Page
         }
     
     }   
+
+    protected void btn_hardy_weinberg_Click(object sender, EventArgs e)
+    {
+         Dictionary<string, double> result = new Dictionary<string, double>();
+         result = Utility.CalculateHardyWeingbergEquilibrium(Convert.ToInt32(txt_com_homozygotes.Text),Convert.ToInt32(txt_heterozygotes.Text),Convert.ToInt32(txt_rare_homozygotes.Text) );
+         txt_expected_common.Text = result["Expected_CH"].ToString("0.000");
+         txt_expected_heterozgt.Text = result["Expected_H"].ToString("0.000");
+         txt_expected_rare.Text = result["Expected_RH"].ToString("0.000");
+         txt_p_allele.Text = result["P_allele"].ToString("0.000");
+         txt_q_allele.Text = result["Q_allele"].ToString("0.000");
+         txt_x_square.Text = result["X_square"].ToString("0.000");
+    }
+
 }
