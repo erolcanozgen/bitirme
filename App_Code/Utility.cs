@@ -156,6 +156,7 @@ public static class Utility
     public static double CalculatePostHocPower(int case_yes, int case_no, int control_yes, int control_no, double alpha = 0.05)
     {
         double power = 0;
+        double result = 0;
         try
         {
             double n1 = case_yes + case_no;
@@ -171,9 +172,9 @@ public static class Utility
             double pPrime = (p1 + (n1 / n2) * p2) / (1 + (n1/n2));
             double qPrime = 1 - pPrime;
 
-            power = (delta / Math.Sqrt(((p1 * q1) / n1) + ((p2 * q2) / n2))) - (alglib.normaldistr.invnormaldistribution(1 - (alpha / 2)) * (Math.Sqrt(pPrime * qPrime * (1 / n1 + 1 / n2))) / (Math.Sqrt(p1*q1/n1 + p2*q2/n2)));
-
-            return power;
+            power = (delta / Math.Sqrt(((p1 * q1) / n1) + ((p2 * q2) / n2))) - (alglib.normaldistr.invnormaldistribution(1 - (alpha / 2)) * (Math.Sqrt(pPrime * qPrime * ((1 / n1) + (1 / n2)))) / (Math.Sqrt(p1*q1/n1 + p2*q2/n2)));
+            result = alglib.normaldistr.normaldistribution(power);
+            return result;
         }
         catch (Exception ex)
         {

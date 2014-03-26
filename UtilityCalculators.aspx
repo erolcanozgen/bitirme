@@ -511,8 +511,8 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td style="text-align: left">
-                                            <asp:TextBox ID="postHocPowerTxt" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                        <td style="text-align: center">
+                                            <asp:TextBox ID="postHocPowerTxt" Width="50px" runat="server" ReadOnly="true"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </tbody>
