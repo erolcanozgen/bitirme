@@ -48,16 +48,16 @@
         </div>
 
     
-                    <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="SNP"
+                    <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="SNP,tmpId"
                         OnRowDataBound="grdViewCustomers_OnRowDataBound" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Both" AllowSorting="True">
 			           
 			            <Columns>
 				            <asp:TemplateField ItemStyle-Width="20px">
 					            <ItemTemplate>
-						            <a href="JavaScript:divexpandcollapse('div<%# Eval("SNP") %>');">
-							            <img alt="Details" id='imgdiv<%# Eval("SNP") %>' src="images/plus.png" />
+						            <a href="JavaScript:divexpandcollapse('div<%# Eval("tmpId") %>');">
+							            <img alt="Details" id='imgdiv<%# Eval("tmpId") %>' src="images/plus.png" />
 						            </a>
-						            <div id='div<%# Eval("SNP") %>' style="display: none;">
+						            <div id='div<%# Eval("tmpId") %>' style="display: none;">
 							            <asp:GridView ID="grdViewOrdersOfCustomer" runat="server" AutoGenerateColumns="false"
 								            DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False">
 								            <Columns>
@@ -70,7 +70,7 @@
                                                 <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
                                                 <asp:BoundField  DataField="Reference" HeaderText="Reference" />
                                                 <asp:BoundField  DataField="SNP" HeaderText="SNP" Visible="false" />
-
+                                                <asp:BoundField  DataField="tmpId" HeaderText="tmpId" Visible="false" />
                                             </Columns>
 							            </asp:GridView>
                                     </div>
@@ -87,6 +87,7 @@
                             <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="Z Value" />
                             <asp:BoundField  DataFormatString="{0:F2}" DataField="I2" HeaderText="I2" />
                             <asp:BoundField  DataField="NumOfPublications" HeaderText="No Of Publications" />
+                            <asp:BoundField  DataField="tmpId" HeaderText="tmpId" Visible="false" />
 			            </Columns>
                         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                         <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />

@@ -43,9 +43,10 @@ public partial class Disasters : System.Web.UI.Page
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            string SNP_Name = grdViewCustomers.DataKeys[e.Row.RowIndex].Value.ToString();
+            string SNP_Name = grdViewCustomers.DataKeys[e.Row.RowIndex]["SNP"].ToString();
+            string tmpId = grdViewCustomers.DataKeys[e.Row.RowIndex]["tmpId"].ToString();
             GridView grdViewOrdersOfCustomer = (GridView)e.Row.FindControl("grdViewOrdersOfCustomer");
-            grdViewOrdersOfCustomer.DataSource = dDetails.selectSNPDetails(DiseasesList.SelectedValue, SNP_Name);
+            grdViewOrdersOfCustomer.DataSource = dDetails.selectSNPDetails(DiseasesList.SelectedValue, SNP_Name, tmpId);
             grdViewOrdersOfCustomer.DataBind();
         }
     }

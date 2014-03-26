@@ -82,9 +82,15 @@ public class DiseaseDetails
         dt2.Columns["P_Value"].DataType = System.Type.GetType("System.Double");
         dt2.Columns["I2"].DataType = System.Type.GetType("System.Double");
 
+        int tempId = 1;
+        System.Data.DataColumn newColumn = new System.Data.DataColumn("tmpId", typeof(System.String));
+        dt2.Columns.Add(newColumn);
+        newColumn.DefaultValue = tempId++.ToString();
         foreach (DataRow row in dt.Rows)
         {
             dt2.ImportRow(row);
+
+            newColumn.DefaultValue = tempId++.ToString(); //datatable'a gecici bir id değeri atanıyor, her snp icin (divexpandcollapse icin)
         }
         return dt2;
     }
@@ -136,17 +142,28 @@ public class DiseaseDetails
         }
         return dt;
     }
-    public DataTable selectSNPDetails(string diseaseName, string SnpName)
+    public DataTable selectSNPDetails(string diseaseName, string SnpName, string tempId)
     {
         Connection newCon = new Connection();
         string query = String.Format("select  Gene_Name,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, SNP from {0} where SNP = '{1}' and isApproved = 1 ", diseaseName, SnpName);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();
+        DataTable dt2 = new DataTable();
         dt.Clear();
         dr.Fill(dt);
         newCon.conn.Close();
-        return dt;
+
+        dt2 = dt.Clone();
+        System.Data.DataColumn newColumn = new System.Data.DataColumn("tmpId", typeof(System.String));
+        dt2.Columns.Add(newColumn);
+        newColumn.DefaultValue = tempId;
+        foreach (DataRow row in dt.Rows)
+        {
+            dt2.ImportRow(row);
+            newColumn.DefaultValue = tempId; //datatable'a gecici bir id değeri atanıyor, her snp icin (divexpandcollapse icin)
+        }
+        return dt2;
     }
 
     public DataTable SelectWithSnp(string disease_name,string SNP)
