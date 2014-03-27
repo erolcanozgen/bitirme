@@ -38,7 +38,7 @@
                                         <asp:Label ID="lblCaseCount" runat="server" Text="Case"></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txtCaseYes" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:TextBox ID="txtCaseYes" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" ID="revNumericValidator" runat="server" ValidationGroup="result1"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txtCaseYes" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
@@ -48,7 +48,7 @@
                                         </asp:RequiredFieldValidator>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txtCaseNo" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:TextBox ID="txtCaseNo" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator1" runat="server" ValidationGroup="result1"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txtCaseNo" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
@@ -68,7 +68,7 @@
                                         <asp:Label ID="lblControlCount" runat="server" Text="Control"></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txtControlYes" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:TextBox ID="txtControlYes" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator2" runat="server" ValidationGroup="result1"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txtControlYes" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
@@ -78,7 +78,7 @@
                                         </asp:RequiredFieldValidator>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txtControlNo" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:TextBox ID="txtControlNo" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator3" runat="server" ValidationGroup="result1"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txtControlNo" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
@@ -273,7 +273,7 @@
                                     </td>
 
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_com_homozygotes" Width="45px" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txt_com_homozygotes" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator4" runat="server" ValidationGroup="HardyWeinberg"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txt_com_homozygotes" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="HardyWeinberg"
@@ -291,7 +291,7 @@
                                         <asp:Label ID="lbl_heterozygotes" runat="server" Text="Heterozygotes: "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_heterozygotes" Width="45px" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txt_heterozygotes" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator5" runat="server" ValidationGroup="HardyWeinberg"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txt_heterozygotes" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="HardyWeinberg"
@@ -308,7 +308,7 @@
                                         <asp:Label ID="lbl_rare_homozygotes" runat="server" Text="Rare Homozygotes: "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_rare_homozygotes" Width="45px" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txt_rare_homozygotes" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator6" runat="server" ValidationGroup="HardyWeinberg"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txt_rare_homozygotes" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ValidationGroup="HardyWeinberg"
@@ -417,7 +417,7 @@
                                         <asp:Label ID="Label1" runat="server" Text="Case"></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="postHocPowerTxt1" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:TextBox ID="postHocPowerTxt1" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" runat="server"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt1" ErrorMessage="Must be Numeric" ValidationGroup="postHocPower" />
                                         <asp:RequiredFieldValidator runat="server"
@@ -427,7 +427,7 @@
                                         </asp:RequiredFieldValidator>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="postHocPowerTxt2" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:TextBox ID="postHocPowerTxt2" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" runat="server" ValidationGroup="postHocPower"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt2" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator runat="server"
@@ -442,7 +442,7 @@
                                         <asp:Label ID="Label2" runat="server" Text="Control"></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="postHocPowerTxt3" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:TextBox ID="postHocPowerTxt3" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" runat="server" ValidationGroup="postHocPower"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt3" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator runat="server"
@@ -452,7 +452,7 @@
                                         </asp:RequiredFieldValidator>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="postHocPowerTxt4" runat="server" Width="30px"></asp:TextBox>
+                                        <asp:TextBox ID="postHocPowerTxt4" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator7" runat="server" ValidationGroup="postHocPower"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt4" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"
@@ -467,7 +467,7 @@
                                         <asp:Label ID="alpha" runat="server" Text="Alpha"></asp:Label>
                                     </td>
                                     <td style="text-align: left" colspan="2">
-                                        <asp:TextBox ID="postHocPowerTxt5" runat="server" Width="30px" Text="0.05"></asp:TextBox>
+                                        <asp:TextBox ID="postHocPowerTxt5" runat="server" Width="30px" Text="0.05" autocomplete="off"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator8" runat="server" ValidationGroup="postHocPower"
                                             ValidationExpression="^0.[0-9]*$" ControlToValidate="postHocPowerTxt5" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server"
@@ -524,7 +524,7 @@
                                         <asp:Label ID="lbl_alpha" runat="server" Text="Alpha: "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_alpha" Width="45px" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txt_alpha" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
                                          <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator9" runat="server" ValidationGroup="Bonferroni"
                                             ValidationExpression="^(0*\.[0-9]*)|0|1|(1\.0)$" ControlToValidate="txt_alpha" ErrorMessage="Must be between 0-1" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ValidationGroup="Bonferroni"
@@ -539,7 +539,7 @@
                                         <asp:Label ID="lbl_test_number" runat="server" Text="Number of Test: "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_test_number" Width="45px" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txt_test_number" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
                                          <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator10" runat="server" ValidationGroup="Bonferroni"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txt_test_number" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ValidationGroup="Bonferroni"
@@ -554,7 +554,7 @@
                                         <asp:Label ID="lbl_corelation" runat="server" Text="Correlation: "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_corelation" Width="45px" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txt_corelation" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
                                          <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator11" runat="server" ValidationGroup="Bonferroni"
                                             ValidationExpression="^(0*\.[0-9]*)|0|1|(1\.0)$" ControlToValidate="txt_corelation" ErrorMessage="Must be between 0-1" />
                                      
@@ -574,7 +574,7 @@
                         </div>
 
                         <asp:Panel ID="pnl_Bonferroni_results" runat="server">
-                        <div style="float: left; width: 345px">
+                         <div style="float: right; width: 500px">
                         <table>
                             <thead>
                                 <th>Results</th>
