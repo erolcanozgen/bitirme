@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Numerics;
+
 /// <summary>
 /// Summary description for Utility
 /// </summary>
@@ -206,6 +207,21 @@ public static class Utility
 
 
         return result;
+    }
+
+    public static double CalculateBonferroniFactor(double alpha, int num_test, double corelation)
+    {
+        double result = 0.0; double g = 0.0;
+
+        if (corelation == 0) result = alpha / num_test;
+        else
+        {
+            g = Math.Pow(num_test, (1 - corelation));
+            result = alpha / g;
+        }
+
+        return result;
+
     }
 
 }

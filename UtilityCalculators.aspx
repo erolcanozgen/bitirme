@@ -18,10 +18,8 @@
 
         <asp:TabContainer runat="server">
 
-            <asp:TabPanel runat="server" ID="results_panel" HeaderText="Or-RR Ratio-Chi Square - P Value" ScrollBars="Auto">
-
+            <asp:TabPanel runat="server" HeaderText="Or-RR Ratio-Chi Square - P Value" ScrollBars="Auto">
                 <ContentTemplate>
-
                     <div style="float: left; width: 345px">
 
                         <table id="filterTable">
@@ -103,11 +101,8 @@
                         </table>
 
                     </div>
-
-
+                     <asp:Panel  ID="pnl_Odds_results" runat="server">
                     <div style="float: left; width: 300px" aria-disabled="False">
-
-
 
                         <table>
                             <thead>
@@ -255,9 +250,8 @@
                         </tbody>
 
                     </table>
-
-
-                </ContentTemplate>
+                         </asp:Panel>
+               </ContentTemplate>
 
             </asp:TabPanel>
 
@@ -280,7 +274,7 @@
 
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txt_com_homozygotes" Width="45px" runat="server"></asp:TextBox>
-                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator4" runat="server" ValidationGroup="HardyWeinberg"
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator4" runat="server" ValidationGroup="HardyWeinberg"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txt_com_homozygotes" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="HardyWeinberg"
                                             ControlToValidate="txt_com_homozygotes" Display="Dynamic"
@@ -315,7 +309,7 @@
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txt_rare_homozygotes" Width="45px" runat="server"></asp:TextBox>
-                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator6" runat="server" ValidationGroup="HardyWeinberg"
+                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator6" runat="server" ValidationGroup="HardyWeinberg"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="txt_rare_homozygotes" ErrorMessage="Must be Numeric" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ValidationGroup="HardyWeinberg"
                                             ControlToValidate="txt_rare_homozygotes" Display="Dynamic"
@@ -339,7 +333,7 @@
                     </div>
 
 
-                    <div style=" float:right; width:500px">
+                    <div style="float: right; width: 500px">
 
                         <table>
                             <thead>
@@ -402,17 +396,8 @@
                                 </tr>
                             </tbody>
                         </table>
-
-
-
                     </div>
-
-
-
-
-
                 </ContentTemplate>
-
 
             </asp:TabPanel>
             <asp:TabPanel runat="server" ID="TabPanel1" HeaderText="Post-hoc Power Calculator" ScrollBars="Auto">
@@ -433,9 +418,9 @@
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="postHocPowerTxt1" runat="server" Width="30px"></asp:TextBox>
-                                        <asp:RegularExpressionValidator Display="Dynamic"  runat="server"
+                                        <asp:RegularExpressionValidator Display="Dynamic" runat="server"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt1" ErrorMessage="Must be Numeric" ValidationGroup="postHocPower" />
-                                        <asp:RequiredFieldValidator  runat="server"
+                                        <asp:RequiredFieldValidator runat="server"
                                             ControlToValidate="postHocPowerTxt1" Display="Dynamic"
                                             ErrorMessage="** required field." ValidationGroup="postHocPower"
                                             ForeColor="Red">
@@ -458,9 +443,9 @@
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="postHocPowerTxt3" runat="server" Width="30px"></asp:TextBox>
-                                        <asp:RegularExpressionValidator Display="Dynamic"  runat="server" ValidationGroup="postHocPower"
+                                        <asp:RegularExpressionValidator Display="Dynamic" runat="server" ValidationGroup="postHocPower"
                                             ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt3" ErrorMessage="Must be Numeric" />
-                                        <asp:RequiredFieldValidator  runat="server"
+                                        <asp:RequiredFieldValidator runat="server"
                                             ControlToValidate="postHocPowerTxt3" Display="Dynamic"
                                             ErrorMessage="** required field." ValidationGroup="postHocPower"
                                             ForeColor="Red">
@@ -481,7 +466,7 @@
                                     <td>
                                         <asp:Label ID="alpha" runat="server" Text="Alpha"></asp:Label>
                                     </td>
-                                    <td style="text-align: left">
+                                    <td style="text-align: left" colspan="2">
                                         <asp:TextBox ID="postHocPowerTxt5" runat="server" Width="30px" Text="0.05"></asp:TextBox>
                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator8" runat="server" ValidationGroup="postHocPower"
                                             ValidationExpression="^0.[0-9]*$" ControlToValidate="postHocPowerTxt5" ErrorMessage="Must be Numeric" />
@@ -490,7 +475,7 @@
                                             ErrorMessage="** required field." ValidationGroup="postHocPower"
                                             ForeColor="Red">
                                         </asp:RequiredFieldValidator>
-                                    </td>                                    
+                                    </td>
                                 </tr>
                             </tbody>
                             <tfoot>
@@ -502,24 +487,144 @@
                             </tfoot>
                         </table>
                     </div>
-                     <div style="float: left; width: 300px" aria-disabled="False">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Post Hoc Power</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="text-align: center">
-                                            <asp:TextBox ID="postHocPowerTxt" Width="50px" runat="server" ReadOnly="true"></asp:TextBox>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div style="float: left; width: 300px" aria-disabled="False">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Post Hoc Power</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center">
+                                        <asp:TextBox ID="postHocPowerTxt" Width="50px" runat="server" ReadOnly="true"></asp:TextBox>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </ContentTemplate>
             </asp:TabPanel>
+
+
+            <asp:TabPanel HeaderText="Bonferroni Correction" ID="Bonferroni_Correction" runat="server" ScrollBars="Auto">
+
+                <ContentTemplate>
+
+                                  
+                    <div style="float: left; width: 345px">
+                        <table>
+                            <thead>
+                                <th>Bonferroni Correction</th>
+                            </thead>
+
+                            <tbody>
+                               <tr>
+                                    <td>
+                                        <asp:Label ID="lbl_alpha" runat="server" Text="Alpha: "></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="txt_alpha" Width="45px" runat="server"></asp:TextBox>
+                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator9" runat="server" ValidationGroup="Bonferroni"
+                                            ValidationExpression="^(0*\.[0-9]*)|0|1|(1\.0)$" ControlToValidate="txt_alpha" ErrorMessage="Must be between 0-1" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ValidationGroup="Bonferroni"
+                                            ControlToValidate="txt_alpha" Display="Dynamic"
+                                            ErrorMessage="** required field."
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="lbl_test_number" runat="server" Text="Number of Test: "></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="txt_test_number" Width="45px" runat="server"></asp:TextBox>
+                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator10" runat="server" ValidationGroup="Bonferroni"
+                                            ValidationExpression="^[0-9]*$" ControlToValidate="txt_test_number" ErrorMessage="Must be Numeric" />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ValidationGroup="Bonferroni"
+                                            ControlToValidate="txt_test_number" Display="Dynamic"
+                                            ErrorMessage="** required field."
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="lbl_corelation" runat="server" Text="Correlation: "></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="txt_corelation" Width="45px" runat="server"></asp:TextBox>
+                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator11" runat="server" ValidationGroup="Bonferroni"
+                                            ValidationExpression="^(0*\.[0-9]*)|0|1|(1\.0)$" ControlToValidate="txt_corelation" ErrorMessage="Must be between 0-1" />
+                                     
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tfoot>
+                                <tr>
+                                    <td style="text-align: right" colspan="3">
+                                        <asp:Button runat="server" ID="BonferroniCalcBtn" CssClass="buttonCss" ValidationGroup="Bonferroni" Text=" Calculate " OnClick="BonferroniCalcBtn_Click" />
+                                    </td>
+                                </tr>
+                            </tfoot>
+
+                         </table>
+                        </div>
+
+                        <asp:Panel ID="pnl_Bonferroni_results" runat="server">
+                        <div style="float: left; width: 345px">
+                        <table>
+                            <thead>
+                                <th>Results</th>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="lbl_no_correction" runat="server" Text="With no correction the chance of finding one or more significant differences in given tests:"></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="txt_no_correction" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="lbl_bonferroni_factor" runat="server" Text="With Bonferroni Correction alpha is between:"></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="txt_bonferroni_factor" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td>
+                                        <asp:Label ID="lbl_z_score_one" runat="server" Text="Z-score for one tailed test:"></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="txt_z_score_one" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="lbl_z_score_two" runat="server" Text="Z-score for two tailed test:"></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="txt_z_score_two" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                      </div>
+                    </asp:Panel>
+                </ContentTemplate>
+            </asp:TabPanel>
+
+
+
 
         </asp:TabContainer>
     </div>

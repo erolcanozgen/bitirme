@@ -72,15 +72,10 @@ public partial class UtilityCalculators : System.Web.UI.Page
 
             p_value = Utility.CalculatePValue(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
                                                        Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
-            double tmp = p_value; string format ="0.";
-            while (tmp < 1 || format.Length<6)
-            {
-                format += "0";
-                tmp *= 10;
-            }
-            txtpValue.Text = p_value.ToString(format);
-            
-            setTextBoxLength(results_panel.Controls[0]);
+
+            txtpValue.Text = p_value.ToString(GetFormat(p_value));
+
+            setTextBoxLength(pnl_Odds_results);
            
         }
 
@@ -135,4 +130,27 @@ public partial class UtilityCalculators : System.Web.UI.Page
          txt_x_square.Text = result["X_square"].ToString("0.000");
     }
 
+    protected void BonferroniCalcBtn_Click(object sender, EventArgs e)
+    {
+        double corelation = 0.0, bonferroni_factor = 0.0, no_corection=0.0;
+       if (txt_corelation.Text != String.Empty) corelation = Convert.ToDouble(txt_corelation.Text);
+       bonferroni_factor = Utility.CalculateBonferroniFactor(Convert.ToDouble(txt_alpha.Text), Convert.ToInt32(txt_test_number.Text), corelation);
+       txt_bonferroni_factor.Text = txt_alpha.Text + " - " + bonferroni_factor.ToString(GetFormat(bonferroni_factor));
+       txt_z_score_one.Text = " >= " + Math.Abs(alglib.normaldistr.invnormaldistribution(bonferroni_factor)).ToString("0.0000");
+       txt_z_score_two.Text = " >= " + Math.Abs(alglib.normaldistr.invnormaldistribution(bonferroni_factor / 2)).ToString("0.0000");
+       no_corection = (1 - Math.Pow((1 - Convert.ToDouble(txt_alpha.Text)), Convert.ToInt32(txt_test_number.Text)));
+       txt_no_correction.Text = String.Format("{0}  (%{1})",no_corection.ToString("0.0000"),(no_corection*100).ToString("0.00"));
+       setTextBoxLength(pnl_Bonferroni_results);
+    }
+
+    private string GetFormat(double nmbr)
+    {
+        string format = "0.";
+        while (nmbr < 1)
+        {
+            format += "0";
+            nmbr *= 10;
+        }
+        return format + "000";
+    }
 }
