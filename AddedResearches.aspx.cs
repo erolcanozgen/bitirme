@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -51,19 +52,24 @@ public partial class AddedResearches : System.Web.UI.Page
         }
         if (selectedRowCounts > 0)
         {
+            notifier.Dispose();
             try
             {
                 dDetails.approveSelectedPublication(diseaseId, diseaseName);
+                Notifier.AddSuccessMessage("Selected publicaton(s) has been approved.");
                 Response.Redirect("AddedResearches.aspx");
             }
             catch (Exception ex)
             {
-                Alert.Show("An error occured!Please try again later.");
+                Notifier.AddErrorMessage("An error occured! Please try again later.");
+                //Alert.Show("An error occured!Please try again later.");
             }
         }
         else
         {
-            Alert.Show("Please select at least one publication to approve!");
+            Notifier.AddWarningMessage("Please select at least one publication to approve!");
+            //Alert.Show("Please select at least one publication to approve!");
         }
     }
+
 }

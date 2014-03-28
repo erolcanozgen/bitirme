@@ -52,12 +52,14 @@ public partial class _Default : System.Web.UI.Page
         try
         {
             dDetails.insertDiseaseDetails(dDetails, referenceType);
-            MessageBox.Show("Publication was added!");
+            Notifier.AddSuccessMessage("Publication was added.");
+            //MessageBox.Show("Publication was added!");
             Response.Redirect("HomePage.aspx");
         }
         catch (MySql.Data.MySqlClient.MySqlException myException)
         {
-            MessageBox.Show("An error was occured while adding the publication! Please try again later..");
+            Notifier.AddErrorMessage("An error was occured while adding the publication! Please try again later.");
+            //MessageBox.Show("An error was occured while adding the publication! Please try again later..");
         }
     }
 }

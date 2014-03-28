@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="AddedResearches.aspx.cs" Inherits="AddedResearches" %>
 
+<%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="headContent" Runat="Server">  
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,8 +53,8 @@
             
                 </td>
                 <td style="border-left-style: solid; border-left-width: 1px; border-left-color: #C0C0C0">
+                    <uc1:Notifier runat="server" ID="notifier" />
                     <asp:Label ID="nullWarningLabel" runat="server" Text="  No New Added Publication" Visible="False" BorderStyle="Solid"></asp:Label>
-                
                     <table class="searchPanel">
                         <tr>
                             <td>

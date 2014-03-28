@@ -31,7 +31,8 @@ public partial class Diseases : System.Web.UI.Page
 
         catch(Exception ex)
         {
-            Alert.Show(ex.Message);
+            Notifier.AddErrorMessage("An error was occured while getting the researches!");
+            //Alert.Show(ex.Message);
         }
     }
  
@@ -52,19 +53,11 @@ public partial class Diseases : System.Web.UI.Page
 
             grdViewDiseases.DataSource =  dDetails.SelectFilteredDiseaseDetails(param, cmbDiseaseName.SelectedValue.ToString());
             grdViewDiseases.DataBind();
-
-
-  
-
-        
         }
-
         catch (Exception ex)
         {
-            Alert.Show(ex.Message);
+            Notifier.AddErrorMessage("An error was occured while filtering the researches!");
+            //Alert.Show(ex.Message);
         }
-        
-
-    
     }
 }

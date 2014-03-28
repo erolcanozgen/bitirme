@@ -5,5 +5,5 @@
         $('.AutoHide').fadeOut('slow', function () {
             $('.AutoHide').remove();
         });
-    }, 2000);
+    }, 3000);
 });

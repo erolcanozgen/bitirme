@@ -71,6 +71,7 @@ public partial class Yeni : System.Web.UI.MasterPage
 
         if (newUser.checkUser(L_UserName.Text, L_passwd.Text))
         {
+            Notifier.AddSuccessMessage("Success Login.");
             Session.Add("user", newUser);
             Response.Redirect(Request.RawUrl);
         }

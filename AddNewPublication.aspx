@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="AddNewPublication.aspx.cs" Inherits="_Default" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
+
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
       <link href="css/SignUp.css" type="text/css" rel="stylesheet"/>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
-    
+        <uc1:Notifier runat="server" ID="notifier" />
         <img style="border-style: ridge; border-width: 2px; float: left; vertical-align: middle; margin: 0 10px 0 0;" src="images/addPub.png" alt="contact" />
         <h3 style="margin: 15px 0 0 0;">Add New <br />Publication</h3>
         <br />

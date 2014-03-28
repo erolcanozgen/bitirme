@@ -239,18 +239,11 @@ public class DiseaseDetails
     public void approveSelectedPublication(List<int> diseaseId, List<string> diseaseName)
     {
         Connection newCon = new Connection();
-        try
+        for (int i = 0; i < diseaseName.Count; i++)
         {
-            for (int i = 0; i < diseaseName.Count; i++)
-            {
-                string query = String.Format("UPDATE {0} SET isApproved='1' WHERE ID={1}", diseaseName[i], diseaseId[i]);
-                MySqlCommand command = new MySqlCommand(query, newCon.conn);
-                command.ExecuteNonQuery();
-            }
-        }
-        catch (Exception ex)
-        {
-            Alert.Show("An error occured!Please try again later.");
+            string query = String.Format("UPDATE {0} SET isApproved='1' WHERE ID={1}", diseaseName[i], diseaseId[i]);
+            MySqlCommand command = new MySqlCommand(query, newCon.conn);
+            command.ExecuteNonQuery();
         }
         newCon.conn.Close();
     }
