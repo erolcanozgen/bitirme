@@ -1,5 +1,8 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="Yeni.master.cs" Inherits="Yeni" %>
 
+<%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
+
+
 <!DOCTYPE HTML>
 <html>
 
@@ -124,6 +127,7 @@
         </header>
         <div id="site_content">
             <!-- content -->
+            <uc1:Notifier runat="server" ID="notifier" />
             <div>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>

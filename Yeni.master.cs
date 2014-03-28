@@ -74,7 +74,9 @@ public partial class Yeni : System.Web.UI.MasterPage
             Session.Add("user", newUser);
             Response.Redirect(Request.RawUrl);
         }
-        else Alert.Show("Wrong username and password combinations.");
+        else
+            Notifier.AddErrorMessage("Wrong username and password combinations.");
+            //Alert.Show("Wrong username and password combinations.");
     }
     protected void Register_Click(object sender, EventArgs e)
     {
