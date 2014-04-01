@@ -52,7 +52,7 @@
             </tr>
             <tr>
                 <td><span>Case Exposed Count (Yes)</span></td>
-                <td><asp:TextBox CssClass="contact" ID="CaseYes_TextBox" runat="server" ></asp:TextBox></td>
+                <td><asp:TextBox CssClass="contact" ID="CaseYes_TextBox" runat="server" autocomplete="off" ></asp:TextBox></td>
                 <td>
                     <asp:RequiredFieldValidator SetFocusOnError="true" ID="ReqCaseYes" runat="server" ErrorMessage="Enter Case Exposed Count!" 
                         ControlToValidate="CaseYes_TextBox" ForeColor="Red" Height="16px" Width="190px" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -64,7 +64,7 @@
             </tr>
             <tr>
                 <td><span>Case Unexposed Count (No)</span></td>
-                <td><asp:TextBox CssClass="contact" ID="CaseNo_TextBox" runat="server"></asp:TextBox></td>
+                <td><asp:TextBox CssClass="contact" ID="CaseNo_TextBox" runat="server" autocomplete="off"></asp:TextBox></td>
                 <td>
                     <asp:RequiredFieldValidator SetFocusOnError="true" ID="ReqCaseNo" runat="server" ErrorMessage="Enter Case Unxposed Count!" 
                         ControlToValidate="CaseNo_TextBox" ForeColor="Red" Height="16px" Width="190px" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -76,7 +76,7 @@
             </tr>
             <tr>
                 <td><span>Control Exposed Count (Yes)</span></td>
-                <td><asp:TextBox CssClass="contact" ID="ControlYes_TextBox" runat="server"></asp:TextBox></td>
+                <td><asp:TextBox CssClass="contact" ID="ControlYes_TextBox" runat="server" autocomplete="off"></asp:TextBox></td>
                 <td>
                     <asp:RequiredFieldValidator SetFocusOnError="true" ID="ReqControlYes" runat="server" ErrorMessage="Enter Control Exposed Count!" 
                         ControlToValidate="ControlYes_TextBox" ForeColor="Red" Height="16px" Width="190px" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -88,7 +88,7 @@
             </tr>
             <tr>
                 <td><span>Control Unexposed Count (No)</span></td>
-                <td><asp:TextBox CssClass="contact" ID="ControlNo_TextBox" runat="server"></asp:TextBox></td>
+                <td><asp:TextBox CssClass="contact" ID="ControlNo_TextBox" runat="server" autocomplete="off"></asp:TextBox></td>
                 <td>
                     <asp:RequiredFieldValidator SetFocusOnError="true" ID="ReqControlNo" runat="server" ErrorMessage="Enter Control Unexposed Count!" 
                         ControlToValidate="ControlNo_TextBox" ForeColor="Red" Height="16px" Width="190px" Display="Dynamic"></asp:RequiredFieldValidator>
@@ -100,15 +100,15 @@
             </tr>
             <tr>
                 <td><span>P Value</span></td>
-                <td><asp:TextBox CssClass="contact" ID="P_TextBox" runat="server"></asp:TextBox></td>
+                <td><asp:TextBox CssClass="contact" ID="P_TextBox" runat="server" autocomplete="off"></asp:TextBox></td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td><span><asp:DropDownList ID="Reference_DropDown" runat="server" Height="25px" Width="191px">
                                 <asp:ListItem Text="Select the Reference Type" Value="0" />  
                                 <asp:ListItem Value="1">PubMed Id</asp:ListItem>
-                                <asp:ListItem Value="2">Link1</asp:ListItem>
-                                <asp:ListItem Value="3">Link2</asp:ListItem>
+                                <asp:ListItem Value="2">Link</asp:ListItem>
+                                <asp:ListItem Value="3">Diğer</asp:ListItem>
                           </asp:DropDownList></span>
                 </td>
                 <td><asp:TextBox CssClass="contact" ID="Reference_TextBox" runat="server" Rows="5" TextMode="MultiLine"></asp:TextBox></td>

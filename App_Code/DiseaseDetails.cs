@@ -44,7 +44,7 @@ public class DiseaseDetails
     public DataTable selectDiseaseDetails(string name)
     {
         Connection newCon = new Connection();
-        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved, ownerOfPublication from {0} where isApproved = 1 ", name);
+        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference,Reference_Type,isApproved, ownerOfPublication from {0} where isApproved = 1 ", name);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();
@@ -145,7 +145,7 @@ public class DiseaseDetails
     public DataTable selectSNPDetails(string diseaseName, string SnpName, string tempId)
     {
         Connection newCon = new Connection();
-        string query = String.Format("select  Gene_Name,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, SNP from {0} where SNP = '{1}' and isApproved = 1 ", diseaseName, SnpName);
+        string query = String.Format("select  Gene_Name,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference,Reference_Type SNP from {0} where SNP = '{1}' and isApproved = 1 ", diseaseName, SnpName);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();
@@ -187,7 +187,7 @@ public class DiseaseDetails
         try{
          DataTable ret = new DataTable();
         Connection newCon = new Connection();
-        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, ownerOfPublication from {0} ", name);
+        string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference,Reference_Type, ownerOfPublication from {0} ", name);
         query = query+GetWhereCondition(param);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);

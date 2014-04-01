@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Data;
+using System.Configuration;
 
 public partial class Disasters : System.Web.UI.Page
 {
@@ -38,7 +40,10 @@ public partial class Disasters : System.Web.UI.Page
         //grdViewCustomers.Visible = true;
         grdViewCustomers.DataSource = dDetails.selectMetaAnalysis(DiseasesList.SelectedValue);
         grdViewCustomers.DataBind();
+       
     }
+
+  
     protected void grdViewCustomers_OnRowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
@@ -46,8 +51,10 @@ public partial class Disasters : System.Web.UI.Page
             string SNP_Name = grdViewCustomers.DataKeys[e.Row.RowIndex]["SNP"].ToString();
             string tmpId = grdViewCustomers.DataKeys[e.Row.RowIndex]["tmpId"].ToString();
             GridView grdViewOrdersOfCustomer = (GridView)e.Row.FindControl("grdViewOrdersOfCustomer");
-            grdViewOrdersOfCustomer.DataSource = dDetails.selectSNPDetails(DiseasesList.SelectedValue, SNP_Name, tmpId);
+            DataTable dt = dDetails.selectSNPDetails(DiseasesList.SelectedValue, SNP_Name, tmpId);
+            grdViewOrdersOfCustomer.DataSource = dt;
             grdViewOrdersOfCustomer.DataBind();
+            setReferenceColumn(dt, grdViewOrdersOfCustomer);
         }
     }
     public override void VerifyRenderingInServerForm(Control control)
@@ -97,5 +104,40 @@ public partial class Disasters : System.Web.UI.Page
         else {
             Alert.Show("You must minimum 2 research to calculate meta-analysis!");
         }
+    }
+
+     private void setReferenceColumn(DataTable dt ,GridView grd)
+    {
+        HyperLink link_ref; Label lbl_ref;
+
+        for (int i = 0; i < grd.Rows.Count; i++)
+            switch (dt.Rows[i].ItemArray[8].ToString())
+            {
+                case "1":
+                    link_ref = grd.Rows[i].FindControl("Link") as HyperLink;
+                    link_ref.Text = "External Links";
+                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i].ItemArray[7]); // ItemArray[7] <-- Reference  alanı
+                    link_ref.Target = "_blank";
+                    lbl_ref = grd.Rows[i].FindControl("lbl_reference") as Label;
+                    lbl_ref.Visible = false;
+                    break;
+
+                case "2":
+                    link_ref = grd.Rows[i].FindControl("Link") as HyperLink;
+                    link_ref.Text = "External Links";
+                    link_ref.Target = "_blank";
+                    link_ref.NavigateUrl = dt.Rows[i].ItemArray[7].ToString();
+                    lbl_ref = grd.Rows[i].FindControl("lbl_reference") as Label;
+                    lbl_ref.Visible = false;
+                    break;
+
+                case "3":
+                default:
+                    link_ref = grd.Rows[i].FindControl("Link") as HyperLink;
+                    link_ref.Visible = false;
+                    lbl_ref = grd.Rows[i].FindControl("lbl_reference") as Label;
+                    lbl_ref.Text = dt.Rows[i].ItemArray[7].ToString();
+                    break;
+            }
     }
 }

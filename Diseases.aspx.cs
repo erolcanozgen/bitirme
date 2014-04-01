@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -24,8 +26,11 @@ public partial class Diseases : System.Web.UI.Page
                 cmbDiseaseName.DataBind();
                 cmbDiseaseName.SelectedValue = Request.QueryString["disease"];
 
-                grdViewDiseases.DataSource = dDetails.selectDiseaseDetails(cmbDiseaseName.SelectedValue);
+                
+                DataTable dt = dDetails.selectDiseaseDetails(cmbDiseaseName.SelectedValue);
+                grdViewDiseases.DataSource = dt;
                 grdViewDiseases.DataBind();
+                setReferenceColumn(dt);       
             }
         }
 
@@ -49,10 +54,16 @@ public partial class Diseases : System.Web.UI.Page
 
             if (txtCotrolCount.Text != String.Empty) param.Add(new KeyValuePair<string, string>("Control_Count", txtCotrolCount.Text));
 
-            if (txtSNP.Text != String.Empty) param.Add(new KeyValuePair<string, string>("SNP", txtSNP.Text));   
+            if (txtSNP.Text != String.Empty) param.Add(new KeyValuePair<string, string>("SNP", txtSNP.Text));
 
-            grdViewDiseases.DataSource =  dDetails.SelectFilteredDiseaseDetails(param, cmbDiseaseName.SelectedValue.ToString());
+
+            DataTable dt = dDetails.SelectFilteredDiseaseDetails(param, cmbDiseaseName.SelectedValue.ToString());
+            grdViewDiseases.DataSource = dt;
             grdViewDiseases.DataBind();
+            setReferenceColumn(dt);
+
+           
+
         }
         catch (Exception ex)
         {
@@ -60,4 +71,41 @@ public partial class Diseases : System.Web.UI.Page
             //Alert.Show(ex.Message);
         }
     }
+
+
+    private void setReferenceColumn(DataTable dt)
+    {
+        HyperLink link_ref; Label lbl_ref;
+
+        for (int i = 0; i < grdViewDiseases.Rows.Count; i++)
+            switch (dt.Rows[i].ItemArray[12].ToString())
+            {
+                case "1":
+                    link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
+                    link_ref.Text = "External Links";
+                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i].ItemArray[11]); // ItemArray[11] <-- Reference  alanı
+                    link_ref.Target = "_blank";
+                    lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
+                    lbl_ref.Visible = false;
+                    break;
+
+                case "2":
+                    link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
+                    link_ref.Text = "External Links";
+                    link_ref.Target = "_blank";
+                    link_ref.NavigateUrl = dt.Rows[i].ItemArray[11].ToString();
+                    lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
+                    lbl_ref.Visible = false;
+                    break;
+
+                case "3":
+                default:
+                    link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
+                    link_ref.Visible = false;
+                    lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
+                    lbl_ref.Text = dt.Rows[i].ItemArray[11].ToString();
+                    break;
+            }
+    }
+
 }

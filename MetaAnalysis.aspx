@@ -68,7 +68,12 @@
                                                 <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency In Control" />
                                                 <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
                                                 <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
-                                                <asp:BoundField  DataField="Reference" HeaderText="Reference" />
+                                                <asp:TemplateField HeaderText="Reference">
+                                                    <ItemTemplate>
+                                                        <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>
+                                                        <asp:Label runat="server" ID="lbl_reference"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:BoundField  DataField="SNP" HeaderText="SNP" Visible="false" />
                                                 <asp:BoundField  DataField="tmpId" HeaderText="tmpId" Visible="false" />
                                             </Columns>
