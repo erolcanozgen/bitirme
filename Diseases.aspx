@@ -5,10 +5,16 @@
 
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
-      <link href="css/style.css" type="text/css" rel="stylesheet"/>
-     <link href="css/Table.css" type="text/css" rel="stylesheet"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="css/Table.css" type="text/css" rel="stylesheet"/>
     <link href="css/Button.css" type="text/css" rel="stylesheet"/>
-
+    <style type="text/css">
+        .modalBackground {
+            background-color:white;
+            filter:alpha(opacity=70);
+            opacity:0.8;
+        }
+    </style>
      
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
@@ -91,6 +97,7 @@
                             <ItemTemplate>
                                 <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>
                                 <asp:Label runat="server" ID="lbl_reference"></asp:Label>
+                                <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField  DataField="ownerOfPublication" HeaderText="Owner Of Publication" />
@@ -98,6 +105,31 @@
                  <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" />
               </asp:GridView>
           </asp:Panel>
+          <asp:Button ID="Button1" runat="server" Text="Button" style="display:none" />
+          <asp:ModalPopupExtender ID="Button1_ModalPopupExtender"
+                runat="server"  Enabled="True" 
+                PopupControlID="popUpTable" TargetControlID="Button1" 
+                CancelControlID="Button3" BackgroundCssClass="modalBackground">
+                </asp:ModalPopupExtender>
+                <table id="popUpTable" style="padding:0px 0px 0px 0px; width:550px; height:200px">
+                        <thead>
+		                    <tr>
+			                    <th>Reference</th>
+		                    </tr>
+	                    </thead>
+                        <tr style="height:180px; padding:0px 0px 0px 0px;">
+                            <td  style="padding:0px 0px 0px 0px;">
+                                <asp:TextBox ID="referenceLbl" Height="180px" Width="550px" runat="server" TextMode="MultiLine" ReadOnly="True"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tfoot  style="padding:0px 0px 0px 0px;">
+                            <tr style="float:right; padding:0px 0px 0px 0px;">
+                                <td  style="padding:0px 0px 0px 0px;">
+                                    <asp:Button ID="Button3"  style="padding:0px 0px 0px 0px;" runat="server" Text=" Close " />
+                                </td>
+                            </tr>
+                        </tfoot>
+                </table>
         </div>
 
    </div>

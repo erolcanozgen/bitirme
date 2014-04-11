@@ -39,9 +39,8 @@ public partial class Diseases : System.Web.UI.Page
             Notifier.AddErrorMessage("An error was occured while getting the researches!");
             //Alert.Show(ex.Message);
         }
-    }
- 
-   
+    }  
+
     protected void btnFilter_Click(object sender, EventArgs e)
     {
         try
@@ -75,7 +74,7 @@ public partial class Diseases : System.Web.UI.Page
 
     private void setReferenceColumn(DataTable dt)
     {
-        HyperLink link_ref; Label lbl_ref;
+        HyperLink link_ref; Label lbl_ref; LinkButton seeDetailsBtn;
 
         for (int i = 0; i < grdViewDiseases.Rows.Count; i++)
             switch (dt.Rows[i].ItemArray[12].ToString())
@@ -87,6 +86,8 @@ public partial class Diseases : System.Web.UI.Page
                     link_ref.Target = "_blank";
                     lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
                     lbl_ref.Visible = false;
+                    seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
+                    seeDetailsBtn.Visible = false;
                     break;
 
                 case "2":
@@ -96,6 +97,8 @@ public partial class Diseases : System.Web.UI.Page
                     link_ref.NavigateUrl = dt.Rows[i].ItemArray[11].ToString();
                     lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
                     lbl_ref.Visible = false;
+                    seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
+                    seeDetailsBtn.Visible = false;
                     break;
 
                 case "3":
@@ -106,6 +109,13 @@ public partial class Diseases : System.Web.UI.Page
                     lbl_ref.Text = dt.Rows[i].ItemArray[11].ToString();
                     break;
             }
+    }
+    public void ShowPopup(object sender, EventArgs e)
+    {
+        LinkButton lnk = sender as LinkButton;
+        GridViewRow Row = (GridViewRow)lnk.NamingContainer;
+        referenceLbl.Text = "denemesdddddddddddddddddddddddddddddddddddddddddddsdsdsddssddssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaaaaaaaaaaaaaaa";
+        this.Button1_ModalPopupExtender.Show();
     }
 
 }
