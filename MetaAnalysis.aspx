@@ -48,7 +48,7 @@
         </div>
 
     
-                    <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="SNP,tmpId"
+                    <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="SNP,tmpId" onsorting="gvDetails_Sorting"
                         OnRowDataBound="grdViewCustomers_OnRowDataBound" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Both" AllowSorting="True">
 			           
 			            <Columns>
@@ -87,11 +87,11 @@
                                     <asp:CheckBox ID="chkRow" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-				            <asp:BoundField  DataField="SNP" HeaderText="SNP" />
-                            <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" />
-                            <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="Z Value" />
-                            <asp:BoundField  DataFormatString="{0:F2}" DataField="I2" HeaderText="I2" />
-                            <asp:BoundField  DataField="NumOfPublications" HeaderText="No Of Publications" />
+				            <asp:BoundField  DataField="SNP" HeaderText="SNP" SortExpression="SNP"/>
+                            <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" SortExpression="OR_Value"/>
+                            <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="Z Value" SortExpression="P_Value"/>
+                            <asp:BoundField  DataFormatString="{0:F2}" DataField="I2" HeaderText="I2" SortExpression="I2"/>
+                            <asp:BoundField  DataField="NumOfPublications" HeaderText="No Of Publications" SortExpression="NumOfPublications"/>
                             <asp:BoundField  DataField="tmpId" HeaderText="tmpId" Visible="false" />
 			            </Columns>
                         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
@@ -103,60 +103,5 @@
 		            </asp:GridView>
 
 	</div>
-
-<%--    <div>
-        <table class="gridtable">
-            <tr>
-                <td>
-                    &nbsp;&nbsp;
-                    <asp:Label ID="Label1" runat="server" Text="Select a disease to examine researches:"></asp:Label>
-                    <br />&nbsp;&nbsp;
-                    <asp:DropDownList ID="DiseasesList" runat="server" 
-                        AutoPostBack="True"
-                        onselectedindexchanged="showDiseaseDetails"> </asp:DropDownList>
-                </td>
-                <td style="width: 328px; text-align:right;" >
-                    <asp:ImageButton Visible="false" ID="excelAktar" runat="server" 
-                        ImageUrl="~/images/excelAktar.jpg" BorderColor="#93A985" 
-                        BorderStyle="Ridge" onclick="excelAktar_Click" />
-                </td>
-            </tr>
-            <tr>
-                <td align="center" colspan="2">
-                    <asp:GridView ID="DiseasesDetailsGrid" runat="server" CellPadding="10" AutoGenerateColumns="False"
-                        ForeColor="Black" AllowSorting="True"
-                        BackColor="White" BorderColor="#999999" BorderStyle="Solid" 
-                        BorderWidth="1px">
-                        <EditRowStyle BorderColor="White" HorizontalAlign="Left" 
-                            VerticalAlign="Middle" Wrap="False" />
-                        <EmptyDataRowStyle BorderColor="Black" BorderStyle="Solid" 
-                            HorizontalAlign="Left" VerticalAlign="Middle" />
-                        <AlternatingRowStyle BackColor="#CCCCCC" />
-                         <Columns>
-	                        <asp:BoundField  DataField="Disease_Name" HeaderText="Disease Name" />
-                            <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
-                            <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
-                            <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
-                            <asp:BoundField  DataField="SNP" HeaderText="SNP" />
-                            <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
-                            <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency Patient" />
-                            <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
-                            <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
-                            <asp:BoundField  DataField="Reference" HeaderText="Author" />
-                        </Columns>
-                        <FooterStyle BackColor="#93A985" Height="10px" />
-                        <HeaderStyle BackColor="#93A985" Font-Bold="True" ForeColor="White" 
-                            VerticalAlign="Middle" Wrap="False" />
-                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                        <SortedAscendingHeaderStyle BackColor="#808080" />
-                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                        <SortedDescendingHeaderStyle BackColor="#383837" />
-                    </asp:GridView>
-                </td>
-            </tr>
-        </table>
-    </div>--%>
 </asp:Content>
 

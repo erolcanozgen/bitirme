@@ -78,7 +78,7 @@
 
     </div>
 
-      <div id="DiseasesTable" style="float:right;width:625px" aria-disabled="False">
+      <div id="DiseasesTable" style="float:right;width:800px" aria-disabled="False">
             
           <asp:Panel runat="server" ScrollBars="Auto">
               <asp:GridView ID="grdViewDiseases" runat="server" AutoGenerateColumns="false"

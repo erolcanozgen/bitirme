@@ -183,7 +183,7 @@ nav {
 } 
 
 #site_content { 
-  width: 1000px;
+  width: 1200px;
   overflow: hidden;
   margin: 0px auto 0 auto;
   padding: 15px 0 40px 0;
@@ -365,7 +365,7 @@ footer a:hover {
 /* scroll to top */
 #scroll { 
   position: relative; 
-  width: 1000px;
+  width: 1200px;
   margin: 0 auto;
   bottom: 14px; 
   right: 0;

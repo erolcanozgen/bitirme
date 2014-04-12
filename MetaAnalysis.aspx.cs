@@ -15,8 +15,6 @@ public partial class Disasters : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
-
         if (!IsPostBack)
         {
             DiseasesList.DataTextField = "Name";
@@ -37,12 +35,46 @@ public partial class Disasters : System.Web.UI.Page
 
     public void showDiseaseDetails(object sender, EventArgs e)
     {
-        //grdViewCustomers.Visible = true;
-        grdViewCustomers.DataSource = dDetails.selectMetaAnalysis(DiseasesList.SelectedValue);
+        DataView sortedView = new DataView(dDetails.selectMetaAnalysis(DiseasesList.SelectedValue));
+        sortedView.Sort = "OR_Value Desc";
+        grdViewCustomers.DataSource = sortedView;
         grdViewCustomers.DataBind();
-       
     }
 
+    public SortDirection dir
+    {
+        get
+        {
+            if (ViewState["dirState"] == null)
+            {
+                ViewState["dirState"] = SortDirection.Ascending;
+            }
+            return (SortDirection)ViewState["dirState"];
+        }
+        set
+        {
+            ViewState["dirState"] = value;
+        }
+    }
+    protected void gvDetails_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        string sortingDirection = string.Empty;
+        if (dir == SortDirection.Ascending)
+        {
+            dir = SortDirection.Descending;
+            sortingDirection = "Desc";
+        }
+        else
+        {
+            dir = SortDirection.Ascending;
+            sortingDirection = "Asc";
+        }
+
+        DataView sortedView = new DataView(dDetails.selectMetaAnalysis(DiseasesList.SelectedValue));
+        sortedView.Sort = e.SortExpression + " " + sortingDirection;
+        grdViewCustomers.DataSource = sortedView;
+        grdViewCustomers.DataBind();
+    }
   
     protected void grdViewCustomers_OnRowDataBound(object sender, GridViewRowEventArgs e)
     {
