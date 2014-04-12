@@ -11,13 +11,10 @@ public partial class Diseases : System.Web.UI.Page
 {
     DiseasesNames dName = new DiseasesNames();
     DiseaseDetails dDetails = new DiseaseDetails();
-
     protected void Page_Load(object sender, EventArgs e)
     {
-       
         try
         {
-
             if (!IsPostBack)
             {
                 cmbDiseaseName.DataTextField = "Name";
@@ -25,15 +22,13 @@ public partial class Diseases : System.Web.UI.Page
                 cmbDiseaseName.DataSource = dName.selectDiseasesNames();
                 cmbDiseaseName.DataBind();
                 cmbDiseaseName.SelectedValue = Request.QueryString["disease"];
-
-                
+   
                 DataTable dt = dDetails.selectDiseaseDetails(cmbDiseaseName.SelectedValue);
                 grdViewDiseases.DataSource = dt;
                 grdViewDiseases.DataBind();
                 setReferenceColumn(dt);       
             }
         }
-
         catch(Exception ex)
         {
             Notifier.AddErrorMessage("An error was occured while getting the researches!");
@@ -60,9 +55,6 @@ public partial class Diseases : System.Web.UI.Page
             grdViewDiseases.DataSource = dt;
             grdViewDiseases.DataBind();
             setReferenceColumn(dt);
-
-           
-
         }
         catch (Exception ex)
         {
@@ -70,7 +62,6 @@ public partial class Diseases : System.Web.UI.Page
             //Alert.Show(ex.Message);
         }
     }
-
 
     private void setReferenceColumn(DataTable dt)
     {
@@ -106,6 +97,7 @@ public partial class Diseases : System.Web.UI.Page
                     break;
             }
     }
+
     public void ShowPopup(object sender, EventArgs e)
     {
         Label lbl_ref;
@@ -119,4 +111,38 @@ public partial class Diseases : System.Web.UI.Page
         this.Button1_ModalPopupExtender.Show();
     }
 
+    public SortDirection dir
+    {
+        get
+        {
+            if (ViewState["dirState"] == null)
+            {
+                ViewState["dirState"] = SortDirection.Ascending;
+            }
+            return (SortDirection)ViewState["dirState"];
+        }
+        set
+        {
+            ViewState["dirState"] = value;
+        }
+    }
+    protected void grdViewDiseases_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        string sortingDirection = string.Empty;
+        if (dir == SortDirection.Ascending)
+        {
+            dir = SortDirection.Descending;
+            sortingDirection = "Desc";
+        }
+        else
+        {
+            dir = SortDirection.Ascending;
+            sortingDirection = "Asc";
+        }
+
+        DataView sortedView = new DataView(dDetails.selectDiseaseDetails(cmbDiseaseName.SelectedValue));
+        sortedView.Sort = e.SortExpression + " " + sortingDirection;
+        grdViewDiseases.DataSource = sortedView;
+        grdViewDiseases.DataBind();
+    }
 }
