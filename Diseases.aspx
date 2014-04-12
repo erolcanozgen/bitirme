@@ -96,7 +96,7 @@
                         <asp:TemplateField HeaderText="Reference">
                             <ItemTemplate>
                                 <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>
-                                <asp:Label runat="server" ID="lbl_reference"></asp:Label>
+                                <asp:Label runat="server" ID="lbl_reference" Visible="false"></asp:Label>
                                 <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>

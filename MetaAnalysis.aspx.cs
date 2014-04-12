@@ -81,31 +81,6 @@ public partial class Disasters : System.Web.UI.Page
         Response.End();
     }
 
-    //eklenecek gridview'e
-    protected void calculateSelectedMetaAnalysis(object sender, EventArgs e)
-    {
-        int selectedRowCounts = 0;
-        GridView grdViewOrdersOfCustomer = (GridView)FindControl("grdViewOrdersOfCustomer");
-        foreach (GridViewRow row in grdViewOrdersOfCustomer.Rows)
-        {
-            if (row.RowType == DataControlRowType.DataRow)
-            {
-                CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
-                if (chkRow.Checked)
-                {
-                    selectedRowCounts++;
-                }
-            }
-        }
-        if (selectedRowCounts > 2)
-        {
-            //calculate meta analysis
-        }
-        else {
-            Alert.Show("You must minimum 2 research to calculate meta-analysis!");
-        }
-    }
-
      private void setReferenceColumn(DataTable dt ,GridView grd)
     {
         HyperLink link_ref; Label lbl_ref;

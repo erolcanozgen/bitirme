@@ -84,8 +84,6 @@ public partial class Diseases : System.Web.UI.Page
                     link_ref.Text = "External Links";
                     link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i].ItemArray[11]); // ItemArray[11] <-- Reference  alanı
                     link_ref.Target = "_blank";
-                    lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
-                    lbl_ref.Visible = false;
                     seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
                     seeDetailsBtn.Visible = false;
                     break;
@@ -95,8 +93,6 @@ public partial class Diseases : System.Web.UI.Page
                     link_ref.Text = "External Links";
                     link_ref.Target = "_blank";
                     link_ref.NavigateUrl = dt.Rows[i].ItemArray[11].ToString();
-                    lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
-                    lbl_ref.Visible = false;
                     seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
                     seeDetailsBtn.Visible = false;
                     break;
@@ -112,9 +108,14 @@ public partial class Diseases : System.Web.UI.Page
     }
     public void ShowPopup(object sender, EventArgs e)
     {
-        LinkButton lnk = sender as LinkButton;
-        GridViewRow Row = (GridViewRow)lnk.NamingContainer;
-        referenceLbl.Text = "denemesdddddddddddddddddddddddddddddddddddddddddddsdsdsddssddssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaaaaaaaaaaaaaaa";
+        Label lbl_ref;
+        LinkButton btn = (LinkButton)sender;
+        GridViewRow row = (GridViewRow)btn.NamingContainer;
+        int i = Convert.ToInt32(row.RowIndex);
+
+        lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
+        referenceLbl.Text = lbl_ref.Text;
+        
         this.Button1_ModalPopupExtender.Show();
     }
 
