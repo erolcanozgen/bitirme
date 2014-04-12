@@ -78,38 +78,38 @@
 
     </div>
 
-      <div id="DiseasesTable" style="float:right;width:800px" aria-disabled="False">
+      <div id="DiseasesTable" style="float:left; width:830px" aria-disabled="False">
             
-          <asp:Panel runat="server" ScrollBars="Auto">
-              <asp:GridView ID="grdViewDiseases" runat="server" AutoGenerateColumns="false" OnSorting="grdViewDiseases_Sorting"
-			    DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False" HorizontalAlign="Center" Width="100%" AllowSorting="True">
+                <asp:Panel ID="diseasesTablePanel" runat="server" ScrollBars="Horizontal">
+                    <asp:GridView ID="grdViewDiseases" runat="server" AutoGenerateColumns="false" OnSorting="grdViewDiseases_Sorting"
+			        DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="true" HorizontalAlign="Center" Width="100%" AllowSorting="True">
 
-                   <Columns>
-                        <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" SortExpression="Gene_Name"/>
-                        <asp:BoundField  DataField="SNP" HeaderText="SNP" SortExpression="SNP"/>
-                        <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" SortExpression="Case_Count"/>
-                        <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency In Case" SortExpression="Frequency_Patient"/>
-                        <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" SortExpression="Control_Count"/>
-                        <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency In Control" SortExpression="Frequency_Control"/>
-                        <asp:BoundField  DataField="P_Value" HeaderText="P Value" SortExpression="P_Value"/>
-                        <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" SortExpression="OR_Value"/>
-                        <asp:TemplateField HeaderText="Reference">
-                            <ItemTemplate>
-                                <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>
-                                <asp:Label runat="server" ID="lbl_reference" Visible="false"></asp:Label>
-                                <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:BoundField  DataField="ownerOfPublication" HeaderText="Owner Of Publication" />
-                    </Columns>
-                 <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" />
-              </asp:GridView>
-          </asp:Panel>
-          <asp:Button ID="Button1" runat="server" Text="Button" style="display:none" />
-          <asp:ModalPopupExtender ID="Button1_ModalPopupExtender"
-                runat="server"  Enabled="True" 
-                PopupControlID="popUpTable" TargetControlID="Button1" 
-                CancelControlID="Button3" BackgroundCssClass="modalBackground">
+                        <Columns>
+                            <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" SortExpression="Gene_Name"/>
+                            <asp:BoundField  DataField="SNP" HeaderText="SNP" SortExpression="SNP"/>
+                            <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" SortExpression="Case_Count"/>
+                            <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency In Case" SortExpression="Frequency_Patient"/>
+                            <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" SortExpression="Control_Count"/>
+                            <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency In Control" SortExpression="Frequency_Control"/>
+                            <asp:BoundField  DataField="P_Value" HeaderText="P Value" SortExpression="P_Value"/>
+                            <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" SortExpression="OR_Value"/>
+                            <asp:TemplateField HeaderText="Reference">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>
+                                    <asp:Label runat="server" ID="lbl_reference" Visible="false"></asp:Label>
+                                    <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField  DataField="ownerOfPublication" HeaderText="Owner Of Publication" />
+                        </Columns>
+                        <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                    </asp:GridView>
+                </asp:Panel>
+                <asp:Button ID="Button1" runat="server" Text="Button" style="display:none" />
+                <asp:ModalPopupExtender ID="Button1_ModalPopupExtender"
+                    runat="server"  Enabled="True" 
+                    PopupControlID="popUpTable" TargetControlID="Button1" 
+                    CancelControlID="Button3" BackgroundCssClass="modalBackground">
                 </asp:ModalPopupExtender>
                 <table id="popUpTable" style="padding:0px 0px 0px 0px; width:550px; height:200px">
                         <thead>
@@ -146,14 +146,13 @@
             $("#filterTable").hide();
             $("#hide").hide();
             $("#show").show();
-            $("#DiseasesTable").width(960, 0);
-
+            $("#DiseasesTable").width(1120, 0);
         });
         $("#show").click(function () {
-            $("table").show();
+            $("#filterTable").show();
             $("#show").hide();
             $("#hide").show();
-            $("#DiseasesTable").width(625, 0);
+            $("#DiseasesTable").width(830, 0);
         });
     });
 </script>
