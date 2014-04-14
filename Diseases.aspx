@@ -85,7 +85,11 @@
 			        DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="true" HorizontalAlign="Center" Width="100%" AllowSorting="True">
 
                         <Columns>
-                            <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" SortExpression="Gene_Name"/>
+                            <asp:TemplateField HeaderText="Gene Name">
+                                <ItemTemplate>
+                                     <asp:HyperLink ID="Gene_Name" runat="server"></asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField  DataField="SNP" HeaderText="SNP" SortExpression="SNP"/>
                             <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" SortExpression="Case_Count"/>
                             <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency In Case" SortExpression="Frequency_Patient"/>

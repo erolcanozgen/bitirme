@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +37,7 @@ public partial class AddedResearches : System.Web.UI.Page
 
         grdViewUnapprovedDiseases.DataSource = dt = dDetails.selectUnapprovedDiseaseDetails(dName.tableNames);
         grdViewUnapprovedDiseases.DataBind();
+        setReferenceColumn(dt);
     }
     protected void buttonApprove_Click(object sender, EventArgs e)
     {
@@ -107,6 +109,64 @@ public partial class AddedResearches : System.Web.UI.Page
         {
             Notifier.AddWarningMessage("Please select at least one publication to approve!");
             //Alert.Show("Please select at least one publication to approve!");
+        }
+    }
+
+
+    public void ShowPopup(object sender, EventArgs e)
+    {
+        Label lbl_ref;
+        LinkButton btn = (LinkButton)sender;
+        GridViewRow row = (GridViewRow)btn.NamingContainer;
+        int i = Convert.ToInt32(row.RowIndex);
+
+        lbl_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("lbl_reference") as Label;
+        referenceLbl.Text = lbl_ref.Text;
+
+        this.Button1_ModalPopupExtender.Show();
+    }
+
+    private void setReferenceColumn(DataTable dt)
+    {
+        HyperLink link_ref, link_gene; Label lbl_ref; LinkButton seeDetailsBtn;
+
+
+
+        for (int i = 0; i < grdViewUnapprovedDiseases.Rows.Count; i++)
+        {
+            link_gene = grdViewUnapprovedDiseases.Rows[i].FindControl("Gene_Name") as HyperLink;
+            link_gene.Text = dt.Rows[i]["Gene_Name"].ToString();
+            link_gene.NavigateUrl = String.Format("{0}?gene={1}", ConfigurationManager.AppSettings["GeneCardsLink"], dt.Rows[i]["Gene_Name"]);
+            link_gene.Target = "_blank";
+
+            switch (dt.Rows[i]["Reference_Type"].ToString())
+            {
+                case "1":
+                    link_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("Link") as HyperLink;
+                    link_ref.Text = "External Links";
+                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i]["Reference"]);
+                    link_ref.Target = "_blank";
+                    seeDetailsBtn = grdViewUnapprovedDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
+                    seeDetailsBtn.Visible = false;
+                    break;
+
+                case "2":
+                    link_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("Link") as HyperLink;
+                    link_ref.Text = "External Links";
+                    link_ref.Target = "_blank";
+                    link_ref.NavigateUrl = dt.Rows[i]["Reference"].ToString();
+                    seeDetailsBtn = grdViewUnapprovedDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
+                    seeDetailsBtn.Visible = false;
+                    break;
+
+                case "3":
+                default:
+                    link_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("Link") as HyperLink;
+                    link_ref.Visible = false;
+                    lbl_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("lbl_reference") as Label;
+                    lbl_ref.Text = dt.Rows[i]["Reference"].ToString();
+                    break;
+            }
         }
     }
 

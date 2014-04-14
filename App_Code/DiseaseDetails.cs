@@ -135,7 +135,7 @@ public class DiseaseDetails
             dt.Clear();
             for (int i = 0; i < diseaseName.Length; i++)
             {
-                string query = String.Format("select  ID,Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value, Reference, ownerOfPublication from {0} where isApproved = 0 ", diseaseName[i]);
+                string query = String.Format("select  ID,Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value, Reference,Reference_Type, ownerOfPublication from {0} where isApproved = 0 ", diseaseName[i]);
                 MySqlCommand command = new MySqlCommand(query, newCon.conn);
                 MySqlDataAdapter dr = new MySqlDataAdapter(command);
                 dr.Fill(dt);
@@ -159,7 +159,7 @@ public class DiseaseDetails
     public DataTable selectSNPDetails(string diseaseName, string SnpName, string tempId)
     {
         Connection newCon = new Connection();
-        string query = String.Format("select  Gene_Name,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference,Reference_Type SNP from {0} where SNP = '{1}' and isApproved = 1 ", diseaseName, SnpName);
+        string query = String.Format("select  Gene_Name,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference,Reference_Type, SNP from {0} where SNP = '{1}' and isApproved = 1 ", diseaseName, SnpName);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();

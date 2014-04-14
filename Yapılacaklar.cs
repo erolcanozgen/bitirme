@@ -22,7 +22,7 @@ public class Yapılacaklar
          *                                                    Number of Control 
          *  8) Utilities hardy calculatorde "common homozigotes" -> p2, "heterozigotz" ->q2
          *  9) Utilities hardy calculator result tablosunda P ve Q küçk olacak(p,q). Xsquare X'2 olacak. P value vermek lazım.
-         *  10) Gene isimleri gene card'a gidecek.
+         * + 10) Gene isimleri gene card'a gidecek.
          *  11) tablolar güzelleştirilecek - css
          *  12) Add new pub "case allele1 number" ve "control allele1 number" olacak
          ***********************************************/

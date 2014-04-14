@@ -55,6 +55,9 @@ public partial class Diseases : System.Web.UI.Page
             grdViewDiseases.DataSource = dt;
             grdViewDiseases.DataBind();
             setReferenceColumn(dt);
+
+ 
+            
         }
         catch (Exception ex)
         {
@@ -65,15 +68,23 @@ public partial class Diseases : System.Web.UI.Page
 
     private void setReferenceColumn(DataTable dt)
     {
-        HyperLink link_ref; Label lbl_ref; LinkButton seeDetailsBtn;
+        HyperLink link_ref, link_gene; Label lbl_ref; LinkButton seeDetailsBtn;
+
+
 
         for (int i = 0; i < grdViewDiseases.Rows.Count; i++)
+        {
+            link_gene = grdViewDiseases.Rows[i].FindControl("Gene_Name") as HyperLink;
+            link_gene.Text = dt.Rows[i]["Gene_Name"].ToString();
+            link_gene.NavigateUrl = String.Format("{0}?gene={1}", ConfigurationManager.AppSettings["GeneCardsLink"], dt.Rows[i]["Gene_Name"]);
+            link_gene.Target = "_blank";
+
             switch (dt.Rows[i]["Reference_Type"].ToString())
             {
                 case "1":
                     link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.Text = "External Links";
-                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i]["Reference"]); 
+                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i]["Reference"]);
                     link_ref.Target = "_blank";
                     seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
                     seeDetailsBtn.Visible = false;
@@ -96,6 +107,7 @@ public partial class Diseases : System.Web.UI.Page
                     lbl_ref.Text = dt.Rows[i]["Reference"].ToString();
                     break;
             }
+        }
     }
 
     public void ShowPopup(object sender, EventArgs e)

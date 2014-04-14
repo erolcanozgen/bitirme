@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="AddedResearches.aspx.cs" Inherits="AddedResearches" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
 
 
@@ -69,7 +69,11 @@
                                         </asp:TemplateField>
                                         <asp:BoundField  DataField="ID" HeaderText="Id" Visible="false"/>
                                         <asp:BoundField  DataField="Disease_Name" HeaderText="Disease Name" />
-				                        <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
+				                        <asp:TemplateField HeaderText="Gene Name">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="Gene_Name" runat="server"></asp:HyperLink>
+                                             </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:BoundField  DataField="SNP" HeaderText="SNP" />
                                         <asp:BoundField  DataFormatString="{0:F2}" DataField="Case_Count" HeaderText="Case Count" />
                                         <asp:BoundField  DataFormatString="{0:F2}" DataField="Control_Count" HeaderText="Control Count" />
@@ -77,7 +81,13 @@
                                         <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency Patient" />
                                         <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" />
                                         <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="P Value" />
-                                        <asp:BoundField  DataField="Reference" HeaderText="Reference" />
+                                         <asp:TemplateField HeaderText="Reference">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>
+                                                 <asp:Label runat="server" ID="lbl_reference" Visible="false"></asp:Label>
+                                                 <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
+                                                 </ItemTemplate>
+                                            </asp:TemplateField>
                                         <asp:BoundField  DataField="ownerOfPublication" HeaderText="Owner" />
 			                        </Columns>
 		                            <FooterStyle BackColor="#CCCCCC" />
@@ -108,6 +118,34 @@
             </tr>
         </table>
               </asp:Panel>
+
+             <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+             <asp:Button ID="Button1" runat="server" Text="Button" style="display:none" />
+                <asp:ModalPopupExtender ID="Button1_ModalPopupExtender"
+                    runat="server"  Enabled="True" 
+                    PopupControlID="popUpTable" TargetControlID="Button1" 
+                    CancelControlID="Button3" BackgroundCssClass="modalBackground">
+                </asp:ModalPopupExtender>
+                <table id="popUpTable" style="padding:0px 0px 0px 0px; width:550px; height:200px">
+                        <thead>
+		                    <tr>
+			                    <th>Reference</th>
+		                    </tr>
+	                    </thead>
+                        <tr style="height:180px; padding:0px 0px 0px 0px;">
+                            <td  style="padding:0px 0px 0px 0px;">
+                                <asp:TextBox ID="referenceLbl" Height="180px" Width="550px" runat="server" TextMode="MultiLine" ReadOnly="True"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tfoot  style="padding:0px 0px 0px 0px;">
+                            <tr style="float:right; padding:0px 0px 0px 0px;">
+                                <td  style="padding:0px 0px 0px 0px;">
+                                    <asp:Button ID="Button3"  style="padding:0px 0px 0px 0px;" runat="server" Text=" Close " />
+                                </td>
+                            </tr>
+                        </tfoot>
+                </table>
+
         </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 </asp:Content>

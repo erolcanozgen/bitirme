@@ -75,7 +75,7 @@ public partial class Disasters : System.Web.UI.Page
         grdViewCustomers.DataSource = sortedView;
         grdViewCustomers.DataBind();
     }
-  
+
     protected void grdViewCustomers_OnRowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
@@ -113,11 +113,18 @@ public partial class Disasters : System.Web.UI.Page
         Response.End();
     }
 
-     private void setReferenceColumn(DataTable dt ,GridView grd)
+    private void setReferenceColumn(DataTable dt, GridView grd)
     {
-        HyperLink link_ref; Label lbl_ref;
+        HyperLink link_ref, link_gene; Label lbl_ref;
 
         for (int i = 0; i < grd.Rows.Count; i++)
+        {
+            link_gene = grd.Rows[i].FindControl("Gene_Name") as HyperLink;
+            link_gene.Text = dt.Rows[i]["Gene_Name"].ToString();
+            link_gene.NavigateUrl = String.Format("{0}?gene={1}", ConfigurationManager.AppSettings["GeneCardsLink"], dt.Rows[i]["Gene_Name"]);
+            link_gene.Target = "_blank";
+
+
             switch (dt.Rows[i]["Reference_Type"].ToString())
             {
                 case "1":
@@ -146,5 +153,6 @@ public partial class Disasters : System.Web.UI.Page
                     lbl_ref.Text = dt.Rows[i]["Reference"].ToString();
                     break;
             }
+        }
     }
 }

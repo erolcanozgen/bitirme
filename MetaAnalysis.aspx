@@ -61,7 +61,11 @@
 							            <asp:GridView ID="grdViewOrdersOfCustomer" runat="server" AutoGenerateColumns="false"
 								            DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False">
 								            <Columns>
-                                                <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
+                                                 <asp:TemplateField HeaderText="Gene Name">
+                                                    <ItemTemplate>
+                                                        <asp:HyperLink ID="Gene_Name" runat="server"></asp:HyperLink>
+                                                     </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:BoundField  DataFormatString="{0:F2}" DataField="Case_Count" HeaderText="Case Count" />
                                                 <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency In Case" />
                                                 <asp:BoundField  DataFormatString="{0:F2}" DataField="Control_Count" HeaderText="Control Count" />
