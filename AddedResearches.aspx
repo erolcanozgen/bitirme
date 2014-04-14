@@ -94,8 +94,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="text-align:right">
-                                <br />
+                           
+                            <td style="text-align:left">
+                                <br /> <br />
+                                <asp:Button ID="buttonReject" runat="server" Text=" Delete Selected Publications " class="buttonCss" OnClick="buttonApprove_Click" />
+                                <br /> <br />
                                 <asp:Button ID="buttonApprove" runat="server" Text=" Approve Selected Publications " class="buttonCss" OnClick="buttonApprove_Click" />
                             </td>
                         </tr>

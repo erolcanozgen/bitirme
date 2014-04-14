@@ -23,6 +23,7 @@ public partial class AddedResearches : System.Web.UI.Page
             if (dt.Rows.Count <= 0)
             {
                 buttonApprove.Visible = false;
+                buttonReject.Visible = false;
                 Notifier.AddErrorMessage("No new added publication!");
             }
         
@@ -64,20 +65,36 @@ public partial class AddedResearches : System.Web.UI.Page
             notifier.Dispose();
             try
             {
-                
-                for (int i = 0; i < diseaseName.Count; i++)
+                if (((Button)sender).ID == "buttonApprove")
                 {
-                    dDetails.approveSelectedPublication(diseaseId[i], diseaseName[i]);
-                    MetaAnalaysis mt = new MetaAnalaysis(diseaseName[i], SNP[i]);
-                    mt.DoMetaAnalysis();
-                    Notifier.AddSuccessMessage("Selected publicaton(s) has been approved.");
-                    selectUnapprovedDiseases();
-                    if (dt.Rows.Count <= 0)
+                    for (int i = 0; i < diseaseName.Count; i++)
                     {
-                        buttonApprove.Visible = false;
-                        Notifier.AddErrorMessage("No new added publication!");
+                        dDetails.approveSelectedPublication(diseaseId[i], diseaseName[i]);
+                        MetaAnalaysis mt = new MetaAnalaysis(diseaseName[i], SNP[i]);
+                        mt.DoMetaAnalysis();
                     }
+                    Notifier.AddSuccessMessage("Selected publicaton(s) has been approved.");
                 }
+
+
+                else if (((Button)sender).ID == "buttonReject")
+                {
+
+                    for (int i = 0; i < diseaseName.Count; i++)
+                        dDetails.deleteSelectedPublication(diseaseId[i], diseaseName[i]);
+                   
+                    Notifier.AddSuccessMessage("Selected publicaton(s) has been deleted.");
+                }
+
+
+                selectUnapprovedDiseases();
+                if (dt.Rows.Count <= 0)
+                {
+                    buttonApprove.Visible = false;
+                    buttonReject.Visible = false;
+                    Notifier.AddErrorMessage("No new added publication!");
+                }
+
             }
             catch (Exception ex)
             {
