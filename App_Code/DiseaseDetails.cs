@@ -232,7 +232,7 @@ public class DiseaseDetails
            
             for (int i = 0; i < param.Count; i++)
             {
-                if (param[i].Key == "Control_Count" || param[i].Key == "Case_Count")
+                if (param[i].Key == "Case_Count+Control_Count")
                 {
                     whereCondition = whereCondition + "AND " + param[i].Key + " >= " + param[i].Value + " ";
                 }

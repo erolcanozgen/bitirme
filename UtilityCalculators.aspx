@@ -370,7 +370,7 @@
 
                                 <tr>
                                     <td>
-                                        <asp:Label ID="lbl_p_allele" runat="server" Text="P Allele Frequency "></asp:Label>
+                                        <asp:Label ID="lbl_p_allele" runat="server" Text="p Allele Frequency "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txt_p_allele" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
@@ -379,7 +379,7 @@
 
                                 <tr>
                                     <td>
-                                        <asp:Label ID="lbl_q_allele" runat="server" Text="Q Allele Frequency "></asp:Label>
+                                        <asp:Label ID="lbl_q_allele" runat="server" Text="q Allele Frequency "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txt_q_allele" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
@@ -392,6 +392,14 @@
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txt_x_square" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="lbl_p" runat="server" Text="p value"></asp:Label>
+                                    </td>
+                                    <td style="text-align: left">
+                                        <asp:TextBox ID="txt_p" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
                                     </td>
                                 </tr>
                             </tbody>

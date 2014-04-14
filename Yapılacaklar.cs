@@ -11,7 +11,7 @@ public class Yapılacaklar
 	public Yapılacaklar()
 	{
         /**********************************************
-         *  1) Disease.aspx de filter'de Min Case-Control Count birleştirilip minumum sample size olacak
+         * +1) Disease.aspx de filter'de Min Case-Control Count birleştirilip minumum sample size olacak
          * +2) Admin page ve meta analizde precision 2 bit hassas olacak
          *  3) Post Hoc calculator sitedeki gibi olacak
          * +4) Meta Analiz meta or value olacak

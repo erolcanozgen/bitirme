@@ -44,10 +44,9 @@ public partial class Diseases : System.Web.UI.Page
             
             if(txtGene.Text != String.Empty) param.Add(new KeyValuePair<string,string>("Gene_Name",txtGene.Text));
 
-            if (txtCaseCount.Text != String.Empty) param.Add(new KeyValuePair<string, string>("Case_Count", txtCaseCount.Text));
+            if (txtMinimumSample.Text != String.Empty) param.Add(new KeyValuePair<string, string>("Case_Count+Control_Count", txtMinimumSample.Text));
 
-            if (txtCotrolCount.Text != String.Empty) param.Add(new KeyValuePair<string, string>("Control_Count", txtCotrolCount.Text));
-
+ 
             if (txtSNP.Text != String.Empty) param.Add(new KeyValuePair<string, string>("SNP", txtSNP.Text));
 
 

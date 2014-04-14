@@ -56,14 +56,10 @@
           <td><asp:TextBox runat="server" ID="txtGene" Width="143px"></asp:TextBox></td>
           </tr> 
          
+      
           <tr>
-          <td><label id="lblCaseCount">Min Case Count: </label></td>
-          <td><asp:TextBox runat="server" ID="txtCaseCount" Width="143px"></asp:TextBox></td>
-          </tr>
-
-          <tr>
-          <td><label id="lblControlCount">Min Control Count: </label></td>
-          <td><asp:TextBox runat="server" ID="txtCotrolCount" Width="143px"></asp:TextBox></td>
+          <td><label id="lblMinimumSample">Minumum sample size: </label></td>
+          <td><asp:TextBox runat="server" ID="txtMinimumSample" Width="143px"></asp:TextBox></td>
           </tr>
               
                  </tbody>
