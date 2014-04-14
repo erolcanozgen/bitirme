@@ -615,16 +615,12 @@
                                     </td>
                                 </tr>
                             </tbody>
-
                         </table>
 
                       </div>
                     </asp:Panel>
                 </ContentTemplate>
             </asp:TabPanel>
-
-
-
 
         </asp:TabContainer>
     </div>
