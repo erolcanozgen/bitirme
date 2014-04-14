@@ -21,20 +21,27 @@ public class DiseasesNames
 	}
     public DataTable selectDiseasesNames()
     {
-        Connection newCon = new Connection();
-        string query = "select id,Name,Table_Name from diseases";
-        MySqlCommand command = new MySqlCommand(query, newCon.conn);
-        MySqlDataAdapter dr = new MySqlDataAdapter(command);
-        DataTable dt = new DataTable();
-        dt.Clear();
-        dr.Fill(dt);
-        newCon.conn.Close();
+        try
+        {
+            Connection newCon = new Connection();
+            string query = "select id,Name,Table_Name from diseases";
+            MySqlCommand command = new MySqlCommand(query, newCon.conn);
+            MySqlDataAdapter dr = new MySqlDataAdapter(command);
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dr.Fill(dt);
+            newCon.conn.Close();
 
 
-        id = dt.AsEnumerable().Select(row => row.Field<int>("id")).ToArray();
-        names = dt.AsEnumerable().Select(row => row.Field<string>("Name")).ToArray();
-        tableNames = dt.AsEnumerable().Select(row => row.Field<string>("Table_Name")).ToArray();
+            id = dt.AsEnumerable().Select(row => row.Field<int>("id")).ToArray();
+            names = dt.AsEnumerable().Select(row => row.Field<string>("Name")).ToArray();
+            tableNames = dt.AsEnumerable().Select(row => row.Field<string>("Table_Name")).ToArray();
 
-        return dt;
+            return dt;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 }

@@ -34,15 +34,15 @@ public partial class _Default : System.Web.UI.Page
         dDetails.disease_name = SelectDisease_TextBox.Text.Replace(' ', '_');
         dDetails.snp = SNP_TextBox.Text;
         dDetails.Gene_Name = GeneName_TextBox.Text;
-        dDetails.case_count = Convert.ToInt32(CaseYes_TextBox.Text);
-        dDetails.control_count = Convert.ToInt32(CaseNo_TextBox.Text);
-        dDetails.freq_control = ControlYes_TextBox.Text;
-        dDetails.freq_Patient = ControlNo_TextBox.Text;
+        dDetails.case_count = Convert.ToInt32(CaseYes_TextBox.Text) + Convert.ToInt32(CaseNo_TextBox.Text);
+        dDetails.control_count = Convert.ToInt32(ControlYes_TextBox.Text) + Convert.ToInt32(ControlNo_TextBox.Text);
+        dDetails.freq_control = ((Convert.ToDouble(ControlYes_TextBox.Text) / dDetails.control_count)).ToString();
+        dDetails.freq_Patient = ((Convert.ToDouble(CaseYes_TextBox.Text) / dDetails.case_count)).ToString();
         dDetails.p_value = P_TextBox.Text;
         dDetails.or_value = Utility.CalculateOrValue(Convert.ToInt32(CaseYes_TextBox.Text), Convert.ToInt32(CaseNo_TextBox.Text), 
                                                      Convert.ToInt32(ControlYes_TextBox.Text), Convert.ToInt32(ControlNo_TextBox.Text)).ToString();
         dDetails.reference = Reference_TextBox.Text;
-        referenceType = Convert.ToInt32(Reference_DropDown.SelectedValue);
+        dDetails.reference_type = Convert.ToInt32(Reference_DropDown.SelectedValue);
         
         if (Session["user"] != null)
             dDetails.ownerOfPublication = ((Users)Session["user"]).name;
@@ -51,7 +51,7 @@ public partial class _Default : System.Web.UI.Page
 
         try
         {
-            dDetails.insertDiseaseDetails(dDetails, referenceType);
+            dDetails.insertDiseaseDetails(dDetails);
             Notifier.AddSuccessMessage("Publication was added.");
             //MessageBox.Show("Publication was added!");
             Response.Redirect("HomePage.aspx");
