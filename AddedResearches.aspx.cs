@@ -25,7 +25,7 @@ public partial class AddedResearches : System.Web.UI.Page
             {
                 buttonApprove.Visible = false;
                 buttonReject.Visible = false;
-                Notifier.AddErrorMessage("No new added publication!");
+                Notifier.AddWarningMessage("No new added publication!");
             }
         
         }
