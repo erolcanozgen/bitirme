@@ -92,7 +92,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 				            <asp:BoundField  DataField="SNP" HeaderText="SNP" SortExpression="SNP"/>
-                            <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" SortExpression="OR_Value"/>
+                            <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="Meta OR Value" SortExpression="OR_Value"/>
                             <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="Z Value" SortExpression="P_Value"/>
                             <asp:BoundField  DataFormatString="{0:F2}" DataField="I2" HeaderText="I2" SortExpression="I2"/>
                             <asp:BoundField  DataField="NumOfPublications" HeaderText="No Of Publications" SortExpression="NumOfPublications"/>
