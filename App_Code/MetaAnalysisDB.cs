@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 
 /// <summary>
 /// Summary description for MetaAnalysisDB
@@ -27,7 +28,6 @@ public class MetaAnalysisDB
         this.I2 = i2;
         this.numOfPublications = numpub;
 	}
-
     
     public void insertMetaAnalysis()
     {
@@ -39,6 +39,32 @@ public class MetaAnalysisDB
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         command.ExecuteNonQuery();
         newCon.conn.Close();
+    }
+
+    public void updateMetaAnalysis()
+    {
+        Connection newCon = new Connection();
+        string query = String.Format("UPDATE metaanalysis SET"
+            + " OR_Value='{0}', P_Value='{1}', I2='{2}', NumOfPublications='{3}'"
+            +" WHERE Disease_Name='{4}' AND SNP='{5}' "
+            , this.or_value, this.p_value, this.I2, this.numOfPublications, this.disease_name, this.snp);
+        MySqlCommand command = new MySqlCommand(query, newCon.conn);
+        command.ExecuteNonQuery();
+        newCon.conn.Close();
+    }
+
+    public static bool isMetaAnalysisDone(string diseaseName, string SNP)
+    {
+        Connection newCon = new Connection();
+        string query = String.Format("select COUNT(*) from metaanalysis WHERE Disease_Name='{0}' AND SNP='{1}' ", diseaseName, SNP);
+        MySqlCommand command = new MySqlCommand(query, newCon.conn);
+        int count = int.Parse(command.ExecuteScalar().ToString());
+        newCon.conn.Close();
+
+        if (count > 0)
+            return true;
+        else
+            return false;
     }
 
 }

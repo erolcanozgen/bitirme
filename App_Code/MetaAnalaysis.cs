@@ -82,13 +82,17 @@ public class MetaAnalaysis
 
     public void DoMetaAnalysis()
     {
-
         calculateHeterogenity();
         CalculateCombineValue();
         InsertDatabase();
-
     }
 
+    public void UpdateMetaAnalysis()
+    {
+        calculateHeterogenity();
+        CalculateCombineValue();
+        UpdateDatabase();
+    }
 
     private void calculateHeterogenity()
     {
@@ -134,6 +138,11 @@ public class MetaAnalaysis
         metadb.insertMetaAnalysis();
     }
 
+    private void UpdateDatabase()
+    {
+        MetaAnalysisDB metadb = new MetaAnalysisDB(this.disease_name, this.snp, this.ec.ToString(), this.Z.ToString(), this.i_square.ToString(), studies.Count);
+        metadb.updateMetaAnalysis();
+    }
 
     private void FixedEffectModel()
     {

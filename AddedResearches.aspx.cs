@@ -71,9 +71,21 @@ public partial class AddedResearches : System.Web.UI.Page
                 {
                     for (int i = 0; i < diseaseName.Count; i++)
                     {
+                        
                         dDetails.approveSelectedPublication(diseaseId[i], diseaseName[i]);
-                        MetaAnalaysis mt = new MetaAnalaysis(diseaseName[i], SNP[i]);
-                        mt.DoMetaAnalysis();
+
+                        if (MetaAnalysisDB.isMetaAnalysisDone(diseaseName[i], SNP[i]))
+                        {
+                            //update existing
+                            MetaAnalaysis mt = new MetaAnalaysis(diseaseName[i], SNP[i]);
+                            mt.UpdateMetaAnalysis();
+                        }
+                        else
+                        {
+                            //insert new
+                            MetaAnalaysis mt = new MetaAnalaysis(diseaseName[i], SNP[i]);
+                            mt.DoMetaAnalysis();
+                        }
                     }
                     Notifier.AddSuccessMessage("Selected publicaton(s) has been approved.");
                 }
