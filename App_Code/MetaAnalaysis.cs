@@ -80,7 +80,33 @@ public class MetaAnalaysis
 
 	}
 
-    public void CalculateWeightandEffect()
+    public void DoMetaAnalysis()
+    {
+
+        calculateHeterogenity();
+        CalculateCombineValue();
+        InsertDatabase();
+
+    }
+
+
+    private void calculateHeterogenity()
+    {
+
+        CalculateWeightandEffect();
+
+        this.ec = (double)(sumofWeigtedEffect / sumofWeight);
+
+        for (int i = 0; i < studies.Count; i++)
+            this.cochran_q += ((studies[i].weight * Math.Pow(studies[i].or_value - ec, 2)));
+
+
+        //this.cochran_q = Math.Sqrt(cochran_q);
+        if (this.cochran_q <= (studies.Count - 1)) this.i_square = 0;
+        else this.i_square = ((cochran_q - (studies.Count - 1)) / cochran_q) * 100;
+    }
+
+    private void CalculateWeightandEffect()
     {
         for (int i = 0; i < this.studies.Count; i++)
             this.sumofWeight += this.studies[i].weight;
@@ -94,38 +120,28 @@ public class MetaAnalaysis
             
     }
 
-    public void calculateHeterogenity()
-    {
 
-        CalculateWeightandEffect();
-
-        this.ec = (double)(sumofWeigtedEffect / sumofWeight);
-
-        for (int i = 0; i < studies.Count; i++)
-            this.cochran_q += ((studies[i].weight * Math.Pow(studies[i].or_value - ec, 2)));
-
-
-       //this.cochran_q = Math.Sqrt(cochran_q);
-        if (this.cochran_q <= (studies.Count - 1)) this.i_square = 0;
-        else this.i_square = ((cochran_q - (studies.Count-1)) / cochran_q) * 100;
-    }
     public void CalculateCombineValue()
     {
         if (this.i_square > 50) RandomEffectModel();
         else FixedEffectModel();
+    }
 
-        MetaAnalysisDB metadb = new MetaAnalysisDB(this.disease_name,this.snp,this.ec.ToString(),this.Z.ToString(),this.i_square.ToString(),studies.Count);
+
+    private void InsertDatabase()
+    {
+        MetaAnalysisDB metadb = new MetaAnalysisDB(this.disease_name, this.snp, this.ec.ToString(), this.Z.ToString(), this.i_square.ToString(), studies.Count);
         metadb.insertMetaAnalysis();
     }
 
 
-    public void FixedEffectModel()
+    private void FixedEffectModel()
     {
         this.SE = (double)1 / Math.Sqrt(this.sumofWeight);
         this.Z = (double)(this.ec / this.SE);
     }
 
-    public void RandomEffectModel()
+    private void RandomEffectModel()
     {
         double sumofweights2 = 0.0; double C = 0.0;
         double t_square;

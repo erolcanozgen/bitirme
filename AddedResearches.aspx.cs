@@ -16,6 +16,7 @@ public partial class AddedResearches : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            notifier.Dispose();
             dName.selectDiseasesNames();
             
             //bu bir gridviewe atanacak
@@ -25,7 +26,7 @@ public partial class AddedResearches : System.Web.UI.Page
             if (dt.Rows.Count <= 0)
             {
                 buttonApprove.Visible = false;
-                nullWarningLabel.Visible = true;
+                Notifier.AddErrorMessage("No new added publication!");
             }
         
         }
@@ -33,9 +34,12 @@ public partial class AddedResearches : System.Web.UI.Page
     }
     protected void buttonApprove_Click(object sender, EventArgs e)
     {
+        notifier.Dispose();
+
         int selectedRowCounts = 0;
         List<int> diseaseId = new List<int>();
         List<string> diseaseName = new List<string>();
+        List<string> SNP = new List<string>();
 
         foreach (GridViewRow row in grdViewUnapprovedDiseases.Rows)
         {
@@ -45,8 +49,9 @@ public partial class AddedResearches : System.Web.UI.Page
                 if (chkRow.Checked)
                 {
                     selectedRowCounts++;
-                    diseaseId.Add(Convert.ToInt32(grdViewUnapprovedDiseases.DataKeys[row.RowIndex].Value.ToString()));
-                    diseaseName.Add(row.Cells[2].Text);
+                    diseaseId.Add(Convert.ToInt32(grdViewUnapprovedDiseases.DataKeys[row.RowIndex]["ID"].ToString()));
+                    diseaseName.Add(grdViewUnapprovedDiseases.DataKeys[row.RowIndex]["Disease_Name"].ToString());
+                    SNP.Add(grdViewUnapprovedDiseases.DataKeys[row.RowIndex]["SNP"].ToString());
                 }
             }
         }
@@ -55,15 +60,22 @@ public partial class AddedResearches : System.Web.UI.Page
             notifier.Dispose();
             try
             {
-                dDetails.approveSelectedPublication(diseaseId, diseaseName);
-                Notifier.AddSuccessMessage("Selected publicaton(s) has been approved.");
-                Response.Redirect("AddedResearches.aspx");
+                
+                for (int i = 0; i < diseaseName.Count; i++)
+                {
+                    dDetails.approveSelectedPublication(diseaseId[i], diseaseName[i]);
+                    MetaAnalaysis mt = new MetaAnalaysis(diseaseName[i], SNP[i]);
+                    mt.DoMetaAnalysis();
+                    Notifier.AddSuccessMessage("Selected publicaton(s) has been approved.");
+                    
+                }
             }
             catch (Exception ex)
             {
                 Notifier.AddErrorMessage("An error occured! Please try again later.");
                 //Alert.Show("An error occured!Please try again later.");
             }
+            Response.Redirect("~/AddedResearches.aspx");
         }
         else
         {

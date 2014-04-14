@@ -54,12 +54,11 @@
                 </td>
                 <td style="border-left-style: solid; border-left-width: 1px; border-left-color: #C0C0C0">
                     <uc1:Notifier runat="server" ID="notifier" />
-                    <asp:Label ID="nullWarningLabel" runat="server" Text="  No New Added Publication" Visible="False" BorderStyle="Solid"></asp:Label>
                     <table class="searchPanel">
                         <tr>
                             <td>
                                 
-                                <asp:GridView ID="grdViewUnapprovedDiseases" runat="server" AutoGenerateColumns="False" DataKeyNames="ID"
+                                <asp:GridView ID="grdViewUnapprovedDiseases" runat="server" AutoGenerateColumns="False" DataKeyNames="ID,Disease_Name,SNP"
                                     BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AllowSorting="True" AllowPaging="True">
 			                        <AlternatingRowStyle BackColor="#CCCCCC" />
 			                        <Columns>
