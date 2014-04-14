@@ -58,11 +58,11 @@ public class Users
         else
         {
             this.username = username;
-            this.id = Convert.ToInt32(dt.Rows[0].ItemArray[0]);
-            this.name = dt.Rows[0].ItemArray[2].ToString();
-            this.surname = dt.Rows[0].ItemArray[3].ToString();
-            this.email = dt.Rows[0].ItemArray[4].ToString();
-            this.rolId = Convert.ToInt32(dt.Rows[0].ItemArray[5]);
+            this.id = Convert.ToInt32(dt.Rows[0]["id"].ToString());
+            this.name = dt.Rows[0]["Name"].ToString();
+            this.surname = dt.Rows[0]["Surname"].ToString();
+            this.email = dt.Rows[0]["Email"].ToString();
+            this.rolId = Convert.ToInt32(dt.Rows[0]["roleId"]);
             
             newCon.conn.Close();
             return true;

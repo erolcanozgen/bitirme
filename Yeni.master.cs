@@ -18,9 +18,9 @@ public partial class Yeni : System.Web.UI.MasterPage
         for (int i = 0; i < dt.Rows.Count; i++)
         {
             HyperLink DynLink = new HyperLink();
-            DynLink.ID = dt.Rows[i].ItemArray[2].ToString();
-            DynLink.Text = dt.Rows[i].ItemArray[1].ToString();
-            DynLink.NavigateUrl = string.Format("~/Diseases.aspx?disease={0}", dt.Rows[i].ItemArray[2].ToString());
+            DynLink.ID = dt.Rows[i]["Table_Name"].ToString();
+            DynLink.Text = dt.Rows[i]["Name"].ToString();
+            DynLink.NavigateUrl = string.Format("~/Diseases.aspx?disease={0}", dt.Rows[i]["Table_Name"].ToString());
             DiseaseList.Controls.Add(DynLink);
         }
 

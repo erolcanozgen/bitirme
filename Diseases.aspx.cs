@@ -68,12 +68,12 @@ public partial class Diseases : System.Web.UI.Page
         HyperLink link_ref; Label lbl_ref; LinkButton seeDetailsBtn;
 
         for (int i = 0; i < grdViewDiseases.Rows.Count; i++)
-            switch (dt.Rows[i].ItemArray[12].ToString())
+            switch (dt.Rows[i]["Reference_Type"].ToString())
             {
                 case "1":
                     link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.Text = "External Links";
-                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i].ItemArray[11]); // ItemArray[11] <-- Reference  alanı
+                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i]["Reference"]); 
                     link_ref.Target = "_blank";
                     seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
                     seeDetailsBtn.Visible = false;
@@ -83,7 +83,7 @@ public partial class Diseases : System.Web.UI.Page
                     link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.Text = "External Links";
                     link_ref.Target = "_blank";
-                    link_ref.NavigateUrl = dt.Rows[i].ItemArray[11].ToString();
+                    link_ref.NavigateUrl = dt.Rows[i]["Reference"].ToString();
                     seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
                     seeDetailsBtn.Visible = false;
                     break;
@@ -93,7 +93,7 @@ public partial class Diseases : System.Web.UI.Page
                     link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.Visible = false;
                     lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
-                    lbl_ref.Text = dt.Rows[i].ItemArray[11].ToString();
+                    lbl_ref.Text = dt.Rows[i]["Reference"].ToString();
                     break;
             }
     }

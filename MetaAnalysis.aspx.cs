@@ -118,12 +118,12 @@ public partial class Disasters : System.Web.UI.Page
         HyperLink link_ref; Label lbl_ref;
 
         for (int i = 0; i < grd.Rows.Count; i++)
-            switch (dt.Rows[i].ItemArray[8].ToString())
+            switch (dt.Rows[i]["Reference_Type"].ToString())
             {
                 case "1":
                     link_ref = grd.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.Text = "External Links";
-                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i].ItemArray[7]); // ItemArray[7] <-- Reference  alanı
+                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i]["Reference"].ToString());
                     link_ref.Target = "_blank";
                     lbl_ref = grd.Rows[i].FindControl("lbl_reference") as Label;
                     lbl_ref.Visible = false;
@@ -133,7 +133,7 @@ public partial class Disasters : System.Web.UI.Page
                     link_ref = grd.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.Text = "External Links";
                     link_ref.Target = "_blank";
-                    link_ref.NavigateUrl = dt.Rows[i].ItemArray[7].ToString();
+                    link_ref.NavigateUrl = dt.Rows[i]["Reference"].ToString();
                     lbl_ref = grd.Rows[i].FindControl("lbl_reference") as Label;
                     lbl_ref.Visible = false;
                     break;
@@ -143,7 +143,7 @@ public partial class Disasters : System.Web.UI.Page
                     link_ref = grd.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.Visible = false;
                     lbl_ref = grd.Rows[i].FindControl("lbl_reference") as Label;
-                    lbl_ref.Text = dt.Rows[i].ItemArray[7].ToString();
+                    lbl_ref.Text = dt.Rows[i]["Reference"].ToString();
                     break;
             }
     }
