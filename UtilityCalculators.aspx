@@ -26,16 +26,16 @@
 
                             <thead>
                                 <tr>
-                                    <th>Experement </th>
-                                    <th>Yes </th>
-                                    <th>No </th>
+                                    <th>Allele</th>
+                                    <th>Allele1</th>
+                                    <th>Allele2</th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <tr>
                                     <td>
-                                        <asp:Label ID="lblCaseCount" runat="server" Text="Case"></asp:Label>
+                                        <asp:Label ID="lblCaseCount" runat="server" Text="Number of Cases"></asp:Label>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txtCaseYes" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
@@ -65,7 +65,7 @@
 
                                 <tr>
                                     <td>
-                                        <asp:Label ID="lblControlCount" runat="server" Text="Control"></asp:Label>
+                                        <asp:Label ID="lblControlCount" runat="server" Text="Number of Controls"></asp:Label>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txtControlYes" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
@@ -406,15 +406,15 @@
                         <table id="Table1">
                             <thead>
                                 <tr>
-                                    <th>Experement </th>
-                                    <th>Yes </th>
-                                    <th>No </th>
+                                    <th>Allele </th>
+                                    <th>Allele1</th>
+                                    <th>Allele2</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>
-                                        <asp:Label ID="Label1" runat="server" Text="Case"></asp:Label>
+                                        <asp:Label ID="Label1" runat="server" Text="Number of Cases"></asp:Label>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="postHocPowerTxt1" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
@@ -439,7 +439,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:Label ID="Label2" runat="server" Text="Control"></asp:Label>
+                                        <asp:Label ID="Label2" runat="server" Text="Number of Controls"></asp:Label>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="postHocPowerTxt3" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
