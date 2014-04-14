@@ -19,7 +19,7 @@ public class Yapılacaklar
          *  6) Added Pub sayfasına update yazılacak
          *  7) Utilities OR-P calculator Experement yerine -> Allele                Allele 1    Allele 2
          *                                                    Number of Cases
-         *                                                    Number of Control
+         *                                                    Number of Control 
          *  8) Utilities hardy calculatorde "common homozigotes" -> p2, "heterozigotz" ->q2
          *  9) Utilities hardy calculator result tablosunda P ve Q küçk olacak(p,q). Xsquare X'2 olacak. P value vermek lazım.
          *  10) Gene isimleri gene card'a gidecek.
