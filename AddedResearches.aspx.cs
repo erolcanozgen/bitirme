@@ -17,11 +17,8 @@ public partial class AddedResearches : System.Web.UI.Page
         if (!IsPostBack)
         {
             notifier.Dispose();
-            dName.selectDiseasesNames();
-            
-            //bu bir gridviewe atanacak
-            grdViewUnapprovedDiseases.DataSource = dt = dDetails.selectUnapprovedDiseaseDetails(dName.tableNames);
-            grdViewUnapprovedDiseases.DataBind();
+
+            selectUnapprovedDiseases();
 
             if (dt.Rows.Count <= 0)
             {
@@ -31,6 +28,13 @@ public partial class AddedResearches : System.Web.UI.Page
         
         }
 
+    }
+    private void selectUnapprovedDiseases()
+    {
+        dName.selectDiseasesNames();
+
+        grdViewUnapprovedDiseases.DataSource = dt = dDetails.selectUnapprovedDiseaseDetails(dName.tableNames);
+        grdViewUnapprovedDiseases.DataBind();
     }
     protected void buttonApprove_Click(object sender, EventArgs e)
     {
@@ -67,7 +71,12 @@ public partial class AddedResearches : System.Web.UI.Page
                     MetaAnalaysis mt = new MetaAnalaysis(diseaseName[i], SNP[i]);
                     mt.DoMetaAnalysis();
                     Notifier.AddSuccessMessage("Selected publicaton(s) has been approved.");
-                    
+                    selectUnapprovedDiseases();
+                    if (dt.Rows.Count <= 0)
+                    {
+                        buttonApprove.Visible = false;
+                        Notifier.AddErrorMessage("No new added publication!");
+                    }
                 }
             }
             catch (Exception ex)
@@ -75,7 +84,7 @@ public partial class AddedResearches : System.Web.UI.Page
                 Notifier.AddErrorMessage("An error occured! Please try again later.");
                 //Alert.Show("An error occured!Please try again later.");
             }
-            Response.Redirect("~/AddedResearches.aspx");
+            //Response.Redirect("~/AddedResearches.aspx");
         }
         else
         {
