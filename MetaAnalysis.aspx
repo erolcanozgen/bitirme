@@ -62,12 +62,12 @@
 								            DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False">
 								            <Columns>
                                                 <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
-                                                <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
-                                                <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency In Case" />
-                                                <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
-                                                <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency In Control" />
-                                                <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
-                                                <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
+                                                <asp:BoundField  DataFormatString="{0:F2}" DataField="Case_Count" HeaderText="Case Count" />
+                                                <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency In Case" />
+                                                <asp:BoundField  DataFormatString="{0:F2}" DataField="Control_Count" HeaderText="Control Count" />
+                                                <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Control" HeaderText="Frequency In Control" />
+                                                <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="P Value" />
+                                                <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" />
                                                 <asp:TemplateField HeaderText="Reference">
                                                     <ItemTemplate>
                                                         <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>

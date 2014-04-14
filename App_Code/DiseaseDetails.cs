@@ -91,7 +91,6 @@ public class DiseaseDetails
         foreach (DataRow row in dt.Rows)
         {
             dt2.ImportRow(row);
-
             newColumn.DefaultValue = tempId++.ToString(); //datatable'a gecici bir id değeri atanıyor, her snp icin (divexpandcollapse icin)
         }
         return dt2;
@@ -129,6 +128,7 @@ public class DiseaseDetails
     public DataTable selectUnapprovedDiseaseDetails(string[] diseaseName)
     {
         DataTable dt = new DataTable();
+        DataTable dt2 = new DataTable();
         if (diseaseName.Length > 0)
         {
             Connection newCon = new Connection();
@@ -141,8 +141,20 @@ public class DiseaseDetails
                 dr.Fill(dt);
             }
             newCon.conn.Close();
+            dt2 = dt.Clone();
+            dt2.Columns["Case_Count"].DataType = System.Type.GetType("System.Double");
+            dt2.Columns["Control_Count"].DataType = System.Type.GetType("System.Double");
+            dt2.Columns["Frequency_Patient"].DataType = System.Type.GetType("System.Double");
+            dt2.Columns["Frequency_Control"].DataType = System.Type.GetType("System.Double");
+            dt2.Columns["P_Value"].DataType = System.Type.GetType("System.Double");
+            dt2.Columns["OR_Value"].DataType = System.Type.GetType("System.Double");
+
+            foreach (DataRow row in dt.Rows)
+            {
+                dt2.ImportRow(row);
+            }
         }
-        return dt;
+        return dt2;
     }
     public DataTable selectSNPDetails(string diseaseName, string SnpName, string tempId)
     {
@@ -157,6 +169,9 @@ public class DiseaseDetails
         newCon.conn.Close();
 
         dt2 = dt.Clone();
+        dt2.Columns["Frequency_Patient"].DataType = System.Type.GetType("System.Double");
+        dt2.Columns["Frequency_Control"].DataType = System.Type.GetType("System.Double");
+
         System.Data.DataColumn newColumn = new System.Data.DataColumn("tmpId", typeof(System.String));
         dt2.Columns.Add(newColumn);
         newColumn.DefaultValue = tempId;

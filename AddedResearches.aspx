@@ -56,7 +56,7 @@
                     <uc1:Notifier runat="server" ID="notifier" />
                     <table class="searchPanel">
                         <tr>
-                            <td>
+                            <td colspan="2">
                                 
                                 <asp:GridView ID="grdViewUnapprovedDiseases" runat="server" AutoGenerateColumns="False" DataKeyNames="ID,Disease_Name,SNP"
                                     BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AllowSorting="True" AllowPaging="True">
@@ -71,12 +71,12 @@
                                         <asp:BoundField  DataField="Disease_Name" HeaderText="Disease Name" />
 				                        <asp:BoundField  DataField="Gene_Name" HeaderText="Gene Name" />
                                         <asp:BoundField  DataField="SNP" HeaderText="SNP" />
-                                        <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
-                                        <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
-                                        <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency Control" />
-                                        <asp:BoundField  DataField="Frequency_Patient" HeaderText="Frequency Patient" />
-                                        <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" />
-                                        <asp:BoundField  DataField="P_Value" HeaderText="P Value" />
+                                        <asp:BoundField  DataFormatString="{0:F2}" DataField="Case_Count" HeaderText="Case Count" />
+                                        <asp:BoundField  DataFormatString="{0:F2}" DataField="Control_Count" HeaderText="Control Count" />
+                                        <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Control" HeaderText="Frequency Control" />
+                                        <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency Patient" />
+                                        <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" />
+                                        <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="P Value" />
                                         <asp:BoundField  DataField="Reference" HeaderText="Reference" />
                                         <asp:BoundField  DataField="ownerOfPublication" HeaderText="Owner" />
 			                        </Columns>
@@ -95,11 +95,11 @@
                         </tr>
                         <tr>
                            
-                            <td style="text-align:left">
-                                <br /> <br />
-                                <asp:Button ID="buttonReject" runat="server" Text=" Delete Selected Publications " class="buttonCss" OnClick="buttonApprove_Click" />
-                                <br /> <br />
+                            <td style="text-align:right">
                                 <asp:Button ID="buttonApprove" runat="server" Text=" Approve Selected Publications " class="buttonCss" OnClick="buttonApprove_Click" />
+                            </td>
+                            <td style="text-align:left">
+                                <asp:Button ID="buttonReject" runat="server" Text=" Delete Selected Publications " class="buttonCss" OnClick="buttonApprove_Click" />
                             </td>
                         </tr>
                     </table>
