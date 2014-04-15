@@ -11,6 +11,7 @@ public partial class Diseases : System.Web.UI.Page
 {
     DiseasesNames dName = new DiseasesNames();
     DiseaseDetails dDetails = new DiseaseDetails();
+ 
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -22,11 +23,9 @@ public partial class Diseases : System.Web.UI.Page
                 cmbDiseaseName.DataSource = dName.selectDiseasesNames();
                 cmbDiseaseName.DataBind();
                 cmbDiseaseName.SelectedValue = Request.QueryString["disease"];
-   
-                DataTable dt = dDetails.selectDiseaseDetails(cmbDiseaseName.SelectedValue);
-                grdViewDiseases.DataSource = dt;
-                grdViewDiseases.DataBind();
-                setReferenceColumn(dt);       
+
+                getGridData();
+                     
             }
         }
         catch(Exception ex)
@@ -34,29 +33,24 @@ public partial class Diseases : System.Web.UI.Page
             Notifier.AddErrorMessage("An error was occured while getting the researches!");
             //Alert.Show(ex.Message);
         }
-    }  
+    }
+
+    private void getGridData()
+    {
+        DataTable dt = new DataTable();
+        dt = dDetails.selectDiseaseDetails(cmbDiseaseName.SelectedValue);
+        grdViewDiseases.DataSource = dt;
+        grdViewDiseases.DataBind();
+        setReferenceColumn(dt); 
+
+    }
+
 
     protected void btnFilter_Click(object sender, EventArgs e)
     {
         try
         {
-            List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>>();
-            
-            if(txtGene.Text != String.Empty) param.Add(new KeyValuePair<string,string>("Gene_Name",txtGene.Text));
-
-            if (txtMinimumSample.Text != String.Empty) param.Add(new KeyValuePair<string, string>("Case_Count+Control_Count", txtMinimumSample.Text));
-
- 
-            if (txtSNP.Text != String.Empty) param.Add(new KeyValuePair<string, string>("SNP", txtSNP.Text));
-
-
-            DataTable dt = dDetails.SelectFilteredDiseaseDetails(param, cmbDiseaseName.SelectedValue.ToString());
-            grdViewDiseases.DataSource = dt;
-            grdViewDiseases.DataBind();
-            setReferenceColumn(dt);
-
- 
-            
+            getGridData();    
         }
         catch (Exception ex)
         {
@@ -74,26 +68,25 @@ public partial class Diseases : System.Web.UI.Page
         for (int i = 0; i < grdViewDiseases.Rows.Count; i++)
         {
             link_gene = grdViewDiseases.Rows[i].FindControl("Gene_Name") as HyperLink;
-            link_gene.Text = dt.Rows[i]["Gene_Name"].ToString();
-            link_gene.NavigateUrl = String.Format("{0}?gene={1}", ConfigurationManager.AppSettings["GeneCardsLink"], dt.Rows[i]["Gene_Name"]);
+            link_gene.NavigateUrl = String.Format("{0}?gene={1}", ConfigurationManager.AppSettings["GeneCardsLink"], link_gene.Text);
             link_gene.Target = "_blank";
 
             switch (dt.Rows[i]["Reference_Type"].ToString())
             {
                 case "1":
                     link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
-                    link_ref.Text = "External Links";
-                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i]["Reference"]);
+                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], link_ref.Text);
                     link_ref.Target = "_blank";
+                    link_ref.Text = "External Links";
                     seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
                     seeDetailsBtn.Visible = false;
                     break;
 
                 case "2":
                     link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
-                    link_ref.Text = "External Links";
                     link_ref.Target = "_blank";
-                    link_ref.NavigateUrl = dt.Rows[i]["Reference"].ToString();
+                    link_ref.NavigateUrl = link_ref.Text;
+                    link_ref.Text = "External Links";
                     seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
                     seeDetailsBtn.Visible = false;
                     break;
@@ -103,7 +96,6 @@ public partial class Diseases : System.Web.UI.Page
                     link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.Visible = false;
                     lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
-                    lbl_ref.Text = dt.Rows[i]["Reference"].ToString();
                     break;
             }
         }
@@ -155,5 +147,10 @@ public partial class Diseases : System.Web.UI.Page
         sortedView.Sort = e.SortExpression + " " + sortingDirection;
         grdViewDiseases.DataSource = sortedView;
         grdViewDiseases.DataBind();
+    }
+    protected void grdViewDiseases_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        grdViewDiseases.PageIndex = e.NewPageIndex;
+        getGridData();
     }
 }

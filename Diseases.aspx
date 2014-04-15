@@ -76,14 +76,14 @@
 
       <div id="DiseasesTable" style="float:left; width:830px" aria-disabled="False">
             
-                <asp:Panel ID="diseasesTablePanel" runat="server" ScrollBars="Horizontal">
+                <asp:Panel ID="diseasesTablePanel" runat="server" ScrollBars="Auto">
                     <asp:GridView ID="grdViewDiseases" runat="server" AutoGenerateColumns="false" OnSorting="grdViewDiseases_Sorting"
-			        DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="true" HorizontalAlign="Center" Width="100%" AllowSorting="True">
+			        DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="true" HorizontalAlign="Center" Width="95%" AllowSorting="True" OnPageIndexChanging="grdViewDiseases_PageIndexChanging">
 
                         <Columns>
                             <asp:TemplateField HeaderText="Gene Name">
                                 <ItemTemplate>
-                                     <asp:HyperLink ID="Gene_Name" runat="server"></asp:HyperLink>
+                                     <asp:HyperLink ID="Gene_Name" runat="server" Text='<%# Bind("Gene_Name") %>'></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField  DataField="SNP" HeaderText="SNP" SortExpression="SNP"/>
@@ -95,12 +95,12 @@
                             <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" SortExpression="OR_Value"/>
                             <asp:TemplateField HeaderText="Reference">
                                 <ItemTemplate>
-                                    <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>
-                                    <asp:Label runat="server" ID="lbl_reference" Visible="false"></asp:Label>
+                                    <asp:HyperLink ID="Link" runat="server" Text='<%# Bind("Reference") %>' ></asp:HyperLink>
+                                    <asp:Label runat="server" ID="lbl_reference" Visible="false" Text='<%# Bind("Reference") %>'></asp:Label>
                                     <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField  DataField="ownerOfPublication" HeaderText="Owner Of Publication" />
+                            <asp:BoundField Visible="false"  DataField="ownerOfPublication" HeaderText="Owner Of Publication" />
                         </Columns>
                         <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" />
                     </asp:GridView>
