@@ -268,7 +268,7 @@
 
                                 <tr>
                                     <td>
-                                        <asp:Label ID="lbl_com_homozygotes" runat="server" Text="Common Homozygotes: "></asp:Label>
+                                        <asp:Label ID="lbl_com_homozygotes" runat="server" Text="Common Homozygotes (p<sup>2): "></asp:Label>
 
                                     </td>
 
@@ -288,7 +288,7 @@
 
                                 <tr>
                                     <td>
-                                        <asp:Label ID="lbl_heterozygotes" runat="server" Text="Heterozygotes: "></asp:Label>
+                                        <asp:Label ID="lbl_heterozygotes" runat="server" Text="Heterozygotes (2pq): "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txt_heterozygotes" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
@@ -305,7 +305,7 @@
 
                                 <tr>
                                     <td>
-                                        <asp:Label ID="lbl_rare_homozygotes" runat="server" Text="Rare Homozygotes: "></asp:Label>
+                                        <asp:Label ID="lbl_rare_homozygotes" runat="server" Text="Rare Homozygotes (q<sup>2): "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txt_rare_homozygotes" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
@@ -388,7 +388,7 @@
 
                                 <tr>
                                     <td>
-                                        <asp:Label ID="lbl_x_square" runat="server" Text="X Square"></asp:Label>
+                                        <asp:Label ID="lbl_x_square" runat="server" Text="X<sup>2"></asp:Label>
                                     </td>
                                     <td style="text-align: left">
                                         <asp:TextBox ID="txt_x_square" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
