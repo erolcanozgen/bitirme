@@ -1,6 +1,7 @@
 ﻿.buttonCss{
   font: 100% arial; 
-  border: 0; 
+  border-width: 1px; 
+  border-color: rgb(216, 216, 216);
   width: auto; 
   height: 33px;
   padding: 2px 0 3px 0;

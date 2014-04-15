@@ -155,4 +155,17 @@ public partial class Disasters : System.Web.UI.Page
             }
         }
     }
+
+    public void ShowPopup(object sender, EventArgs e)
+    {
+        Label lbl_ref;
+        LinkButton btn = (LinkButton)sender;
+        GridViewRow row = (GridViewRow)btn.NamingContainer;
+        int i = Convert.ToInt32(row.RowIndex);
+ 
+        lbl_ref = row.FindControl("lbl_reference") as Label;
+        referenceTxt.Text = lbl_ref.Text;
+
+        this.Button1_ModalPopupExtender.Show();
+    }
 }
