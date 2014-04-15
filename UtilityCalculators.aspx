@@ -18,7 +18,11 @@
 
         <asp:TabContainer runat="server">
 
-            <asp:TabPanel runat="server" HeaderText="Or-RR Ratio-Chi Square - P Value" ScrollBars="Auto">
+            <asp:TabPanel runat="server" BorderColor="Black"  ScrollBars="Auto">
+                <HeaderTemplate>
+                    <asp:Label runat="server" ForeColor="Black" Text="Or-RR Ratio-Chi Square - P Value" Font-Bold="true" Font-Italic="true" Font-Size="Small"></asp:Label>
+                </HeaderTemplate>
+                
                 <ContentTemplate>
                     <div style="float: left; width: 345px">
 
@@ -256,7 +260,12 @@
             </asp:TabPanel>
 
 
-            <asp:TabPanel runat="server" HeaderText="Hardy Weinberg calculator" ScrollBars="Auto">
+            <asp:TabPanel runat="server"  ScrollBars="Auto">
+
+                <HeaderTemplate>
+                    <asp:Label runat="server" ForeColor="Black" Text="Hardy Weinberg calculator" Font-Bold="true" Font-Italic="true" Font-Size="Small"></asp:Label>
+                </HeaderTemplate>
+                
                 <ContentTemplate>
                     <div style="float: left; width: 345px">
                         <table>
@@ -408,7 +417,11 @@
                 </ContentTemplate>
 
             </asp:TabPanel>
-            <asp:TabPanel runat="server" ID="TabPanel1" HeaderText="Post-hoc Power Calculator" ScrollBars="Auto">
+            <asp:TabPanel runat="server" ID="TabPanel1"  ScrollBars="Auto">
+                <HeaderTemplate>
+                    <asp:Label runat="server" Text="Post-hoc Power Calculator" ForeColor="Black" Font-Bold="true" Font-Italic="true" Font-Size="Small"></asp:Label>
+                    
+                </HeaderTemplate>
                 <ContentTemplate>
                     <div style="float: left; width: 345px">
                         <table id="Table1">
@@ -528,7 +541,11 @@
             </asp:TabPanel>
 
 
-            <asp:TabPanel HeaderText="Bonferroni Correction" ID="Bonferroni_Correction" runat="server" ScrollBars="Auto">
+            <asp:TabPanel ID="Bonferroni_Correction" runat="server" ScrollBars="Auto">
+
+                <HeaderTemplate>
+                    <asp:Label runat="server" ForeColor="Black" Text="Bonferroni Correction" Font-Bold="true" Font-Italic="true" Font-Size="Small"></asp:Label>
+                </HeaderTemplate>
 
                 <ContentTemplate>
 
