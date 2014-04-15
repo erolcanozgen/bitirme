@@ -106,7 +106,7 @@
 
                     </div>
                      <asp:Panel  ID="pnl_Odds_results" runat="server">
-                    <div style="float: left; width: 300px" aria-disabled="False">
+                    <div style=" float:right; width: 350px" aria-disabled="False">
 
                         <table>
                             <thead>
@@ -160,7 +160,7 @@
                         </table>
                     </div>
 
-                    <div style="float: left; width: 300px" aria-disabled="False">
+                    <div style="float: right; width: 350px" aria-disabled="False">
                         <table>
                             <thead>
                                 <tr>
@@ -212,8 +212,8 @@
 
                     </div>
 
-
-                    <table style="position: relative; left: 450px;">
+               <div style="width: 450px;left: 600px; position: relative; top: 24px;" aria-disabled="False">
+                    <table>
                         <thead>
                             <th>Chi-Square - P Value</th>
 
@@ -254,6 +254,7 @@
                         </tbody>
 
                     </table>
+                   </div>
                          </asp:Panel>
                </ContentTemplate>
 
@@ -342,7 +343,7 @@
                     </div>
 
 
-                    <div style="float: right; width: 500px">
+                    <div style="float: right; width: 650px">
 
                         <table>
                             <thead>
@@ -612,7 +613,7 @@
                         </div>
 
                         <asp:Panel ID="pnl_Bonferroni_results" runat="server">
-                         <div style="float: right; width: 500px">
+                         <div style="float: right; width: 650px">
                         <table>
                             <thead>
                                 <th>Results</th>
@@ -621,9 +622,9 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <asp:Label ID="lbl_no_correction" runat="server" Text="With no correction the chance of finding one or more significant differences in given tests:"></asp:Label>
+                                        <asp:Label  ID="lbl_no_correction" runat="server" Text="With no correction the chance of finding one or more significant differences in given tests:"></asp:Label>
                                     </td>
-                                    <td style="text-align: left">
+                                    <td>
                                         <asp:TextBox ID="txt_no_correction" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
                                     </td>
                                 </tr>
