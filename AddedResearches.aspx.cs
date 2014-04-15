@@ -147,26 +147,25 @@ public partial class AddedResearches : System.Web.UI.Page
         for (int i = 0; i < grdViewUnapprovedDiseases.Rows.Count; i++)
         {
             link_gene = grdViewUnapprovedDiseases.Rows[i].FindControl("Gene_Name") as HyperLink;
-            link_gene.Text = dt.Rows[i]["Gene_Name"].ToString();
-            link_gene.NavigateUrl = String.Format("{0}?gene={1}", ConfigurationManager.AppSettings["GeneCardsLink"], dt.Rows[i]["Gene_Name"]);
+            link_gene.NavigateUrl = String.Format("{0}?gene={1}", ConfigurationManager.AppSettings["GeneCardsLink"], link_gene.Text);
             link_gene.Target = "_blank";
 
             switch (dt.Rows[i]["Reference_Type"].ToString())
             {
                 case "1":
                     link_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("Link") as HyperLink;
-                    link_ref.Text = "External Links";
-                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i]["Reference"]);
+                    link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], link_ref.Text);
                     link_ref.Target = "_blank";
+                    link_ref.Text = "External Links";
                     seeDetailsBtn = grdViewUnapprovedDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
                     seeDetailsBtn.Visible = false;
                     break;
 
                 case "2":
                     link_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("Link") as HyperLink;
-                    link_ref.Text = "External Links";
                     link_ref.Target = "_blank";
-                    link_ref.NavigateUrl = dt.Rows[i]["Reference"].ToString();
+                    link_ref.NavigateUrl = link_ref.Text;
+                    link_ref.Text = "External Links";
                     seeDetailsBtn = grdViewUnapprovedDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
                     seeDetailsBtn.Visible = false;
                     break;
@@ -176,10 +175,14 @@ public partial class AddedResearches : System.Web.UI.Page
                     link_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.Visible = false;
                     lbl_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("lbl_reference") as Label;
-                    lbl_ref.Text = dt.Rows[i]["Reference"].ToString();
                     break;
             }
         }
     }
 
+    protected void grdViewUnapprovedDiseases_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        grdViewUnapprovedDiseases.PageIndex = e.NewPageIndex;
+        selectUnapprovedDiseases();
+    }
 }

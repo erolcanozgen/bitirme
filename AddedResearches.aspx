@@ -67,7 +67,7 @@
                                 <td >
                                 
                                     <asp:GridView ID="grdViewUnapprovedDiseases" runat="server" AutoGenerateColumns="False" DataKeyNames="ID,Disease_Name,SNP"
-                                        CellPadding="3" ForeColor="Black" CssClass="table2" AllowSorting="True" AllowPaging="True">
+                                        CellPadding="3" ForeColor="Black" CssClass="table2" AllowSorting="True" AllowPaging="True" OnPageIndexChanging="grdViewUnapprovedDiseases_PageIndexChanging">
 			                            <Columns>
                                             <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
                                                 <ItemTemplate>
@@ -78,9 +78,9 @@
                                             <asp:BoundField  DataField="Disease_Name" HeaderText="Disease Name" />
 				                            <asp:TemplateField HeaderText="Gene Name">
                                                 <ItemTemplate>
-                                                    <asp:HyperLink ID="Gene_Name" runat="server"></asp:HyperLink>
-                                                    </ItemTemplate>
-                                            </asp:TemplateField>
+                                                      <asp:HyperLink ID="Gene_Name" runat="server" Text='<%# Bind("Gene_Name") %>'></asp:HyperLink>
+                                                </ItemTemplate>
+                                           </asp:TemplateField>
                                             <asp:BoundField  DataField="SNP" HeaderText="SNP" />
                                             <asp:BoundField  DataFormatString="{0:F2}" DataField="Case_Count" HeaderText="Case Count" />
                                             <asp:BoundField  DataFormatString="{0:F2}" DataField="Control_Count" HeaderText="Control Count" />
@@ -88,13 +88,13 @@
                                             <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency Patient" />
                                             <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" />
                                             <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="P Value" />
-                                                <asp:TemplateField HeaderText="Reference">
-                                                <ItemTemplate>
-                                                    <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>
-                                                        <asp:Label runat="server" ID="lbl_reference" Visible="false"></asp:Label>
-                                                        <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
-                                                        </ItemTemplate>
-                                                </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Reference">
+                                                 <ItemTemplate>
+                                                    <asp:HyperLink ID="Link" runat="server" Text='<%# Bind("Reference") %>' ></asp:HyperLink>
+                                                    <asp:Label runat="server" ID="lbl_reference" Visible="false" Text='<%# Bind("Reference") %>'></asp:Label>
+                                                    <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
                                             <asp:BoundField  DataField="ownerOfPublication" HeaderText="Owner" />
 			                            </Columns>
 		                                <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" />
