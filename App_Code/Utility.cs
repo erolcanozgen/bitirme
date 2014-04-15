@@ -154,26 +154,28 @@ public static class Utility
         return result;
     }
 
-    public static double CalculatePostHocPower(int case_yes, int case_no, int control_yes, int control_no, double alpha = 0.05)
+    public static double CalculatePostHocPower(double p1,double p2, int n1, int n2, double alpha = 0.05)
     {
         double power = 0;
         double result = 0;
         try
         {
-            double n1 = case_yes + case_no;
-            double p1 = (double)case_yes / (case_yes + case_no);
+            p1 /= 100;
+            p2 /= 100;
+            //double n1 = case_yes + case_no;
+            //double p1 = (double)case_yes / (case_yes + case_no);
             
-            double n2 =  control_yes + control_no;
-            double p2 = (double)control_yes / (control_yes + control_no);
+            //double n2 =  control_yes + control_no;
+            //double p2 = (double)control_yes / (control_yes + control_no);
 
             double delta = Math.Abs(p2-p1);
             double q1 = 1 - p1;
             double q2 = 1 - p2;
 
-            double pPrime = (p1 + (n1 / n2) * p2) / (1 + (n1/n2));
+            double pPrime = (p1 + ((double)n1 / n2) * p2) / (1 + ((double)n1 / n2));
             double qPrime = 1 - pPrime;
 
-            power = (delta / Math.Sqrt(((p1 * q1) / n1) + ((p2 * q2) / n2))) - (alglib.normaldistr.invnormaldistribution(1 - (alpha / 2)) * (Math.Sqrt(pPrime * qPrime * ((1 / n1) + (1 / n2)))) / (Math.Sqrt(p1*q1/n1 + p2*q2/n2)));
+            power = (delta / Math.Sqrt((double)((p1 * q1) / n1) + (double)((p2 * q2) / n2))) - (alglib.normaldistr.invnormaldistribution(1 - (alpha / 2)) * (Math.Sqrt(pPrime * qPrime * ((double)(1 / n1) + (double)(1 / n2)))) / (Math.Sqrt(p1 * q1 / (double)n1 + p2 * q2 / (double)n2)));
             result = alglib.normaldistr.normaldistribution(power);
             return result;
         }
