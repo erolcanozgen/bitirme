@@ -122,12 +122,22 @@ public partial class UtilityCalculators : System.Web.UI.Page
     {
          Dictionary<string, double> result = new Dictionary<string, double>();
          result = Utility.CalculateHardyWeingbergEquilibrium(Convert.ToInt32(txt_com_homozygotes.Text),Convert.ToInt32(txt_heterozygotes.Text),Convert.ToInt32(txt_rare_homozygotes.Text) );
-         txt_expected_common.Text = result["Expected_CH"].ToString("0.000");
-         txt_expected_heterozgt.Text = result["Expected_H"].ToString("0.000");
-         txt_expected_rare.Text = result["Expected_RH"].ToString("0.000");
-         txt_p_allele.Text = result["P_allele"].ToString("0.000");
-         txt_q_allele.Text = result["Q_allele"].ToString("0.000");
-         txt_x_square.Text = result["X_square"].ToString("0.000");
+         double exp_cmn = result["Expected_CH"];
+         double exp_htzgt = result["Expected_H"];
+         double exp_rare = result["Expected_RH"];
+         double p_allele = result["P_allele"];
+         double q_allele = result["Q_allele"];
+         double x_square = result["Q_allele"];
+         double dof = (Convert.ToInt32(txt_com_homozygotes.Text) + Convert.ToInt32(txt_heterozygotes.Text) + Convert.ToInt32(txt_rare_homozygotes.Text));
+         double p = alglib.chisquaredistr.chisquarecdistribution(dof, Convert.ToDouble(result["X_square"]));
+
+         txt_expected_common.Text = exp_cmn.ToString(GetFormat(exp_cmn));
+         txt_expected_heterozgt.Text = exp_htzgt.ToString(GetFormat(exp_htzgt));
+         txt_expected_rare.Text = exp_rare.ToString(GetFormat(exp_rare));
+         txt_p_allele.Text = p_allele.ToString(GetFormat(p_allele));
+         txt_q_allele.Text = q_allele.ToString(GetFormat(q_allele));
+         txt_x_square.Text = x_square.ToString(GetFormat(x_square));
+         txt_p.Text = p .ToString(GetFormat(p));
     }
 
     protected void BonferroniCalcBtn_Click(object sender, EventArgs e)
