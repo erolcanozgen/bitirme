@@ -147,7 +147,7 @@ public partial class Diseases : System.Web.UI.Page
         sortedView.Sort = e.SortExpression + " " + sortingDirection;
         grdViewDiseases.DataSource = sortedView;
         grdViewDiseases.DataBind();
-        setReferenceColumn(sortedView.ToTable());
+        setReferenceColumn(sortedView.ToTable()); 
     }
     protected void grdViewDiseases_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
