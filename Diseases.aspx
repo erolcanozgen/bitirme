@@ -52,7 +52,7 @@
          </tr>
           
           <tr>
-          <td><label id="lblGene">Gen Name: </label></td>
+          <td><label id="lblGene">Gene Name: </label></td>
           <td><asp:TextBox runat="server" ID="txtGene" Width="143px"></asp:TextBox></td>
           </tr> 
          

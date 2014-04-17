@@ -122,5 +122,27 @@ public class Users
    
     }
 
+    public DataTable getUsers() 
+    {
+        Connection newCon = new Connection();
+        string query = "select id,Username,Name,Surname,Email,roleId from member where roleId = 2";
+        MySqlCommand command = new MySqlCommand(query, newCon.conn);
+        MySqlDataAdapter dr = new MySqlDataAdapter(command);
+        DataTable dt = new DataTable();
+        dt.Clear();
+        dr.Fill(dt);
+    
+        newCon.conn.Close();
+        return dt;
+    }
+
+    public void deleteUser()
+    {
+        Connection newCon = new Connection();
+        string query = String.Format("delete from member where Id = {0}", this.id);
+        MySqlCommand command = new MySqlCommand(query, newCon.conn);
+        command.ExecuteNonQuery();
+        newCon.conn.Close();
+    }
  
 }

@@ -34,7 +34,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="DeleteMember.aspx">
                                         
                                         <div class="ca-content">
                                             <h2 class="ca-main">Delete Member</h2>

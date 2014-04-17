@@ -2,7 +2,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="headContent" Runat="Server">  
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +47,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="DeleteMember.aspx">
                                         
                                     <div class="ca-content">
                                         <h2 class="ca-main">Delete Member</h2>
