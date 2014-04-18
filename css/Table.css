@@ -34,7 +34,10 @@ table th {
 	padding:15px 20px 15px 20px;
 	border-top:1px solid #fafafa;
 	border-bottom:1px solid #e0e0e0;
-
+    font-family:'Times New Roman';
+    font-style:italic;
+    font-size:14px;
+    font-weight:bold;
 	background: #ededed;
 	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
 	background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
