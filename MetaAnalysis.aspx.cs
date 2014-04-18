@@ -40,6 +40,10 @@ public partial class Disasters : System.Web.UI.Page
         sortedView.Sort = "OR_Value Desc";
         grdViewCustomers.DataSource = sortedView;
         grdViewCustomers.DataBind();
+        foreach (GridViewRow row in grdViewCustomers.Rows)
+        {
+            if (row.RowIndex % 2 == 1) row.CssClass = "even";
+        }
     }
 
     public void showDiseaseDetails(object sender, EventArgs e)

@@ -85,8 +85,8 @@ table td {
 }
 table tr.even td {
 	background: #f6f6f6;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
-	background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
+	background: -webkit-gradient(linear, left top, left bottom, from(#E9E7E7), to(#f6f6f6));
+	background: -moz-linear-gradient(top,  #E9E7E7,  #f6f6f6);
 
 }
 table tr:last-child td {
@@ -101,4 +101,10 @@ table tr:last-child td:last-child {
 	-moz-border-radius-bottomright:3px;
 	-webkit-border-bottom-right-radius:3px;
 	border-bottom-right-radius:3px;
+}
+
+table tr:hover td {
+	background: #f2f2f2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
 }

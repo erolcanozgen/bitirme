@@ -43,8 +43,11 @@ public partial class Diseases : System.Web.UI.Page
         dt = dDetails.selectDiseaseDetails(cmbDiseaseName.SelectedValue);
         grdViewDiseases.DataSource = dt;
         grdViewDiseases.DataBind();
-        setReferenceColumn(dt); 
-
+        setReferenceColumn(dt);
+        foreach (GridViewRow row in grdViewDiseases.Rows)
+        {
+            if (row.RowIndex % 2 == 1) row.CssClass = "even";
+        }
     }
 
 
