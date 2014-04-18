@@ -21,6 +21,7 @@ public partial class Disasters : System.Web.UI.Page
             DiseasesList.DataValueField = "Table_Name";
             DiseasesList.DataSource = dName.selectDiseasesNames();
             DiseasesList.DataBind();
+            GetGridData();
 
             if (Session["user"] != null)
             {
@@ -33,12 +34,17 @@ public partial class Disasters : System.Web.UI.Page
         //loginLI.Visible = false; 
     }
 
-    public void showDiseaseDetails(object sender, EventArgs e)
+    private void GetGridData()
     {
         DataView sortedView = new DataView(dDetails.selectMetaAnalysis(DiseasesList.SelectedValue));
         sortedView.Sort = "OR_Value Desc";
         grdViewCustomers.DataSource = sortedView;
         grdViewCustomers.DataBind();
+    }
+
+    public void showDiseaseDetails(object sender, EventArgs e)
+    {
+        GetGridData();  
     }
 
     public SortDirection dir
@@ -167,5 +173,10 @@ public partial class Disasters : System.Web.UI.Page
         referenceTxt.Text = lbl_ref.Text;
 
         this.Button1_ModalPopupExtender.Show();
+    }
+    protected void grdViewCustomers_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        grdViewCustomers.PageIndex = e.NewPageIndex;
+        GetGridData();
     }
 }

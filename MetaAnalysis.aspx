@@ -57,7 +57,7 @@
 
     
         <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="SNP,tmpId" onsorting="gvDetails_Sorting"
-            OnRowDataBound="grdViewCustomers_OnRowDataBound" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Both" AllowSorting="True" AllowPaging="True">
+            OnRowDataBound="grdViewCustomers_OnRowDataBound" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Both" AllowSorting="True" AllowPaging="True" OnPageIndexChanging="grdViewCustomers_PageIndexChanging">
 			           
 			<Columns>
 				<asp:TemplateField ItemStyle-Width="20px">
