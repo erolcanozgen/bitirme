@@ -1,5 +1,6 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="Yeni.master.cs" Inherits="Yeni" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
 
 
@@ -129,8 +130,15 @@
             <!-- content -->
             <uc1:Notifier runat="server" ID="notifier" />
             <div>
+                <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
+
+                        </ContentTemplate>
+
+                </asp:UpdatePanel>
             </div>
         </div>
 

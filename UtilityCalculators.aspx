@@ -14,8 +14,6 @@
 
     <div>
 
-        <asp:ToolkitScriptManager runat="server"></asp:ToolkitScriptManager>
-
         <asp:TabContainer runat="server">
 
             <asp:TabPanel runat="server" BorderColor="Black"  ScrollBars="Auto">

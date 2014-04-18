@@ -114,7 +114,6 @@
         </table>
         </asp:Panel> 
 
-        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <asp:Button ID="Button1" runat="server" Text="Button" style="display:none" />
         <asp:ModalPopupExtender ID="Button1_ModalPopupExtender"
             runat="server"  Enabled="True" 

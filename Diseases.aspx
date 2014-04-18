@@ -8,6 +8,26 @@
     <link href="css/style.css" type="text/css" rel="stylesheet"/>
     <link href="css/Table.css" type="text/css" rel="stylesheet"/>
     <link href="css/Button.css" type="text/css" rel="stylesheet"/>
+         
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function Reload() {
+        $("#show").hide();
+        $("#hide").click(function () {
+            $("#filterTable").hide();
+            $("#hide").hide();
+            $("#show").show();
+            $("#DiseasesTable").width(1120, 0);
+        });
+        $("#show").click(function () {
+            $("#filterTable").show();
+            $("#show").hide();
+            $("#hide").show();
+            $("#DiseasesTable").width(830, 0);
+        });
+ }
+</script>
     <style type="text/css">
         .modalBackground {
             background-color:white;
@@ -46,7 +66,7 @@
             
           <td><label id="Label1">Snp : </label></td>
           <td><asp:TextBox ID="txtSNP" runat="server"></asp:TextBox>
-              <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+
                 <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSNP" MinimumPrefixLength="1" CompletionInterval="100" 
                     EnableCaching="false" ServicePath="AutoComplete.asmx" ServiceMethod="GetSNPs" Enabled="true" ></asp:AutoCompleteExtender></td>
          </tr>
@@ -134,27 +154,6 @@
 
    </div>
 
-     
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#show").hide();
-        
-
-        $("#hide").click(function () {
-            $("#filterTable").hide();
-            $("#hide").hide();
-            $("#show").show();
-            $("#DiseasesTable").width(1120, 0);
-        });
-        $("#show").click(function () {
-            $("#filterTable").show();
-            $("#show").hide();
-            $("#hide").show();
-            $("#DiseasesTable").width(830, 0);
-        });
-    });
-</script>
  
        </asp:Content>

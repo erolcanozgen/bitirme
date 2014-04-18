@@ -16,6 +16,8 @@ public partial class Diseases : System.Web.UI.Page
     {
         try
         {
+            ScriptManager.RegisterStartupScript(this, GetType(),"", "Reload();", true);
+
             if (!IsPostBack)
             {
                 cmbDiseaseName.DataTextField = "Name";
@@ -50,11 +52,13 @@ public partial class Diseases : System.Web.UI.Page
     {
         try
         {
-            getGridData();    
+            getGridData();
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "tmp", "<script type='text/javascript'>disp_confirm();</script>", false);
         }
         catch (Exception ex)
         {
             Notifier.AddErrorMessage("An error was occured while filtering the researches!");
+            
             //Alert.Show(ex.Message);
         }
     }

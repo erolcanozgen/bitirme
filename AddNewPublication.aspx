@@ -15,7 +15,6 @@
         <br />
         <br />
         <br />
-        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
         <table style="vertical-align:middle" class="form_settings">
             <tr>
                 <td><span>Disease Name</span></td>
