@@ -33,9 +33,10 @@ public partial class AddedResearches : System.Web.UI.Page
     }
     private void selectUnapprovedDiseases()
     {
-        dName.selectDiseasesNames();
+        UnapprovedPublications unAppPub = new UnapprovedPublications();
+        //dName.selectDiseasesNames();
 
-        grdViewUnapprovedDiseases.DataSource = dt = dDetails.selectUnapprovedDiseaseDetails(dName.tableNames);
+        grdViewUnapprovedDiseases.DataSource = dt = unAppPub.selectUnapprovedDiseaseDetails();
         grdViewUnapprovedDiseases.DataBind();
         setReferenceColumn(dt);
     }

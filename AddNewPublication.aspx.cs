@@ -31,27 +31,29 @@ public partial class _Default : System.Web.UI.Page
 
     protected void AddButton_Click(object sender, EventArgs e)
     {
-        dDetails.disease_name = SelectDisease_TextBox.Text.Replace(' ', '_');
-        dDetails.snp = SNP_TextBox.Text;
-        dDetails.Gene_Name = GeneName_TextBox.Text;
-        dDetails.case_count = Convert.ToInt32(CaseYes_TextBox.Text) + Convert.ToInt32(CaseNo_TextBox.Text);
-        dDetails.control_count = Convert.ToInt32(ControlYes_TextBox.Text) + Convert.ToInt32(ControlNo_TextBox.Text);
-        dDetails.freq_control = ((Convert.ToDouble(ControlYes_TextBox.Text) / dDetails.control_count)).ToString();
-        dDetails.freq_Patient = ((Convert.ToDouble(CaseYes_TextBox.Text) / dDetails.case_count)).ToString();
-        dDetails.p_value = P_TextBox.Text;
-        dDetails.or_value = Utility.CalculateOrValue(Convert.ToInt32(CaseYes_TextBox.Text), Convert.ToInt32(CaseNo_TextBox.Text), 
+        UnapprovedPublications unAppPub = new UnapprovedPublications();
+
+        unAppPub.disease_name = SelectDisease_TextBox.Text.Replace(' ', '_');
+        unAppPub.snp = SNP_TextBox.Text;
+        unAppPub.Gene_Name = GeneName_TextBox.Text;
+        unAppPub.case_count = Convert.ToInt32(CaseYes_TextBox.Text) + Convert.ToInt32(CaseNo_TextBox.Text);
+        unAppPub.control_count = Convert.ToInt32(ControlYes_TextBox.Text) + Convert.ToInt32(ControlNo_TextBox.Text);
+        unAppPub.freq_control = ((Convert.ToDouble(ControlYes_TextBox.Text) / unAppPub.control_count)).ToString();
+        unAppPub.freq_Patient = ((Convert.ToDouble(CaseYes_TextBox.Text) / unAppPub.case_count)).ToString();
+        unAppPub.p_value = P_TextBox.Text;
+        unAppPub.or_value = Utility.CalculateOrValue(Convert.ToInt32(CaseYes_TextBox.Text), Convert.ToInt32(CaseNo_TextBox.Text), 
                                                      Convert.ToInt32(ControlYes_TextBox.Text), Convert.ToInt32(ControlNo_TextBox.Text)).ToString();
-        dDetails.reference = Reference_TextBox.Text;
-        dDetails.reference_type = Convert.ToInt32(Reference_DropDown.SelectedValue);
+        unAppPub.reference = Reference_TextBox.Text;
+        unAppPub.reference_type = Convert.ToInt32(Reference_DropDown.SelectedValue);
         
         if (Session["user"] != null)
-            dDetails.ownerOfPublication = ((Users)Session["user"]).name;
+            unAppPub.ownerOfPublication = ((Users)Session["user"]).name;
         else
-            dDetails.ownerOfPublication = "Guest";
+            unAppPub.ownerOfPublication = "Guest";
 
         try
         {
-            dDetails.insertDiseaseDetails(dDetails);
+            unAppPub.insertDiseaseDetails(unAppPub);
             Notifier.AddSuccessMessage("Publication was added.");
             //MessageBox.Show("Publication was added!");
             Response.Redirect("HomePage.aspx");

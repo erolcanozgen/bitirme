@@ -35,6 +35,8 @@ public class DiseaseDetails
         this.disease_name = String.Empty;
         this.Gene_Name = String.Empty;
         this.snp = String.Empty;
+        this.freq_control = String.Empty;
+        this.freq_Patient = String.Empty;
         this.p_value = String.Empty;
         this.or_value = String.Empty;
         this.reference = String.Empty;
