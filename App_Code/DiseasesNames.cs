@@ -44,4 +44,17 @@ public class DiseasesNames
             throw ex;
         }
     }
+    public bool isDiseaseTableExist(string tableName)
+    {
+        bool ret = false;
+        Connection newCon = new Connection();
+        string query = String.Format("select count(*) from diseases where Table_Name= '{0}'", tableName);
+        MySqlCommand command = new MySqlCommand(query, newCon.conn);
+        int count = int.Parse(command.ExecuteScalar().ToString());
+        if (count > 0)
+            ret = true;
+        newCon.conn.Close();
+
+        return ret;
+    }
 }

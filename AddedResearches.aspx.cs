@@ -15,6 +15,7 @@ public partial class AddedResearches : System.Web.UI.Page
     DataTable dt = new DataTable();
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (!IsPostBack)
         {
             notifier.Dispose();
@@ -43,6 +44,7 @@ public partial class AddedResearches : System.Web.UI.Page
     protected void buttonApprove_Click(object sender, EventArgs e)
     {
         notifier.Dispose();
+        UnapprovedPublications unAppPub = new UnapprovedPublications();
 
         int selectedRowCounts = 0;
         List<int> diseaseId = new List<int>();
@@ -72,9 +74,11 @@ public partial class AddedResearches : System.Web.UI.Page
                 {
                     for (int i = 0; i < diseaseName.Count; i++)
                     {
+                        unAppPub.id = diseaseId[i];
+                        unAppPub.disease_name = diseaseName[i];
                         
-                        dDetails.approveSelectedPublication(diseaseId[i], diseaseName[i]);
-
+                        unAppPub.approveSelectedPublication(dName.isDiseaseTableExist(diseaseName[i]));
+                        
                         if (MetaAnalysisDB.isMetaAnalysisDone(diseaseName[i], SNP[i]))
                         {
                             //update existing
@@ -94,10 +98,11 @@ public partial class AddedResearches : System.Web.UI.Page
 
                 else if (((Button)sender).ID == "buttonReject")
                 {
-
                     for (int i = 0; i < diseaseName.Count; i++)
-                        dDetails.deleteSelectedPublication(diseaseId[i], diseaseName[i]);
-                   
+                    {
+                        unAppPub.id = diseaseId[i];
+                        unAppPub.deleteSelectedPublication();
+                    }
                     Notifier.AddSuccessMessage("Selected publicaton(s) has been deleted.");
                 }
 
