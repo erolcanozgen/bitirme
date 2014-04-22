@@ -1,4 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="ContactUs.aspx.cs" Inherits="_Default" %>
+
+<%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
+
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
       <link href="css/SignUp.css" type="text/css" rel="stylesheet"/>
       <style type="text/css">
@@ -11,7 +14,7 @@
     <link href="css/Table.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
-
+        <uc1:Notifier runat="server" ID="notifier" />
         <table class="searchPanel" style="width:550px">
             <tr>
                 <td colspan="2">
@@ -22,23 +25,24 @@
             </tr>
             <tr>
                 <td style="vertical-align:middle" class="auto-style2"><span>Name</span></td>
-                <td style="vertical-align:middle"><input class="contact" type="text" name="your_name" value="" /></td>
+                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="nameTxt" runat="server" autocomplete="off"></asp:TextBox></td>
             </tr>
             <tr>
                 <td style="vertical-align:middle" class="auto-style2"><span>Email Address</span></td>
-                <td style="vertical-align:middle"><input class="contact" type="text" name="your_email" value="" /></td>
+                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="emailTxt" runat="server" autocomplete="off"></asp:TextBox></td>
             </tr>
             <tr>
                 <td style="vertical-align:middle" class="auto-style2"><span>Subject</span></td>
-                <td style="vertical-align:middle"><input class="contact" type="text" name="your_email" value="" /></td>
+                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="subjectTxt" runat="server" autocomplete="off"></asp:TextBox></td>
             </tr>
             <tr>
                 <td style="vertical-align:middle" class="auto-style2"><span>Message</span></td>
-                <td style="vertical-align:middle"><textarea class="contact textarea" rows="5" cols="50" name="your_message"></textarea></td>
+                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="messageTxt" Width="98%" runat="server" Rows="5" TextMode="MultiLine"></asp:TextBox></td>
             </tr>
             <tr style="text-align:right">
                 <td colspan="2" style="text-align:right; vertical-align:middle" class="auto-style2">
-                    &nbsp;<input style="width:70px" class="buttonCss" type="submit" name="contact_submitted" value="send" /></td>
+                    &nbsp;<asp:Button CssClass="buttonCss" ID="SendMessageBtn" runat="server" Text=" Send " OnClick="SendMessageBtn_Click" Height="33px" />
+                </td>
             </tr>
         </table>
       
