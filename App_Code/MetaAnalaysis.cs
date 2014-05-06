@@ -29,7 +29,6 @@ public class Studies
     {
         this.Control = Cntrl;
         this.Case = Case;
-        this.or_value = (float)(Case.success / Case.fail) / (float)(Control.success / Control.fail);
         this.variance = (double)(((double)1 / Case.success) + ((double)1 / Case.fail) + ((double)1 / Control.success) + ((double)1 / Control.fail));
         //this.weight = (Case.fail + Control.success)/(Case.success+Case.fail+Control.success+Control.fail);
         this.weight = (double)(1 / this.variance);
@@ -68,13 +67,21 @@ public class MetaAnalaysis
             Experiments Case = new Experiments();
             Experiments Cntrl = new Experiments();
 
-            Case.success = (double)(Convert.ToInt32(tmp.Rows[i].ItemArray[2])) * Convert.ToDouble((tmp.Rows[i].ItemArray[8].ToString()).Replace(",", "."));
-            Case.fail = (double)(Convert.ToInt32(tmp.Rows[i].ItemArray[2])) - Case.success;
+            Case.success = (double)( Convert.ToDouble(tmp.Rows[i]["Case_Count"]) * Convert.ToDouble(tmp.Rows[i]["Frequency_Patient"]));
+            Case.fail = (double)(Convert.ToInt32(tmp.Rows[i]["Case_Count"])) - Case.success;
 
-            Cntrl.success = (double)(Convert.ToInt32(tmp.Rows[i].ItemArray[3])) * Convert.ToDouble((tmp.Rows[i].ItemArray[7].ToString()).Replace(",", "."));
-            Cntrl.fail = (double)(Convert.ToInt32(tmp.Rows[i].ItemArray[3])) - Cntrl.success;
+            Cntrl.success = (double)( Convert.ToDouble(tmp.Rows[i]["Control_Count"]) * Convert.ToDouble(tmp.Rows[i]["Frequency_Control"]) );
+            Cntrl.fail = (double)(Convert.ToInt32(tmp.Rows[i]["Control_Count"])) - Cntrl.success;
+
+
+            Case.success = (Case.success == 0) ? 0.5 : Case.success;
+            Case.fail = (Case.fail == 0) ? 0.5 : Case.fail;
+
+            Cntrl.success = (Cntrl.success == 0) ? 0.5 : Cntrl.success;
+            Cntrl.fail = (Cntrl.fail == 0) ? 0.5 : Cntrl.fail; 
 
             Studies std = new Studies(Cntrl, Case);
+            std.or_value = Convert.ToDouble(tmp.Rows[i]["OR_VALUE"]);
             studies.Add(std);
         }
 

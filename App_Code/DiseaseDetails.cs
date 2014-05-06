@@ -187,4 +187,25 @@ public class DiseaseDetails
         }
     }
 
+    public DataTable GetSnpList()
+    {
+        try
+        {
+            DataTable ret = new DataTable();
+            Connection newCon = new Connection();
+            string query = String.Format("select distinct SNP from {0} ", this.disease_name);
+            MySqlCommand command = new MySqlCommand(query, newCon.conn);
+            MySqlDataAdapter dr = new MySqlDataAdapter(command);
+            ret.Clear();
+            dr.Fill(ret);
+            newCon.conn.Close();
+            return ret;
+        }
+
+        catch (Exception ex)
+        {
+            throw (ex);
+        }
+    }
+
 }

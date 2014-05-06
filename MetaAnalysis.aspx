@@ -44,7 +44,7 @@
                     <asp:Label ID="Label1" runat="server" Text="Select a Disease to Examine Researches:"></asp:Label>              
                 </th>
                  <th> <asp:DropDownList ID="DiseasesList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="showDiseaseDetails" > </asp:DropDownList></th>
-
+                <th><asp:Button runat="server" Text="meta analiz" ID="btnMetaAnalysis" OnClick="btnMetaAnalysis_Click" /></th>
             </tr>
                 </thead>
          </table>
