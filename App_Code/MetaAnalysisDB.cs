@@ -14,12 +14,12 @@ public class MetaAnalysisDB
     public string disease_name;
     public string snp;
     public string p_value;
-    public string or_value;
+    public decimal or_value;
     public string I2;
     public int numOfPublications;
 
 
-	public MetaAnalysisDB(string dsease_name, string snp, string or_val, string p_val,string i2,int numpub)
+	public MetaAnalysisDB(string dsease_name, string snp, decimal or_val, string p_val,string i2,int numpub)
 	{
         this.disease_name = dsease_name;
         this.snp = snp;

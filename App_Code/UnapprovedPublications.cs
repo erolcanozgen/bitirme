@@ -16,14 +16,16 @@ public class UnapprovedPublications
     public string disease_name;
     public string Gene_Name;
     public string snp;
-    public string freq_control;
-    public string freq_Patient;
+    public decimal freq_control;
+    public decimal freq_Patient;
     public string p_value;
-    public string or_value;
+    public decimal or_value;
     public string reference;
     public int reference_type;
     public int isApproved;
     public string ownerOfPublication;
+    public string CI;
+
 	public UnapprovedPublications()
 	{
         this.case_count = -1;
@@ -31,23 +33,24 @@ public class UnapprovedPublications
         this.disease_name = String.Empty;
         this.Gene_Name = String.Empty;
         this.snp = String.Empty;
-        this.freq_control = String.Empty;
-        this.freq_Patient = String.Empty;
+        this.freq_control = 0;
+        this.freq_Patient = 0;
         this.p_value = String.Empty;
-        this.or_value = String.Empty;
+        this.or_value = 0;
         this.reference = String.Empty;
         this.reference_type = -1;
         this.isApproved = 0;
         this.ownerOfPublication = String.Empty;
+        this.CI = String.Empty;
 	}
     public void insertDiseaseDetails(UnapprovedPublications unAppPub)
     {
         Connection newCon = new Connection();
         string query = String.Format("INSERT INTO unapprovedpublications"
-            + " (Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved, Reference_Type, ownerOfPublication)"
+            + " (Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved, Reference_Type, ownerOfPublication,CI)"
             + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}')"
             ,unAppPub.case_count, unAppPub.control_count, unAppPub.disease_name, unAppPub.Gene_Name, unAppPub.snp, unAppPub.freq_control,
-            unAppPub.freq_Patient, unAppPub.p_value, unAppPub.or_value, unAppPub.reference, this.isApproved, this.reference_type, ownerOfPublication);
+            unAppPub.freq_Patient, unAppPub.p_value, unAppPub.or_value, unAppPub.reference, this.isApproved, this.reference_type, ownerOfPublication,this.CI);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         command.ExecuteNonQuery();
         newCon.conn.Close();
@@ -59,19 +62,14 @@ public class UnapprovedPublications
        
             Connection newCon = new Connection();
             dt.Clear();        
-            string query = String.Format("select ID,Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value, Reference,Reference_Type, ownerOfPublication from unapprovedpublications where isApproved = {0} ", this.isApproved);
+            string query = String.Format("select ID,Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value, Reference,Reference_Type, ownerOfPublication,CI from unapprovedpublications where isApproved = {0} ", this.isApproved);
             MySqlCommand command = new MySqlCommand(query, newCon.conn);
             MySqlDataAdapter dr = new MySqlDataAdapter(command);
             dr.Fill(dt);
             newCon.conn.Close();
 
             dt2 = dt.Clone();
-            dt2.Columns["Case_Count"].DataType = System.Type.GetType("System.Double");
-            dt2.Columns["Control_Count"].DataType = System.Type.GetType("System.Double");
-            dt2.Columns["Frequency_Patient"].DataType = System.Type.GetType("System.Double");
-            dt2.Columns["Frequency_Control"].DataType = System.Type.GetType("System.Double");
             dt2.Columns["P_Value"].DataType = System.Type.GetType("System.Double");
-            dt2.Columns["OR_Value"].DataType = System.Type.GetType("System.Double");
 
             foreach (DataRow row in dt.Rows)
             {
@@ -103,13 +101,14 @@ public class UnapprovedPublications
                                       + "Control_Count INT(11) NOT NULL ,"
                                       +"Gene_Name VARCHAR(100) NOT NULL ,"
                                       +"SNP VARCHAR(100) NOT NULL ,"
-                                      +"Frequency_Control VARCHAR(200) NULL DEFAULT NULL ,"
-                                      +"Frequency_Patient VARCHAR(200) NULL DEFAULT NULL ,"
+                                      +"Frequency_Control DECIMAL(11,10) NULL DEFAULT NULL ,"
+                                      + "Frequency_Patient DECIMAL(11,10) NULL DEFAULT NULL ,"
                                       +"P_Value VARCHAR(45) NULL DEFAULT NULL ,"
-                                      +"OR_Value VARCHAR(45) NULL DEFAULT NULL ,"
+                                      + "OR_Value DECIMAL(20,10) NULL DEFAULT NULL ,"
                                       +"Reference VARCHAR(2000) NOT NULL ,"
                                       + "isApproved INT(1) NOT NULL ,"
                                       + "Reference_Type INT(11) NOT NULL ,"
+                                      + "CI VARCHAR(100) ,"
                                       +"ownerOfPublication VARCHAR(120) NULL DEFAULT NULL ,"
                                       +"PRIMARY KEY (ID) ,"
                                       +"CONSTRAINT {1}"
@@ -128,8 +127,8 @@ public class UnapprovedPublications
     private void insertToTable()
     {
         Connection newCon = new Connection();
-        string query = String.Format("insert into {0} (DiseaseId, Disease_Name, Gene_Name, SNP, Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved,Reference_Type, ownerOfPublication) "
-                                      + "select d.ID, Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value, Reference,1,Reference_Type, ownerOfPublication from unapprovedpublications u,diseases d where d.Table_Name = u.Disease_Name and  u.ID = {1} ", this.disease_name, this.id);
+        string query = String.Format("insert into {0} (DiseaseId, Disease_Name, Gene_Name, SNP, Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference,Reference_Type, ownerOfPublication,CI) "
+                                      + "select d.ID, Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value, Reference,Reference_Type, ownerOfPublication,CI from unapprovedpublications u,diseases d where d.Table_Name = u.Disease_Name and  u.ID = {1} ", this.disease_name, this.id);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         command.ExecuteNonQuery();
 

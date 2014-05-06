@@ -87,6 +87,7 @@
                                             <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency Patient" />
                                             <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" />
                                             <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="P Value" />
+                                            <asp:BoundField  DataField="CI" HeaderText="95% CI" />
                                             <asp:TemplateField HeaderText="Reference">
                                                  <ItemTemplate>
                                                     <asp:HyperLink ID="Link" runat="server" Text='<%# Bind("Reference") %>' ></asp:HyperLink>

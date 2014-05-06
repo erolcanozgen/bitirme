@@ -113,6 +113,7 @@
                             <asp:BoundField  DataField="Frequency_Control" HeaderText="Frequency In Control" SortExpression="Frequency_Control"/>
                             <asp:BoundField  DataField="P_Value" HeaderText="P Value" SortExpression="P_Value"/>
                             <asp:BoundField  DataField="OR_Value" HeaderText="OR Value" SortExpression="OR_Value"/>
+                            <asp:BoundField  DataField="CI" HeaderText="95% CI" SortExpression="CI"/>
                             <asp:TemplateField HeaderText="Reference">
                                 <ItemTemplate>
                                     <asp:HyperLink ID="Link" runat="server" Text='<%# Bind("Reference") %>' ></asp:HyperLink>

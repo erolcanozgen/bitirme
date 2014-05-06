@@ -134,13 +134,13 @@ public class MetaAnalaysis
 
     private void InsertDatabase()
     {
-        MetaAnalysisDB metadb = new MetaAnalysisDB(this.disease_name, this.snp, this.ec.ToString(), this.Z.ToString(), this.i_square.ToString(), studies.Count);
+        MetaAnalysisDB metadb = new MetaAnalysisDB(this.disease_name, this.snp, (decimal)this.ec, this.Z.ToString(), this.i_square.ToString(), studies.Count);
         metadb.insertMetaAnalysis();
     }
 
     private void UpdateDatabase()
     {
-        MetaAnalysisDB metadb = new MetaAnalysisDB(this.disease_name, this.snp, this.ec.ToString(), this.Z.ToString(), this.i_square.ToString(), studies.Count);
+        MetaAnalysisDB metadb = new MetaAnalysisDB(this.disease_name, this.snp, (decimal)this.ec, this.Z.ToString(), this.i_square.ToString(), studies.Count);
         metadb.updateMetaAnalysis();
     }
 

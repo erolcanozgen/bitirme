@@ -9,6 +9,22 @@ using System.Numerics;
 /// </summary>
 public static class Utility
 {
+    public static string CalculateCI(double or_value,double or_variance)
+    {
+        try
+        {
+            double ln_or = Math.Log(or_value);
+            string CI = (Math.Exp(ln_or - (1.96 * Math.Sqrt(or_variance)))).ToString("0.0000")
+                              + "  -  "
+                              + (Math.Exp(ln_or + (1.96 * Math.Sqrt(or_variance)))).ToString("0.0000");
+            return CI;
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
 
     public static float CalculateOrValue(int case_yes, int case_no, int control_yes, int control_no)
     {

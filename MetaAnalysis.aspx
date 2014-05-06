@@ -80,6 +80,7 @@
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Control" HeaderText="Frequency In Control" />
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="P Value" />
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" />
+                                    <asp:BoundField  DataField="CI" HeaderText="95% CI" SortExpression="CI"/>
                                     <asp:TemplateField HeaderText="Reference">
                                         <ItemTemplate>
                                             <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>

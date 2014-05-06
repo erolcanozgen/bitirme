@@ -41,7 +41,7 @@
             </tr>
             <tr style="text-align:right">
                 <td colspan="2" style="text-align:right; vertical-align:middle" class="auto-style2">
-                    &nbsp;<asp:Button CssClass="buttonCss" ID="SendMessageBtn" runat="server" Text=" Send " OnClick="SendMessageBtn_Click" Height="33px" />
+                    &nbsp;<asp:Button CssClass="buttonCss" ID="SendMessageBtn" runat="server" Text=" Send " Height="33px" />
                 </td>
             </tr>
         </table>
