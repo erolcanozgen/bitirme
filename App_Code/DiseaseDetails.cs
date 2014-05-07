@@ -69,6 +69,7 @@ public class DiseaseDetails
 
         dt2 = dt.Clone();
         dt2.Columns["P_Value"].DataType = System.Type.GetType("System.Double");
+        dt2.Columns["OR_Value"].DataType = System.Type.GetType("System.Double");
         dt2.Columns["I2"].DataType = System.Type.GetType("System.Double");
 
         int tempId = 1;

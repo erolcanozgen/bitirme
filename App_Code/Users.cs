@@ -107,7 +107,7 @@ public class Users
 
         MySqlParameter rolId = new MySqlParameter("@RolId", MySqlDbType.Int32);
         rolId.Value = 2 ;
-        cmd.Parameters.Add(2);
+        cmd.Parameters.Add(rolId);
 
         cmd.ExecuteNonQuery();
         newCon.conn.Close();

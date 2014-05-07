@@ -15,6 +15,7 @@ public partial class Disasters : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         if (!IsPostBack)
         {
             DiseasesList.DataTextField = "Name";
@@ -187,16 +188,25 @@ public partial class Disasters : System.Web.UI.Page
 
     protected void btnMetaAnalysis_Click(object sender, EventArgs e)
     {
-        DataTable dt = new DataTable();
-        DiseaseDetails dd = new DiseaseDetails();
-        dd.disease_name = DiseasesList.SelectedValue;
-        dt = dd.GetSnpList();
-
-        for (int i = 0; i < dt.Rows.Count; i++)
+        try
         {
-            if (dt.Rows[i]["SNP"] == null || dt.Rows[i]["SNP"].ToString() == String.Empty) continue;
-            MetaAnalaysis ma = new MetaAnalaysis(DiseasesList.SelectedValue.ToString(), dt.Rows[i]["SNP"].ToString());
-            ma.DoMetaAnalysis();
+            DataTable dt = new DataTable();
+            DiseaseDetails dd = new DiseaseDetails();
+            dd.disease_name = DiseasesList.SelectedValue;
+            dt = dd.GetSnpList();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (dt.Rows[i]["SNP"] == null || dt.Rows[i]["SNP"].ToString() == String.Empty) continue;
+                MetaAnalaysis ma = new MetaAnalaysis(DiseasesList.SelectedValue.ToString(), dt.Rows[i]["SNP"].ToString());
+                ma.DoMetaAnalysis();
+            }
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Meta analysis for " + DiseasesList.SelectedValue + "  has been done successfully.');", true);
+            
+        }
+        catch (Exception ex)
+        {
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Meta analysis for " + DiseasesList.SelectedValue + " could not be done.');", true);
         }
     }
 }
