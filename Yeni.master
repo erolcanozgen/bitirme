@@ -47,30 +47,63 @@
                                 <a class="lost-pwd" href="#">Lost your password?</a>
 
                             </div>
-                            <div class="left right">
+                            <div class="left right" style="width:300px">
                                 <!-- Register Form -->
 
                                 <h1>Not a member yet? Sign Up!</h1>
                                 <label class="grey" for="signup">Username:</label>
                                 <asp:TextBox ID="R_Username" class="field" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                                            ControlToValidate="R_Username" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="registration"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
 
                                 <label class="grey" for="signup">First Name:</label>
                                 <asp:TextBox ID="FirstName" class="field" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                                            ControlToValidate="FirstName" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="registration"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
 
                                 <label class="grey" for="LastName">Last Name:</label>
                                 <asp:TextBox ID="LastName" class="field" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                                            ControlToValidate="LastName" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="registration"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
 
                                 <label class="grey" for="signup">Password:</label>
                                 <asp:TextBox TextMode="password" ID="R_Passwd" class="field" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
+                                            ControlToValidate="R_Passwd" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="registration"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
                                 
                                 <label class="grey" for="signup">Confirm Password:</label>
                                 <asp:TextBox TextMode="password" ID="R_ConfirmPasswd" class="field" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
+                                            ControlToValidate="R_ConfirmPasswd" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="registration"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
 
                                 <label class="grey" for="email">Email:</label>
                                 <asp:TextBox ID="Email" class="field" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
+                                            ControlToValidate="Email" Display="Dynamic"
+                                            ErrorMessage="** required field." ValidationGroup="registration"
+                                            ForeColor="Red">
+                                        </asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator Display="Dynamic" ID="revEmailValidator" runat="server" ValidationGroup="registration"
+                                            ValidationExpression="[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}" ControlToValidate="Email" ErrorMessage="Must be correct" />
                                 <label>A password will be e-mailed to you.</label>
 
-                                <asp:Button ID="Register" runat="server" Text="Register" class="bt_register" OnClick="Register_Click" />
+
+                                <asp:Button ID="Register" runat="server" Text="Register" class="bt_register" OnClick="Register_Click" ValidationGroup="registration" />
                             </div>
                       
                     </div>
@@ -85,6 +118,7 @@
                             <asp:Label ID="session_name" runat="server" Text="Hello Guest!"></asp:Label>
                         </li>
                         <li class="sep">|</li>
+                        <li> <asp:HyperLink ID="MyAccount" href="MyAccount.aspx" runat="server">My Account</asp:HyperLink></li>
                         <li id="toggle">
                            
                             <asp:HyperLink ID="login_signUp" href="#" class="open" runat="server">Log In | Register</asp:HyperLink>

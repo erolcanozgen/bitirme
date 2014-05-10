@@ -41,7 +41,7 @@ public class Users
     public bool checkUser(string username, string password)
     {
         Connection newCon = new Connection();
-        string query = "select id,Username,Name,Surname,Email,roleId from member where Username = @usrname and Password = @paswrd";
+        string query = "select id,Username,Name,Surname,Email,roleId,Password from member where Username = @usrname and Password = @paswrd";
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         command.Parameters.AddWithValue("@usrname", username);
         command.Parameters.AddWithValue("@paswrd", password);
@@ -63,6 +63,7 @@ public class Users
             this.surname = dt.Rows[0]["Surname"].ToString();
             this.email = dt.Rows[0]["Email"].ToString();
             this.rolId = Convert.ToInt32(dt.Rows[0]["roleId"]);
+            this.passwd = dt.Rows[0]["Password"].ToString();
             
             newCon.conn.Close();
             return true;
@@ -135,6 +136,45 @@ public class Users
         newCon.conn.Close();
         return dt;
     }
+
+    public void UpdateUser()
+    {
+        try
+        {
+            Connection newCon = new Connection();
+            string query = "UPDATE member SET Name = @Name ,Surname = @SurName, Email = @Email where id = @id";
+            MySqlCommand command = new MySqlCommand(query, newCon.conn);
+            command.Parameters.Add("@Name", this.name);
+            command.Parameters.Add("@SurName", this.surname);
+            command.Parameters.Add("@Email", this.email);
+            command.Parameters.Add("@id", this.id);
+            command.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
+    public void ChangePassword()
+    {
+        try
+        {
+            Connection newCon = new Connection();
+            string query = "UPDATE member SET Password = @Pwd where id = @id";
+            MySqlCommand command = new MySqlCommand(query, newCon.conn);
+            command.Parameters.Add("@Pwd", this.passwd);
+            command.Parameters.Add("@id", this.id);
+            command.ExecuteNonQuery();
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
 
     public void deleteUser()
     {

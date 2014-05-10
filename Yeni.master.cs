@@ -27,7 +27,6 @@ public partial class Yeni : System.Web.UI.MasterPage
         if (!IsPostBack)
         {
 
-            
 
             if (Session["user"] != null)
             {
@@ -35,6 +34,7 @@ public partial class Yeni : System.Web.UI.MasterPage
                 login_signUp.Visible = false;
                 session_name.Text = "Welcome " + ((Users)Session["user"]).name;
                 logout.Visible = true;
+                MyAccount.Visible = true;
                 if(((Users)Session["user"]).rolId==1)
                     AdminPage.Visible = true;
                 else
@@ -48,6 +48,7 @@ public partial class Yeni : System.Web.UI.MasterPage
                 login_signUp.Visible = true;
                 session_name.Text = "Welcome Guest!";
                 logout.Visible = false;
+                MyAccount.Visible = false;
             }
         }
 
@@ -93,7 +94,8 @@ public partial class Yeni : System.Web.UI.MasterPage
             }
             catch (Exception ex)
             {
-                Alert.Show(ex.Message);
+
+                Alert.Show("An error was occured while registration");
             }
         }
     }

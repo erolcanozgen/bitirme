@@ -528,4 +528,14 @@ bottom: 80px;
 right: 200px;
 }
 
+.MyAccountMain {
+width: 650px;
+float: left;
+}
+
+.MyAccountLeft {
+width:300px;
+float:left;
+}
+
 
