@@ -11,12 +11,16 @@ public partial class Diseases : System.Web.UI.Page
 {
     DiseasesNames dName = new DiseasesNames();
     DiseaseDetails dDetails = new DiseaseDetails();
- 
+    List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>>();
+    static string gene = String.Empty;
+    static string snp = String.Empty;
+    static string min_sample_size = String.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         try
         {
-            ScriptManager.RegisterStartupScript(this, GetType(),"", "Reload();", true);
+          ScriptManager.RegisterStartupScript(this, GetType(),"", "Reload();", true);
+   
 
             if (!IsPostBack)
             {
@@ -25,7 +29,6 @@ public partial class Diseases : System.Web.UI.Page
                 cmbDiseaseName.DataSource = dName.selectDiseasesNames();
                 cmbDiseaseName.DataBind();
                 cmbDiseaseName.SelectedValue = Request.QueryString["disease"];
-
                 getGridData();
                      
             }
@@ -39,8 +42,17 @@ public partial class Diseases : System.Web.UI.Page
 
     private void getGridData()
     {
+
+        param.Clear();
+
+        if (gene != String.Empty) param.Add(new KeyValuePair<string, string>("Gene_Name", gene));
+
+        if (min_sample_size != String.Empty) param.Add(new KeyValuePair<string, string>("Case_Count+Control_Count", min_sample_size));
+
+        if (snp != String.Empty) param.Add(new KeyValuePair<string, string>("SNP", snp));
+
         DataTable dt = new DataTable();
-        dt = dDetails.selectDiseaseDetails(cmbDiseaseName.SelectedValue);
+        dt = dDetails.SelectFilteredDiseaseDetails(param,cmbDiseaseName.SelectedValue);
         grdViewDiseases.DataSource = dt;
         grdViewDiseases.DataBind();
         setReferenceColumn(dt);
@@ -55,8 +67,12 @@ public partial class Diseases : System.Web.UI.Page
     {
         try
         {
+            gene = txtGene.Text;
+            snp = txtSNP.Text;
+            min_sample_size = txtMinimumSample.Text;
             getGridData();
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "tmp", "<script type='text/javascript'>disp_confirm();</script>", false);
+
+           ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "tmp", "<script type='text/javascript'>disp_confirm();</script>", false);
         }
         catch (Exception ex)
         {

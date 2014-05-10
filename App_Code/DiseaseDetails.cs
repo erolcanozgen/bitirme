@@ -165,7 +165,7 @@ public class DiseaseDetails
 
         try
         {
-            whereCondition = "WHERE "; 
+            whereCondition = "WHERE 1=1 "; 
             if (param.Count == 0) return whereCondition;
 
            
