@@ -51,7 +51,7 @@ public partial class _Default : System.Web.UI.Page
         unAppPub.CI = Utility.CalculateCI((double)unAppPub.or_value, or_variance);
         
         if (Session["user"] != null)
-            unAppPub.ownerOfPublication = ((Users)Session["user"]).name;
+            unAppPub.ownerOfPublication = ((Users)Session["user"]).username;
         else
             unAppPub.ownerOfPublication = "Guest";
 

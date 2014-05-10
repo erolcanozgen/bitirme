@@ -174,7 +174,19 @@ public class Users
         }
     }
 
-
+    public DataTable getOwnPublication()
+    {
+        DataTable dt = new DataTable();
+        Connection newCon = new Connection();
+        MySqlCommand command = new MySqlCommand("getOwnPublications", newCon.conn);
+        MySqlDataAdapter dr = new MySqlDataAdapter(command);
+        command.CommandType = System.Data.CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("?ownr", (object)this.username);
+        dt.Clear();
+        dr.Fill(dt);  
+        newCon.conn.Close();
+        return dt;
+    }
 
     public void deleteUser()
     {
@@ -184,5 +196,5 @@ public class Users
         command.ExecuteNonQuery();
         newCon.conn.Close();
     }
- 
+
 }

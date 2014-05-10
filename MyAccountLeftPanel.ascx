@@ -20,6 +20,15 @@
                 </div>
             </a>
         </li>
+         <li>
+            <a href="OwnPublications.aspx">
+
+                <div class="ca-content">
+                    <h2 class="ca-main">My Publications</h2>
+                    <h3 class="ca-sub">See Your Publivations</h3>
+                </div>
+            </a>
+        </li>
     </ul>
 </div>
 <!-- content -->

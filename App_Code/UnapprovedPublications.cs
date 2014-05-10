@@ -48,7 +48,7 @@ public class UnapprovedPublications
         Connection newCon = new Connection();
         string query = String.Format("INSERT INTO unapprovedpublications"
             + " (Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference, isApproved, Reference_Type, ownerOfPublication,CI)"
-            + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}')"
+            + " VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')"
             ,unAppPub.case_count, unAppPub.control_count, unAppPub.disease_name, unAppPub.Gene_Name, unAppPub.snp, unAppPub.freq_control,
             unAppPub.freq_Patient, unAppPub.p_value, unAppPub.or_value, unAppPub.reference, this.isApproved, this.reference_type, ownerOfPublication,this.CI);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
