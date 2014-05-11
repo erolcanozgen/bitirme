@@ -27,7 +27,7 @@
                 <tbody>
                     <tr>
                         <td><asp:Label runat="server" ID="lblOldPwd"  Text="Old Password: "></asp:Label></td>
-                        <td><asp:TextBox runat="server" ID="txtOldPwd" TextMode="Password" ></asp:TextBox>
+                        <td style="padding:15px 18px 15px 18px"><asp:TextBox runat="server" ID="txtOldPwd" TextMode="Password" CssClass="twitterStyleTextbox" ></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
                                             ControlToValidate ="txtOldPwd" Display="Dynamic"
                                             ErrorMessage="** required field." ValidationGroup="changePwd"
@@ -36,7 +36,7 @@
                     </tr>
                     <tr>
                         <td><asp:Label runat="server" ID="lblNewPwd" Text="New Password: "></asp:Label></td>
-                        <td><asp:TextBox runat="server" ID="txtNewPwd" TextMode="Password"></asp:TextBox>
+                        <td style="padding:15px 18px 15px 18px"><asp:TextBox runat="server" ID="txtNewPwd" TextMode="Password" CssClass="twitterStyleTextbox"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                                             ControlToValidate ="txtNewPwd" Display="Dynamic"
                                             ErrorMessage="** required field." ValidationGroup="changePwd"
@@ -45,7 +45,7 @@
                     </tr>
                      <tr>
                         <td><asp:Label runat="server" ID="lblNewPwdAgain" Text="New Password (Again): "></asp:Label></td>
-                        <td><asp:TextBox runat="server" ID="txtNewPwdAgain" TextMode="Password"></asp:TextBox>
+                        <td style="padding:15px 18px 15px 18px"><asp:TextBox runat="server" ID="txtNewPwdAgain" TextMode="Password" CssClass="twitterStyleTextbox"></asp:TextBox>
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                                             ControlToValidate ="txtNewPwdAgain" Display="Dynamic"
                                             ErrorMessage="** required field." ValidationGroup="changePwd"

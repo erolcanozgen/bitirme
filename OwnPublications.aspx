@@ -31,9 +31,9 @@
                             </asp:TemplateField>
                             <asp:BoundField  DataField="SNP" HeaderText="SNP" SortExpression="SNP"/>
                             <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" SortExpression="Case_Count"/>
-                            <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency In Case" SortExpression="Frequency_Patient"/>
+                            <asp:BoundField  DataFormatString="{0:F3}" DataField="Frequency_Patient" HeaderText="Frequency In Case" SortExpression="Frequency_Patient"/>
                             <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" SortExpression="Control_Count"/>
-                            <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Control" HeaderText="Frequency In Control" SortExpression="Frequency_Control"/>
+                            <asp:BoundField  DataFormatString="{0:F3}" DataField="Frequency_Control" HeaderText="Frequency In Control" SortExpression="Frequency_Control"/>
                             <asp:BoundField  DataField="P_Value" HeaderText="P Value" SortExpression="P_Value"/>
                             <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" SortExpression="OR_Value"/>
                             <asp:BoundField  DataField="CI" HeaderText="95% CI" SortExpression="CI"/>

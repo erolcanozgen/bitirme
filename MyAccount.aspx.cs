@@ -10,14 +10,25 @@ public partial class MyAccount : System.Web.UI.Page
     Users user = null;
     protected void Page_Load(object sender, EventArgs e)
     {
-        user = this.Session["user"] as Users;
-        if (!IsPostBack)
+        try
         {
-            txtUsername.Text = user.username;
-            txtName.Text = user.name;
-            txtSurname.Text = user.surname;
-            txtEmail.Text = user.email;
+            if (this.Session["user"] == null)
+                ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('You should sign in.');", true);
+
+            user = this.Session["user"] as Users;
+            if (!IsPostBack)
+            {
+                txtUsername.Text = user.username;
+                txtName.Text = user.name;
+                txtSurname.Text = user.surname;
+                txtEmail.Text = user.email;
+            }
         }
+        catch (Exception ex)
+        {
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('An unexpected error was occured.');", true);
+        }
+
     }
     protected void btnUpdate_Click(object sender, EventArgs e)
     {

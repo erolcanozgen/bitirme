@@ -27,11 +27,11 @@
                 <tbody>
                     <tr>
                         <td><asp:Label runat="server" ID="lblUsername" Text="User Name: "></asp:Label></td>
-                        <td><asp:TextBox runat="server" ID="txtUsername" ReadOnly="true"></asp:TextBox></td>
+                        <td style="padding:15px 18px 15px 18px"><asp:TextBox runat="server" ID="txtUsername" CssClass="twitterStyleTextbox" ReadOnly="true" ></asp:TextBox></td>
                     </tr>
                     <tr>
                         <td><asp:Label runat="server" ID="lblName" Text="Name: "></asp:Label></td>
-                        <td><asp:TextBox runat="server" ID="txtName"></asp:TextBox>
+                        <td style="padding:15px 18px 15px 18px"><asp:TextBox runat="server" ID="txtName" CssClass="twitterStyleTextbox"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                                             ControlToValidate ="txtName" Display="Dynamic"
                                             ErrorMessage="** required field." ValidationGroup="account_update"
@@ -40,7 +40,7 @@
                     </tr>
                      <tr>
                         <td><asp:Label runat="server" ID="lblSurname" Text="Surname: "></asp:Label></td>
-                        <td><asp:TextBox runat="server" ID="txtSurname"></asp:TextBox>
+                        <td style="padding:15px 18px 15px 18px"><asp:TextBox runat="server" ID="txtSurname" CssClass="twitterStyleTextbox"></asp:TextBox>
                          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                                             ControlToValidate ="txtSurname" Display="Dynamic"
                                             ErrorMessage="** required field." ValidationGroup="account_update"
@@ -49,7 +49,7 @@
                     </tr>
                      <tr>
                         <td><asp:Label runat="server" ID="lblEmail" Text="Email: "></asp:Label></td>
-                        <td><asp:TextBox runat="server" ID="txtEmail"></asp:TextBox>
+                        <td style="padding:15px 18px 15px 18px"><asp:TextBox runat="server" ID="txtEmail" CssClass="twitterStyleTextbox"></asp:TextBox>
                           <asp:RegularExpressionValidator Display="Dynamic" ID="revEmailValidator" runat="server" ValidationGroup="account_update"
                                             ValidationExpression="[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}" ControlToValidate="txtEmail" ErrorMessage="Must be correct" />
                           <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
