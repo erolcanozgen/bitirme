@@ -5,6 +5,8 @@
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
       <link href="css/SignUp.css" type="text/css" rel="stylesheet"/>
+      <script src="Scripts/ErrorSuccessNotifier.js"></script>
+       <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
         <uc1:Notifier runat="server" ID="notifier" />

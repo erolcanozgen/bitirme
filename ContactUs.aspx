@@ -12,6 +12,8 @@
       </style>
     <link href="css/Button.css" rel="stylesheet" />
     <link href="css/Table.css" rel="stylesheet" />
+      <script src="Scripts/ErrorSuccessNotifier.js"></script>
+       <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
         <uc1:Notifier runat="server" ID="notifier" />

@@ -60,7 +60,7 @@ public partial class _Default : System.Web.UI.Page
             unAppPub.insertDiseaseDetails(unAppPub);
             Notifier.AddSuccessMessage("Publication was added.");
             //MessageBox.Show("Publication was added!");
-            Response.Redirect("HomePage.aspx");
+          //  Response.Redirect("HomePage.aspx");
         }
         catch (MySql.Data.MySqlClient.MySqlException myException)
         {

@@ -11,6 +11,8 @@
         <link rel="stylesheet" type="text/css" href="css/VerticalNav/style1.css" />
         <link rel="stylesheet" type="text/css" href="css/Button.css" />
         <link href="css/Table2.css" type="text/css" rel="stylesheet"/>
+        <script src="Scripts/ErrorSuccessNotifier.js"></script>
+        <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
         <style type="text/css">
         .modalBackground {
             background-color:white;
@@ -21,6 +23,7 @@
         <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css' />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
         <div class="container">
         <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto">
         <table style="width:100%">
@@ -60,11 +63,11 @@
             
                 </td>
                 <td style="border-left-style: solid; border-left-width: 1px; border-left-color: #C0C0C0">
-                        <uc1:Notifier runat="server" ID="notifier" />
+                        
                         <table class="Table2">
                             <tr>
                                 <td >
-                                
+                                    <uc1:Notifier runat="server" ID="notifier" />
                                     <asp:GridView ID="grdViewUnapprovedDiseases" runat="server" AutoGenerateColumns="False" DataKeyNames="ID,Disease_Name,SNP"
                                         CellPadding="3" ForeColor="Black" CssClass="table2" AllowSorting="True" AllowPaging="True" OnPageIndexChanging="grdViewUnapprovedDiseases_PageIndexChanging">
 			                            <Columns>

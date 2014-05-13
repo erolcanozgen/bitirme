@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="MetaAnalysis.aspx.cs" Inherits="Disasters" EnableEventValidation="false"%>
-
+<%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -33,9 +33,11 @@
         }
     </style>
     <link rel="stylesheet" type="text/css" href="css/Table.css" />
+      <script src="Scripts/ErrorSuccessNotifier.js"></script>
+       <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
+    <uc1:Notifier runat="server" ID="notifier" />
     <div>
         <table>
             <thead>

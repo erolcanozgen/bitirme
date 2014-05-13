@@ -1,17 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="UtilityCalculators.aspx.cs" Inherits="UtilityCalculators" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-
+<%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link href="css/Table.css" type="text/css" rel="stylesheet" />
     <link href="css/Button.css" type="text/css" rel="stylesheet" />
+      <script src="Scripts/ErrorSuccessNotifier.js"></script>
+       <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
 
 
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+    <uc1:Notifier runat="server" ID="notifier" />
     <div>
 
         <asp:TabContainer runat="server">

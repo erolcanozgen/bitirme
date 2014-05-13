@@ -9,6 +9,8 @@
 
 <head runat="server">
     <title>SNP DATABASE</title>
+    <script src="Scripts/ErrorSuccessNotifier.js"></script>
+    <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
     <meta name="description" content="website description" />
     <meta name="keywords" content="website keywords, website keywords" />
     <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
@@ -162,11 +164,11 @@
         </header>
         <div id="site_content">
             <!-- content -->
-            <uc1:Notifier runat="server" ID="notifier" />
             <div>
                 <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
+                        <uc1:Notifier runat="server" ID="notifier" />
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
 

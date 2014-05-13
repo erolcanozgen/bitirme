@@ -1,4 +1,4 @@
-﻿$(document).ready(function() {
+﻿function pageLoad(){
     $('.PanelNotificationBox').css({ opacity: 0 });
     $('.PanelNotificationBox').fadeTo("slow", 1.0);
     setTimeout(function () {
@@ -6,4 +6,4 @@
             $('.AutoHide').remove();
         });
     }, 3000);
-});
+}

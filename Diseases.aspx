@@ -8,6 +8,8 @@
     <link href="css/style.css" type="text/css" rel="stylesheet"/>
     <link href="css/Table.css" type="text/css" rel="stylesheet"/>
     <link href="css/Button.css" type="text/css" rel="stylesheet"/>
+      <script src="Scripts/ErrorSuccessNotifier.js"></script>
+       <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
          
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -38,7 +40,7 @@
      
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
-
+    <uc1:Notifier runat="server" ID="notifier" />
 <div>
     <div style="float:left;width:25px">
         <a style="writing-mode:tb-rl; -webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-o-transform: rotate(90deg);white-space:nowrap;display:block;bottom:0;width:20px;height:20px;" id="hide">Hide Filtering Panel</a>

@@ -11,12 +11,15 @@
         <link rel="stylesheet" type="text/css" href="css/VerticalNav/style1.css" />
         <link rel="stylesheet" type="text/css" href="css/Button.css" />
         <link href="css/Table2.css" type="text/css" rel="stylesheet"/>
+      <script src="Scripts/ErrorSuccessNotifier.js"></script>
+       <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
         
         <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css' />
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="container">
+
         <asp:Panel ID="Panel1" runat="server" ScrollBars="Auto">
         <table style="width:100%">
             <tr>

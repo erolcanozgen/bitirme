@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="HomePage.aspx.cs" Inherits="_Default" %>
 <%@ MasterType VirtualPath="~/Yeni.master"  %>
+<%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="headContent" Runat="Server">  
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,11 @@
         <link rel="stylesheet" type="text/css" href="css/Button.css" />
         <link href="css/Table2.css" type="text/css" rel="stylesheet"/>
         <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css' />
+      <script src="Scripts/ErrorSuccessNotifier.js"></script>
+       <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <uc1:Notifier runat="server" ID="notifier" />
         <table class="table2"  >
             <tr>
                 <td style="width:620px;text-align:left">

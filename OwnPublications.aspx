@@ -13,10 +13,12 @@
         <link rel="stylesheet" type="text/css" href="css/VerticalNav/style1.css" />
         <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css' />
         <link rel="stylesheet" type="text/css" href="css/Table.css" />
+      <script src="Scripts/ErrorSuccessNotifier.js"></script>
+       <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
-
+    <uc1:Notifier runat="server" ID="notifier" />
     <asp:Panel ID="leftPanel" runat="server" CssClass="MyAccountLeft">
         <UserControl:leftPanel ID="LeftPanel1" runat="server" />
     </asp:Panel>

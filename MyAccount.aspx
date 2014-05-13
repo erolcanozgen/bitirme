@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Yeni.master" CodeFile="MyAccount.aspx.cs" Inherits="MyAccount" %>
 <%@ Register Src="~/MyAccountLeftPanel.ascx" TagName="leftPanel" TagPrefix="UserControl"%>
-
+<%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="headContent" Runat="Server">  
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +9,13 @@
         <link rel="stylesheet" type="text/css" href="css/VerticalNav/demo.css" />
         <link rel="stylesheet" type="text/css" href="css/VerticalNav/style1.css" />
         <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css' />
+      <script src="Scripts/ErrorSuccessNotifier.js"></script>
+       <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="css/Table.css" />
 </asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
-
+    <uc1:Notifier runat="server" ID="notifier" />
     <asp:Panel ID="leftPanel" runat="server" CssClass="MyAccountLeft">
         <UserControl:leftPanel runat="server" />
     </asp:Panel>
