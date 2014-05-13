@@ -78,24 +78,14 @@ public partial class AddedResearches : System.Web.UI.Page
                         unAppPub.disease_name = diseaseName[i];
                         
                         unAppPub.approveSelectedPublication(dName.isDiseaseTableExist(diseaseName[i]));
-                        
-                        if (MetaAnalysisDB.isMetaAnalysisDone(diseaseName[i], SNP[i]))
-                        {
-                            //update existing
-                            MetaAnalaysis mt = new MetaAnalaysis(diseaseName[i], SNP[i]);
-                            mt.UpdateMetaAnalysis();
-                        }
-                        else
-                        {
-                            //insert new
-                            MetaAnalaysis mt = new MetaAnalaysis(diseaseName[i], SNP[i]);
-                            mt.DoMetaAnalysis();
-                        }
+                        MetaAnalaysis mt = new MetaAnalaysis(diseaseName[i], SNP[i]);
+                        mt.DoMetaAnalysis();
+          
                     }
                     Notifier.AddSuccessMessage("Selected publicaton(s) has been approved.");
                 }
 
-
+        
                 else if (((Button)sender).ID == "buttonReject")
                 {
                     for (int i = 0; i < diseaseName.Count; i++)

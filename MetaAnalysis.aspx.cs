@@ -201,6 +201,7 @@ public partial class Disasters : System.Web.UI.Page
                 MetaAnalaysis ma = new MetaAnalaysis(DiseasesList.SelectedValue.ToString(), dt.Rows[i]["SNP"].ToString());
                 ma.DoMetaAnalysis();
             }
+            GetGridData();
             ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Meta analysis for " + DiseasesList.SelectedValue + "  has been done successfully.');", true);
             
         }
