@@ -185,7 +185,6 @@ public partial class Disasters : System.Web.UI.Page
         GetGridData();
     }
 
-
     protected void btnMetaAnalysis_Click(object sender, EventArgs e)
     {
         try
@@ -208,6 +207,30 @@ public partial class Disasters : System.Web.UI.Page
         catch (Exception ex)
         {
             ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Meta analysis for " + DiseasesList.SelectedValue + " could not be done.');", true);
+        }
+    }
+
+    protected void calculateSelectedMetaAnalysis(object sender, EventArgs e)
+    {
+        int selectedRowCounts = 0;
+        GridView grdViewOrdersOfCustomer = (GridView)FindControl("grdViewOrdersOfCustomer");
+        foreach (GridViewRow row in grdViewOrdersOfCustomer.Rows)
+        {
+            if (row.RowType == DataControlRowType.DataRow)
+            {
+                CheckBox chkRow = (row.Cells[0].FindControl("chkRow") as CheckBox);
+                if (chkRow.Checked)
+                {
+                    selectedRowCounts++;
+                }
+            }
+        }
+        if (selectedRowCounts > 0)
+        {
+            //calculate meta analysis
+        }
+        else {
+            Alert.Show("You must minimum 2 research to calculate meta-analysis!");
         }
     }
 }
