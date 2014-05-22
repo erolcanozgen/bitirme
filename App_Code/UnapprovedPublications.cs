@@ -106,7 +106,6 @@ public class UnapprovedPublications
                                       +"P_Value VARCHAR(45) NULL DEFAULT NULL ,"
                                       + "OR_Value DECIMAL(20,10) NULL DEFAULT NULL ,"
                                       +"Reference VARCHAR(2000) NOT NULL ,"
-                                      + "isApproved INT(1) NOT NULL ,"
                                       + "Reference_Type INT(11) NOT NULL ,"
                                       + "CI VARCHAR(100) ,"
                                       +"ownerOfPublication VARCHAR(120) NULL DEFAULT NULL ,"

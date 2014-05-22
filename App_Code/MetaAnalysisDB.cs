@@ -33,8 +33,8 @@ public class MetaAnalysisDB
     {
         Connection newCon = new Connection();
         string query = String.Format("INSERT INTO metaanalysis"
-            + " (Disease_Name, SNP,OR_Value, P_Value,I2,NumOfPublications)"
-            + " VALUES('{0}','{1}','{2}','{3}','{4}',{5})"
+            + " (Disease_Name, SNP,OR_Value, P_Value,I2,NumOfPublications,Gene_Name)"
+            + " VALUES('{0}','{1}','{2}','{3}','{4}',{5}, (select DISTINCT Gene_Name from {0} where SNP = '{1}') )"
             , this.disease_name, this.snp, this.or_value, this.p_value, this.I2, this.numOfPublications);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         command.ExecuteNonQuery();
@@ -45,8 +45,8 @@ public class MetaAnalysisDB
     {
         Connection newCon = new Connection();
         string query = String.Format("UPDATE metaanalysis SET"
-            + " OR_Value='{0}', P_Value='{1}', I2='{2}', NumOfPublications='{3}'"
-            +" WHERE Disease_Name='{4}' AND SNP='{5}' "
+            + " OR_Value='{0}', P_Value='{1}', I2='{2}', NumOfPublications='{3}' ,Gene_Name = (select DISTINCT Gene_Name from {4} where SNP = '{5}')"
+            + " WHERE Disease_Name='{4}' AND SNP='{5}' "
             , this.or_value, this.p_value, this.I2, this.numOfPublications, this.disease_name, this.snp);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         command.ExecuteNonQuery();

@@ -14,15 +14,17 @@
     {
         private List<string[]> genes;
         private List<string[]> pathways;
+        private List<string> coveredPathways;
         private string findGeneStr;
         private string linkPathwayStr;
-        private string getImageStr; // map05169/image";
+        private static string getImageStr; // map05169/image";
         private string getGenesCountStr;
 
         public KeggApi()
         {
             genes = new List<string[]>();
             pathways = new List<string[]>();
+            coveredPathways = new List<string>();
             findGeneStr = "http://rest.kegg.jp/find/genes/";
             linkPathwayStr = "http://rest.kegg.jp/link/pathway/";
             getImageStr = "http://rest.kegg.jp/get/";
@@ -114,7 +116,7 @@
                 throw ex;
             }
         }
-        public Image getImage(string pathway)
+        public static Image getImage(string pathway)
         {
             HttpWebRequest req = WebRequest.Create(getImageStr + pathway + "/image") as HttpWebRequest;
             Image result = null;
@@ -164,6 +166,28 @@
                 throw ex;
             }
         }
+        public List<string> getGenes(string pathway)
+        {
+            List<string> tmp = new List<string>();
+            try
+            {      
+                foreach (string[] s in this.Pathways)
+                {
+                    if (pathway == s[1] && (coveredPathways.Find(p=>p == pathway))==null)
+                    {
+                        tmp.Add(s[0]);
+                        coveredPathways.Add(s[0]);
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return tmp;
+        }
+       
     }
 
 

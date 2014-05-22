@@ -37,6 +37,7 @@ public partial class Disasters : System.Web.UI.Page
 
     private void GetGridData()
     {
+        HyperLink link_gene;
         DataView sortedView = new DataView(dDetails.selectMetaAnalysis(DiseasesList.SelectedValue));
         sortedView.Sort = "OR_Value Desc";
         grdViewCustomers.DataSource = sortedView;
@@ -44,6 +45,12 @@ public partial class Disasters : System.Web.UI.Page
         foreach (GridViewRow row in grdViewCustomers.Rows)
         {
             if (row.RowIndex % 2 == 1) row.CssClass = "even";
+        }
+        for (int i = 0; i < grdViewCustomers.Rows.Count; i++)
+        {
+            link_gene = grdViewCustomers.Rows[i].FindControl("Gene_Name") as HyperLink;
+            link_gene.NavigateUrl = String.Format("{0}?gene={1}", ConfigurationManager.AppSettings["GeneCardsLink"], link_gene.Text);
+            link_gene.Target = "_blank";
         }
     }
 
@@ -126,16 +133,9 @@ public partial class Disasters : System.Web.UI.Page
 
     private void setReferenceColumn(DataTable dt, GridView grd)
     {
-        HyperLink link_ref, link_gene; Label lbl_ref;
-
+        HyperLink link_ref; Label lbl_ref;
         for (int i = 0; i < grd.Rows.Count; i++)
         {
-            link_gene = grd.Rows[i].FindControl("Gene_Name") as HyperLink;
-            link_gene.Text = dt.Rows[i]["Gene_Name"].ToString();
-            link_gene.NavigateUrl = String.Format("{0}?gene={1}", ConfigurationManager.AppSettings["GeneCardsLink"], dt.Rows[i]["Gene_Name"]);
-            link_gene.Target = "_blank";
-
-
             switch (dt.Rows[i]["Reference_Type"].ToString())
             {
                 case "1":
@@ -210,11 +210,10 @@ public partial class Disasters : System.Web.UI.Page
         }
     }
 
-    protected void calculateSelectedMetaAnalysis(object sender, EventArgs e)
+    protected void btnEnrichment_Click(object sender, EventArgs e)
     {
-        int selectedRowCounts = 0;
-        GridView grdViewOrdersOfCustomer = (GridView)FindControl("grdViewOrdersOfCustomer");
-        foreach (GridViewRow row in grdViewOrdersOfCustomer.Rows)
+        int selectedRowCounts = 0; string genes = String.Empty;
+        foreach (GridViewRow row in grdViewCustomers.Rows)
         {
             if (row.RowType == DataControlRowType.DataRow)
             {
@@ -222,15 +221,17 @@ public partial class Disasters : System.Web.UI.Page
                 if (chkRow.Checked)
                 {
                     selectedRowCounts++;
+                    genes += (row.Cells[3].FindControl("Gene_Name") as HyperLink).Text + ":";
                 }
             }
         }
-        if (selectedRowCounts > 0)
+        if (selectedRowCounts <= 0)
         {
-            //calculate meta analysis
+            Notifier.AddErrorMessage("Please select one publication at least!");
         }
-        else {
-            Alert.Show("You must minimum 2 research to calculate meta-analysis!");
+        else 
+        {
+            Response.Redirect(String.Format("~/Enrichment.aspx?genes={0}",genes));
         }
     }
 }

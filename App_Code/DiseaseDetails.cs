@@ -58,7 +58,7 @@ public class DiseaseDetails
     public DataTable selectMetaAnalysis(string diseaseName)
     {
         Connection newCon = new Connection();
-        string query = String.Format("select  SNP, OR_Value, P_Value, I2, NumOfPublications from MetaAnalysis where Disease_Name = '{0}' ", diseaseName);
+        string query = String.Format("select  SNP, OR_Value, P_Value, I2, NumOfPublications,Gene_Name from MetaAnalysis where Disease_Name = '{0}' ", diseaseName);
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();

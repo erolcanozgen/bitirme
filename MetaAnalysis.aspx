@@ -33,6 +33,7 @@
         }
     </style>
     <link rel="stylesheet" type="text/css" href="css/Table.css" />
+    <link href="css/Button.css" rel="stylesheet" />
       <script src="Scripts/ErrorSuccessNotifier.js"></script>
        <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
 </asp:Content>
@@ -42,18 +43,19 @@
         <table>
             <thead>
             <tr>
-                <th style="width:50%">
+                <th>
                     <asp:Label ID="Label1" runat="server" Text="Select a Disease to Examine Researches:"></asp:Label>              
                 </th>
                  <th> <asp:DropDownList ID="DiseasesList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="showDiseaseDetails" > </asp:DropDownList></th>
-                <th><asp:Button runat="server" Text="meta analiz" ID="btnMetaAnalysis" OnClick="btnMetaAnalysis_Click" /></th>
+                <th><asp:Button runat="server" CssClass="buttonCss" Text="meta analiz" ID="btnMetaAnalysis" OnClick="btnMetaAnalysis_Click" /></th>
+                <th><asp:Button runat="server" CssClass="buttonCss" Text="Make Enrichment Analysis" ID="btnEnrichment" OnClick="btnEnrichment_Click" /></th>
             </tr>
                 </thead>
          </table>
 
         <div id="excelButton">
                         <asp:ImageButton Visible="false" ID="excelAktar" runat="server" 
-                            ImageUrl="~/images/excelAktar.jpg" BorderColor="#333333" 
+                            ImageUrl="~/images/excelAktar.jpg" BorderColor="#333333"
                             BorderStyle="Ridge" onclick="excelAktar_Click" ImageAlign="Right" />
         </div>
 
@@ -71,11 +73,6 @@
 							<asp:GridView ID="grdViewOrdersOfCustomer" runat="server" AutoGenerateColumns="false"
 								DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False">
 								<Columns>
-                                        <asp:TemplateField HeaderText="Gene Name">
-                                        <ItemTemplate>
-                                            <asp:HyperLink ID="Gene_Name" runat="server"></asp:HyperLink>
-                                            </ItemTemplate>
-                                    </asp:TemplateField>
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="Case_Count" HeaderText="Case Count" />
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency In Case" />
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="Control_Count" HeaderText="Control Count" />
@@ -104,6 +101,11 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 				<asp:BoundField  DataField="SNP" HeaderText="SNP" SortExpression="SNP"/>
+                <asp:TemplateField HeaderText="Gene Name">
+                    <ItemTemplate>
+                            <asp:HyperLink ID="Gene_Name" runat="server" Text='<%# Bind("Gene_Name") %>'></asp:HyperLink>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="Meta OR Value" SortExpression="OR_Value"/>
                 <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="Z Value" SortExpression="P_Value"/>
                 <asp:BoundField  DataFormatString="{0:F2}" DataField="I2" HeaderText="I2" SortExpression="I2"/>
