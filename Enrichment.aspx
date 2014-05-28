@@ -12,7 +12,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <uc1:Notifier runat="server" ID="notifier" />
 
-    <asp:GridView ID="grdEnrichment" runat="server" AutoGenerateColumns="False" 
+    <asp:GridView ID="grdEnrichment" runat="server" AutoGenerateColumns="False" OnSorting="grdEnrichment_Sorting" OnPageIndexChanging="grdEnrichment_PageIndexChanging"
              BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Both" AllowSorting="True" AllowPaging="True">
 			           
 			<Columns>
@@ -21,8 +21,12 @@
                             <asp:HyperLink ID="keggPathways" runat="server" Text='<%# Bind("keggPathways") %>'></asp:HyperLink>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField  DataField="searchedGenes" HeaderText="Searched Genes" />
-                <asp:BoundField  DataFormatString="{0:F2}" DataField="significantScore" HeaderText="Significant Score" SortExpression="significatScore"/>
+                <asp:TemplateField HeaderText="Searched Genes">
+                    <ItemTemplate>
+                            <asp:Label ID="searchedGenes" runat="server" Text='<%# Bind("searchedGenes") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField  DataFormatString="{0:F2}" DataField="significantScore" HeaderText="Significant Score" SortExpression="significantScore"/>
 			</Columns>
             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />

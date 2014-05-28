@@ -209,7 +209,6 @@ public partial class Disasters : System.Web.UI.Page
             ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Meta analysis for " + DiseasesList.SelectedValue + " could not be done.');", true);
         }
     }
-
     protected void btnEnrichment_Click(object sender, EventArgs e)
     {
         int selectedRowCounts = 0; string genes = String.Empty;
