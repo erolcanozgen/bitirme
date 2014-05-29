@@ -24,6 +24,7 @@ public partial class Enrichment : System.Web.UI.Page
                  kegg.linkGenesToPathway();
 
                  table.Clear();
+                 table.Columns.Clear();
                  table.Columns.Add("keggPathways", typeof(string));
                  table.Columns.Add("searchedGenes", typeof(string));
                  table.Columns.Add("significantScore", typeof(float));

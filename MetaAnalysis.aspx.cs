@@ -196,7 +196,7 @@ public partial class Disasters : System.Web.UI.Page
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (dt.Rows[i]["SNP"] == null || dt.Rows[i]["SNP"].ToString() == String.Empty) continue;
+                if (dt.Rows[i]["SNP"].ToString() == "null" || dt.Rows[i]["SNP"].ToString() == String.Empty) continue;
                 MetaAnalaysis ma = new MetaAnalaysis(DiseasesList.SelectedValue.ToString(), dt.Rows[i]["SNP"].ToString());
                 ma.DoMetaAnalysis();
             }

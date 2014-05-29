@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="ContactUs.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page  Async="true" Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="ContactUs.aspx.cs" Inherits="_Default" %>
 
 <%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
 
@@ -27,23 +27,36 @@
             </tr>
             <tr>
                 <td style="vertical-align:middle" class="auto-style2"><span>Name</span></td>
-                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="nameTxt" runat="server" autocomplete="off"></asp:TextBox></td>
+                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="nameTxt" runat="server" autocomplete="off"></asp:TextBox>
+                    <asp:RequiredFieldValidator SetFocusOnError="true" ID="ReqName" runat="server" ErrorMessage="Please Enter Name!" 
+                        ControlToValidate="nameTxt" ForeColor="Red" Height="16px" Width="190px" Display="Dynamic"></asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr>
                 <td style="vertical-align:middle" class="auto-style2"><span>Email Address</span></td>
-                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="emailTxt" runat="server" autocomplete="off"></asp:TextBox></td>
+                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="emailTxt" runat="server" autocomplete="off"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="ReqEmail" runat="server" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"  
+                        ControlToValidate="emailTxt" ForeColor="Red" Height="16px" Width="190px" Display="Dynamic" ErrorMessage="Invalid E-mail address!">
+                    </asp:RegularExpressionValidator>
+                </td>
             </tr>
             <tr>
                 <td style="vertical-align:middle" class="auto-style2"><span>Subject</span></td>
-                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="subjectTxt" runat="server" autocomplete="off"></asp:TextBox></td>
+                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="subjectTxt" runat="server" autocomplete="off"></asp:TextBox>
+                    <asp:RequiredFieldValidator SetFocusOnError="true" ID="ReqSubject" runat="server" ErrorMessage="Please Enter Subject!" 
+                        ControlToValidate="subjectTxt" ForeColor="Red" Height="16px" Width="190px" Display="Dynamic"></asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr>
                 <td style="vertical-align:middle" class="auto-style2"><span>Message</span></td>
-                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="messageTxt" Width="98%" runat="server" Rows="5" TextMode="MultiLine"></asp:TextBox></td>
+                <td style="vertical-align:middle"><asp:TextBox CssClass="contact" ID="messageTxt" Width="98%" runat="server" Rows="5" TextMode="MultiLine"></asp:TextBox>
+                    <asp:RequiredFieldValidator SetFocusOnError="true" ID="ReqMessage" runat="server" ErrorMessage="Please Enter Message!" 
+                        ControlToValidate="messageTxt" ForeColor="Red" Height="16px" Width="190px" Display="Dynamic"></asp:RequiredFieldValidator>
+                </td>
             </tr>
             <tr style="text-align:right">
                 <td colspan="2" style="text-align:right; vertical-align:middle" class="auto-style2">
-                    &nbsp;<asp:Button CssClass="buttonCss" ID="SendMessageBtn" runat="server" Text=" Send " Height="33px" />
+                    &nbsp;<asp:Button CssClass="buttonCss" ID="SendMessageBtn" runat="server" Text=" Send " Height="33px" OnClick="SendMessageBtn_Click" />
                 </td>
             </tr>
         </table>
