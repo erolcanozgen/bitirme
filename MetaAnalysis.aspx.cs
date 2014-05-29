@@ -28,8 +28,6 @@ public partial class Disasters : System.Web.UI.Page
             {
                 excelAktar.Visible = Visible;
             }
-
-
         }
         //ListItem loginLI = this.Master.Page.FindControl("bsr") as ListItem;
         //loginLI.Visible = false; 
@@ -211,6 +209,10 @@ public partial class Disasters : System.Web.UI.Page
     }
     protected void btnEnrichment_Click(object sender, EventArgs e)
     {
+        ScriptManager.RegisterStartupScript(this, GetType(), "", "ShowProgress();", true);
+        //string script = "$(document).ready(function () { $('[id*=btnEnrichment]').click(); });";
+        //ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
+
         int selectedRowCounts = 0; string genes = String.Empty;
         foreach (GridViewRow row in grdViewCustomers.Rows)
         {

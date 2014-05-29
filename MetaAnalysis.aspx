@@ -26,6 +26,33 @@
 
 	</script>
     <style type="text/css">
+        .modal
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: black;
+            z-index: 99;
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+            -moz-opacity: 0.8;
+            min-height: 100%;
+            width: 100%;
+        }
+        .loading
+        {
+            font-family: Arial;
+            font-size: 10pt;
+            border: 5px solid #67CFF5;
+            width: 120px;
+            height: 110px;
+            display: none;
+            position: fixed;
+            background-color: White;
+            z-index: 999;
+            text-align:center;
+            vertical-align:middle;
+        }
         .modalBackground {
             background-color:white;
             filter:alpha(opacity=70);
@@ -34,8 +61,40 @@
     </style>
     <link rel="stylesheet" type="text/css" href="css/Table.css" />
     <link href="css/Button.css" rel="stylesheet" />
-      <script src="Scripts/ErrorSuccessNotifier.js"></script>
-       <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
+    <script src="Scripts/ErrorSuccessNotifier.js"></script>
+    <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        function ShowProgress() {
+            setTimeout(function () {
+                var modal = $('<div />');
+                modal.addClass("modal");
+                $('body').append(modal);
+                var loading = $(".loading");
+                loading.show();
+                var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+                var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+                loading.css({ top: top, left: left });
+            }, 200);
+        }
+        $('form').live("submit", function () {
+            var grid = document.getElementById("<%= grdViewCustomers.ClientID %>");
+            var totalChecked = 0;
+            if (grid.rows.length > 0) {
+                for (i = 1; i < grid.rows.length; i++) {
+                    cell = grid.rows[i].cells[1];
+                    for (j = 0; j < cell.childNodes.length; j++) {
+                        if (cell.childNodes[j].type == "checkbox") {
+                            if (cell.childNodes[j].checked == true)
+                                totalChecked++;
+                        }
+                    }
+                }
+            }
+            if (totalChecked != 0)
+                ShowProgress();
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <uc1:Notifier runat="server" ID="notifier" />
@@ -47,8 +106,8 @@
                     <asp:Label ID="Label1" runat="server" Text="Select a Disease to Examine Researches:"></asp:Label>              
                 </th>
                  <th> <asp:DropDownList ID="DiseasesList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="showDiseaseDetails" > </asp:DropDownList></th>
-                <th><asp:Button runat="server" CssClass="buttonCss" Text="meta analiz" ID="btnMetaAnalysis" OnClick="btnMetaAnalysis_Click" /></th>
-                <th><asp:Button runat="server" CssClass="buttonCss" Text="Make Enrichment Analysis" ID="btnEnrichment" OnClick="btnEnrichment_Click" /></th>
+                <th><asp:Button runat="server" CssClass="buttonCss" Text=" Meta Analysis " ID="btnMetaAnalysis" OnClick="btnMetaAnalysis_Click" /></th>
+                <th><asp:Button runat="server" CssClass="buttonCss" Text=" Make Enrichment Analysis " ID="btnEnrichment" OnClick="btnEnrichment_Click" /></th>
             </tr>
                 </thead>
          </table>
@@ -147,5 +206,8 @@
                 </tfoot>
         </table>
 	</div>
+    <div class="loading">
+        <img src="images/loader.gif" alt=""/>
+    </div>
 </asp:Content>
 
