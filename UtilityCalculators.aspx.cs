@@ -127,7 +127,7 @@ public partial class UtilityCalculators : System.Web.UI.Page
          double exp_rare = result["Expected_RH"];
          double p_allele = result["P_allele"];
          double q_allele = result["Q_allele"];
-         double x_square = result["Q_allele"];
+         double x_square = result["X_square"];
          double dof = (Convert.ToInt32(txt_com_homozygotes.Text) + Convert.ToInt32(txt_heterozygotes.Text) + Convert.ToInt32(txt_rare_homozygotes.Text));
          double p = alglib.chisquaredistr.chisquarecdistribution(dof, Convert.ToDouble(result["X_square"]));
 
@@ -156,7 +156,7 @@ public partial class UtilityCalculators : System.Web.UI.Page
     private string GetFormat(double nmbr)
     {
         string format = "0.";
-        while (nmbr < 1)
+        while (nmbr < 1 &&  nmbr !=  0)
         {
             format += "0";
             nmbr *= 10;
