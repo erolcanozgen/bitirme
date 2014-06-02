@@ -43,7 +43,7 @@ public class DiseaseDetails
         this.ownerOfPublication = String.Empty;
 	}
 
-    public DataTable selectDiseaseDetails(string name)
+    public DataTable getDiseaseDetails(string name)
     {
         Connection newCon = new Connection();
         string query = String.Format("select Id,DiseaseId, Case_Count, Control_Count, Disease_Name, Gene_Name, SNP, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference,Reference_Type, ownerOfPublication,CI from {0}", name);
@@ -55,7 +55,7 @@ public class DiseaseDetails
         newCon.conn.Close();
         return dt;
     }
-    public DataTable selectMetaAnalysis(string diseaseName)
+    public DataTable getMetaAnalysis(string diseaseName)
     {
         Connection newCon = new Connection();
         string query = String.Format("select  SNP, OR_Value, P_Value, I2, NumOfPublications,Gene_Name from MetaAnalysis where Disease_Name = '{0}' ", diseaseName);
@@ -83,7 +83,7 @@ public class DiseaseDetails
         }
         return dt2;
     }
-    public DataTable selectAllGenes(string[] diseaseName)
+    public DataTable getAllGenes(string[] diseaseName)
     {
         Connection newCon = new Connection();
         DataTable dt = new DataTable();
@@ -98,7 +98,7 @@ public class DiseaseDetails
         newCon.conn.Close();
         return dt;
     }
-    public DataTable selectAllSNPs(string[] diseaseName)
+    public DataTable getAllSNPs(string[] diseaseName)
     {
         Connection newCon = new Connection();
         DataTable dt = new DataTable();
@@ -113,7 +113,7 @@ public class DiseaseDetails
         newCon.conn.Close();
         return dt;   
     }
-    public DataTable selectSNPDetails(string diseaseName, string SnpName, string tempId)
+    public DataTable getSNPDetails(string diseaseName, string SnpName, string tempId)
     {
         Connection newCon = new Connection();
         string query = String.Format("select  Gene_Name,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value ,Reference,Reference_Type, SNP,CI from {0} where SNP = '{1}'", diseaseName, SnpName);
@@ -140,7 +140,7 @@ public class DiseaseDetails
         newCon.conn.Close();
         return ret;
     }
-    public DataTable SelectFilteredDiseaseDetails(List<KeyValuePair<string, string>> param, string name)
+    public DataTable getFilteredDiseaseDetails(List<KeyValuePair<string, string>> param, string name)
     {
         try{
          DataTable ret = new DataTable();
@@ -187,7 +187,6 @@ public class DiseaseDetails
             throw(ex);
         }
     }
-
     public DataTable GetSnpList()
     {
         try

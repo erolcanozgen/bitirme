@@ -29,7 +29,7 @@ public class AutoComplete : System.Web.Services.WebService {
         DiseaseDetails dDetails = new DiseaseDetails();
 
         DataTable dtDiseases = dName.selectDiseasesNames();
-        DataTable dtSNPs = dDetails.selectAllGenes(dName.tableNames);
+        DataTable dtSNPs = dDetails.getAllGenes(dName.tableNames);
 
         returnValue = dtSNPs.AsEnumerable().Select(row => row.Field<string>("Gene_Name")).ToArray();
 
@@ -45,7 +45,7 @@ public class AutoComplete : System.Web.Services.WebService {
         DiseaseDetails dDetails = new DiseaseDetails();
 
         DataTable dtDiseases = dName.selectDiseasesNames();
-        DataTable dtSNPs = dDetails.selectAllSNPs(dName.tableNames);
+        DataTable dtSNPs = dDetails.getAllSNPs(dName.tableNames);
 
         returnValue = dtSNPs.AsEnumerable().Select(row => row.Field<string>("SNP")).ToArray();
 

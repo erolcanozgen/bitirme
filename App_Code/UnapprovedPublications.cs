@@ -55,7 +55,8 @@ public class UnapprovedPublications
         command.ExecuteNonQuery();
         newCon.conn.Close();
     }
-    public DataTable selectUnapprovedDiseaseDetails()
+
+    public DataTable getUnapprovedDiseaseDetails()
     {
         DataTable dt = new DataTable();
         DataTable dt2 = new DataTable();
@@ -121,7 +122,6 @@ public class UnapprovedPublications
         command = new MySqlCommand(query, newCon.conn);
         command.ExecuteNonQuery();
     }
-
 
     private void insertToTable()
     {

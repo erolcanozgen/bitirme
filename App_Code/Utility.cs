@@ -84,7 +84,7 @@ public static class Utility
         }
     }
 
-    public static double CalculateChiSquareWithoutYates(int case_yes, int case_no, int control_yes, int control_no)
+    public static double CalculateChiSquare(int case_yes, int case_no, int control_yes, int control_no)
     {
         try
         {
@@ -200,7 +200,6 @@ public static class Utility
             throw ex;
         }
     }
-
 
     public static Dictionary<string, double> CalculateHardyWeingbergEquilibrium(int common_hmozgt, int heterozgt, int rare_homozgt)
     {

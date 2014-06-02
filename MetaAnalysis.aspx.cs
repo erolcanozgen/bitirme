@@ -36,7 +36,7 @@ public partial class Disasters : System.Web.UI.Page
     private void GetGridData()
     {
         HyperLink link_gene;
-        DataView sortedView = new DataView(dDetails.selectMetaAnalysis(DiseasesList.SelectedValue));
+        DataView sortedView = new DataView(dDetails.getMetaAnalysis(DiseasesList.SelectedValue));
         sortedView.Sort = "OR_Value Desc";
         grdViewCustomers.DataSource = sortedView;
         grdViewCustomers.DataBind();
@@ -86,7 +86,7 @@ public partial class Disasters : System.Web.UI.Page
             sortingDirection = "Asc";
         }
 
-        DataView sortedView = new DataView(dDetails.selectMetaAnalysis(DiseasesList.SelectedValue));
+        DataView sortedView = new DataView(dDetails.getMetaAnalysis(DiseasesList.SelectedValue));
         sortedView.Sort = e.SortExpression + " " + sortingDirection;
         grdViewCustomers.DataSource = sortedView;
         grdViewCustomers.DataBind();
@@ -99,7 +99,7 @@ public partial class Disasters : System.Web.UI.Page
             string SNP_Name = grdViewCustomers.DataKeys[e.Row.RowIndex]["SNP"].ToString();
             string tmpId = grdViewCustomers.DataKeys[e.Row.RowIndex]["tmpId"].ToString();
             GridView grdViewOrdersOfCustomer = (GridView)e.Row.FindControl("grdViewOrdersOfCustomer");
-            DataTable dt = dDetails.selectSNPDetails(DiseasesList.SelectedValue, SNP_Name, tmpId);
+            DataTable dt = dDetails.getSNPDetails(DiseasesList.SelectedValue, SNP_Name, tmpId);
             grdViewOrdersOfCustomer.DataSource = dt;
             grdViewOrdersOfCustomer.DataBind();
             setReferenceColumn(dt, grdViewOrdersOfCustomer);

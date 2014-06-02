@@ -52,7 +52,7 @@ public partial class Diseases : System.Web.UI.Page
         if (snp != String.Empty) param.Add(new KeyValuePair<string, string>("SNP", snp));
 
         DataTable dt = new DataTable();
-        dt = dDetails.SelectFilteredDiseaseDetails(param,cmbDiseaseName.SelectedValue);
+        dt = dDetails.getFilteredDiseaseDetails(param,cmbDiseaseName.SelectedValue);
         grdViewDiseases.DataSource = dt;
         grdViewDiseases.DataBind();
         setReferenceColumn(dt);
@@ -166,7 +166,7 @@ public partial class Diseases : System.Web.UI.Page
             sortingDirection = "Asc";
         }
 
-        DataView sortedView = new DataView(dDetails.selectDiseaseDetails(cmbDiseaseName.SelectedValue));
+        DataView sortedView = new DataView(dDetails.getDiseaseDetails(cmbDiseaseName.SelectedValue));
         sortedView.Sort = e.SortExpression + " " + sortingDirection;
         grdViewDiseases.DataSource = sortedView;
         grdViewDiseases.DataBind();
