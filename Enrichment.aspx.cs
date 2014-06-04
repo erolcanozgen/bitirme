@@ -8,7 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Enrichment : System.Web.UI.Page
 {
-    static DataTable table = new DataTable();
+    static DataView stable = new DataView();
+    DataTable table = new DataTable();
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -40,7 +41,6 @@ public partial class Enrichment : System.Web.UI.Page
                             else
                                  searchedGenes += str + ",";
                         }
-
                          table.Rows.Add(s[1], searchedGenes, ((float)tmpGenes.Length/kegg.genesCountInPathway(s[1])));
 
                  }
@@ -48,6 +48,8 @@ public partial class Enrichment : System.Web.UI.Page
                  sortedView.Sort = "significantScore Desc";
                  grdEnrichment.DataSource = sortedView;
                  grdEnrichment.DataBind();
+
+                 stable = sortedView;
 
                  foreach (GridViewRow row in grdEnrichment.Rows)
                  {
@@ -80,7 +82,7 @@ public partial class Enrichment : System.Web.UI.Page
         {
             int j=0;
             if(i>colors.Length) 
-                j = colors.Length;
+                j = colors.Length-1;
             else 
                 j = i;
             param += '/' + genesOfPath[i] + colors[j]; 
@@ -142,9 +144,8 @@ public partial class Enrichment : System.Web.UI.Page
     protected void grdEnrichment_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         grdEnrichment.PageIndex = e.NewPageIndex;
-        DataView sortedView = new DataView(table);
-        sortedView.Sort = "significantScore Desc";
-        grdEnrichment.DataSource = sortedView;
+        stable.Sort = "significantScore Desc";
+        grdEnrichment.DataSource = stable;
         grdEnrichment.DataBind();
 
         foreach (GridViewRow row in grdEnrichment.Rows)
