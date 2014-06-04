@@ -41,8 +41,9 @@
             set { genes = value; }
         }
 
-        public void findGenes(string geneName)
+        public bool findGenes(string geneName)
         {
+            int counter=0;
             HttpWebRequest req = WebRequest.Create(findGeneStr + geneName) as HttpWebRequest;
             try
             {
@@ -60,24 +61,30 @@
                         if (line.StartsWith("hsa", StringComparison.CurrentCultureIgnoreCase))
                         {
                             string[] parts = line.Split('\t');
-                            if (Regex.IsMatch(parts[1], string.Format(@"\b{0}\b", geneName)))
+                            if (Regex.IsMatch((parts[1].Split(';'))[0], string.Format(@"\b{0}\b", geneName)))
                             {
-                                string[] tmp = new string[2];
+                                string[] tmp = new string[3];
                                 tmp[0] = geneName;
                                 tmp[1] = parts[0];
+                                tmp[2] = (parts[1].Split(';'))[0];
                                 genes.Add(tmp);
                             }
+                            counter++;
                         }
                     }
                 }
+                if (counter == 0)
+                    return false;
             }
             catch (Exception ex)
             {
-                throw ex;
+                return false;
             }
+            return true;
         }
-        public void linkGenesToPathway()
+        public bool linkGenesToPathway()
         {
+            int counter = 0;
             string parameters = String.Empty;
             foreach (string[] gene in genes)
             {
@@ -108,13 +115,17 @@
                             tmp[1] = parts[1];
                             pathways.Add(tmp);
                         }
+                        counter++;
                     }
+                    if (counter == 0)
+                        return false;
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                return false;
             }
+            return true;
         }
         public static Image getImage(string pathway)
         {
@@ -168,12 +179,13 @@
         }
         public List<string> getGenes(string pathway)
         {
+            coveredPathways.Clear();
             List<string> tmp = new List<string>();
             try
             {      
                 foreach (string[] s in this.Pathways)
                 {
-                    if (pathway == s[1] && (coveredPathways.Find(p=>p == pathway))==null)
+                    if (pathway == s[1] && (coveredPathways.Find(p=>p == s[0]))==null)
                     {
                         tmp.Add(s[0]);
                         coveredPathways.Add(s[0]);
@@ -186,6 +198,12 @@
                 throw ex;
             }
             return tmp;
+        }
+        public void clear()
+        {
+            genes.Clear();
+            pathways.Clear();
+            coveredPathways.Clear();
         }
        
     }

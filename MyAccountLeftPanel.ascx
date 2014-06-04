@@ -25,7 +25,7 @@
 
                 <div class="ca-content">
                     <h2 class="ca-main">My Publications</h2>
-                    <h3 class="ca-sub">See Your Publivations</h3>
+                    <h3 class="ca-sub">See Your Publications</h3>
                 </div>
             </a>
         </li>

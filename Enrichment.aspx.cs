@@ -10,62 +10,75 @@ public partial class Enrichment : System.Web.UI.Page
 {
     static DataView stable = new DataView();
     DataTable table = new DataTable();
+    static KeggApi kegg = new KeggApi();
     protected void Page_Load(object sender, EventArgs e)
     {
         try
         {
             if (!IsPostBack)
             {
-                 string[] genes = Request.QueryString["genes"].Split(':');
-                 KeggApi kegg = new KeggApi();
-                 for (int i = 0; i < genes.Length - 1; i++)
-                 {
-                     kegg.findGenes(genes[i]);
-                 }
-                 kegg.linkGenesToPathway();
+                string notFoundGenes = String.Empty;
+                string notFoundPaths = String.Empty;
+                kegg.clear();
+                string[] genes = Request.QueryString["genes"].Split(':');
+                for (int i = 0; i < genes.Length; i++)
+                {
+                    if (genes[i] == "") continue;
+                    if (!kegg.findGenes(genes[i]))
+                        notFoundGenes += genes[i] + " ";
+                }
+                if (notFoundGenes != String.Empty)
+                    Notifier.AddWarningMessage(notFoundGenes + "gene(s) are not found!");
+                else
+                    grdEnrichment.EmptyDataText = "There are no pathway for selected gene(s)";
+                kegg.linkGenesToPathway();
 
-                 table.Clear();
-                 table.Columns.Clear();
-                 table.Columns.Add("keggPathways", typeof(string));
-                 table.Columns.Add("searchedGenes", typeof(string));
-                 table.Columns.Add("significantScore", typeof(float));
+                table.Clear();
+                table.Columns.Clear();
+                table.Columns.Add("keggPathways", typeof(string));
+                table.Columns.Add("searchedGenes", typeof(string));
+                table.Columns.Add("significantScore", typeof(float));
 
-                 foreach (string[] s in kegg.Pathways)
-                 {
-                     string[] tmpGenes = kegg.getGenes(s[1]).ToArray();
-                     string searchedGenes = String.Empty;
-                         foreach (string str in tmpGenes)
-                         {
-                             if (str == tmpGenes[tmpGenes.Length - 1])
-                                 searchedGenes += str;
+                List<string> coveredPathways = new List<string>();
+                foreach (string[] s in kegg.Pathways)
+                {
+                    if ((coveredPathways.Find(p => p == s[1])) == null)
+                    {
+                        coveredPathways.Add(s[1]);
+                        string[] tmpGenes = kegg.getGenes(s[1]).ToArray();
+                        string searchedGenes = String.Empty;
+                        foreach (string str in tmpGenes)
+                        {
+                            if (str == tmpGenes[tmpGenes.Length - 1])
+                                searchedGenes += str;
                             else
-                                 searchedGenes += str + ",";
+                                searchedGenes += str + ",";
                         }
-                         table.Rows.Add(s[1], searchedGenes, ((float)tmpGenes.Length/kegg.genesCountInPathway(s[1])));
+                        table.Rows.Add(s[1], searchedGenes, ((float)tmpGenes.Length / kegg.genesCountInPathway(s[1])));
+                    }
+                }
+                DataView sortedView = new DataView(table);
+                sortedView.Sort = "significantScore Desc";
+                grdEnrichment.DataSource = sortedView;
+                grdEnrichment.DataBind();
 
-                 }
-                 DataView sortedView = new DataView(table);
-                 sortedView.Sort = "significantScore Desc";
-                 grdEnrichment.DataSource = sortedView;
-                 grdEnrichment.DataBind();
+                stable = sortedView;
 
-                 stable = sortedView;
+                foreach (GridViewRow row in grdEnrichment.Rows)
+                {
+                    if (row.RowIndex % 2 == 1) row.CssClass = "even";
+                }
 
-                 foreach (GridViewRow row in grdEnrichment.Rows)
-                 {
-                     if (row.RowIndex % 2 == 1) row.CssClass = "even";
-                 }
-
-                 HyperLink link_image;
-                 for (int i = 0; i < grdEnrichment.Rows.Count; i++)
-                 {
-                     link_image = grdEnrichment.Rows[i].FindControl("keggPathways") as HyperLink;
-                     if (link_image.Text.Substring(0, 5) == "path:")
-                         link_image.Text = link_image.Text.Remove(0, 5);    // remove path: from path:hsa05010 = hsa05010 
-                     string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');
-                     link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath));
-                     link_image.Target = "_blank";
-                 }
+                HyperLink link_image;
+                for (int i = 0; i < grdEnrichment.Rows.Count; i++)
+                {
+                    link_image = grdEnrichment.Rows[i].FindControl("keggPathways") as HyperLink;
+                    if (link_image.Text.Substring(0, 5) == "path:")
+                        link_image.Text = link_image.Text.Remove(0, 5);    // remove path: from path:hsa05010 = hsa05010 
+                    string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');
+                    link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath,kegg.Genes));
+                    link_image.Target = "_blank";
+                }
             }
         }
         catch (Exception ex)
@@ -74,8 +87,9 @@ public partial class Enrichment : System.Web.UI.Page
             //Alert.Show(ex.Message);
         }
     }
-    private string createParameters(string[] genesOfPath)
+    private string createParameters(string[] genesOfPath,List<string[]> s)
     {
+        List<string[]> syn = new List<string[]>(); 
         string param = String.Empty;
         string[] colors = { "%09yellow,blue", "%09orange,blue", "%09pink,blue", "%09purple,blue", "%09brown,blue", "%09green,blue", "%09red,blue", "%09black,blue" };
         for (int i = 0; i < genesOfPath.Length; i++) 
@@ -85,7 +99,12 @@ public partial class Enrichment : System.Web.UI.Page
                 j = colors.Length-1;
             else 
                 j = i;
-            param += '/' + genesOfPath[i] + colors[j]; 
+            string[] synonims = s.Where(p => p[0] == genesOfPath[i]).Select(p => p[2]).ToArray();
+            foreach (string synonym in synonims)
+            {
+                foreach (string str in synonym.Split(','))
+                    param += '/' + str + colors[j];
+            }
         }
         return param;
     }
@@ -136,11 +155,10 @@ public partial class Enrichment : System.Web.UI.Page
             if (link_image.Text.Substring(0, 5) == "path:")
                 link_image.Text = link_image.Text.Remove(0, 5);    // remove path: from path:hsa05010 = hsa05010 
             string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');
-            link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath));
+            link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath, kegg.Genes));
             link_image.Target = "_blank";
         }
     }
-
     protected void grdEnrichment_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         grdEnrichment.PageIndex = e.NewPageIndex;
@@ -160,7 +178,7 @@ public partial class Enrichment : System.Web.UI.Page
             if (link_image.Text.Substring(0, 5) == "path:")
                 link_image.Text = link_image.Text.Remove(0, 5);    // remove path: from path:hsa05010 = hsa05010 
             string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');
-            link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath));
+            link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath, kegg.Genes));
             link_image.Target = "_blank";
         }
     }
