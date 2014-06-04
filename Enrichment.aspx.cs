@@ -78,6 +78,10 @@ public partial class Enrichment : System.Web.UI.Page
                     string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');
                     link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath,kegg.Genes));
                     link_image.Target = "_blank";
+
+                    string[] colors = { "yellow", "orange", "pink", "purple", "brown", "green", "red", "black" };
+                    for (int j = 0; j < genesOfPath.Length; j++ )
+                        grdEnrichment.Rows[i].Cells[1].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
                 }
             }
         }
@@ -157,6 +161,10 @@ public partial class Enrichment : System.Web.UI.Page
             string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');
             link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath, kegg.Genes));
             link_image.Target = "_blank";
+
+            string[] colors = { "yellow", "orange", "pink", "purple", "brown", "green", "red", "black" };
+            for (int j = 0; j < genesOfPath.Length; j++)
+                grdEnrichment.Rows[i].Cells[1].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
         }
     }
     protected void grdEnrichment_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -180,6 +188,10 @@ public partial class Enrichment : System.Web.UI.Page
             string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');
             link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath, kegg.Genes));
             link_image.Target = "_blank";
+
+            string[] colors = { "yellow", "orange", "pink", "purple", "brown", "green", "red", "black" };
+            for (int j = 0; j < genesOfPath.Length; j++)
+                grdEnrichment.Rows[i].Cells[1].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
         }
     }
 }

@@ -184,12 +184,12 @@
         </div>
         <footer>
             <p class="footer_note">
-                Director of publication: Elif Everest<br />
-                Project manager: Assoc. Dr. Eda Tahir Turanli<br />
-                Molecular Biology and Genetics Programme<br />
+                Designed and Developed by: Basri Kaya-Erol Can Özgen<br />
+                Project manager: Yrd. Doç. Dr. Ömer Sinan Saraç<br />
+                Faculty of Computer and Informatics<br />
                 Istanbul Technical University
             </p>
-            <p style="text-align: right">Copyright &copy; CSS3_two | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
+            <p style="text-align: right; font-size:6px">Copyright &copy; CSS3_two | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
         </footer>
     </div>
     <!-- javascript at the bottom for fast page loading -->
