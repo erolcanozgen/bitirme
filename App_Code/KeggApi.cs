@@ -201,8 +201,8 @@
         }
         public string getPathwayName(string pathId)
         {
-
-            HttpWebRequest req = WebRequest.Create("http://rest.kegg.jp/get/" + pathId) as HttpWebRequest;
+            pathId = pathId.Remove(0, 8); // path:hsa04310 => 04310
+            HttpWebRequest req = WebRequest.Create("http://rest.kegg.jp/find/pathway/" + pathId) as HttpWebRequest;
             try
             {
                 using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
@@ -213,17 +213,12 @@
                         throw new ApplicationException(message);
                     }
                     StreamReader reader = new StreamReader(resp.GetResponseStream());
-                    while (reader.Peek() >= 0)
+                    string line = reader.ReadLine();
+                    if (line.StartsWith("path", StringComparison.CurrentCultureIgnoreCase))
                     {
-                        string line = reader.ReadLine();
-                        if (line.StartsWith("NAME", StringComparison.CurrentCultureIgnoreCase))
-                        {
-                            line = line.Remove(0, 4);
-                            line = line.Trim();
-                            return line;
-                        }
+                        string[] parts = line.Split('\t');
+                        return (parts[1].Trim());
                     }
-                
                 }
             }
             catch (Exception ex)

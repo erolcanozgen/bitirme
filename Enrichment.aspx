@@ -21,7 +21,7 @@
                             <asp:HyperLink ID="pathId" runat="server" Text='<%# Bind("pathId") %>'></asp:HyperLink>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField  DataFormatString="{0:F2}" DataField="pathName"  Visible="false" HeaderText="Pathway Name" SortExpression="pathName"/>
+                <asp:BoundField  DataFormatString="{0:F2}" DataField="pathName" HeaderText="Pathway Name" SortExpression="pathName"/>
                 <asp:TemplateField HeaderText="Searched Genes">
                     <ItemTemplate>
                             <asp:Label ID="searchedGenes" runat="server" Text='<%# Bind("searchedGenes") %>'></asp:Label>
@@ -29,6 +29,7 @@
                 </asp:TemplateField>
                 <asp:BoundField  DataFormatString="{0:F2}" DataField="significantScore" HeaderText="Significance Score" SortExpression="significantScore"/>
 			</Columns>
+            <RowStyle Height="40px" />
             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
             <SortedAscendingCellStyle BackColor="#F1F1F1" />

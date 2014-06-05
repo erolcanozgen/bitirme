@@ -55,7 +55,7 @@ public partial class Enrichment : System.Web.UI.Page
                             else
                                 searchedGenes += str + ",";
                         }
-                        table.Rows.Add(s[1],"" /*kegg.getPathwayName(s[1])*/, searchedGenes, ((float)tmpGenes.Length / kegg.genesCountInPathway(s[1])));
+                        table.Rows.Add(s[1], kegg.getPathwayName(s[1]), searchedGenes, ((float)tmpGenes.Length / kegg.genesCountInPathway(s[1])));
                     }
                 }
                 DataView sortedView = new DataView(table);
