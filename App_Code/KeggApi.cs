@@ -1,11 +1,12 @@
 ﻿ using System;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Net;
-    using System.IO;
-    using System.Drawing;
-    using System.Collections.Generic;
-    using System.Text.RegularExpressions;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net;
+using System.IO;
+using System.Drawing;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using MySql.Data.MySqlClient;
 
     /// <summary>
     /// Summary description for KeggApi
@@ -43,6 +44,37 @@
 
         public bool findGenes(string geneName)
         {
+            #region serach gene in DB
+                try
+                {
+
+                    Connection newCon = new Connection();
+                    string query = String.Format("select * from kegggenes WHERE description like '%{0}%'", geneName);
+                    MySqlCommand command = new MySqlCommand(query, newCon.conn);
+                    MySqlDataReader dr = command.ExecuteReader();
+
+                    if(dr.HasRows)
+                    {
+                        while(dr.Read())
+                        {
+                            if (Regex.IsMatch(dr["description"].ToString(), string.Format(@"\b{0}\b", geneName)))
+                            {
+                                string[] tmp = new string[3];
+                                tmp[0] = geneName;
+                                tmp[1] = dr["geneId"].ToString();
+                                tmp[2] = dr["description"].ToString();
+                                genes.Add(tmp);
+                            }
+                        }
+                        return true;
+                    }
+                    newCon.conn.Close();
+                }
+                catch(Exception ex)
+                {
+                    return false;
+                }
+            #endregion
             int counter=0;
             HttpWebRequest req = WebRequest.Create(findGeneStr + geneName) as HttpWebRequest;
             try
@@ -201,6 +233,25 @@
         }
         public string getPathwayName(string pathId)
         {
+            #region serach pathway in DB
+            try
+            {
+                Connection newCon = new Connection();
+                string query = String.Format("select name from keggpathways WHERE pathId = '{0}'", pathId);
+                MySqlCommand command = new MySqlCommand(query, newCon.conn);
+                MySqlDataReader dr = command.ExecuteReader();
+                if (dr.Read())
+                {
+                    string name = dr["name"].ToString().Replace("- Homo sapiens (human)", "");
+                    return name;
+                }
+                newCon.conn.Close();
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+            #endregion
             pathId = pathId.Remove(0, 8); // path:hsa04310 => 04310
             HttpWebRequest req = WebRequest.Create("http://rest.kegg.jp/find/pathway/" + pathId) as HttpWebRequest;
             try
