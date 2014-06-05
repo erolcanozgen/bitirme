@@ -199,6 +199,39 @@
             }
             return tmp;
         }
+        public string getPathwayName(string pathId)
+        {
+
+            HttpWebRequest req = WebRequest.Create("http://rest.kegg.jp/get/" + pathId) as HttpWebRequest;
+            try
+            {
+                using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+                {
+                    if (resp.StatusCode != HttpStatusCode.OK)
+                    {
+                        var message = String.Format("Request failed. Received HTTP {0}", resp.StatusCode);
+                        throw new ApplicationException(message);
+                    }
+                    StreamReader reader = new StreamReader(resp.GetResponseStream());
+                    while (reader.Peek() >= 0)
+                    {
+                        string line = reader.ReadLine();
+                        if (line.StartsWith("NAME", StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            line = line.Remove(0, 4);
+                            line = line.Trim();
+                            return line;
+                        }
+                    }
+                
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return "";
+        }
         public void clear()
         {
             genes.Clear();

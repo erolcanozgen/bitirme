@@ -35,7 +35,8 @@ public partial class Enrichment : System.Web.UI.Page
 
                 table.Clear();
                 table.Columns.Clear();
-                table.Columns.Add("keggPathways", typeof(string));
+                table.Columns.Add("pathId", typeof(string));
+                table.Columns.Add("pathName", typeof(string));
                 table.Columns.Add("searchedGenes", typeof(string));
                 table.Columns.Add("significantScore", typeof(float));
 
@@ -54,7 +55,7 @@ public partial class Enrichment : System.Web.UI.Page
                             else
                                 searchedGenes += str + ",";
                         }
-                        table.Rows.Add(s[1], searchedGenes, ((float)tmpGenes.Length / kegg.genesCountInPathway(s[1])));
+                        table.Rows.Add(s[1], kegg.getPathwayName(s[1]), searchedGenes, ((float)tmpGenes.Length / kegg.genesCountInPathway(s[1])));
                     }
                 }
                 DataView sortedView = new DataView(table);
@@ -72,7 +73,7 @@ public partial class Enrichment : System.Web.UI.Page
                 HyperLink link_image;
                 for (int i = 0; i < grdEnrichment.Rows.Count; i++)
                 {
-                    link_image = grdEnrichment.Rows[i].FindControl("keggPathways") as HyperLink;
+                    link_image = grdEnrichment.Rows[i].FindControl("pathId") as HyperLink;
                     if (link_image.Text.Substring(0, 5) == "path:")
                         link_image.Text = link_image.Text.Remove(0, 5);    // remove path: from path:hsa05010 = hsa05010 
                     string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');
@@ -81,7 +82,7 @@ public partial class Enrichment : System.Web.UI.Page
 
                     string[] colors = { "yellow", "orange", "pink", "purple", "brown", "green", "red", "black" };
                     for (int j = 0; j < genesOfPath.Length; j++ )
-                        grdEnrichment.Rows[i].Cells[1].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
+                        grdEnrichment.Rows[i].Cells[2].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
                 }
             }
         }
@@ -155,7 +156,7 @@ public partial class Enrichment : System.Web.UI.Page
         HyperLink link_image;
         for (int i = 0; i < grdEnrichment.Rows.Count; i++)
         {
-            link_image = grdEnrichment.Rows[i].FindControl("keggPathways") as HyperLink;
+            link_image = grdEnrichment.Rows[i].FindControl("pathId") as HyperLink;
             if (link_image.Text.Substring(0, 5) == "path:")
                 link_image.Text = link_image.Text.Remove(0, 5);    // remove path: from path:hsa05010 = hsa05010 
             string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');
@@ -182,7 +183,7 @@ public partial class Enrichment : System.Web.UI.Page
         HyperLink link_image;
         for (int i = 0; i < grdEnrichment.Rows.Count; i++)
         {
-            link_image = grdEnrichment.Rows[i].FindControl("keggPathways") as HyperLink;
+            link_image = grdEnrichment.Rows[i].FindControl("pathId") as HyperLink;
             if (link_image.Text.Substring(0, 5) == "path:")
                 link_image.Text = link_image.Text.Remove(0, 5);    // remove path: from path:hsa05010 = hsa05010 
             string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');

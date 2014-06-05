@@ -16,11 +16,12 @@
              BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Both" AllowSorting="True" AllowPaging="True">
 			           
 			<Columns>
-                <asp:TemplateField HeaderText="Kegg Pathways">
+                <asp:TemplateField HeaderText="Pathway Id">
                     <ItemTemplate>
-                            <asp:HyperLink ID="keggPathways" runat="server" Text='<%# Bind("keggPathways") %>'></asp:HyperLink>
+                            <asp:HyperLink ID="pathId" runat="server" Text='<%# Bind("pathId") %>'></asp:HyperLink>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:BoundField  DataFormatString="{0:F2}" DataField="pathName" HeaderText="Pathway Name" SortExpression="pathName"/>
                 <asp:TemplateField HeaderText="Searched Genes">
                     <ItemTemplate>
                             <asp:Label ID="searchedGenes" runat="server" Text='<%# Bind("searchedGenes") %>'></asp:Label>
