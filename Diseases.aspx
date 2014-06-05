@@ -51,56 +51,59 @@
       
     <div style="float:left;width:345px">
                 
-         <table id="filterTable">
-      
-             <thead>
+    <table id="filterTable" class="">  
+    <thead>
 		<tr>
-			<th colspan="2"> Advanced Search</th>
+			<th style="padding:10px" colspan="2"> Advanced Search</th>
 		</tr>
 	</thead>
-             <tbody>
+    <tbody>
          <tr>
-          <td><label id="lblDiseaseName">Disease Name: </label></td>
-          <td><asp:DropDownList runat="server" ID="cmbDiseaseName" Width="143px"></asp:DropDownList></td>
+          <td style="padding:10px"><label id="lblDiseaseName">Disease Name: </label></td>
+          <td style="padding:10px"><asp:DropDownList runat="server" ID="cmbDiseaseName" Width="143px"></asp:DropDownList></td>
          </tr> 
 
          <tr>
             
-          <td><label id="Label1">Snp : </label></td>
-          <td><asp:TextBox ID="txtSNP" runat="server"></asp:TextBox>
+          <td style="padding:10px"><label id="Label1">Snp : </label></td>
+          <td style="padding:10px"><asp:TextBox ID="txtSNP" runat="server"></asp:TextBox>
 
                 <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSNP" MinimumPrefixLength="1" CompletionInterval="100" 
                     EnableCaching="false" ServicePath="AutoComplete.asmx" ServiceMethod="GetSNPs" Enabled="true" ></asp:AutoCompleteExtender></td>
          </tr>
           
           <tr>
-          <td><label id="lblGene">Gene Name: </label></td>
-          <td><asp:TextBox runat="server" ID="txtGene" Width="143px"></asp:TextBox></td>
+          <td style="padding:10px"><label id="lblGene">Gene Name: </label></td>
+          <td style="padding:10px"><asp:TextBox runat="server" ID="txtGene" Width="143px"></asp:TextBox></td>
           </tr> 
-         
       
           <tr>
-          <td><label id="lblMinimumSample">Minumum sample size: </label></td>
-          <td><asp:TextBox runat="server" ID="txtMinimumSample" Width="143px"></asp:TextBox></td>
+          <td style="padding:10px"><label id="lblMinimumSample">Minumum Case Count: </label></td>
+          <td style="padding:10px"><asp:TextBox runat="server" ID="txtMinimumCase" Width="143px"></asp:TextBox></td>
+          </tr>
+
+          <tr>
+          <td style="padding:10px"><label id="Label2">Minumum Control Count: </label></td>
+          <td style="padding:10px"><asp:TextBox runat="server" ID="txtMinimumControl" Width="143px"></asp:TextBox></td>
           </tr>
               
-                 </tbody>
-             <tfoot>
-           <tr>
-           <td style="text-align:right" colspan="2">
-               <asp:Button runat="server" ID="btnFilter" CssClass="buttonCss" Text=" Filter " OnClick="btnFilter_Click" />
-           </td>
-           </tr>
-             </tfoot>
-          </table>
+    </tbody>
+    <tfoot>
+        <tr>
+        <td style="text-align:right; padding:10px" colspan="2">
+            <asp:Button runat="server" ID="btnFilter" CssClass="buttonCss" Text=" Filter " OnClick="btnFilter_Click" />
+        </td>
+        </tr>
+    </tfoot>
+    </table>
 
     </div>
 
       <div id="DiseasesTable" style="float:left; width:830px" aria-disabled="False">
             
                 <asp:Panel ID="diseasesTablePanel" runat="server" ScrollBars="Auto">
-                    <asp:GridView ID="grdViewDiseases" runat="server" AutoGenerateColumns="false" OnSorting="grdViewDiseases_Sorting"
-			        DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="true" HorizontalAlign="Center" Width="95%" AllowSorting="True" OnPageIndexChanging="grdViewDiseases_PageIndexChanging">
+                    <asp:GridView ID="grdViewDiseases" runat="server" AutoGenerateColumns="false" OnSorting="grdViewDiseases_Sorting" RowStyle-Wrap="false"
+			        DataKeyNames="SNP" AllowPaging="true" HorizontalAlign="Center" Width="95%" AllowSorting="True" OnPageIndexChanging="grdViewDiseases_PageIndexChanging">
 
                         <Columns>
                             <asp:TemplateField HeaderText="Gene Name">
@@ -118,14 +121,14 @@
                             <asp:BoundField  DataField="CI" HeaderText="95% CI" SortExpression="CI"/>
                             <asp:TemplateField HeaderText="Reference">
                                 <ItemTemplate>
-                                    <asp:HyperLink ID="Link" runat="server" Text='<%# Bind("Reference") %>' ></asp:HyperLink>
+                                    <asp:HyperLink ID="Link" runat="server" Visible="false" Text='<%# Bind("Reference") %>' ></asp:HyperLink>
                                     <asp:Label runat="server" ID="lbl_reference" Visible="false" Text='<%# Bind("Reference") %>'></asp:Label>
-                                    <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
+                                    <asp:LinkButton ID="seeDetailsBtn" runat="server" Visible="false" OnClick="ShowPopup">See Details</asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField Visible="false"  DataField="ownerOfPublication" HeaderText="Owner Of Publication" />
                         </Columns>
-                        <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                        <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" Height="40px" />
                     </asp:GridView>
                 </asp:Panel>
                 <asp:Button ID="Button1" runat="server" Text="Button" style="display:none" />

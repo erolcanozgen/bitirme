@@ -5,7 +5,7 @@
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="headContent" runat="server">
     <link href="css/style.css" type="text/css" rel="stylesheet" />
-    <link href="css/Table.css" type="text/css" rel="stylesheet" />
+    <link href="css/UtilityTable.css" type="text/css" rel="stylesheet" />
     <link href="css/Button.css" type="text/css" rel="stylesheet" />
       <script src="Scripts/ErrorSuccessNotifier.js"></script>
        <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
@@ -15,7 +15,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <uc1:Notifier runat="server" ID="notifier" />
     <div>
-
         <asp:TabContainer runat="server">
 
             <asp:TabPanel runat="server" BorderColor="Black"  ScrollBars="Auto">
@@ -24,7 +23,10 @@
                 </HeaderTemplate>
                 
                 <ContentTemplate>
-                    <div style="float: left; width: 345px">
+                <table style="width:100%">
+                <tr>
+                    <td style="vertical-align:top">
+                        <div style="float: left; width: 345px;">
 
                         <table id="filterTable">
 
@@ -105,7 +107,9 @@
                         </table>
 
                     </div>
-                     <asp:Panel  ID="pnl_Odds_results" runat="server">
+                    </td>
+                    <td style="border-left-style: solid; border-left-width: 1px; border-left-color: #C0C0C0">
+                    <asp:Panel  ID="pnl_Odds_results" runat="server">
                     <div style=" float:right; width: 350px" aria-disabled="False">
 
                         <table>
@@ -159,7 +163,6 @@
 
                         </table>
                     </div>
-
                     <div style="float: right; width: 350px" aria-disabled="False">
                         <table>
                             <thead>
@@ -211,8 +214,7 @@
                         </table>
 
                     </div>
-
-               <div style="width: 450px;left: 600px; position: relative; top: 24px;" aria-disabled="False">
+                    <div style="width: 450px;left: 200px; position: relative; top: 24px;" aria-disabled="False">
                     <table>
                         <thead>
                             <th>Chi-Square - P Value</th>
@@ -255,12 +257,13 @@
 
                     </table>
                    </div>
-                         </asp:Panel>
+                    </asp:Panel>
+                    </td>
+                </tr>
+                </table>
                </ContentTemplate>
 
             </asp:TabPanel>
-
-
             <asp:TabPanel runat="server"  ScrollBars="Auto">
 
                 <HeaderTemplate>
@@ -268,7 +271,10 @@
                 </HeaderTemplate>
                 
                 <ContentTemplate>
-                    <div style="float: left; width: 345px">
+                  <table style="width:100%">
+                      <tr> 
+                          <td  style="vertical-align:top">
+                                   <div style="float: left; width: 345px">
                         <table>
                             <thead>
                                 <th>Hardy-Weinberg equilibrium</th>
@@ -341,80 +347,86 @@
                         </table>
 
                     </div>
+                          </td>
+                      
+                          <td style="border-left-style: solid; border-left-width: 1px; border-left-color: #C0C0C0">
+         
+                             <div style="float: right; width: 650px">
 
+                                 <table>
+                                    <thead>
+                                        <th>Results</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                 <asp:Label ID="lbl_expected_common" runat="server" Text="Expected Common Homozygotes"></asp:Label>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <asp:TextBox ID="txt_expected_common" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
 
-                    <div style="float: right; width: 650px">
+                                        <tr>
+                                            <td>
+                                                <asp:Label ID="lbl_expected_heterozgt" runat="server" Text="Expected Heterozygotes"></asp:Label>
+                                            </td>
+                                             <td style="text-align: left">
+                                                <asp:TextBox ID="txt_expected_heterozgt" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
 
-                        <table>
-                            <thead>
-                                <th>Results</th>
-                            </thead>
+                                        <tr>
+                                           <td>
+                                                <asp:Label ID="lbl_expected_rare" runat="server" Text="Expected Rare Homozygotes"></asp:Label>
+                                           </td>
+                                            <td style="text-align: left">
+                                                <asp:TextBox ID="txt_expected_rare" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
 
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_expected_common" runat="server" Text="Expected Common Homozygotes"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_expected_common" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:Label ID="lbl_p_allele" runat="server" Text="p Allele Frequency "></asp:Label>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <asp:TextBox ID="txt_p_allele" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
 
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_expected_heterozgt" runat="server" Text="Expected Heterozygotes"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_expected_heterozgt" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
+                                        <tr>
+                                             <td>
+                                                <asp:Label ID="lbl_q_allele" runat="server" Text="q Allele Frequency "></asp:Label>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <asp:TextBox ID="txt_q_allele" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
 
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_expected_rare" runat="server" Text="Expected Rare Homozygotes"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_expected_rare" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:Label ID="lbl_x_square" runat="server" Text="X<sup>2"></asp:Label>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <asp:TextBox ID="txt_x_square" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:Label ID="lbl_p" runat="server" Text="p value"></asp:Label>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <asp:TextBox ID="txt_p" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                 </tbody>
+                             </table>
+                        </div>
 
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_p_allele" runat="server" Text="p Allele Frequency "></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_p_allele" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_q_allele" runat="server" Text="q Allele Frequency "></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_q_allele" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_x_square" runat="server" Text="X<sup>2"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_x_square" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_p" runat="server" Text="p value"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_p" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                      </td>
+                   </tr>
+               
+            </table>
                 </ContentTemplate>
 
             </asp:TabPanel>
@@ -424,124 +436,133 @@
                     
                 </HeaderTemplate>
                 <ContentTemplate>
-                    <div style="float: left; width: 345px">
-                        <table id="Table1">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Statistical Parameters</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="2" style="background-color:-webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb))">Study Incidence</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="Label1" runat="server" Text="Group 1"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="postHocPowerTxt1" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
-                                        <asp:Label ID="Label3" runat="server" Text=" %"></asp:Label>
-                                        <asp:RequiredFieldValidator runat="server"
-                                            ControlToValidate="postHocPowerTxt1" Display="Dynamic"
-                                            ErrorMessage="** required field." ValidationGroup="postHocPower" ForeColor="Red">
-                                        </asp:RequiredFieldValidator>
-                                        <asp:RangeValidator ID="RangeValidator1" Display="Dynamic" runat="server" ControlToValidate="postHocPowerTxt1" ForeColor="Red"
-                                            ErrorMessage="Value must be between 0 and 100" ValidationGroup="postHocPower" MaximumValue="99.999" MinimumValue="0.0" SetFocusOnError="True" Type="Double"></asp:RangeValidator>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="Label2" runat="server" Text="Group 2"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="postHocPowerTxt2" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
-                                        <asp:Label ID="Label4" runat="server" Text=" %"></asp:Label>
-                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="postHocPowerTxt2" Display="Dynamic"
-                                            ErrorMessage="** required field." ValidationGroup="postHocPower" ForeColor="Red">
-                                        </asp:RequiredFieldValidator>
-                                        <asp:RangeValidator ID="RangeValidator2" Display="Dynamic" runat="server" ControlToValidate="postHocPowerTxt2" ForeColor="Red"
-                                            ErrorMessage="Value must be between 0 and 100"  MaximumValue="99.99" MinimumValue="0.0" ValidationGroup="postHocPower" Type="Double" SetFocusOnError="True"></asp:RangeValidator>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style="background-color:-webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb))">Number of Subjects</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="Label5" runat="server" Text="Group 1"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="postHocPowerTxt3" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
-                                        <asp:Label ID="Label6" runat="server" Text="subjects"></asp:Label>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator7" Display="Dynamic" runat="server" ForeColor="Red"
-                                            ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt3" ErrorMessage="Must be Numeric" ValidationGroup="postHocPower" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"
-                                            ControlToValidate="postHocPowerTxt3" Display="Dynamic"
-                                            ErrorMessage="** required field." ValidationGroup="postHocPower"
-                                            ForeColor="Red">
-                                        </asp:RequiredFieldValidator>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="Label7" runat="server" Text="Group 1"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="postHocPowerTxt4" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
-                                        <asp:Label ID="Label8" runat="server" Text="subjects"></asp:Label>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator12" Display="Dynamic" runat="server" ForeColor="Red"
-                                            ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt4" ErrorMessage="Must be Numeric" ValidationGroup="postHocPower" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="postHocPowerTxt4" 
-                                            Display="Dynamic" ErrorMessage="** required field." ValidationGroup="postHocPower" ForeColor="Red">
-                                        </asp:RequiredFieldValidator>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="alpha" runat="server" Text="Alpha"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left" colspan="2">
-                                        <asp:TextBox ID="postHocPowerTxt5" runat="server" Width="30px" Text="0.05" autocomplete="off"></asp:TextBox>
-                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator8" runat="server" ValidationGroup="postHocPower"
-                                            ValidationExpression="^0.[0-9]*$" ControlToValidate="postHocPowerTxt5" ErrorMessage="Must be Numeric" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server"
-                                            ControlToValidate="postHocPowerTxt5" Display="Dynamic"
-                                            ErrorMessage="** required field." ValidationGroup="postHocPower"
-                                            ForeColor="Red">
-                                        </asp:RequiredFieldValidator>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td style="text-align: right" colspan="3">
-                                        <asp:Button runat="server" ID="postHocPowerBtn1" CssClass="buttonCss" ValidationGroup="postHocPower" Text=" Calculate " OnClick="postHocPowerBtn1_Click" />
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div style="float: left; width: 300px" aria-disabled="False">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Post Hoc Power</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="text-align: center">
-                                        <asp:Label ID="postHocPowerLbl" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="25px"></asp:Label>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table>
+                        <tr>
+                            <td> 
+                               <div style="float: left; width: 345px">
+                                    <table id="Table1">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2">Statistical Parameters</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2" style="background-color:-webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb))">Study Incidence</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:Label ID="Label1" runat="server" Text="Group 1"></asp:Label>
+                                                </td>
+                                                <td style="text-align: left">
+                                                    <asp:TextBox ID="postHocPowerTxt1" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
+                                                    <asp:Label ID="Label3" runat="server" Text=" %"></asp:Label>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server"
+                                                        ControlToValidate="postHocPowerTxt1" Display="Dynamic"
+                                                        ErrorMessage="** required field." ValidationGroup="postHocPower" ForeColor="Red">
+                                                    </asp:RequiredFieldValidator>
+                                                    <asp:RangeValidator ID="RangeValidator1" Display="Dynamic" runat="server" ControlToValidate="postHocPowerTxt1" ForeColor="Red"
+                                                        ErrorMessage="Value must be between 0 and 100" ValidationGroup="postHocPower" MaximumValue="99.999" MinimumValue="0.0" SetFocusOnError="True" Type="Double"></asp:RangeValidator>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:Label ID="Label2" runat="server" Text="Group 2"></asp:Label>
+                                                </td>
+                                                <td style="text-align: left">
+                                                    <asp:TextBox ID="postHocPowerTxt2" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
+                                                    <asp:Label ID="Label4" runat="server" Text=" %"></asp:Label>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="postHocPowerTxt2" Display="Dynamic"
+                                                        ErrorMessage="** required field." ValidationGroup="postHocPower" ForeColor="Red">
+                                                    </asp:RequiredFieldValidator>
+                                                    <asp:RangeValidator ID="RangeValidator2" Display="Dynamic" runat="server" ControlToValidate="postHocPowerTxt2" ForeColor="Red"
+                                                        ErrorMessage="Value must be between 0 and 100"  MaximumValue="99.99" MinimumValue="0.0" ValidationGroup="postHocPower" Type="Double" SetFocusOnError="True"></asp:RangeValidator>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="background-color:-webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb))">Number of Subjects</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:Label ID="Label5" runat="server" Text="Group 1"></asp:Label>
+                                                </td>
+                                                <td style="text-align: left">
+                                                    <asp:TextBox ID="postHocPowerTxt3" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
+                                                    <asp:Label ID="Label6" runat="server" Text="subjects"></asp:Label>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator7" Display="Dynamic" runat="server" ForeColor="Red"
+                                                        ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt3" ErrorMessage="Must be Numeric" ValidationGroup="postHocPower" />
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server"
+                                                        ControlToValidate="postHocPowerTxt3" Display="Dynamic"
+                                                        ErrorMessage="** required field." ValidationGroup="postHocPower"
+                                                        ForeColor="Red">
+                                                    </asp:RequiredFieldValidator>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:Label ID="Label7" runat="server" Text="Group 1"></asp:Label>
+                                                </td>
+                                                <td style="text-align: left">
+                                                    <asp:TextBox ID="postHocPowerTxt4" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
+                                                    <asp:Label ID="Label8" runat="server" Text="subjects"></asp:Label>
+                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator12" Display="Dynamic" runat="server" ForeColor="Red"
+                                                        ValidationExpression="^[0-9]*$" ControlToValidate="postHocPowerTxt4" ErrorMessage="Must be Numeric" ValidationGroup="postHocPower" />
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="postHocPowerTxt4" 
+                                                        Display="Dynamic" ErrorMessage="** required field." ValidationGroup="postHocPower" ForeColor="Red">
+                                                    </asp:RequiredFieldValidator>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:Label ID="alpha" runat="server" Text="Alpha"></asp:Label>
+                                                </td>
+                                                <td style="text-align: left" colspan="2">
+                                                    <asp:TextBox ID="postHocPowerTxt5" runat="server" Width="30px" Text="0.05" autocomplete="off"></asp:TextBox>
+                                                    <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator8" runat="server" ValidationGroup="postHocPower"
+                                                        ValidationExpression="^0.[0-9]*$" ControlToValidate="postHocPowerTxt5" ErrorMessage="Must be Numeric" />
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server"
+                                                        ControlToValidate="postHocPowerTxt5" Display="Dynamic"
+                                                        ErrorMessage="** required field." ValidationGroup="postHocPower"
+                                                        ForeColor="Red">
+                                                    </asp:RequiredFieldValidator>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td style="text-align: right" colspan="3">
+                                                    <asp:Button runat="server" ID="postHocPowerBtn1" CssClass="buttonCss" ValidationGroup="postHocPower" Text=" Calculate " OnClick="postHocPowerBtn1_Click" />
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </td>
+                        
+                            <td>
+                               <div style="float: left; width: 300px" aria-disabled="False">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Post Hoc Power</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="text-align: center">
+                                                    <asp:Label ID="postHocPowerLbl" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="25px"></asp:Label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </td>
+                        </tr>
+     
+                    </table>
                 </ContentTemplate>
             </asp:TabPanel>
-
-
             <asp:TabPanel ID="Bonferroni_Correction" runat="server" ScrollBars="Auto">
 
                 <HeaderTemplate>
@@ -550,119 +571,126 @@
 
                 <ContentTemplate>
 
-                                  
-                    <div style="float: left; width: 345px">
-                        <table>
-                            <thead>
-                                <th>Bonferroni Correction</th>
-                            </thead>
+                      <table style="width:100%">    
+                         <tr>
+                             <td>
+                                <div style="float: left; width: 345px">
+                                                    <table>
+                                                        <thead>
+                                                            <th>Bonferroni Correction</th>
+                                                        </thead>
 
-                            <tbody>
-                               <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_alpha" runat="server" Text="Alpha: "></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_alpha" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
-                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator9" runat="server" ValidationGroup="Bonferroni"
-                                            ValidationExpression="^(0*\.[0-9]*)|0|1|(1\.0)$" ControlToValidate="txt_alpha" ErrorMessage="Must be between 0-1" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ValidationGroup="Bonferroni"
-                                            ControlToValidate="txt_alpha" Display="Dynamic"
-                                            ErrorMessage="** required field."
-                                            ForeColor="Red">
-                                        </asp:RequiredFieldValidator>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_test_number" runat="server" Text="Number of Test: "></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_test_number" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
-                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator10" runat="server" ValidationGroup="Bonferroni"
-                                            ValidationExpression="^[0-9]*$" ControlToValidate="txt_test_number" ErrorMessage="Must be Numeric" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ValidationGroup="Bonferroni"
-                                            ControlToValidate="txt_test_number" Display="Dynamic"
-                                            ErrorMessage="** required field."
-                                            ForeColor="Red">
-                                        </asp:RequiredFieldValidator>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_corelation" runat="server" Text="Correlation: "></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_corelation" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
-                                         <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator11" runat="server" ValidationGroup="Bonferroni"
-                                            ValidationExpression="^(0*\.[0-9]*)|0|1|(1\.0)$" ControlToValidate="txt_corelation" ErrorMessage="Must be between 0-1" />
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="lbl_alpha" runat="server" Text="Alpha: "></asp:Label>
+                                                                </td>
+                                                                <td style="text-align: left">
+                                                                    <asp:TextBox ID="txt_alpha" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
+                                                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator9" runat="server" ValidationGroup="Bonferroni"
+                                                                        ValidationExpression="^(0*\.[0-9]*)|0|1|(1\.0)$" ControlToValidate="txt_alpha" ErrorMessage="Must be between 0-1" />
+                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ValidationGroup="Bonferroni"
+                                                                        ControlToValidate="txt_alpha" Display="Dynamic"
+                                                                        ErrorMessage="** required field."
+                                                                        ForeColor="Red">
+                                                                    </asp:RequiredFieldValidator>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="lbl_test_number" runat="server" Text="Number of Test: "></asp:Label>
+                                                                </td>
+                                                                <td style="text-align: left">
+                                                                    <asp:TextBox ID="txt_test_number" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
+                                                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator10" runat="server" ValidationGroup="Bonferroni"
+                                                                        ValidationExpression="^[0-9]*$" ControlToValidate="txt_test_number" ErrorMessage="Must be Numeric" />
+                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ValidationGroup="Bonferroni"
+                                                                        ControlToValidate="txt_test_number" Display="Dynamic"
+                                                                        ErrorMessage="** required field."
+                                                                        ForeColor="Red">
+                                                                    </asp:RequiredFieldValidator>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <asp:Label ID="lbl_corelation" runat="server" Text="Correlation: "></asp:Label>
+                                                                </td>
+                                                                <td style="text-align: left">
+                                                                    <asp:TextBox ID="txt_corelation" Width="45px" runat="server" autocomplete="off"></asp:TextBox>
+                                                                        <asp:RegularExpressionValidator Display="Dynamic" ID="RegularExpressionValidator11" runat="server" ValidationGroup="Bonferroni"
+                                                                        ValidationExpression="^(0*\.[0-9]*)|0|1|(1\.0)$" ControlToValidate="txt_corelation" ErrorMessage="Must be between 0-1" />
                                      
-                                    </td>
-                                </tr>
-                            </tbody>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
 
-                            <tfoot>
-                                <tr>
-                                    <td style="text-align: right" colspan="3">
-                                        <asp:Button runat="server" ID="BonferroniCalcBtn" CssClass="buttonCss" ValidationGroup="Bonferroni" Text=" Calculate " OnClick="BonferroniCalcBtn_Click" />
-                                    </td>
-                                </tr>
-                            </tfoot>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td style="text-align: right" colspan="3">
+                                                                    <asp:Button runat="server" ID="BonferroniCalcBtn" CssClass="buttonCss" ValidationGroup="Bonferroni" Text=" Calculate " OnClick="BonferroniCalcBtn_Click" />
+                                                                </td>
+                                                            </tr>
+                                                        </tfoot>
 
-                         </table>
-                        </div>
+                                                        </table>
+                                                    </div>
+                             </td>        
 
-                        <asp:Panel ID="pnl_Bonferroni_results" runat="server">
-                         <div style="float: right; width: 650px">
-                        <table>
-                            <thead>
-                                <th>Results</th>
-                            </thead>
+                             <td style="border-left-style: solid; border-left-width: 1px; border-left-color: #C0C0C0">
+                                        <asp:Panel ID="pnl_Bonferroni_results" runat="server">
+                                    <div style="float: right; width: 650px">
+                                <table>
+                                    <thead>
+                                        <th>Results</th>
+                                    </thead>
 
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <asp:Label  ID="lbl_no_correction" runat="server" Text="With no correction the chance of finding one or more significant differences in given tests:"></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:TextBox ID="txt_no_correction" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_bonferroni_factor" runat="server" Text="With Bonferroni Correction alpha is between:"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_bonferroni_factor" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                 <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_z_score_one" runat="server" Text="Z-score for one tailed test:"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_z_score_one" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <asp:Label  ID="lbl_no_correction" runat="server" Text="With no correction the chance of finding one or more significant differences in given tests:"></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:TextBox ID="txt_no_correction" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:Label ID="lbl_bonferroni_factor" runat="server" Text="With Bonferroni Correction alpha is between:"></asp:Label>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <asp:TextBox ID="txt_bonferroni_factor" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                            <tr>
+                                            <td>
+                                                <asp:Label ID="lbl_z_score_one" runat="server" Text="Z-score for one tailed test:"></asp:Label>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <asp:TextBox ID="txt_z_score_one" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
 
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="lbl_z_score_two" runat="server" Text="Z-score for two tailed test:"></asp:Label>
-                                    </td>
-                                    <td style="text-align: left">
-                                        <asp:TextBox ID="txt_z_score_two" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <tr>
+                                            <td>
+                                                <asp:Label ID="lbl_z_score_two" runat="server" Text="Z-score for two tailed test:"></asp:Label>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <asp:TextBox ID="txt_z_score_two" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                      </div>
-                    </asp:Panel>
+                                </div>
+                            </asp:Panel>
+                             
+                             </td>
+                       
+                         </tr>
+                    </table>
                 </ContentTemplate>
             </asp:TabPanel>
 
         </asp:TabContainer>
     </div>
-
-
 </asp:Content>

@@ -24,13 +24,9 @@ public partial class Disasters : System.Web.UI.Page
             DiseasesList.DataBind();
             GetGridData();
 
-            if (Session["user"] != null)
-            {
-                excelAktar.Visible = Visible;
-            }
+            if (Session["user"]!=null && ((Users)Session["user"]).rolId == 1)
+                btnMetaAnalysis.Visible = Visible;
         }
-        //ListItem loginLI = this.Master.Page.FindControl("bsr") as ListItem;
-        //loginLI.Visible = false; 
     }
 
     private void GetGridData()
@@ -131,18 +127,17 @@ public partial class Disasters : System.Web.UI.Page
 
     private void setReferenceColumn(DataTable dt, GridView grd)
     {
-        HyperLink link_ref; Label lbl_ref;
+        HyperLink link_ref; Label lbl_ref; LinkButton seeDetailsBtn;
         for (int i = 0; i < grd.Rows.Count; i++)
         {
             switch (dt.Rows[i]["Reference_Type"].ToString())
             {
                 case "1":
                     link_ref = grd.Rows[i].FindControl("Link") as HyperLink;
-                    link_ref.Text = "External Links";
+                    link_ref.Text = String.Format("PMID: {0}", dt.Rows[i]["Reference"].ToString());
                     link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], dt.Rows[i]["Reference"].ToString());
                     link_ref.Target = "_blank";
-                    lbl_ref = grd.Rows[i].FindControl("lbl_reference") as Label;
-                    lbl_ref.Visible = false;
+                    link_ref.Visible = true;
                     break;
 
                 case "2":
@@ -150,14 +145,13 @@ public partial class Disasters : System.Web.UI.Page
                     link_ref.Text = "External Links";
                     link_ref.Target = "_blank";
                     link_ref.NavigateUrl = dt.Rows[i]["Reference"].ToString();
-                    lbl_ref = grd.Rows[i].FindControl("lbl_reference") as Label;
-                    lbl_ref.Visible = false;
+                    link_ref.Visible = true;
                     break;
 
                 case "3":
                 default:
-                    link_ref = grd.Rows[i].FindControl("Link") as HyperLink;
-                    link_ref.Visible = false;
+                    seeDetailsBtn = grd.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
+                    seeDetailsBtn.Visible = true;
                     lbl_ref = grd.Rows[i].FindControl("lbl_reference") as Label;
                     lbl_ref.Text = dt.Rows[i]["Reference"].ToString();
                     break;
@@ -199,17 +193,17 @@ public partial class Disasters : System.Web.UI.Page
                 ma.DoMetaAnalysis();
             }
             GetGridData();
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Meta analysis for " + DiseasesList.SelectedValue + "  has been done successfully.');", true);
+            Notifier.AddSuccessMessage("Meta analysis for " + DiseasesList.SelectedValue + "  has been done successfully!");
             
         }
         catch (Exception ex)
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Meta analysis for " + DiseasesList.SelectedValue + " could not be done.');", true);
+            Notifier.AddErrorMessage("An error is occured.Please try again later!");
         }
     }
     protected void btnEnrichment_Click(object sender, EventArgs e)
     {
-        ScriptManager.RegisterStartupScript(this, GetType(), "", "ShowProgress();", true);
+        
         //string script = "$(document).ready(function () { $('[id*=btnEnrichment]').click(); });";
         //ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
 
@@ -232,7 +226,7 @@ public partial class Disasters : System.Web.UI.Page
         }
         else 
         {
-            Response.Redirect(String.Format("~/Enrichment.aspx?genes={0}",genes));
+            Response.Redirect(String.Format("~/Enrichment.aspx?genes={0}", genes));
         }
     }
 }

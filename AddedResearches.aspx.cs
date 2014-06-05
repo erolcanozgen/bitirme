@@ -152,9 +152,8 @@ public partial class AddedResearches : System.Web.UI.Page
                     link_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], link_ref.Text);
                     link_ref.Target = "_blank";
-                    link_ref.Text = "External Links";
-                    seeDetailsBtn = grdViewUnapprovedDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
-                    seeDetailsBtn.Visible = false;
+                    link_ref.Text = String.Format("PMID: {0}", link_ref.Text);
+                    link_ref.Visible = true; 
                     break;
 
                 case "2":
@@ -162,15 +161,13 @@ public partial class AddedResearches : System.Web.UI.Page
                     link_ref.Target = "_blank";
                     link_ref.NavigateUrl = link_ref.Text;
                     link_ref.Text = "External Links";
-                    seeDetailsBtn = grdViewUnapprovedDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
-                    seeDetailsBtn.Visible = false;
+                    link_ref.Visible = true; 
                     break;
 
                 case "3":
                 default:
-                    link_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("Link") as HyperLink;
-                    link_ref.Visible = false;
-                    lbl_ref = grdViewUnapprovedDiseases.Rows[i].FindControl("lbl_reference") as Label;
+                    seeDetailsBtn = grdViewUnapprovedDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
+                    seeDetailsBtn.Visible = true;
                     break;
             }
         }

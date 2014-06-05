@@ -25,15 +25,6 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="AdminMessagesPage.aspx">
-                                        
-                                        <div class="ca-content">
-                                            <h2 class="ca-main">Messages</h2>
-                                            <h3 class="ca-sub">See Coming Messages</h3>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
                                     <a href="DeleteMember.aspx">
                                         
                                         <div class="ca-content">

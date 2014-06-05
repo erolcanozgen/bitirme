@@ -520,6 +520,8 @@ ul#nav li a:hover,ul#nav li a:focus {
      height: 30px;
      vertical-align: bottom;
      padding: 5px;
+     width: 98%;
+     vertical-align: middle;
 }
 
 #excelButton {

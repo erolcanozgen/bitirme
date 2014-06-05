@@ -149,7 +149,7 @@
                         <li><a href="HomePage.aspx">Home Page</a></li>
                         <li><a href="MetaAnalysis.aspx">Meta-Analysis</a></li>
                         <li><a href="Diseases.aspx">Diseases</a>
-                            <ul  style="overflow:scroll;height:200px;width:auto">
+                            <ul  style="overflow:scroll;height:200px;width:280px">
                                  <asp:ContentPlaceHolder ID="DiseaseList" runat="server">
                                  </asp:ContentPlaceHolder>
                             </ul>

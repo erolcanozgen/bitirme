@@ -14,7 +14,8 @@ public partial class Diseases : System.Web.UI.Page
     List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>>();
     static string gene = String.Empty;
     static string snp = String.Empty;
-    static string min_sample_size = String.Empty;
+    static string min_case = String.Empty;
+    static string min_control = String.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -47,7 +48,9 @@ public partial class Diseases : System.Web.UI.Page
 
         if (gene != String.Empty) param.Add(new KeyValuePair<string, string>("Gene_Name", gene));
 
-        if (min_sample_size != String.Empty) param.Add(new KeyValuePair<string, string>("Case_Count+Control_Count", min_sample_size));
+        if (min_case != String.Empty) param.Add(new KeyValuePair<string, string>("Case_Count", min_case));
+
+        if (min_control != String.Empty) param.Add(new KeyValuePair<string, string>("Control_Count", min_control));
 
         if (snp != String.Empty) param.Add(new KeyValuePair<string, string>("SNP", snp));
 
@@ -67,9 +70,10 @@ public partial class Diseases : System.Web.UI.Page
     {
         try
         {
-            gene = txtGene.Text;
-            snp = txtSNP.Text;
-            min_sample_size = txtMinimumSample.Text;
+            gene = txtGene.Text.Trim();
+            snp = txtSNP.Text.Trim();
+            min_case = txtMinimumCase.Text.Trim();
+            min_control = txtMinimumControl.Text.Trim();
             getGridData();
 
            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "tmp", "<script type='text/javascript'>disp_confirm();</script>", false);
@@ -100,9 +104,8 @@ public partial class Diseases : System.Web.UI.Page
                     link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], link_ref.Text);
                     link_ref.Target = "_blank";
-                    link_ref.Text = "External Links";
-                    seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
-                    seeDetailsBtn.Visible = false;
+                    link_ref.Text = String.Format("PMID: {0}", link_ref.Text);
+                    link_ref.Visible = true; 
                     break;
 
                 case "2":
@@ -110,15 +113,13 @@ public partial class Diseases : System.Web.UI.Page
                     link_ref.Target = "_blank";
                     link_ref.NavigateUrl = link_ref.Text;
                     link_ref.Text = "External Links";
-                    seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
-                    seeDetailsBtn.Visible = false;
+                    link_ref.Visible = true; 
                     break;
 
                 case "3":
                 default:
-                    link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
-                    link_ref.Visible = false;
-                    lbl_ref = grdViewDiseases.Rows[i].FindControl("lbl_reference") as Label;
+                    seeDetailsBtn = grdViewDiseases.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
+                    seeDetailsBtn.Visible = true;
                     break;
             }
         }

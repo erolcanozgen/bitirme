@@ -19,7 +19,7 @@
             filter:alpha(opacity=70);
             opacity:0.8;
         }
-    </style>
+        </style>
         <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css' />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -37,15 +37,6 @@
                                     <div class="ca-content">
                                         <h2 class="ca-main">Added Researches</h2>
                                         <h3 class="ca-sub">See New Researches</h3>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="AdminMessagesPage.aspx">
-                                        
-                                    <div class="ca-content">
-                                        <h2 class="ca-main">Messages</h2>
-                                        <h3 class="ca-sub">See Coming Messages</h3>
                                     </div>
                                 </a>
                             </li>
@@ -93,9 +84,9 @@
                                             <asp:BoundField  DataField="CI" HeaderText="95% CI" />
                                             <asp:TemplateField HeaderText="Reference">
                                                  <ItemTemplate>
-                                                    <asp:HyperLink ID="Link" runat="server" Text='<%# Bind("Reference") %>' ></asp:HyperLink>
+                                                    <asp:HyperLink ID="Link" runat="server" Visible="false"  Text='<%# Bind("Reference") %>' ></asp:HyperLink>
                                                     <asp:Label runat="server" ID="lbl_reference" Visible="false" Text='<%# Bind("Reference") %>'></asp:Label>
-                                                    <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
+                                                    <asp:LinkButton ID="seeDetailsBtn" runat="server"  Visible="false"  OnClick="ShowPopup">See Details</asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField  DataField="ownerOfPublication" HeaderText="Owner" />

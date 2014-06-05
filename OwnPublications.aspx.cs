@@ -42,7 +42,8 @@ public partial class OwnPublications : System.Web.UI.Page
                     link_ref = grdViewPublications.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], link_ref.Text);
                     link_ref.Target = "_blank";
-                    link_ref.Text = "External Links";
+                    link_ref.Text = String.Format("PMID: {0}", link_ref.Text);
+                    link_ref.Visible = true;
                     break;
 
                 case "2":
@@ -50,16 +51,28 @@ public partial class OwnPublications : System.Web.UI.Page
                     link_ref.Target = "_blank";
                     link_ref.NavigateUrl = link_ref.Text;
                     link_ref.Text = "External Links";
+                    link_ref.Visible = true;
                     break;
 
                 case "3":
                 default:
-                    link_ref = grdViewPublications.Rows[i].FindControl("Link") as HyperLink;
-                    link_ref.Visible = false;
-                    lbl_ref = grdViewPublications.Rows[i].FindControl("lbl_reference") as Label;
+                    seeDetailsBtn = grdViewPublications.Rows[i].FindControl("seeDetailsBtn") as LinkButton;
+                    seeDetailsBtn.Visible = true;
                     break;
             }
         }
+    }
+    public void ShowPopup(object sender, EventArgs e)
+    {
+        Label lbl_ref;
+        LinkButton btn = (LinkButton)sender;
+        GridViewRow row = (GridViewRow)btn.NamingContainer;
+        int i = Convert.ToInt32(row.RowIndex);
+
+        lbl_ref = grdViewPublications.Rows[i].FindControl("lbl_reference") as Label;
+        referenceLbl.Text = lbl_ref.Text;
+
+        this.Button1_ModalPopupExtender.Show();
     }
 
     protected void grdViewPublications_PageIndexChanging(object sender, GridViewPageEventArgs e)

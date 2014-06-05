@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -59,6 +58,8 @@ public partial class _Default : System.Web.UI.Page
         {
             unAppPub.insertDiseaseDetails(unAppPub);
             Notifier.AddSuccessMessage("Publication was added.");
+            clearAllTextBox(this);
+            ScriptManager.RegisterStartupScript(this, GetType(), "", "scrollTop();", true);
             //MessageBox.Show("Publication was added!");
           //  Response.Redirect("HomePage.aspx");
         }
@@ -66,6 +67,18 @@ public partial class _Default : System.Web.UI.Page
         {
             Notifier.AddErrorMessage("An error was occured while adding the publication! Please try again later.");
             //MessageBox.Show("An error was occured while adding the publication! Please try again later..");
+        }
+    }
+    public void clearAllTextBox(Control ctrl)
+    {
+        if (ctrl != null)
+        {
+            foreach (Control c in ctrl.Controls)
+            {
+                if (c is TextBox)
+                    ((TextBox)c).Text = String.Empty;
+                clearAllTextBox(c);
+            }
         }
     }
 }

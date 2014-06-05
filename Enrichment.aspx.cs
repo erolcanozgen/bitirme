@@ -55,7 +55,7 @@ public partial class Enrichment : System.Web.UI.Page
                             else
                                 searchedGenes += str + ",";
                         }
-                        table.Rows.Add(s[1], kegg.getPathwayName(s[1]), searchedGenes, ((float)tmpGenes.Length / kegg.genesCountInPathway(s[1])));
+                        table.Rows.Add(s[1],"" /*kegg.getPathwayName(s[1])*/, searchedGenes, ((float)tmpGenes.Length / kegg.genesCountInPathway(s[1])));
                     }
                 }
                 DataView sortedView = new DataView(table);
@@ -165,7 +165,7 @@ public partial class Enrichment : System.Web.UI.Page
 
             string[] colors = { "yellow", "orange", "pink", "purple", "brown", "green", "red", "black" };
             for (int j = 0; j < genesOfPath.Length; j++)
-                grdEnrichment.Rows[i].Cells[1].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
+                grdEnrichment.Rows[i].Cells[2].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
         }
     }
     protected void grdEnrichment_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -192,7 +192,7 @@ public partial class Enrichment : System.Web.UI.Page
 
             string[] colors = { "yellow", "orange", "pink", "purple", "brown", "green", "red", "black" };
             for (int j = 0; j < genesOfPath.Length; j++)
-                grdEnrichment.Rows[i].Cells[1].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
+                grdEnrichment.Rows[i].Cells[2].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
         }
     }
 }

@@ -77,23 +77,9 @@
                 loading.css({ top: top, left: left });
             }, 200);
         }
-        $('form').live("submit", function () {
-            var grid = document.getElementById("<%= grdViewCustomers.ClientID %>");
-            var totalChecked = 0;
-            if (grid.rows.length > 0) {
-                for (i = 1; i < grid.rows.length; i++) {
-                    cell = grid.rows[i].cells[1];
-                    for (j = 0; j < cell.childNodes.length; j++) {
-                        if (cell.childNodes[j].type == "checkbox") {
-                            if (cell.childNodes[j].checked == true)
-                                totalChecked++;
-                        }
-                    }
-                }
-            }
-            if (totalChecked != 0)
-                ShowProgress();
-        });
+        function btnEnrichment_Click() {
+            ShowProgress();
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -106,8 +92,8 @@
                     <asp:Label ID="Label1" runat="server" Text="Select a Disease to Examine Researches:"></asp:Label>              
                 </th>
                  <th> <asp:DropDownList ID="DiseasesList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="showDiseaseDetails" > </asp:DropDownList></th>
-                <th><asp:Button runat="server" CssClass="buttonCss" Text=" Meta Analysis " ID="btnMetaAnalysis" OnClick="btnMetaAnalysis_Click" /></th>
-                <th><asp:Button runat="server" CssClass="buttonCss" Text=" Make Enrichment Analysis " ID="btnEnrichment" OnClick="btnEnrichment_Click" /></th>
+                <th><asp:Button runat="server" CssClass="buttonCss" Text=" Meta Analysis " ID="btnMetaAnalysis" OnClick="btnMetaAnalysis_Click" Visible="false" /></th>
+                <th><asp:Button runat="server" CssClass="buttonCss" Text=" Pathway Analysis " ID="btnEnrichment" OnClick="btnEnrichment_Click" OnClientClick="btnEnrichment_Click()" /></th>
             </tr>
                 </thead>
          </table>
@@ -118,9 +104,9 @@
                             BorderStyle="Ridge" onclick="excelAktar_Click" ImageAlign="Right" />
         </div>
 
-    
-        <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="SNP,tmpId" onsorting="gvDetails_Sorting"
-            OnRowDataBound="grdViewCustomers_OnRowDataBound" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Both" AllowSorting="True" AllowPaging="True" OnPageIndexChanging="grdViewCustomers_PageIndexChanging">
+        <asp:Panel runat="server">
+        <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="SNP,tmpId" onsorting="gvDetails_Sorting" RowStyle-Wrap="false"
+            OnRowDataBound="grdViewCustomers_OnRowDataBound" BorderStyle="Solid" BorderWidth="1px" ForeColor="Black" GridLines="Both" AllowSorting="True" AllowPaging="True" OnPageIndexChanging="grdViewCustomers_PageIndexChanging">
 			           
 			<Columns>
 				<asp:TemplateField ItemStyle-Width="20px">
@@ -130,7 +116,7 @@
 						</a>
 						<div id='div<%# Eval("tmpId") %>' style="display: none;">
 							<asp:GridView ID="grdViewOrdersOfCustomer" runat="server" AutoGenerateColumns="false"
-								DataKeyNames="SNP" CssClass="ChildGrid" AllowPaging="False">
+								DataKeyNames="SNP" AllowPaging="False" RowStyle-Wrap="false">
 								<Columns>
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="Case_Count" HeaderText="Case Count" />
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency In Case" />
@@ -141,14 +127,15 @@
                                     <asp:BoundField  DataField="CI" HeaderText="95% CI" SortExpression="CI"/>
                                     <asp:TemplateField HeaderText="Reference">
                                         <ItemTemplate>
-                                            <asp:HyperLink ID="Link" runat="server"></asp:HyperLink>
+                                            <asp:HyperLink ID="Link" Visible="false" runat="server"></asp:HyperLink>
                                             <asp:Label runat="server" ID="lbl_reference" Visible="false"></asp:Label>
-                                            <asp:LinkButton ID="seeDetailsBtn" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
+                                            <asp:LinkButton ID="seeDetailsBtn" Visible="false" runat="server" OnClick="ShowPopup">See Details</asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField  DataField="SNP" HeaderText="SNP" Visible="false" />
                                     <asp:BoundField  DataField="tmpId" HeaderText="tmpId" Visible="false" />
                                 </Columns>
+                                <RowStyle Height="40px" />
 							</asp:GridView>
                         </div>
 					</ItemTemplate>
@@ -178,7 +165,7 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#383838" />
 		</asp:GridView>
-
+        </asp:Panel>
 
         <asp:Button ID="Button1" runat="server" Text="Button" style="display:none" />
         <asp:ModalPopupExtender ID="Button1_ModalPopupExtender"
