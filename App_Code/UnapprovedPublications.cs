@@ -80,6 +80,43 @@ public class UnapprovedPublications
         return dt2;
     }
 
+
+    public void updateUnapprovedPub()
+    {
+        Connection newCon = new Connection();
+        string query = String.Format("UPDATE unapprovedpublications"
+            + " SET Case_Count = {0}, Control_Count = {1}, Disease_Name = '{2}', Gene_Name = '{3}', SNP ='{4}', Frequency_Control = {5}, Frequency_Patient ={6}, P_Value = '{7}', OR_Value = '{8}' ,Reference = '{9}', Reference_Type = {10}, CI = '{11}' Where id = '{12}' "
+           , this.case_count, this.control_count, this.disease_name, this.Gene_Name, this.snp, this.freq_control,
+             this.freq_Patient, this.p_value, this.or_value, this.reference, this.reference_type, this.CI,this.id);
+        MySqlCommand command = new MySqlCommand(query, newCon.conn);
+        command.ExecuteNonQuery();
+        newCon.conn.Close();
+    }
+
+    public DataTable getOwnUnapprovedPub()
+    {
+        DataTable dt = new DataTable();
+        DataTable dt2 = new DataTable();
+
+        Connection newCon = new Connection();
+        dt.Clear();
+        string query = String.Format("select ID,Disease_Name,Gene_Name,SNP,Case_Count, Control_Count, Frequency_Control, Frequency_Patient, P_Value, OR_Value, Reference,Reference_Type,CI from unapprovedpublications where isApproved = 0 and ownerOfPublication = '{0}'",this.ownerOfPublication);
+        MySqlCommand command = new MySqlCommand(query, newCon.conn);
+        MySqlDataAdapter dr = new MySqlDataAdapter(command);
+        dr.Fill(dt);
+        newCon.conn.Close();
+
+        dt2 = dt.Clone();
+        dt2.Columns["P_Value"].DataType = System.Type.GetType("System.Double");
+
+        foreach (DataRow row in dt.Rows)
+        {
+            dt2.ImportRow(row);
+        }
+
+        return dt2;
+    }
+
     public void SetAsApproved()
     {
         Connection newCon = new Connection();
