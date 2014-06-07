@@ -89,7 +89,7 @@ public partial class OwnPublications : System.Web.UI.Page
         GridViewRow row = (GridViewRow)btn.NamingContainer;
         int i = Convert.ToInt32(row.RowIndex);
 
-        lbl_ref = grdViewPublications.Rows[i].FindControl("lbl_reference") as Label;
+        lbl_ref = (row.NamingContainer as GridView).Rows[i].FindControl("lbl_reference") as Label;
         referenceLbl.Text = lbl_ref.Text;
 
         this.Button1_ModalPopupExtender.Show();
@@ -99,9 +99,9 @@ public partial class OwnPublications : System.Web.UI.Page
         GridView grd = (sender as GridView);
         grd.PageIndex = e.NewPageIndex;
         if (grd.ID == "grdViewPublications")
-                getUnapprovedGridData();
-        if (grd.ID == "grdUnapprovedView")
             getApprovedGridData();
+        if (grd.ID == "grdUnapprovedView")
+            getUnapprovedGridData();
     }
 
 
