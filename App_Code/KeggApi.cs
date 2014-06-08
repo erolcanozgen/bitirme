@@ -184,6 +184,25 @@ using MySql.Data.MySqlClient;
         }
         public int genesCountInPathway(string pathway)
         {
+            #region get genes count from DB
+            try
+            {
+                Connection newCon = new Connection();
+                string query = String.Format("select genesCount from keggpathways WHERE pathId = '{0}'", pathway.Replace("hsa","map"));
+                MySqlCommand command = new MySqlCommand(query, newCon.conn);
+                MySqlDataReader dr = command.ExecuteReader();
+                if (dr.Read())
+                {
+                    string count = dr["genesCount"].ToString();
+                    return (Convert.ToInt32(count));
+                }
+                newCon.conn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            #endregion
             int genesCount = 0;
             HttpWebRequest req = WebRequest.Create(getGenesCountStr + pathway) as HttpWebRequest;
             try
