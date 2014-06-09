@@ -66,6 +66,7 @@ using MySql.Data.MySqlClient;
                                 genes.Add(tmp);
                             }
                         }
+                        newCon.conn.Close();
                         return true;
                     }
                     newCon.conn.Close();
@@ -194,12 +195,14 @@ using MySql.Data.MySqlClient;
                 if (dr.Read())
                 {
                     string count = dr["genesCount"].ToString();
+                    newCon.conn.Close();
                     return (Convert.ToInt32(count));
                 }
                 newCon.conn.Close();
             }
             catch (Exception ex)
             {
+                newCon.conn.Close();
                 throw ex;
             }
             #endregion
@@ -262,6 +265,7 @@ using MySql.Data.MySqlClient;
                 if (dr.Read())
                 {
                     string name = dr["name"].ToString().Replace("- Homo sapiens (human)", "");
+                    newCon.conn.Close();
                     return name;
                 }
                 newCon.conn.Close();
