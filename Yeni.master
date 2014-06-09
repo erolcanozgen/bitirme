@@ -41,9 +41,7 @@
                                 <asp:TextBox ID="L_UserName" class="field" runat="server"></asp:TextBox>
                                 <label class="grey" for="pwd">Password:</label>
                                 <asp:TextBox TextMode="password" ID="L_passwd"  class="field" runat="server"></asp:TextBox>
-                                <label>
-                                    <input name="rememberme" id="rememberme" type="checkbox" checked="checked" value="forever" />
-                                    &nbsp;Remember me</label>
+                                
                                 <div class="clear"></div>
                                 <asp:Button ID="Login" runat="server" Text="Login" class="bt_login" OnClick="Login_Click" />
                                 <a class="lost-pwd" href="#">Lost your password?</a>
@@ -102,9 +100,6 @@
                                         </asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator Display="Dynamic" ID="revEmailValidator" runat="server" ValidationGroup="registration"
                                             ValidationExpression="[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}" ControlToValidate="Email" ErrorMessage="Must be correct" />
-                                <label>A password will be e-mailed to you.</label>
-
-
                                 <asp:Button ID="Register" runat="server" Text="Register" class="bt_register" OnClick="Register_Click" ValidationGroup="registration" />
                             </div>
                       

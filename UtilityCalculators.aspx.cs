@@ -26,10 +26,10 @@ public partial class UtilityCalculators : System.Web.UI.Page
             #region or_calculation
             or_value =  Utility.CalculateOrValue(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
                                                              Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
-            txt_or_value.Text = or_value.ToString("0.0000");
+            result_or_value.Text = or_value.ToString("0.0000");
 
-            ln_or = (Math.Log(Convert.ToDouble(txt_or_value.Text)));
-            txt_ln_or.Text = ln_or.ToString("0.0000");
+            ln_or = (Math.Log(Convert.ToDouble(result_or_value.Text)));
+            result_ln_or.Text = ln_or.ToString("0.0000");
 
             or_variance = Utility.CalculateOrVariance(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
                             
@@ -38,15 +38,15 @@ public partial class UtilityCalculators : System.Web.UI.Page
 
             
 
-            txt_or_variance.Text = or_variance.ToString("0.0000");
-            txt_CI_or.Text = (Math.Exp( ln_or - (1.96 * Math.Sqrt(or_variance)))).ToString("0.0000")
+            result_or_variance.Text = or_variance.ToString("0.0000");
+            result_CI_or.Text = (Math.Exp( ln_or - (1.96 * Math.Sqrt(or_variance)))).ToString("0.0000")
                               + "  -  "
                               + (Math.Exp( ln_or + (1.96 * Math.Sqrt(or_variance)))).ToString("0.0000");
 
-            txt_chi_square_without_Yates.Text = Utility.CalculateChiSquare(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
+            result_chi_square_without_Yates.Text = Utility.CalculateChiSquare(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
                                                              Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text)).ToString("0.0000");
 
-            txt_chi_square_with_Yates.Text = Utility.CalculateChiSquareWithYates(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
+            result_chi_square_with_Yates.Text = Utility.CalculateChiSquareWithYates(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
                                                              Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text)).ToString("0.0000");
 
 
@@ -56,15 +56,15 @@ public partial class UtilityCalculators : System.Web.UI.Page
 
             rr_value =  Utility.CalculateRRValue(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
                                                           Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
-            txt_rr_value.Text = rr_value.ToString("0.0000");
+            result_rr_value.Text = rr_value.ToString("0.0000");
             rr_variance = Utility.CalculateRrVariance(Convert.ToInt32(txtCaseYes.Text), (Convert.ToInt32(txtCaseNo.Text) + Convert.ToInt32(txtCaseYes.Text)),
                                                        Convert.ToInt32(txtControlYes.Text), (Convert.ToInt32(txtControlNo.Text) + Convert.ToInt32(txtControlYes.Text)));
-            txt_rr_variance.Text = rr_variance.ToString("0.0000");
+            result_rr_variance.Text = rr_variance.ToString("0.0000");
 
-            ln_rr = (Math.Log(Convert.ToDouble(txt_rr_value.Text)));
-            txt_ln_rr.Text = ln_rr.ToString("0.0000");
+            ln_rr = (Math.Log(Convert.ToDouble(result_rr_value.Text)));
+            result_ln_rr.Text = ln_rr.ToString("0.0000");
 
-            txt_CI_rr.Text = (Math.Exp(ln_rr - (1.96 * Math.Sqrt(rr_variance)))).ToString("0.0000")
+            result_CI_rr.Text = (Math.Exp(ln_rr - (1.96 * Math.Sqrt(rr_variance)))).ToString("0.0000")
                                + "  -  "
                                + (Math.Exp(ln_rr + (1.96 * Math.Sqrt(rr_variance)))).ToString("0.0000");
             #endregion
@@ -73,7 +73,7 @@ public partial class UtilityCalculators : System.Web.UI.Page
             p_value = Utility.CalculatePValue(Convert.ToInt32(txtCaseYes.Text), Convert.ToInt32(txtCaseNo.Text),
                                                        Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
 
-            txtpValue.Text = p_value.ToString(GetFormat(p_value));
+            respValue.Text = p_value.ToString(GetFormat(p_value));
 
             setTextBoxLength(pnl_Odds_results);
            
@@ -131,25 +131,25 @@ public partial class UtilityCalculators : System.Web.UI.Page
          double dof = (Convert.ToInt32(txt_com_homozygotes.Text) + Convert.ToInt32(txt_heterozygotes.Text) + Convert.ToInt32(txt_rare_homozygotes.Text));
          double p = alglib.chisquaredistr.chisquarecdistribution(dof, Convert.ToDouble(result["X_square"]));
 
-         txt_expected_common.Text = exp_cmn.ToString(GetFormat(exp_cmn));
-         txt_expected_heterozgt.Text = exp_htzgt.ToString(GetFormat(exp_htzgt));
-         txt_expected_rare.Text = exp_rare.ToString(GetFormat(exp_rare));
-         txt_p_allele.Text = p_allele.ToString(GetFormat(p_allele));
-         txt_q_allele.Text = q_allele.ToString(GetFormat(q_allele));
-         txt_x_square.Text = x_square.ToString(GetFormat(x_square));
-         txt_p.Text = p .ToString(GetFormat(p));
+         result_expected_common.Text = exp_cmn.ToString(GetFormat(exp_cmn));
+         result_expected_heterozgt.Text = exp_htzgt.ToString(GetFormat(exp_htzgt));
+         result_expected_rare.Text = exp_rare.ToString(GetFormat(exp_rare));
+         result_p_allele.Text = p_allele.ToString(GetFormat(p_allele));
+         result_q_allele.Text = q_allele.ToString(GetFormat(q_allele));
+         result_x_square.Text = x_square.ToString(GetFormat(x_square));
+         result_p.Text = p .ToString(GetFormat(p));
     }
 
     protected void BonferroniCalcBtn_Click(object sender, EventArgs e)
     {
         double corelation = 0.0, bonferroni_factor = 0.0, no_corection=0.0;
-       if (txt_corelation.Text != String.Empty) corelation = Convert.ToDouble(txt_corelation.Text);
+        if (Label_no_correction.Text != String.Empty) corelation = Convert.ToDouble(Label_no_correction.Text);
        bonferroni_factor = Utility.CalculateBonferroniFactor(Convert.ToDouble(txt_alpha.Text), Convert.ToInt32(txt_test_number.Text), corelation);
-       txt_bonferroni_factor.Text = txt_alpha.Text + " - " + bonferroni_factor.ToString(GetFormat(bonferroni_factor));
-       txt_z_score_one.Text = " >= " + Math.Abs(alglib.normaldistr.invnormaldistribution(bonferroni_factor)).ToString("0.0000");
-       txt_z_score_two.Text = " >= " + Math.Abs(alglib.normaldistr.invnormaldistribution(bonferroni_factor / 2)).ToString("0.0000");
+       Label_bonferroni_factor.Text = txt_alpha.Text + " - " + bonferroni_factor.ToString(GetFormat(bonferroni_factor));
+       Label_z_score_one.Text = " >= " + Math.Abs(alglib.normaldistr.invnormaldistribution(bonferroni_factor)).ToString("0.0000");
+       Label_z_score_two.Text = " >= " + Math.Abs(alglib.normaldistr.invnormaldistribution(bonferroni_factor / 2)).ToString("0.0000");
        no_corection = (1 - Math.Pow((1 - Convert.ToDouble(txt_alpha.Text)), Convert.ToInt32(txt_test_number.Text)));
-       txt_no_correction.Text = String.Format("{0}  (%{1})",no_corection.ToString("0.0000"),(no_corection*100).ToString("0.00"));
+       Label_no_correction.Text = String.Format("{0}  (%{1})", no_corection.ToString("0.0000"), (no_corection * 100).ToString("0.00"));
        setTextBoxLength(pnl_Bonferroni_results);
     }
 

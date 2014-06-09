@@ -126,7 +126,7 @@
                                         <asp:Label ID="lbl_or_value" runat="server" Text="Or Value: "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_or_value" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                        <asp:Label ID="result_or_value" Width="45px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                     </td>
                                 </tr>
 
@@ -135,7 +135,7 @@
                                         <asp:Label ID="lbl_or_variance" runat="server" Text=" Variance(OR): "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_or_variance" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                        <asp:Label ID="result_or_variance" Width="45px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                     </td>
                                 </tr>
 
@@ -144,7 +144,7 @@
                                         <asp:Label ID="lbl_ln_or" runat="server" Text=" ln(OR): "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_ln_or" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                        <asp:Label ID="result_ln_or" Width="45px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                     </td>
                                 </tr>
 
@@ -153,7 +153,7 @@
                                         <asp:Label ID="lbl_CI_or" runat="server" Text=" %95 Confidence Interval: "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_CI_or" Width="105px" runat="server" ReadOnly="true"></asp:TextBox>
+                                        <asp:Label ID="result_CI_or"  Width="105px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                     </td>
                                 </tr>
 
@@ -178,7 +178,7 @@
                                         <asp:Label ID="lbl_rr_value" runat="server" Text="Risk Ratio: "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_rr_value" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                        <asp:Label ID="result_rr_value" Width="45px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                     </td>
                                 </tr>
 
@@ -187,7 +187,7 @@
                                         <asp:Label ID="lbl_rr_variance" runat="server" Text=" Variance(RR): "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_rr_variance" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                        <asp:Label ID="result_rr_variance" Width="45px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                     </td>
                                 </tr>
 
@@ -196,7 +196,7 @@
                                         <asp:Label ID="lbl_ln_rr" runat="server" Text=" ln(RR): "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_ln_rr" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                        <asp:Label ID="result_ln_rr" Width="45px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                     </td>
                                 </tr>
 
@@ -205,7 +205,7 @@
                                         <asp:Label ID="lbl_CI_rr" runat="server" Text=" %95 Confidence Interval: "></asp:Label>
                                     </td>
                                     <td style="text-align: left">
-                                        <asp:TextBox ID="txt_CI_rr" Width="105px" runat="server" ReadOnly="true"></asp:TextBox>
+                                        <asp:Label ID="result_CI_rr" Width="105px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                     </td>
                                 </tr>
 
@@ -228,7 +228,7 @@
                                     <asp:Label ID="lblpValue" runat="server" Text=" P Value (Hypergeometric Probability) "></asp:Label>
                                 </td>
                                 <td style="text-align: left">
-                                    <asp:TextBox ID="txtpValue" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                    <asp:Label ID="respValue" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                 </td>
                             </tr>
 
@@ -237,7 +237,7 @@
                                     <asp:Label ID="lbl_chi_square_without_Yates" runat="server" Text=" Chi-Square Without Yates Correction: "></asp:Label>
                                 </td>
                                 <td style="text-align: left">
-                                    <asp:TextBox ID="txt_chi_square_without_Yates" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                    <asp:Label ID="result_chi_square_without_Yates" Width="45px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                 </td>
                             </tr>
 
@@ -246,7 +246,7 @@
                                     <asp:Label ID="lbl_chi_square_with_Yates" runat="server" Text=" Chi-Square With Yates Correction: "></asp:Label>
                                 </td>
                                 <td style="text-align: left">
-                                    <asp:TextBox ID="txt_chi_square_with_Yates" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                    <asp:Label ID="result_chi_square_with_Yates" Width="45px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                 </td>
                             </tr>
 
@@ -363,7 +363,7 @@
                                                  <asp:Label ID="lbl_expected_common" runat="server" Text="Expected Common Homozygotes"></asp:Label>
                                             </td>
                                             <td style="text-align: left">
-                                                <asp:TextBox ID="txt_expected_common" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="result_expected_common" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
 
@@ -372,7 +372,7 @@
                                                 <asp:Label ID="lbl_expected_heterozgt" runat="server" Text="Expected Heterozygotes"></asp:Label>
                                             </td>
                                              <td style="text-align: left">
-                                                <asp:TextBox ID="txt_expected_heterozgt" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="result_expected_heterozgt" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
 
@@ -381,7 +381,7 @@
                                                 <asp:Label ID="lbl_expected_rare" runat="server" Text="Expected Rare Homozygotes"></asp:Label>
                                            </td>
                                             <td style="text-align: left">
-                                                <asp:TextBox ID="txt_expected_rare" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="result_expected_rare" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
 
@@ -390,7 +390,7 @@
                                                 <asp:Label ID="lbl_p_allele" runat="server" Text="p Allele Frequency "></asp:Label>
                                             </td>
                                             <td style="text-align: left">
-                                                <asp:TextBox ID="txt_p_allele" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="result_p_allele"  Width="110px" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
 
@@ -399,7 +399,7 @@
                                                 <asp:Label ID="lbl_q_allele" runat="server" Text="q Allele Frequency "></asp:Label>
                                             </td>
                                             <td style="text-align: left">
-                                                <asp:TextBox ID="txt_q_allele" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="result_q_allele" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
 
@@ -408,7 +408,7 @@
                                                 <asp:Label ID="lbl_x_square" runat="server" Text="X<sup>2"></asp:Label>
                                             </td>
                                             <td style="text-align: left">
-                                                <asp:TextBox ID="txt_x_square" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="result_x_square" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -416,7 +416,7 @@
                                                 <asp:Label ID="lbl_p" runat="server" Text="p value"></asp:Label>
                                             </td>
                                             <td style="text-align: left">
-                                                <asp:TextBox ID="txt_p" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="result_p" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
                                  </tbody>
@@ -500,7 +500,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <asp:Label ID="Label7" runat="server" Text="Group 1"></asp:Label>
+                                                    <asp:Label ID="Label7" runat="server" Text="Group 2"></asp:Label>
                                                 </td>
                                                 <td style="text-align: left">
                                                     <asp:TextBox ID="postHocPowerTxt4" runat="server" Width="30px" autocomplete="off"></asp:TextBox>
@@ -638,7 +638,7 @@
 
                              <td style="border-left-style: solid; border-left-width: 1px; border-left-color: #C0C0C0">
                                         <asp:Panel ID="pnl_Bonferroni_results" runat="server">
-                                    <div style="float: right; width: 650px">
+                               <div style="float: right;">
                                 <table>
                                     <thead>
                                         <th>Results</th>
@@ -650,7 +650,7 @@
                                                 <asp:Label  ID="lbl_no_correction" runat="server" Text="With no correction the chance of finding one or more significant differences in given tests:"></asp:Label>
                                             </td>
                                             <td>
-                                                <asp:TextBox ID="txt_no_correction" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="Label_no_correction" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -658,7 +658,7 @@
                                                 <asp:Label ID="lbl_bonferroni_factor" runat="server" Text="With Bonferroni Correction alpha is between:"></asp:Label>
                                             </td>
                                             <td style="text-align: left">
-                                                <asp:TextBox ID="txt_bonferroni_factor" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="Label_bonferroni_factor" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
                                             <tr>
@@ -666,7 +666,7 @@
                                                 <asp:Label ID="lbl_z_score_one" runat="server" Text="Z-score for one tailed test:"></asp:Label>
                                             </td>
                                             <td style="text-align: left">
-                                                <asp:TextBox ID="txt_z_score_one" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="Label_z_score_one" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
 
@@ -675,13 +675,13 @@
                                                 <asp:Label ID="lbl_z_score_two" runat="server" Text="Z-score for two tailed test:"></asp:Label>
                                             </td>
                                             <td style="text-align: left">
-                                                <asp:TextBox ID="txt_z_score_two" Width="45px" runat="server" ReadOnly="true"></asp:TextBox>
+                                                <asp:Label ID="Label_z_score_two" runat="server" Font-Bold="true" ForeColor="Red" Font-Size="13px"></asp:Label>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
 
-                                </div>
+                               </div>
                             </asp:Panel>
                              
                              </td>

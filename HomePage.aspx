@@ -18,7 +18,7 @@
         <table class="table2"  >
             <tr>
                 <td style="width:620px;text-align:justify">
-                    <h2 style="margin: 15px 0 0 0; font-size:40px">ITUSNP</h2>
+                    <h2 style="margin: 15px 0 0 0; font-size:40px"><span style="color:#C7A633"> ITU</span>SNP</h2>
                     <p style="font-size:20px"> The Turkish SNP Database</p><br />
                 </td>
             </tr>
