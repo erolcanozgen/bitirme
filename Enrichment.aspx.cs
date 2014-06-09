@@ -45,8 +45,8 @@ public partial class Enrichment : System.Web.UI.Page
 
                 foreach (string[] s in kegg.Pathways)
                         table.Rows.Add(s[1], s[2], s[0], ((float)(s[0].Split(',').Length) / Convert.ToInt32(s[3])) );
-                   
-                }
+
+
                 DataView sortedView = new DataView(table);
                 sortedView.Sort = "significantScore Desc";
                 grdEnrichment.DataSource = sortedView;
@@ -66,13 +66,17 @@ public partial class Enrichment : System.Web.UI.Page
                     if (link_image.Text.Substring(0, 5) == "path:")
                         link_image.Text = link_image.Text.Remove(0, 5);    // remove path: from path:hsa05010 = hsa05010 
                     string[] genesOfPath = (grdEnrichment.Rows[i].FindControl("searchedGenes") as Label).Text.Split(',');
-                    link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath,kegg.Genes));
+                    link_image.NavigateUrl = String.Format("http://www.kegg.jp/kegg-bin/show_pathway?{0}{1}", link_image.Text, createParameters(genesOfPath, kegg.Genes));
                     link_image.Target = "_blank";
 
                     string[] colors = { "yellow", "orange", "pink", "purple", "brown", "green", "red", "black" };
-                    for (int j = 0; j < genesOfPath.Length; j++ )
+                    for (int j = 0; j < genesOfPath.Length; j++)
                         grdEnrichment.Rows[i].Cells[2].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
                 }
+
+
+                }
+                
             }
 
         catch (Exception ex)
