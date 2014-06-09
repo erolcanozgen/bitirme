@@ -42,78 +42,32 @@ using MySql.Data.MySqlClient;
             set { genes = value; }
         }
 
-        public bool findGenes(string geneName)
+        private string[] getPatway(string pathId)
         {
-            #region serach gene in DB
-                try
-                {
+            return pathways.Find(p => p[1] == pathId);
+        }
 
-                    Connection newCon = new Connection();
-                    string query = String.Format("select * from kegggenes WHERE description like '%{0}%'", geneName);
-                    MySqlCommand command = new MySqlCommand(query, newCon.conn);
-                    MySqlDataReader dr = command.ExecuteReader();
 
-                    if(dr.HasRows)
-                    {
-                        while(dr.Read())
-                        {
-                            if (Regex.IsMatch(dr["description"].ToString(), string.Format(@"\b{0}\b", geneName)))
-                            {
-                                string[] tmp = new string[3];
-                                tmp[0] = geneName;
-                                tmp[1] = dr["geneId"].ToString();
-                                tmp[2] = dr["description"].ToString();
-                                genes.Add(tmp);
-                            }
-                        }
-                        newCon.conn.Close();
-                        return true;
-                    }
-                    newCon.conn.Close();
-                }
-                catch(Exception ex)
-                {
-                    return false;
-                }
-            #endregion
-            int counter=0;
-            HttpWebRequest req = WebRequest.Create(findGeneStr + geneName) as HttpWebRequest;
-            try
+        public string findGenes(string[] geneName)
+        {
+           Connection newCon = new Connection();
+            string notfoundGenes = String.Empty;
+            MySqlCommand command = new MySqlCommand("", newCon.conn);
+            
+
+            foreach (string gene in geneName)
             {
-                using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
-                {
-                    if (resp.StatusCode != HttpStatusCode.OK)
-                    {
-                        var message = String.Format("Request failed. Received HTTP {0}", resp.StatusCode);
-                        throw new ApplicationException(message);
-                    }
-                    StreamReader reader = new StreamReader(resp.GetResponseStream());
-                    while (reader.Peek() >= 0)
-                    {
-                        string line = reader.ReadLine();
-                        if (line.StartsWith("hsa", StringComparison.CurrentCultureIgnoreCase))
-                        {
-                            string[] parts = line.Split('\t');
-                            if (Regex.IsMatch((parts[1].Split(';'))[0], string.Format(@"\b{0}\b", geneName)))
-                            {
-                                string[] tmp = new string[3];
-                                tmp[0] = geneName;
-                                tmp[1] = parts[0];
-                                tmp[2] = (parts[1].Split(';'))[0];
-                                genes.Add(tmp);
-                            }
-                            counter++;
-                        }
-                    }
-                }
-                if (counter == 0)
-                    return false;
+                if (gene == "") continue;
+
+                if (findGenesFromDb(gene, command)) continue;
+                else if (findGenesFromKeggDB(gene)) continue;
+                else notfoundGenes += gene + " ";
             }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            return true;
+
+            newCon.conn.Close();
+            return notfoundGenes;
+
+          
         }
         public bool linkGenesToPathway()
         {
@@ -138,15 +92,28 @@ using MySql.Data.MySqlClient;
                     }
                     StreamReader reader = new StreamReader(resp.GetResponseStream());
                     while (reader.Peek() >= 0)
-                    {
+                    { 
+                       
                         string line = reader.ReadLine();
                         if (line.StartsWith("hsa", StringComparison.CurrentCultureIgnoreCase))
                         {
                             string[] parts = line.Split('\t');
-                            string[] tmp = new string[2];
+                            string[] tmp = new string[4];
                             tmp[0] = genes.Find(p => p[1] == parts[0])[0];
                             tmp[1] = parts[1];
-                            pathways.Add(tmp);
+                            tmp[2] = getPathwayName(tmp[1]);
+                            tmp[3] = genesCountInPathway(tmp[1]).ToString();
+
+                            string[] ptwy = getPatway(tmp[1]);
+
+                            if (ptwy != null)
+                            {
+                                if (!ptwy[0].Contains(tmp[0]))
+                                    ptwy[0] += "," + tmp[0];
+                            }
+                            else
+                                pathways.Add(tmp);
+                            
                         }
                         counter++;
                     }
@@ -185,51 +152,12 @@ using MySql.Data.MySqlClient;
         }
         public int genesCountInPathway(string pathway)
         {
-            #region get genes count from DB
-            try
-            {
-                Connection newCon = new Connection();
-                string query = String.Format("select genesCount from keggpathways WHERE pathId = '{0}'", pathway.Replace("hsa","map"));
-                MySqlCommand command = new MySqlCommand(query, newCon.conn);
-                MySqlDataReader dr = command.ExecuteReader();
-                if (dr.Read())
-                {
-                    string count = dr["genesCount"].ToString();
-                    newCon.conn.Close();
-                    return (Convert.ToInt32(count));
-                }
-                newCon.conn.Close();
-            }
-            catch (Exception ex)
-            {
-                newCon.conn.Close();
-                throw ex;
-            }
-            #endregion
-            int genesCount = 0;
-            HttpWebRequest req = WebRequest.Create(getGenesCountStr + pathway) as HttpWebRequest;
-            try
-            {
-                using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
-                {
-                    if (resp.StatusCode != HttpStatusCode.OK)
-                    {
-                        var message = String.Format("Request failed. Received HTTP {0}", resp.StatusCode);
-                        throw new ApplicationException(message);
-                    }
-                    StreamReader reader = new StreamReader(resp.GetResponseStream());
-                    while (reader.Peek() >= 0)
-                    {
-                        reader.ReadLine();
-                        genesCount++;
-                    }
-                }
-                return genesCount;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            int gene_count;
+
+            if ((gene_count = pathwayGeneCountDb(pathway)) != -1) return gene_count;
+            else if ((gene_count = pathwayGeneCountKeggDb(pathway)) != -1) return gene_count;
+            else return 0;
+           
         }
         public List<string> getGenes(string pathway)
         {
@@ -255,26 +183,96 @@ using MySql.Data.MySqlClient;
         }
         public string getPathwayName(string pathId)
         {
-            #region serach pathway in DB
+            string patw_name = String.Empty;
+
+            if ((patw_name = getPathwayNameDb(pathId)) != String.Empty) return patw_name;
+            else if ((patw_name = getPathwayNameKeggDb(pathId)) != String.Empty) return patw_name;
+            else return String.Empty;
+            
+        }
+        public void clear()
+        {
+            genes.Clear();
+            pathways.Clear();
+            coveredPathways.Clear();
+        }
+
+
+
+        #region KeggDB
+        private bool findGenesFromKeggDB(string geneName)
+        {
+            int counter = 0;
+            HttpWebRequest req = WebRequest.Create(findGeneStr + geneName) as HttpWebRequest;
             try
             {
-                Connection newCon = new Connection();
-                string query = String.Format("select name from keggpathways WHERE pathId = '{0}'", pathId);
-                MySqlCommand command = new MySqlCommand(query, newCon.conn);
-                MySqlDataReader dr = command.ExecuteReader();
-                if (dr.Read())
+                using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
                 {
-                    string name = dr["name"].ToString().Replace("- Homo sapiens (human)", "");
-                    newCon.conn.Close();
-                    return name;
+                    if (resp.StatusCode != HttpStatusCode.OK)
+                    {
+                        var message = String.Format("Request failed. Received HTTP {0}", resp.StatusCode);
+                        throw new ApplicationException(message);
+                    }
+                    StreamReader reader = new StreamReader(resp.GetResponseStream());
+                    while (reader.Peek() >= 0)
+                    {
+                        string line = reader.ReadLine();
+                        if (line.StartsWith("hsa", StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            string[] parts = line.Split('\t');
+                            if (Regex.IsMatch((parts[1].Split(';'))[0], string.Format(@"\b{0}\b", geneName)))
+                            {
+                                string[] tmp = new string[3];
+                                tmp[0] = geneName;
+                                tmp[1] = parts[0];
+                                tmp[2] = (parts[1].Split(';'))[0];
+                                genes.Add(tmp);
+                            }
+                            counter++;
+                        }
+                    }
                 }
-                newCon.conn.Close();
+                if (counter == 0)
+                    return false;
             }
             catch (Exception ex)
             {
-                return "";
+                return false;
             }
-            #endregion
+            return true;
+        }
+        private int pathwayGeneCountKeggDb(string pathway)
+        {
+            int ret = -1; int genesCount = 0;
+            HttpWebRequest req = WebRequest.Create(getGenesCountStr + pathway) as HttpWebRequest;
+            try
+            {
+                using (HttpWebResponse resp = req.GetResponse() as HttpWebResponse)
+                {
+                    if (resp.StatusCode != HttpStatusCode.OK)
+                    {
+                        var message = String.Format("Request failed. Received HTTP {0}", resp.StatusCode);
+                        throw new ApplicationException(message);
+                    }
+                    StreamReader reader = new StreamReader(resp.GetResponseStream());
+                    while (reader.Peek() >= 0)
+                    {
+                        reader.ReadLine();
+                        genesCount++;
+                    }
+                }
+                ret = genesCount;
+            }
+            catch (Exception ex)
+            {
+                ret = -1;
+            }
+
+            return ret;
+        }
+        private string getPathwayNameKeggDb(string pathId)
+        {
+            string ret = String.Empty;
             pathId = pathId.Remove(0, 8); // path:hsa04310 => 04310
             HttpWebRequest req = WebRequest.Create("http://rest.kegg.jp/find/pathway/" + pathId) as HttpWebRequest;
             try
@@ -291,23 +289,115 @@ using MySql.Data.MySqlClient;
                     if (line.StartsWith("path", StringComparison.CurrentCultureIgnoreCase))
                     {
                         string[] parts = line.Split('\t');
-                        return (parts[1].Trim());
+                        ret = (parts[1].Trim());
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                ret = String.Empty;
             }
-            return "";
+
+            return ret;
         }
-        public void clear()
+        #endregion
+
+        #region LocalDB
+        private bool findGenesFromDb(string geneName, MySqlCommand command)
         {
-            genes.Clear();
-            pathways.Clear();
-            coveredPathways.Clear();
+            bool ret = false;
+            #region serach gene in DB
+            try
+            {
+                string query = String.Format("select * from kegggenes WHERE description like '%{0}%'", geneName);
+                command.CommandText = query;
+                MySqlDataReader dr = command.ExecuteReader();
+
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        if (Regex.IsMatch(dr["description"].ToString(), string.Format(@"\b{0}\b", geneName)))
+                        {
+                            string[] tmp = new string[3];
+                            tmp[0] = geneName;
+                            tmp[1] = dr["geneId"].ToString();
+                            tmp[2] = dr["description"].ToString();
+                            genes.Add(tmp);
+                        }
+                    }
+                    dr.Close();
+                    ret = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return ret;
+            }
+
+            return ret;
+
+            #endregion
         }
-       
+        public int pathwayGeneCountDb(string pathway)
+        {
+            int ret = -1;
+            Connection newCon = new Connection();
+            try
+            {
+                string query = String.Format("select genesCount from keggpathways WHERE pathId = '{0}'", pathway.Replace("hsa", "map"));
+                MySqlCommand command = new MySqlCommand(query, newCon.conn);
+                MySqlDataReader dr = command.ExecuteReader();
+                if (dr.Read())
+                {
+                    string count = dr["genesCount"].ToString();
+                    newCon.conn.Close();
+                    ret = (Convert.ToInt32(count));
+                }
+                newCon.conn.Close();
+            }
+            catch (Exception ex)
+            {
+                newCon.conn.Close();
+                ret = -1;
+            }
+
+            return ret;
+
+        }
+        private string getPathwayNameDb(string pathId)
+        {
+            string ret = String.Empty;
+            Connection newCon = new Connection();
+            try
+            {
+                string query = String.Format("select name from keggpathways WHERE pathId = '{0}'", pathId);
+                MySqlCommand command = new MySqlCommand(query, newCon.conn);
+                MySqlDataReader dr = command.ExecuteReader();
+                if (dr.Read())
+                {
+                    string name = dr["name"].ToString().Replace("- Homo sapiens (human)", "");
+                    newCon.conn.Close();
+                    ret = name;
+                }
+                newCon.conn.Close();
+            }
+            catch (Exception ex)
+            {
+                newCon.conn.Close();
+                ret = String.Empty;
+            }
+
+            return ret;
+        }
+        #endregion
+
+
+
+
+
+
+
     }
 
 

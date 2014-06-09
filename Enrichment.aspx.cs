@@ -21,12 +21,15 @@ public partial class Enrichment : System.Web.UI.Page
                 string notFoundPaths = String.Empty;
                 kegg.clear();
                 string[] genes = Request.QueryString["genes"].Split(':');
-                for (int i = 0; i < genes.Length; i++)
-                {
-                    if (genes[i] == "") continue;
-                    if (!kegg.findGenes(genes[i]))
-                        notFoundGenes += genes[i] + " ";
-                }
+                notFoundGenes = kegg.findGenes(genes);
+
+                //for (int i = 0; i < genes.Length; i++)
+                //{
+                //    if (genes[i] == "") continue;
+                //    if (!kegg.findGenes(genes[i]))
+                //        notFoundGenes += genes[i] + " ";
+                //}
+                
                 if (notFoundGenes != String.Empty)
                     Notifier.AddWarningMessage(notFoundGenes + "gene(s) are not found!");
                 else
@@ -40,23 +43,9 @@ public partial class Enrichment : System.Web.UI.Page
                 table.Columns.Add("searchedGenes", typeof(string));
                 table.Columns.Add("significantScore", typeof(float));
 
-                List<string> coveredPathways = new List<string>();
                 foreach (string[] s in kegg.Pathways)
-                {
-                    if ((coveredPathways.Find(p => p == s[1])) == null)
-                    {
-                        coveredPathways.Add(s[1]);
-                        string[] tmpGenes = kegg.getGenes(s[1]).ToArray();
-                        string searchedGenes = String.Empty;
-                        foreach (string str in tmpGenes)
-                        {
-                            if (str == tmpGenes[tmpGenes.Length - 1])
-                                searchedGenes += str;
-                            else
-                                searchedGenes += str + ",";
-                        }
-                        table.Rows.Add(s[1], kegg.getPathwayName(s[1]), searchedGenes, ((float)tmpGenes.Length / kegg.genesCountInPathway(s[1])));
-                    }
+                        table.Rows.Add(s[1], s[2], s[0], ((float)(s[0].Split(',').Length) / Convert.ToInt32(s[3])) );
+                   
                 }
                 DataView sortedView = new DataView(table);
                 sortedView.Sort = "significantScore Desc";
@@ -85,7 +74,7 @@ public partial class Enrichment : System.Web.UI.Page
                         grdEnrichment.Rows[i].Cells[2].Text += "   <span style=\"border: 1px solid blue;color:Blue;background-color:" + (j > colors.Length - 1 ? colors[colors.Length - 1] : colors[j]) + ";\">" + genesOfPath[j] + "</span>";
                 }
             }
-        }
+
         catch (Exception ex)
         {
             Notifier.AddErrorMessage("An error was occured.Please try again later.");
