@@ -101,9 +101,7 @@ using MySql.Data.MySqlClient;
                             string[] tmp = new string[4];
                             tmp[0] = genes.Find(p => p[1] == parts[0])[0];
                             tmp[1] = parts[1];
-                            tmp[2] = getPathwayName(tmp[1]);
-                            tmp[3] = genesCountInPathway(tmp[1]).ToString();
-
+                            
                             string[] ptwy = getPatway(tmp[1]);
 
                             if (ptwy != null)
@@ -112,8 +110,11 @@ using MySql.Data.MySqlClient;
                                     ptwy[0] += "," + tmp[0];
                             }
                             else
+                            {
+                                tmp[2] = getPathwayName(tmp[1]);
+                                tmp[3] = genesCountInPathway(tmp[1]).ToString();
                                 pathways.Add(tmp);
-                            
+                            }
                         }
                         counter++;
                     }
