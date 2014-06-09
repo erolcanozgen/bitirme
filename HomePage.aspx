@@ -18,18 +18,18 @@
         <table class="table2"  >
             <tr>
                 <td style="width:620px;text-align:justify">
-                    <h2 style="margin: 15px 0 0 0; font-size:40px">TUSNP</h2>
+                    <h2 style="margin: 15px 0 0 0; font-size:40px">ITUSNP</h2>
                     <p style="font-size:20px"> The Turkish SNP Database</p><br />
                 </td>
             </tr>
             <tr >
                 <td style="width:620px;text-align:justify">
                     <p style="font-size:15px">
-                        TUSNP presents single nucleotide polymorphisms (SNPs) that have been previously associated with common diseases in Turkish population. 
+                        ITUSNP presents single nucleotide polymorphisms (SNPs) that have been previously associated with common diseases in Turkish population. 
                         We represent a freely accessible, updated, and gathered data of association studies showing risk or protective allelic SNP variants 
-                        related to 21 common disorders. TUSNP provides the information about allelic frequencies in study groups with statistical significances 
+                        related to 21 common disorders. ITUSNP provides the information about allelic frequencies in study groups with statistical significances 
                         (P values) and strengths of the relationships in terms of odds ratio (OR). The website also comprises other calculation tools allowing 
-                        the users to obtain the maximum efficiency from the data. Registered users can publish their genetic data in TUSNP.
+                        the users to obtain the maximum efficiency from the data. Registered users can publish their genetic data in ITUSNP.
                     </p>
                 </td>
             </tr>

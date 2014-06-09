@@ -8,7 +8,7 @@
 <html>
 
 <head runat="server">
-    <title>SNP DATABASE</title>
+    <title>ITUSNP SITE</title>
     <script src="Scripts/ErrorSuccessNotifier.js"></script>
     <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
     <meta name="description" content="website description" />
@@ -139,7 +139,7 @@
             <div id="logo">
                 <div id="logo_text">
                     <!-- class="logo_colour", allows you to change the colour of the text -->
-                    <h1><a href="HomePage.aspx">TUSNP<span class="logo_colour"> DATABASE</span></a></h1>
+                    <h1><a href="HomePage.aspx"><span style="color:#C7A633"> ITU</span>SNP<span class="logo_colour"> DATABASE</span></a></h1>
                     <h2>Turkish Diseases Meta-Analysis </h2>
                 </div>
             </div>
