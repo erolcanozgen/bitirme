@@ -143,9 +143,8 @@ public partial class Enrichment : System.Web.UI.Page
             sortingDirection = "Asc";
         }
 
-        DataView sortedView = new DataView(table);
-        sortedView.Sort = e.SortExpression + " " + sortingDirection;
-        grdEnrichment.DataSource = sortedView;
+        stable.Sort = e.SortExpression + " " + sortingDirection;
+        grdEnrichment.DataSource = stable;
         grdEnrichment.DataBind();
 
         foreach (GridViewRow row in grdEnrichment.Rows)
@@ -171,7 +170,6 @@ public partial class Enrichment : System.Web.UI.Page
     protected void grdEnrichment_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         grdEnrichment.PageIndex = e.NewPageIndex;
-        stable.Sort = "significantScore Desc";
         grdEnrichment.DataSource = stable;
         grdEnrichment.DataBind();
 
