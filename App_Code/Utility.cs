@@ -191,7 +191,7 @@ public static class Utility
             double pPrime = (p1 + ((double)n1 / n2) * p2) / (1 + ((double)n1 / n2));
             double qPrime = 1 - pPrime;
 
-            power = (delta / Math.Sqrt((double)((p1 * q1) / n1) + (double)((p2 * q2) / n2))) - (alglib.normaldistr.invnormaldistribution(1 - (alpha / 2)) * (Math.Sqrt(pPrime * qPrime * ((double)(1 / n1) + (double)(1 / n2)))) / (Math.Sqrt(p1 * q1 / (double)n1 + p2 * q2 / (double)n2)));
+            power = (delta / Math.Sqrt((double)((p1 * q1) / n1) + (double)((p2 * q2) / n2))) - (alglib.normaldistr.invnormaldistribution(1 - (alpha / 2)) * (Math.Sqrt(pPrime * qPrime * (((double)1 / n1) + ((double)1 / n2)))) / (Math.Sqrt((p1 * q1 / (double)n1) + (p2 * q2 / (double)n2))));
             result = alglib.normaldistr.normaldistribution(power);
             return result;
         }
