@@ -15,13 +15,21 @@ public partial class DeleteMember : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            notifier.Dispose();
-
-            getMembers();
-            if (dt.Rows.Count <= 0)
+            if (this.Session["user"] == null)
             {
-                deleteMembersBtn.Visible = false;
-                Notifier.AddWarningMessage("There are no member!");
+                Notifier.AddInfoMessage("You should sign in ");
+                Response.Redirect("~/HomePage.aspx");
+            }
+            else
+            {
+                notifier.Dispose();
+
+                getMembers();
+                if (dt.Rows.Count <= 0)
+                {
+                    deleteMembersBtn.Visible = false;
+                    Notifier.AddWarningMessage("There are no member!");
+                }
             }
         }
     }

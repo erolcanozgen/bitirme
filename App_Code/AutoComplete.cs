@@ -33,7 +33,7 @@ public class AutoComplete : System.Web.Services.WebService {
 
         returnValue = dtSNPs.AsEnumerable().Select(row => row.Field<string>("Gene_Name")).ToArray();
 
-        return (from rV in returnValue where rV.StartsWith(prefixText, StringComparison.CurrentCultureIgnoreCase) select rV).Take(100).ToArray();
+        return (from rV in returnValue where rV.StartsWith(prefixText, StringComparison.CurrentCultureIgnoreCase) select rV).Take(10).ToArray();
     }
 
     [WebMethod]
@@ -49,7 +49,7 @@ public class AutoComplete : System.Web.Services.WebService {
 
         returnValue = dtSNPs.AsEnumerable().Select(row => row.Field<string>("SNP")).ToArray();
 
-        return (from rV in returnValue where rV.StartsWith(prefixText, StringComparison.CurrentCultureIgnoreCase) select rV).Take(100).ToArray();
+        return (from rV in returnValue where rV.StartsWith(prefixText, StringComparison.CurrentCultureIgnoreCase) select rV).Take(10).ToArray();
     }
 
     [WebMethod]
@@ -63,6 +63,6 @@ public class AutoComplete : System.Web.Services.WebService {
 
         returnValue = dtDiseases.AsEnumerable().Select(row => row.Field<string>("Name")).ToArray();
 
-        return (from rV in returnValue where rV.StartsWith(prefixText, StringComparison.CurrentCultureIgnoreCase) select rV).Take(100).ToArray();
+        return (from rV in returnValue where rV.StartsWith(prefixText, StringComparison.CurrentCultureIgnoreCase) select rV).Take(10).ToArray();
     }
 }

@@ -10,6 +10,12 @@ public partial class ChangePassword : System.Web.UI.Page
     Users user = null;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (this.Session["user"] == null)
+        {
+            Notifier.AddInfoMessage("You should sign in");
+            Response.Redirect("~/HomePage.aspx");
+        }
+        else
         user = this.Session["user"] as Users;
     }
     protected void btnChangePwd_Click(object sender, EventArgs e)

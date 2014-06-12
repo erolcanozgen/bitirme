@@ -20,15 +20,24 @@ public partial class AddedResearches : System.Web.UI.Page
         {
             //notifier.Dispose();
 
-            selectUnapprovedDiseases();
-
-            if (dt.Rows.Count <= 0)
+            if (this.Session["user"] == null)
             {
-                buttonApprove.Visible = false;
-                buttonReject.Visible = false;
-                Notifier.AddWarningMessage("No new added publication!");
+                Notifier.AddInfoMessage("You should sign in ");
+                Response.Redirect("~/HomePage.aspx");
             }
-        
+
+            else
+            {
+                selectUnapprovedDiseases();
+
+                if (dt.Rows.Count <= 0)
+                {
+                    buttonApprove.Visible = false;
+                    buttonReject.Visible = false;
+                    Notifier.AddWarningMessage("No new added publication!");
+                }
+
+            }
         }
 
     }

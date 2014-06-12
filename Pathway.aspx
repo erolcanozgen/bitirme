@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="Enrichment.aspx.cs" Inherits="Enrichment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Yeni.master" AutoEventWireup="true" CodeFile="Pathway.aspx.cs" Inherits="Pathway" %>
 
 <%@ Register Src="~/Notifier.ascx" TagPrefix="uc1" TagName="Notifier" %>
 

@@ -13,15 +13,22 @@ public partial class MyAccount : System.Web.UI.Page
         try
         {
             if (this.Session["user"] == null)
-                ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('You should sign in.');", true);
-
-            user = this.Session["user"] as Users;
-            if (!IsPostBack)
             {
-                txtUsername.Text = user.username;
-                txtName.Text = user.name;
-                txtSurname.Text = user.surname;
-                txtEmail.Text = user.email;
+                Notifier.AddInfoMessage("You should sign in ");
+                Response.Redirect("~/HomePage.aspx");
+            }
+
+            else
+            {
+
+                user = this.Session["user"] as Users;
+                if (!IsPostBack)
+                {
+                    txtUsername.Text = user.username;
+                    txtName.Text = user.name;
+                    txtSurname.Text = user.surname;
+                    txtEmail.Text = user.email;
+                }
             }
         }
         catch (Exception ex)

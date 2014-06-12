@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Enrichment : System.Web.UI.Page
+public partial class Pathway : System.Web.UI.Page
 {
     static DataView stable = new DataView();
     DataTable table = new DataTable();

@@ -44,8 +44,6 @@
                                 
                                 <div class="clear"></div>
                                 <asp:Button ID="Login" runat="server" Text="Login" class="bt_login" OnClick="Login_Click" />
-                                <a class="lost-pwd" href="#">Lost your password?</a>
-
                             </div>
                             <div class="left right" style="width:300px">
                                 <!-- Register Form -->

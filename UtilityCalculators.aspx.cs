@@ -143,7 +143,7 @@ public partial class UtilityCalculators : System.Web.UI.Page
     protected void BonferroniCalcBtn_Click(object sender, EventArgs e)
     {
         double corelation = 0.0, bonferroni_factor = 0.0, no_corection=0.0;
-        if (Label_no_correction.Text != String.Empty) corelation = Convert.ToDouble(Label_no_correction.Text);
+        if (txt_corelation.Text != String.Empty) corelation = Convert.ToDouble(txt_corelation.Text);
        bonferroni_factor = Utility.CalculateBonferroniFactor(Convert.ToDouble(txt_alpha.Text), Convert.ToInt32(txt_test_number.Text), corelation);
        Label_bonferroni_factor.Text = txt_alpha.Text + " - " + bonferroni_factor.ToString(GetFormat(bonferroni_factor));
        Label_z_score_one.Text = " >= " + Math.Abs(alglib.normaldistr.invnormaldistribution(bonferroni_factor)).ToString("0.0000");

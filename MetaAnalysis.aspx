@@ -118,9 +118,9 @@
 							<asp:GridView ID="grdViewOrdersOfCustomer" runat="server" AutoGenerateColumns="false"
 								DataKeyNames="SNP" AllowPaging="False" RowStyle-Wrap="false">
 								<Columns>
-                                    <asp:BoundField  DataFormatString="{0:F2}" DataField="Case_Count" HeaderText="Case Count" />
+                                    <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" />
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency In Case" />
-                                    <asp:BoundField  DataFormatString="{0:F2}" DataField="Control_Count" HeaderText="Control Count" />
+                                    <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" />
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Control" HeaderText="Frequency In Control" />
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="P_Value" HeaderText="P Value" />
                                     <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" />
