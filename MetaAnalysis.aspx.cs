@@ -223,6 +223,7 @@ public partial class Disasters : System.Web.UI.Page
         if (selectedRowCounts <= 0)
         {
             Notifier.AddErrorMessage("Please select one publication at least!");
+            Response.Redirect("~/MetaAnalysis.aspx");
         }
         else 
         {
