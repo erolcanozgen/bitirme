@@ -226,7 +226,7 @@ public partial class Disasters : System.Web.UI.Page
         }
         else 
         {
-            Response.Redirect(String.Format("~/Enrichment.aspx?genes={0}", genes));
+            Response.Redirect(String.Format("~/Pathway.aspx?genes={0}", genes));
         }
     }
 }
