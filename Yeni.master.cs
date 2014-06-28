@@ -74,17 +74,24 @@ public partial class Yeni : System.Web.UI.MasterPage
 
         if (newUser.checkUser(L_UserName.Text) && (Encryption.SifreyiCozAES(newUser.passwd) == L_passwd.Text))
         {
-                Notifier.AddSuccessMessage("Success Login.");
-                Session.Add("user", newUser);
-                Response.Redirect(Request.RawUrl);
+            Notifier.AddSuccessMessage("Success Login.");
+            Session.Add("user", newUser);
+            Response.Redirect(Request.RawUrl);
         }
         else
-            Notifier.AddErrorMessage("Wrong username and password combinations.");
+        {
+           Alert.Show("Wrong username and password combinations.");
+            ScriptManager.RegisterStartupScript(this, GetType(), "", "Slide();", true);
+        }
             //Alert.Show("Wrong username and password combinations.");
     }
     protected void Register_Click(object sender, EventArgs e)
     {
-        if (R_Passwd.Text != R_ConfirmPasswd.Text) Alert.Show("Entered passwords are not matched each other");
+        if (R_Passwd.Text != R_ConfirmPasswd.Text)
+        {
+            Alert.Show("Entered passwords are not matched each other.");
+            ScriptManager.RegisterStartupScript(this, GetType(), "", "Slide();", true);
+        }
         else
         {
             try
@@ -96,11 +103,16 @@ public partial class Yeni : System.Web.UI.MasterPage
                     Notifier.AddSuccessMessage("Registration is successfull");
                     FindAllTextBox(this);
                 }
-                else Notifier.AddErrorMessage("Entered username is already exist.");
+                else
+                {
+                    Alert.Show("Entered username is already exist.");
+                    ScriptManager.RegisterStartupScript(this, GetType(), "", "Slide();", true);
+                }
             }
             catch (Exception ex)
             {
-                Notifier.AddErrorMessage("An error was occured while registration");
+                Alert.Show("An error was occured while registration");
+                ScriptManager.RegisterStartupScript(this, GetType(), "", "Slide();", true);
             }
         }
     }
