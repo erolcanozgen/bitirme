@@ -22,19 +22,21 @@ public partial class ChangePassword : System.Web.UI.Page
     {
         try
         {
-            if (txtOldPwd.Text == user.passwd)
+            if (txtOldPwd.Text == Encryption.SifreyiCozAES(user.passwd))
             {
                 if (txtNewPwdAgain.Text == txtNewPwd.Text)
                 {
-                    user.passwd = txtNewPwdAgain.Text;
+                    user.passwd = Encryption.SifreleAES(txtNewPwdAgain.Text);
                     user.ChangePassword();
-                    ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Password has been changed successfuly.');", true);
+                    Notifier.AddSuccessMessage("Password has been changed successfuly.");
                 }
-                else ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('New passwords do not match.');", true);
+                else Notifier.AddErrorMessage("New passwords do not match.");
+
             }
-            else ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('Wrong old password is entered.');", true);
+            else Notifier.AddErrorMessage("Wrong old password is entered.");
+
         }
-        catch (Exception ex) { ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "alert('An error is ocurred while changing password.');", true); }
+        catch (Exception ex) { Notifier.AddErrorMessage("An error was occured while registration"); }
     }
    
 }

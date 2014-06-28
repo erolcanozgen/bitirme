@@ -98,11 +98,11 @@
                 </thead>
          </table>
 
-        <div id="excelButton">
+      <%--  <div id="excelButton">
                         <asp:ImageButton Visible="false" ID="excelAktar" runat="server" 
                             ImageUrl="~/images/excelAktar.jpg" BorderColor="#333333"
                             BorderStyle="Ridge" onclick="excelAktar_Click" ImageAlign="Right" />
-        </div>
+        </div>--%>
 
         <asp:Panel runat="server">
         <asp:GridView ID="grdViewCustomers" runat="server" AutoGenerateColumns="False" DataKeyNames="SNP,tmpId" onsorting="gvDetails_Sorting" RowStyle-Wrap="false"

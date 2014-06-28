@@ -106,24 +106,24 @@ public partial class Disasters : System.Web.UI.Page
         /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
            server control at run time. */
     }
-    protected void excelAktar_Click(object sender, ImageClickEventArgs e)
-    {
-        Response.Clear();
-        string fileName = "attachment; filename=" + DiseasesList.SelectedValue + ".xls";
-        Response.AddHeader("content-disposition", fileName);
-        Response.ContentEncoding = System.Text.Encoding.GetEncoding("Windows-1254");
-        Response.Charset = "UTF-8";
-        Response.ContentType = "application/ms-excel";
+    //protected void excelAktar_Click(object sender, ImageClickEventArgs e)
+    //{
+    //    Response.Clear();
+    //    string fileName = "attachment; filename=" + DiseasesList.SelectedValue + ".xls";
+    //    Response.AddHeader("content-disposition", fileName);
+    //    Response.ContentEncoding = System.Text.Encoding.GetEncoding("Windows-1254");
+    //    Response.Charset = "UTF-8";
+    //    Response.ContentType = "application/ms-excel";
 
-        StringWriter stringWrite = new StringWriter();
-        HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+    //    StringWriter stringWrite = new StringWriter();
+    //    HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
 
 
-        grdViewCustomers.RenderControl(htmlWrite);
+    //    grdViewCustomers.RenderControl(htmlWrite);
 
-        Response.Write(stringWrite.ToString());
-        Response.End();
-    }
+    //    Response.Write(stringWrite.ToString());
+    //    Response.End();
+    //}
 
     private void setReferenceColumn(DataTable dt, GridView grd)
     {
@@ -216,7 +216,8 @@ public partial class Disasters : System.Web.UI.Page
                 if (chkRow.Checked)
                 {
                     selectedRowCounts++;
-                    genes += (row.Cells[3].FindControl("Gene_Name") as HyperLink).Text + ":";
+                    if(!genes.Contains((row.Cells[3].FindControl("Gene_Name") as HyperLink).Text))
+                         genes += (row.Cells[3].FindControl("Gene_Name") as HyperLink).Text + ":";
                 }
             }
         }

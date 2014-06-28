@@ -38,13 +38,36 @@ public class Users
         this.rolId = rolId;
     }
 
-    public bool checkUser(string username, string password)
+
+    public static  bool checkUserName(string username)
     {
         Connection newCon = new Connection();
-        string query = "select id,Username,Name,Surname,Email,roleId,Password from member where Username = @usrname and Password = @paswrd";
+        string query = "select id,Username,Name,Surname,Email,roleId,Password from member where Username = @usrname";
         MySqlCommand command = new MySqlCommand(query, newCon.conn);
         command.Parameters.AddWithValue("@usrname", username);
-        command.Parameters.AddWithValue("@paswrd", password);
+        MySqlDataAdapter dr = new MySqlDataAdapter(command);
+        DataTable dt = new DataTable();
+        dt.Clear();
+        dr.Fill(dt);
+
+        if (dt.Rows.Count == 0)
+        {
+            newCon.conn.Close();
+            return false;
+        }
+        else
+        {
+            newCon.conn.Close();
+            return true; 
+        }
+    }
+
+    public bool checkUser(string username)
+    {
+        Connection newCon = new Connection();
+        string query = "select id,Username,Name,Surname,Email,roleId,Password from member where Username = @usrname";
+        MySqlCommand command = new MySqlCommand(query, newCon.conn);
+        command.Parameters.AddWithValue("@usrname", username);
         MySqlDataAdapter dr = new MySqlDataAdapter(command);
         DataTable dt = new DataTable();
         dt.Clear();

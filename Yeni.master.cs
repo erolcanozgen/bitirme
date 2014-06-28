@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 
 public partial class Yeni : System.Web.UI.MasterPage
 {
+
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -70,11 +72,11 @@ public partial class Yeni : System.Web.UI.MasterPage
         Connection newConnection = new Connection();
         Users newUser = new Users();
 
-        if (newUser.checkUser(L_UserName.Text, L_passwd.Text))
+        if (newUser.checkUser(L_UserName.Text) && (Encryption.SifreyiCozAES(newUser.passwd) == L_passwd.Text))
         {
-            Notifier.AddSuccessMessage("Success Login.");
-            Session.Add("user", newUser);
-            Response.Redirect(Request.RawUrl);
+                Notifier.AddSuccessMessage("Success Login.");
+                Session.Add("user", newUser);
+                Response.Redirect(Request.RawUrl);
         }
         else
             Notifier.AddErrorMessage("Wrong username and password combinations.");
@@ -87,15 +89,18 @@ public partial class Yeni : System.Web.UI.MasterPage
         {
             try
             {
-                Users newUser = new Users(R_Username.Text, FirstName.Text, LastName.Text, Email.Text, R_Passwd.Text, 1);
-                newUser.AddUser();
-                Alert.Show("Registration is successfull");
-                FindAllTextBox(this);
+                if (!Users.checkUserName(R_Username.Text))
+                {
+                    Users newUser = new Users(R_Username.Text, FirstName.Text, LastName.Text, Email.Text, Encryption.SifreleAES(R_Passwd.Text), 1);
+                    newUser.AddUser();
+                    Notifier.AddSuccessMessage("Registration is successfull");
+                    FindAllTextBox(this);
+                }
+                else Notifier.AddErrorMessage("Entered username is already exist.");
             }
             catch (Exception ex)
             {
-
-                Alert.Show("An error was occured while registration");
+                Notifier.AddErrorMessage("An error was occured while registration");
             }
         }
     }
@@ -112,5 +117,7 @@ public partial class Yeni : System.Web.UI.MasterPage
             }
         }
     }
+
+   
 
  }

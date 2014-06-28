@@ -29,10 +29,24 @@ public partial class _Default : System.Web.UI.Page
         {
             smtp.SendAsync(eMail, (object)eMail);
             Notifier.AddSuccessMessage("Mail has been sent..");
+            clearAllTextBox(this);
         }
         catch (SmtpException ex)
         {
             Notifier.AddErrorMessage("An error occured.Please try again later.");
+        }
+    }
+
+    public void clearAllTextBox(Control ctrl)
+    {
+        if (ctrl != null)
+        {
+            foreach (Control c in ctrl.Controls)
+            {
+                if (c is TextBox)
+                    ((TextBox)c).Text = String.Empty;
+                clearAllTextBox(c);
+            }
         }
     }
 }

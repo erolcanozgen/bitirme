@@ -13,18 +13,18 @@ public partial class Authentication : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserName = Request["Username"];
-        Password = Request["Password"];
+        //UserName = Request["Username"];
+        //Password = Request["Password"];
 
-        Connection newConnection = new Connection();
-        Users newUser = new Users();
+        //Connection newConnection = new Connection();
+        //Users newUser = new Users();
 
-        if (newUser.checkUser(UserName, Password))
-            Session.Add("user", newUser);
-        else      
-            Response.Write("Wrong username and password combinations.");
+        //if (newUser.checkUser(UserName, Password))
+        //    Session.Add("user", newUser);
+        //else      
+        //    Response.Write("Wrong username and password combinations.");
 
-        Response.Redirect("HomePage.aspx");
+        //Response.Redirect("HomePage.aspx");
  
       
  
