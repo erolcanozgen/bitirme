@@ -78,12 +78,12 @@
           </tr> 
       
           <tr>
-          <td style="padding:10px"><label id="lblMinimumSample">Minumum Case Count: </label></td>
+          <td style="padding:10px"><label id="lblMinimumSample">Minumum Case Number: </label></td>
           <td style="padding:10px"><asp:TextBox runat="server" ID="txtMinimumCase" Width="143px"></asp:TextBox></td>
           </tr>
 
           <tr>
-          <td style="padding:10px"><label id="Label2">Minumum Control Count: </label></td>
+          <td style="padding:10px"><label id="Label2">Minumum Control Number: </label></td>
           <td style="padding:10px"><asp:TextBox runat="server" ID="txtMinimumControl" Width="143px"></asp:TextBox></td>
           </tr>
               
@@ -112,14 +112,14 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField  DataField="SNP" HeaderText="SNP" SortExpression="SNP"/>
-                            <asp:BoundField  DataField="Case_Count" HeaderText="Case Count" SortExpression="Case_Count"/>
-                            <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Frequency In Case" SortExpression="Frequency_Patient"/>
-                            <asp:BoundField  DataField="Control_Count" HeaderText="Control Count" SortExpression="Control_Count"/>
-                            <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Control" HeaderText="Frequency In Control" SortExpression="Frequency_Control"/>
+                            <asp:BoundField  DataField="Case_Count" HeaderText="Case Number" SortExpression="Case_Count"/>
+                            <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Case Allele Frequency" SortExpression="Frequency_Patient"/>
+                            <asp:BoundField  DataField="Control_Count" HeaderText="Control Number" SortExpression="Control_Count"/>
+                            <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Control" HeaderText="Control Allele Frequency" SortExpression="Frequency_Control"/>
                             <asp:BoundField  DataField="P_Value" HeaderText="P Value" SortExpression="P_Value"/>
-                            <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR Value" SortExpression="OR_Value"/>
+                            <asp:BoundField  DataFormatString="{0:F2}" DataField="OR_Value" HeaderText="OR" SortExpression="OR_Value"/>
                             <asp:BoundField  DataField="CI" HeaderText="95% CI" SortExpression="CI"/>
-                            <asp:TemplateField HeaderText="Reference">
+                            <asp:TemplateField HeaderText="References (PMID)">
                                 <ItemTemplate>
                                     <asp:HyperLink ID="Link" runat="server" Visible="false" Text='<%# Bind("Reference") %>' ></asp:HyperLink>
                                     <asp:Label runat="server" ID="lbl_reference" Visible="false" Text='<%# Bind("Reference") %>'></asp:Label>
