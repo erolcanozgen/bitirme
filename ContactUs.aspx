@@ -16,7 +16,7 @@
        <link href="Styles/ErrorSuccessNotifier.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server" >
-        <uc1:Notifier runat="server" ID="notifier" />
+        &nbsp;<uc1:Notifier runat="server" ID="notifier" />
         <table class="searchPanel" style="width:550px">
             <tr>
                 <td colspan="2">

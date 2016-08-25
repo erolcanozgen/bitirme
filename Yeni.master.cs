@@ -86,7 +86,7 @@ public partial class Yeni : System.Web.UI.MasterPage
             //Alert.Show("Wrong username and password combinations.");
     }
     protected void Register_Click(object sender, EventArgs e)
-    {
+    { 
         if (R_Passwd.Text != R_ConfirmPasswd.Text)
         {
             Alert.Show("Entered passwords are not matched each other.");
