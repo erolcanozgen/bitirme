@@ -29,7 +29,7 @@
                         <div style="float: left; width: 345px;">
 
                         <table id="filterTable">
-
+                             
                             <thead>
                                 <tr>
                                     <th></th>

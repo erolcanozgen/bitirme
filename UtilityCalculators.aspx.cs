@@ -74,7 +74,7 @@ public partial class UtilityCalculators : System.Web.UI.Page
                                                        Convert.ToInt32(txtControlYes.Text), Convert.ToInt32(txtControlNo.Text));
 
             respValue.Text = p_value.ToString(GetFormat(p_value));
-
+             
             setTextBoxLength(pnl_Odds_results);
            
         }

@@ -104,7 +104,7 @@ public partial class Diseases : System.Web.UI.Page
                     link_ref = grdViewDiseases.Rows[i].FindControl("Link") as HyperLink;
                     link_ref.NavigateUrl = String.Format("{0}/{1}", ConfigurationManager.AppSettings["PubmedLink"], link_ref.Text);
                     link_ref.Target = "_blank";
-                    link_ref.Text = link_ref.Text;
+                    link_ref.Text = link_ref.Text; 
                     link_ref.Visible = true; 
                     break;
 

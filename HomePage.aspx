@@ -30,7 +30,7 @@
                         related to 21 common disorders. ITUSNP provides the information about allelic frequencies in study groups with statistical significances 
                         (P values) and strengths of the relationships in terms of odds ratio (OR). The website also comprises other calculation tools, including 
                         Odds Ratio, Risk Ratio, Chi-Square, Hardy-Weinberg, Post-hoc Power, Bonferroni Correction; to allow users to obtain the maximum efficiency 
-                        from the data. Registered users can publish their genetic data in ITUSNP.
+                        from the data. Registered users can publish their genetic data in ITUSNP. 
                     </p>
                 </td>
             </tr>

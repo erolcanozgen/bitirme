@@ -22,7 +22,7 @@
                 <td colspan="2">
                     <img style="float: left; vertical-align: middle; margin: 0 10px 0 0;" src="images/contact.png" alt="contact" />
                     <h2 style="margin: 15px 0 0 0;">Contact Us</h2>
-                    <br />
+                    &nbsp;<br />
                 </td>
             </tr>
             <tr>

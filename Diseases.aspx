@@ -110,7 +110,7 @@
                                 <ItemTemplate>
                                      <asp:HyperLink ID="Gene_Name" runat="server" Text='<%# Bind("Gene_Name") %>'></asp:HyperLink>
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField> 
                             <asp:BoundField  DataField="SNP" HeaderText="SNP" SortExpression="SNP"/>
                             <asp:BoundField  DataField="Case_Count" HeaderText="Case Number" SortExpression="Case_Count"/>
                             <asp:BoundField  DataFormatString="{0:F2}" DataField="Frequency_Patient" HeaderText="Case Allele Frequency" SortExpression="Frequency_Patient"/>
